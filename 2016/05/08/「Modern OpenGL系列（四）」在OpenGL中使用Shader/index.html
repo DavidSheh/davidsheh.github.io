@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>「Modern OpenGL系列（四）」在OpenGL中使用Shader | Sheh伟伟的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="在[上一篇文章]( http:&#x2F;&#x2F;davidsheh.github.io&#x2F;2016&#x2F;05&#x2F;08&#x2F;「Modern OpenGL系列（三）」用OpenGL绘制一个三角形&#x2F;)中已经介绍了OpenGL窗口的创建。本文接着说如何用OpenGL绘制一个三角形。1 . 添加头文件shader.h，代码如下： 123456789101112131415161718192021#pragma once#inclu">
+<meta property="og:type" content="article">
+<meta property="og:title" content="「Modern OpenGL系列（四）」在OpenGL中使用Shader">
+<meta property="og:url" content="http://davidsheh.github.io/2016/05/08/%E3%80%8CModern%20OpenGL%E7%B3%BB%E5%88%97%EF%BC%88%E5%9B%9B%EF%BC%89%E3%80%8D%E5%9C%A8OpenGL%E4%B8%AD%E4%BD%BF%E7%94%A8Shader/index.html">
+<meta property="og:site_name" content="Sheh伟伟的博客">
+<meta property="og:description" content="在[上一篇文章]( http:&#x2F;&#x2F;davidsheh.github.io&#x2F;2016&#x2F;05&#x2F;08&#x2F;「Modern OpenGL系列（三）」用OpenGL绘制一个三角形&#x2F;)中已经介绍了OpenGL窗口的创建。本文接着说如何用OpenGL绘制一个三角形。1 . 添加头文件shader.h，代码如下： 123456789101112131415161718192021#pragma once#inclu">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://img.blog.csdn.net/20160508204145889">
+<meta property="og:image" content="https://raw.githubusercontent.com/DavidSheh/MarkdownPictures/master/pictures/morden_opengl_8.png">
+<meta property="article:published_time" content="2016-05-08T12:19:28.000Z">
+<meta property="article:modified_time" content="2018-03-25T09:06:32.000Z">
+<meta property="article:author" content="Sheh伟伟">
+<meta property="article:tag" content="OpenGL">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20160508204145889">
+  
+    <link rel="alternate" href="/atom.xml" title="Sheh伟伟的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.0.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Sheh伟伟的博客</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://davidsheh.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-「Modern OpenGL系列（四）」在OpenGL中使用Shader" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/05/08/%E3%80%8CModern%20OpenGL%E7%B3%BB%E5%88%97%EF%BC%88%E5%9B%9B%EF%BC%89%E3%80%8D%E5%9C%A8OpenGL%E4%B8%AD%E4%BD%BF%E7%94%A8Shader/" class="article-date">
+  <time datetime="2016-05-08T12:19:28.000Z" itemprop="datePublished">2016-05-08</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/">技术笔记</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      「Modern OpenGL系列（四）」在OpenGL中使用Shader
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p> 在[上一篇文章]( <a href="http://davidsheh.github.io/2016/05/08/%E3%80%8CModern">http://davidsheh.github.io/2016/05/08/「Modern</a> OpenGL系列（三）」用OpenGL绘制一个三角形/)中已经介绍了OpenGL窗口的创建。本文接着说如何用OpenGL绘制一个三角形。<br>1 . 添加头文件<code>shader.h</code>，代码如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> once</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;GL\glew.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Shader</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    Shader(<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span>&amp; fileName);</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Bind</span><span class="params">()</span></span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">virtual</span> ~Shader();</span><br><span class="line"><span class="keyword">protected</span>:</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">const</span> <span class="keyword">unsigned</span> <span class="keyword">int</span> NUM_SHADERS = <span class="number">2</span>;</span><br><span class="line">    Shader(<span class="keyword">const</span> Shader&amp; other)&#123;&#125;</span><br><span class="line">    <span class="keyword">void</span> <span class="keyword">operator</span>=(<span class="keyword">const</span> Shader&amp; other)&#123;&#125;</span><br><span class="line"></span><br><span class="line">    GLuint m_program;</span><br><span class="line">    GLuint m_shaders[NUM_SHADERS];</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>2 . 添加类<code>shader.cpp</code>，代码如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;shader.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;fstream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">CheckShaderError</span><span class="params">(GLuint shader, GLuint flag, <span class="keyword">bool</span> isProgram, <span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span>&amp; errorMessage)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="built_in">std</span>::<span class="built_in">string</span> <span class="title">LoadShader</span><span class="params">(<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span>&amp; fileName)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">static</span> GLuint <span class="title">CreateShader</span><span class="params">(<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span>&amp; text, GLenum shaderType)</span></span>;</span><br><span class="line"></span><br><span class="line">Shader::Shader(<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span>&amp; fileName)</span><br><span class="line">&#123;</span><br><span class="line">    m_program = glCreateProgram();</span><br><span class="line">    m_shaders[<span class="number">0</span>] = CreateShader(LoadShader(fileName + <span class="string">&quot;.vs&quot;</span>), GL_VERTEX_SHADER);</span><br><span class="line">    m_shaders[<span class="number">1</span>] = CreateShader(LoadShader(fileName + <span class="string">&quot;.fs&quot;</span>), GL_FRAGMENT_SHADER);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">unsigned</span> <span class="keyword">int</span> i = <span class="number">0</span>; i &lt; NUM_SHADERS; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        glAttachShader(m_program, m_shaders[i]);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//glBindAttribLocation(m_program, 0, &quot;position&quot;);</span></span><br><span class="line"></span><br><span class="line">    glLinkProgram(m_program);</span><br><span class="line">    CheckShaderError(m_program, GL_LINK_STATUS, <span class="literal">true</span>, <span class="string">&quot;Error: Program linking failed!&quot;</span>);</span><br><span class="line"></span><br><span class="line">    glValidateProgram(m_program);</span><br><span class="line">    CheckShaderError(m_program, GL_VALIDATE_STATUS, <span class="literal">true</span>, <span class="string">&quot;Error: Program invalid!&quot;</span>);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Shader::~Shader()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">unsigned</span> <span class="keyword">int</span> i = <span class="number">0</span>; i &lt; NUM_SHADERS; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        glDetachShader(m_program, m_shaders[i]);</span><br><span class="line">        glDeleteShader(m_shaders[i]);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    glDeleteProgram(m_program);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Shader::Bind</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    glUseProgram(m_program);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> GLuint <span class="title">CreateShader</span><span class="params">(<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span>&amp; text, GLenum shaderType)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    GLuint shader = glCreateShader(shaderType);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (shader == <span class="number">0</span>)</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cerr</span> &lt;&lt; <span class="string">&quot;Error: Shader creation failed!&quot;</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> GLchar* shaderSourceStrings[<span class="number">1</span>];</span><br><span class="line">    GLint shaderSourceStringLengths[<span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">    shaderSourceStrings[<span class="number">0</span>] = text.c_str();</span><br><span class="line"></span><br><span class="line">    glShaderSource(shader, <span class="number">1</span>, shaderSourceStrings, shaderSourceStringLengths);</span><br><span class="line">    glCompileShader(shader);</span><br><span class="line"></span><br><span class="line">    CheckShaderError(shader, GL_COMPILE_STATUS, <span class="literal">false</span>, <span class="string">&quot;Error: Shader compilation failed!&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> shader;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="built_in">std</span>::<span class="built_in">string</span> <span class="title">LoadShader</span><span class="params">(<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span>&amp; fileName)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">std</span>::ifstream file;</span><br><span class="line">    file.open((fileName).c_str());</span><br><span class="line"></span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">string</span> output;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">string</span> line;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (file.is_open())</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">while</span> (file.good())</span><br><span class="line">        &#123;</span><br><span class="line">            getline(file, line);</span><br><span class="line">            output.append(line + <span class="string">&quot;\n&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cerr</span> &lt;&lt; <span class="string">&quot;Unable to load shader: &quot;</span> &lt;&lt; fileName &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> output;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">CheckShaderError</span><span class="params">(GLuint shader, GLuint flag, <span class="keyword">bool</span> isProgram, <span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span>&amp; errorMessage)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    GLint success = <span class="number">0</span>;</span><br><span class="line">    GLchar error[<span class="number">1024</span>] = &#123; <span class="number">0</span> &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (isProgram)</span><br><span class="line">        glGetProgramiv(shader, flag, &amp;success);</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        glGetShaderiv(shader, flag, &amp;success);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (success == GL_FALSE)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (isProgram)</span><br><span class="line">            glGetProgramInfoLog(shader, <span class="keyword">sizeof</span>(error), <span class="literal">NULL</span>, error);</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            glGetShaderInfoLog(shader, <span class="keyword">sizeof</span>(error), <span class="literal">NULL</span>, error);</span><br><span class="line"></span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cerr</span> &lt;&lt; errorMessage &lt;&lt; <span class="string">&quot;: &#x27;&quot;</span> &lt;&lt; error &lt;&lt; <span class="string">&quot;&#x27;&quot;</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>3 . 在项目文件夹下新建<code>res</code>文件夹，如下图：<img src="http://img.blog.csdn.net/20160508204145889" alt="这里写图片描述"><br>4 . 在新建的<code>res</code>文件夹下，新建顶点着色器文件<code>basicShader.vs</code>，代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">#version 120</span><br><span class="line"></span><br><span class="line">attribute vec3 position;</span><br><span class="line"></span><br><span class="line">void main()</span><br><span class="line">&#123;</span><br><span class="line">    gl_Position &#x3D; vec4(position, 1.0);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>5 . 在新建的<code>res</code>文件夹下，新建片元着色器文件<code>basicShader.fs</code>，代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">#version 120</span><br><span class="line"></span><br><span class="line">attribute vec3 position;</span><br><span class="line"></span><br><span class="line">void main()</span><br><span class="line">&#123;</span><br><span class="line">    gl_Position &#x3D; vec4(position, 1.0);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>6 . 修改主类<code>main.cpp</code>，代码如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;GL\glew.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;display.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;mesh.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;shader.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span>** argv)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// 设置窗体大小和标题</span></span><br><span class="line">    <span class="function">Display <span class="title">display</span><span class="params">(<span class="number">400</span>, <span class="number">300</span>, <span class="string">&quot;hello world!&quot;</span>)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 设置三角形顶点</span></span><br><span class="line">    Vertex vertices[] = &#123; Vertex(glm::vec3(<span class="number">-0.5</span>, <span class="number">-0.5</span>, <span class="number">0</span>)), Vertex(glm::vec3(<span class="number">0</span>, <span class="number">0.5</span>, <span class="number">0</span>)), Vertex(glm::vec3(<span class="number">0.5</span>, <span class="number">-0.5</span>, <span class="number">0</span>)), &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 生成网格</span></span><br><span class="line">    <span class="function">Mesh <span class="title">mesh</span><span class="params">(vertices, <span class="keyword">sizeof</span>(vertices) / <span class="keyword">sizeof</span>(vertices[<span class="number">0</span>]))</span></span>;</span><br><span class="line">    <span class="comment">// 加载着色器</span></span><br><span class="line">    <span class="function">Shader <span class="title">shader</span><span class="params">(<span class="string">&quot;./res/basicShader&quot;</span>)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (!display.IsClosed())</span><br><span class="line">    &#123;</span><br><span class="line">        display.Clear(<span class="number">0.0f</span>, <span class="number">1.0f</span>, <span class="number">0.0f</span>, <span class="number">1.0f</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 绑定着色器</span></span><br><span class="line">        shader.Bind();</span><br><span class="line">        <span class="comment">// 绘制三角形</span></span><br><span class="line">        mesh.Draw();    </span><br><span class="line"></span><br><span class="line">        display.Update();<span class="comment">// 刷新</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>7 . 运行项目。运行后会显示一个绿色的OpenGL窗口中有一个红色三角形。如图：<br><img src="https://raw.githubusercontent.com/DavidSheh/MarkdownPictures/master/pictures/morden_opengl_8.png" alt="效果图"></p>
+<p><strong>注意：</strong>本文中的项目使用的是VS2015，建议是用VS2015打开。<a target="_blank" rel="noopener" href="http://download.csdn.net/detail/wenxin2011/9513816"><strong>点此下载源码</strong></a></p>
+<blockquote>
+<p>本文整理自YouTube视频教程<a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=csKrVBWCItc&index=7&list=PLEETnX-uPtBXT9T-hD0Bj31DSnwio-ywh">#3.5 Intro to Modern OpenGL Tutorial: Shaders</a></p>
+</blockquote>
+<hr>
+<p><strong>同系列文章</strong></p>
+<p>[「Modern OpenGL系列（一）」十步搞定OpenGL开发环境](<a href="http://davidsheh.github.io/2016/05/01/%E3%80%8CModern">http://davidsheh.github.io/2016/05/01/「Modern</a> OpenGL系列（一）」十步搞定OpenGL开发环境/)</p>
+<p>[「Modern OpenGL系列（二）」创建OpenGL窗口](<a href="http://davidsheh.github.io/2016/05/02/%E3%80%8CModern">http://davidsheh.github.io/2016/05/02/「Modern</a> OpenGL系列（二）」创建OpenGL窗口/)</p>
+<p>[「Modern OpenGL系列（三）」用OpenGL绘制一个三角形](<a href="http://davidsheh.github.io/2016/05/08/%E3%80%8CModern">http://davidsheh.github.io/2016/05/08/「Modern</a> OpenGL系列（三）」用OpenGL绘制一个三角形/)</p>
+<p>[「Modern OpenGL系列（四）」在OpenGL中使用Shader](<a href="http://davidsheh.github.io/2016/05/08/%E3%80%8CModern">http://davidsheh.github.io/2016/05/08/「Modern</a> OpenGL系列（四）」在OpenGL中使用Shader/)</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://davidsheh.github.io/2016/05/08/%E3%80%8CModern%20OpenGL%E7%B3%BB%E5%88%97%EF%BC%88%E5%9B%9B%EF%BC%89%E3%80%8D%E5%9C%A8OpenGL%E4%B8%AD%E4%BD%BF%E7%94%A8Shader/" data-id="ckdl9itjk002g64s65tqs2kkd" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OpenGL/" rel="tag">OpenGL</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/08/22/Git%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Git快速入门
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/05/08/%E3%80%8CModern%20OpenGL%E7%B3%BB%E5%88%97%EF%BC%88%E4%B8%89%EF%BC%89%E3%80%8D%E7%94%A8OpenGL%E7%BB%98%E5%88%B6%E4%B8%80%E4%B8%AA%E4%B8%89%E8%A7%92%E5%BD%A2/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">「Modern OpenGL系列（三）」用OpenGL绘制一个三角形</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/">技术笔记</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C#</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Chocolatey/" rel="tag">Chocolatey</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Fish-shell/" rel="tag">Fish shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GVoice/" rel="tag">GVoice</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/" rel="tag">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/" rel="tag">GitHub</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Homebrew/" rel="tag">Homebrew</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Homebrew-Cask/" rel="tag">Homebrew-Cask</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Json/" rel="tag">Json</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mac/" rel="tag">Mac</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/" rel="tag">Markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NexT/" rel="tag">NexT</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OpenGL/" rel="tag">OpenGL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Scoop/" rel="tag">Scoop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Shaderlab/" rel="tag">Shaderlab</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Shell/" rel="tag">Shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Solarized/" rel="tag">Solarized</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ubuntu/" rel="tag">Ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity3D/" rel="tag">Unity3D</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VS-Code/" rel="tag">VS Code</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Windows/" rel="tag">Windows</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iTerm-2/" rel="tag">iTerm 2</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wsl/" rel="tag">wsl</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%90%91%E9%87%8F/" rel="tag">向量</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/" rel="tag">游戏开发</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/C/" style="font-size: 12.5px;">C#</a> <a href="/tags/Chocolatey/" style="font-size: 10px;">Chocolatey</a> <a href="/tags/Fish-shell/" style="font-size: 10px;">Fish shell</a> <a href="/tags/GVoice/" style="font-size: 10px;">GVoice</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/GitHub/" style="font-size: 10px;">GitHub</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Homebrew/" style="font-size: 10px;">Homebrew</a> <a href="/tags/Homebrew-Cask/" style="font-size: 10px;">Homebrew-Cask</a> <a href="/tags/Json/" style="font-size: 10px;">Json</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Mac/" style="font-size: 15px;">Mac</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/NexT/" style="font-size: 10px;">NexT</a> <a href="/tags/OpenGL/" style="font-size: 17.5px;">OpenGL</a> <a href="/tags/Scoop/" style="font-size: 10px;">Scoop</a> <a href="/tags/Shaderlab/" style="font-size: 10px;">Shaderlab</a> <a href="/tags/Shell/" style="font-size: 12.5px;">Shell</a> <a href="/tags/Solarized/" style="font-size: 10px;">Solarized</a> <a href="/tags/Ubuntu/" style="font-size: 10px;">Ubuntu</a> <a href="/tags/Unity3D/" style="font-size: 20px;">Unity3D</a> <a href="/tags/VS-Code/" style="font-size: 10px;">VS Code</a> <a href="/tags/Windows/" style="font-size: 10px;">Windows</a> <a href="/tags/iTerm-2/" style="font-size: 10px;">iTerm 2</a> <a href="/tags/wsl/" style="font-size: 10px;">wsl</a> <a href="/tags/%E5%90%91%E9%87%8F/" style="font-size: 15px;">向量</a> <a href="/tags/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/" style="font-size: 15px;">游戏开发</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/09/29/wsl-usage/">WSL 使用记录</a>
+          </li>
+        
+          <li>
+            <a href="/2017/09/09/windows-chocolatey-scoop/">Windows 系统的包管理器</a>
+          </li>
+        
+          <li>
+            <a href="/2017/09/03/hexo-blog/">用Hexo搭建个人博客</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/29/vscode-shaderlab/">使用 VS Code 写 Shaderlab</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/28/mac-fishshell/">Mac开发必备工具（三）—— Fish shell</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 Sheh伟伟<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>WSL 使用记录 | Sheh伟伟的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="简介WSL 是 Windows Subsystem for Linux 的缩写。它是 Win10 系统下面的一个 Linux 子系统。 安装和卸载 WSL环境安装在 Win10 上的 Microsoft Store 中搜索 Linux，就可以看到 WSL 所支持的 Linux 版本，找到想要安装的版本直接安装就可以了。目前，WSL支持 Ubuntu，Kali Linux，GNU，OpenSUSE">
+<meta property="og:type" content="article">
+<meta property="og:title" content="WSL 使用记录">
+<meta property="og:url" content="http://davidsheh.github.io/2017/09/29/wsl-usage/index.html">
+<meta property="og:site_name" content="Sheh伟伟的博客">
+<meta property="og:description" content="简介WSL 是 Windows Subsystem for Linux 的缩写。它是 Win10 系统下面的一个 Linux 子系统。 安装和卸载 WSL环境安装在 Win10 上的 Microsoft Store 中搜索 Linux，就可以看到 WSL 所支持的 Linux 版本，找到想要安装的版本直接安装就可以了。目前，WSL支持 Ubuntu，Kali Linux，GNU，OpenSUSE">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://clementc.github.io/figures/moving_cli.png">
+<meta property="article:published_time" content="2017-09-29T12:11:02.000Z">
+<meta property="article:modified_time" content="2018-10-13T08:03:37.214Z">
+<meta property="article:author" content="Sheh伟伟">
+<meta property="article:tag" content="Shell">
+<meta property="article:tag" content="wsl">
+<meta property="article:tag" content="Ubuntu">
+<meta property="article:tag" content="Linux">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://clementc.github.io/figures/moving_cli.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Sheh伟伟的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.0.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Sheh伟伟的博客</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://davidsheh.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-wsl-usage" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/09/29/wsl-usage/" class="article-date">
+  <time datetime="2017-09-29T12:11:02.000Z" itemprop="datePublished">2017-09-29</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/">技术笔记</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      WSL 使用记录
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>WSL 是 Windows Subsystem for Linux 的缩写。它是 Win10 系统下面的一个 Linux 子系统。</p>
+<h2 id="安装和卸载-WSL环境"><a href="#安装和卸载-WSL环境" class="headerlink" title="安装和卸载 WSL环境"></a>安装和卸载 WSL环境</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>在 Win10 上的 Microsoft Store 中搜索 Linux，就可以看到 WSL 所支持的 Linux 版本，找到想要安装的版本直接安装就可以了。目前，WSL支持 Ubuntu，Kali Linux，GNU，OpenSUSE 等，后续可能会有更多Linux发行版支持WSL。本文主要记录 Ubuntu 的使用过程。</p>
+<h3 id="安装报错"><a href="#安装报错" class="headerlink" title="安装报错"></a>安装报错</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Installing, this may take a few minutes...</span><br><span class="line">WslRegisterDistribution failed with error: 0x8007019e</span><br><span class="line">The Windows Subsystem for Linux optional component is not enabled. Please enable it and try again.</span><br><span class="line">See https:&#x2F;&#x2F;aka.ms&#x2F;wslinstall for details.</span><br><span class="line">Press any key to continue...</span><br></pre></td></tr></table></figure>
+<p>报错原因是没有启用 WSL，解决办法在输出信息里，直接打开<a target="_blank" rel="noopener" href="https://aka.ms/wslinstall">链接</a>，就可以看到解决办法。<strong>注意：</strong> 要用管理员方式打开 PowerShell。</p>
+<h3 id="卸载和重装"><a href="#卸载和重装" class="headerlink" title="卸载和重装"></a>卸载和重装</h3><p>随便去试吧，如果你搞坏了你的 WSL 环境，它很容易重新安装。在进行之前，请确保做好了任何重要内容的备份。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">C:&#x2F;&gt; lxrun.exe &#x2F;uninstall &#x2F;full</span><br><span class="line">C:&#x2F;&gt; lxrun.exe &#x2F;install</span><br></pre></td></tr></table></figure>
+
+<h2 id="设置相关"><a href="#设置相关" class="headerlink" title="设置相关"></a>设置相关</h2><h3 id="访问-Windows-磁盘"><a href="#访问-Windows-磁盘" class="headerlink" title="访问 Windows 磁盘"></a>访问 Windows 磁盘</h3><p>WSL 将 Windows 系统的磁盘符都挂在到 <code>/mnt</code> 目录下了，所以如果想在 Ubuntu 中访问 Windows 系统的 C 盘，可以使用命令 <code>cd /mnt/c</code>。</p>
+<h3 id="修改默认-Shell"><a href="#修改默认-Shell" class="headerlink" title="修改默认 Shell"></a>修改默认 Shell</h3><p>可以使用 <code>echo $SHELL</code> 命令查看当前正在使用的 Shell，使用 <code>which zsh</code> 可以查看安装的 <code>zsh</code> 路径，使用 <code>chsh -s /bin/zsh</code> 修改默认 Shell。</p>
+<h3 id="使用-Fish-Shell"><a href="#使用-Fish-Shell" class="headerlink" title="使用 Fish Shell"></a>使用 Fish Shell</h3><ol>
+<li>安装 <code>fish</code>：<code>apt-get install fish</code></li>
+<li>设置默认 <code>shell</code> 为 <code>fish</code><ul>
+<li>使用 <code>vim ~/.bashrc</code> 命令打开文件</li>
+<li>在文件末尾添加一行 <code>fish</code> 命令</li>
+</ul>
+</li>
+</ol>
+<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><ol>
+<li><code>cd /</code> 或 <code>cd ~</code> 回到根目录或回到 Home 目录</li>
+<li><code>cd -</code> 回到前一个工作路径</li>
+<li>在 Bash 中，可以按下 <code>Ctrl+W</code> 删除你键入的最后一个单词，<code>Ctrl+U</code> 可以删除行内光标所在位置之前的内容，<code>Alt+左/右</code> 可以以单词为单位移动光标，<code>Ctrl+A</code> 可以将光标移至行首，<code>Ctrl+E</code> 可以将光标移至行尾，<code>Ctrl+K</code> 可以删除光标至行尾的所有内容，<code>Ctrl+L</code> 可以清屏。</li>
+<li><code>Ctrl+D</code> 一个特殊的二进制值，表示 EOF，作用相当于在终端中输入 <code>exit</code> 后回车；</li>
+<li>Linux 中的三个终端控制键：<ol>
+<li><code>Ctrl+C</code> 比较暴力，就是发送 Terminal 到当前的程序，比如你正在运行一个查找功能，文件正在查找中，Ctrl+C就会强制结束当前的这个进程。也可以取消命令执行，比如你已经输入了一长串命令了，这时突然不想执行这个命令了，就可以按下这个组合键取消。</li>
+<li><code>Ctrl+Z</code> 是把当前的程序挂起，暂停执行这个程序，比如你正在 mysql 终端中，需要出来搞点其他的文件操作，又不想退出 mysql 终端（因为下次还得输入用户名密码进入，挺麻烦），于是可以 <code>Ctrl+Z</code> 将 mysql 挂起，然后进行其他操作，然后输入fg回车后就可以回来，当然可以挂起好多进程到后台，然后 <code>fg</code> 加编号就能把挂起的进程返回到前台。当然，配合 <code>bg</code> 和 <code>fg</code> 命令进行前后台切换会非常方便。</li>
+<li><code>Ctrl+D</code> 是发送一个 exit 信号，没有那么强烈，类似<code>Ctrl+C</code> 的操作，比如你从管理员 root 退回到你的普通用户就可以这么用。</li>
+</ol>
+</li>
+<li><code>Ctrl+R</code> 逆向搜索历史命令</li>
+<li><code>Ctrl+P</code> 访问上一条命令</li>
+<li><code>Ctrl+N</code> 访问下一条命令</li>
+<li><code>!!</code> 执行上一条命令，<code>!foo</code> 执行以 foo 开头的命令</li>
+<li><code>scp [localpath] [username]@[ip]</code></li>
+</ol>
+<h2 id="在命令行中高效移动"><a href="#在命令行中高效移动" class="headerlink" title="在命令行中高效移动"></a>在命令行中高效移动</h2><p><img src="https://clementc.github.io/figures/moving_cli.png" alt="Moving efficiently in the command line"></p>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a target="_blank" rel="noopener" href="https://github.com/iWangJiaxiang/WSL-Guideline">https://github.com/iWangJiaxiang/WSL-Guideline</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://davidsheh.github.io/2017/09/29/wsl-usage/" data-id="ckdl9itje002464s6a6dscd8a" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Shell/" rel="tag">Shell</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ubuntu/" rel="tag">Ubuntu</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/wsl/" rel="tag">wsl</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2017/09/09/windows-chocolatey-scoop/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Windows 系统的包管理器</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/">技术笔记</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C#</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Chocolatey/" rel="tag">Chocolatey</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Fish-shell/" rel="tag">Fish shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GVoice/" rel="tag">GVoice</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/" rel="tag">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/" rel="tag">GitHub</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Homebrew/" rel="tag">Homebrew</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Homebrew-Cask/" rel="tag">Homebrew-Cask</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Json/" rel="tag">Json</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mac/" rel="tag">Mac</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/" rel="tag">Markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NexT/" rel="tag">NexT</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OpenGL/" rel="tag">OpenGL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Scoop/" rel="tag">Scoop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Shaderlab/" rel="tag">Shaderlab</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Shell/" rel="tag">Shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Solarized/" rel="tag">Solarized</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ubuntu/" rel="tag">Ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity3D/" rel="tag">Unity3D</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VS-Code/" rel="tag">VS Code</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Windows/" rel="tag">Windows</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iTerm-2/" rel="tag">iTerm 2</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wsl/" rel="tag">wsl</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%90%91%E9%87%8F/" rel="tag">向量</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/" rel="tag">游戏开发</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/C/" style="font-size: 12.5px;">C#</a> <a href="/tags/Chocolatey/" style="font-size: 10px;">Chocolatey</a> <a href="/tags/Fish-shell/" style="font-size: 10px;">Fish shell</a> <a href="/tags/GVoice/" style="font-size: 10px;">GVoice</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/GitHub/" style="font-size: 10px;">GitHub</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Homebrew/" style="font-size: 10px;">Homebrew</a> <a href="/tags/Homebrew-Cask/" style="font-size: 10px;">Homebrew-Cask</a> <a href="/tags/Json/" style="font-size: 10px;">Json</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Mac/" style="font-size: 15px;">Mac</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/NexT/" style="font-size: 10px;">NexT</a> <a href="/tags/OpenGL/" style="font-size: 17.5px;">OpenGL</a> <a href="/tags/Scoop/" style="font-size: 10px;">Scoop</a> <a href="/tags/Shaderlab/" style="font-size: 10px;">Shaderlab</a> <a href="/tags/Shell/" style="font-size: 12.5px;">Shell</a> <a href="/tags/Solarized/" style="font-size: 10px;">Solarized</a> <a href="/tags/Ubuntu/" style="font-size: 10px;">Ubuntu</a> <a href="/tags/Unity3D/" style="font-size: 20px;">Unity3D</a> <a href="/tags/VS-Code/" style="font-size: 10px;">VS Code</a> <a href="/tags/Windows/" style="font-size: 10px;">Windows</a> <a href="/tags/iTerm-2/" style="font-size: 10px;">iTerm 2</a> <a href="/tags/wsl/" style="font-size: 10px;">wsl</a> <a href="/tags/%E5%90%91%E9%87%8F/" style="font-size: 15px;">向量</a> <a href="/tags/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/" style="font-size: 15px;">游戏开发</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/09/29/wsl-usage/">WSL 使用记录</a>
+          </li>
+        
+          <li>
+            <a href="/2017/09/09/windows-chocolatey-scoop/">Windows 系统的包管理器</a>
+          </li>
+        
+          <li>
+            <a href="/2017/09/03/hexo-blog/">用Hexo搭建个人博客</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/29/vscode-shaderlab/">使用 VS Code 写 Shaderlab</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/28/mac-fishshell/">Mac开发必备工具（三）—— Fish shell</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 Sheh伟伟<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

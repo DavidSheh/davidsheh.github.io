@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>用Hexo搭建个人博客 | Sheh伟伟的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="安装环境1. 安装HomebrewMac建议使用 Homebrew 安装必要的插件，Windows用户可以跳过这一步。关于 Homebrew 的介绍请看我的这篇博文 Mac开发必备工具（一）—— Homebrew。 2. 安装Git和Node.jsNode.js 可以通过 Homebrew 安装，安装命令如下： 1brew install node  3. 安装 Hexo 博客框架Hexo 框架可">
+<meta property="og:type" content="article">
+<meta property="og:title" content="用Hexo搭建个人博客">
+<meta property="og:url" content="http://davidsheh.github.io/2017/09/03/hexo-blog/index.html">
+<meta property="og:site_name" content="Sheh伟伟的博客">
+<meta property="og:description" content="安装环境1. 安装HomebrewMac建议使用 Homebrew 安装必要的插件，Windows用户可以跳过这一步。关于 Homebrew 的介绍请看我的这篇博文 Mac开发必备工具（一）—— Homebrew。 2. 安装Git和Node.jsNode.js 可以通过 Homebrew 安装，安装命令如下： 1brew install node  3. 安装 Hexo 博客框架Hexo 框架可">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2017-09-03T12:08:21.000Z">
+<meta property="article:modified_time" content="2018-03-25T09:06:32.000Z">
+<meta property="article:author" content="Sheh伟伟">
+<meta property="article:tag" content="Hexo">
+<meta property="article:tag" content="NexT">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Sheh伟伟的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.0.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Sheh伟伟的博客</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://davidsheh.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-hexo-blog" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/09/03/hexo-blog/" class="article-date">
+  <time datetime="2017-09-03T12:08:21.000Z" itemprop="datePublished">2017-09-03</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      用Hexo搭建个人博客
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="安装环境"><a href="#安装环境" class="headerlink" title="安装环境"></a>安装环境</h2><h3 id="1-安装Homebrew"><a href="#1-安装Homebrew" class="headerlink" title="1. 安装Homebrew"></a>1. 安装Homebrew</h3><p>Mac建议使用 Homebrew 安装必要的插件，Windows用户可以跳过这一步。关于 Homebrew 的介绍请看我的这篇博文 <a href="https://davidsheh.github.io/2017/08/26/mac-homebrew/">Mac开发必备工具（一）—— Homebrew</a>。</p>
+<h3 id="2-安装Git和Node-js"><a href="#2-安装Git和Node-js" class="headerlink" title="2. 安装Git和Node.js"></a>2. 安装Git和Node.js</h3><p>Node.js 可以通过 Homebrew 安装，安装命令如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install node</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-安装-Hexo-博客框架"><a href="#3-安装-Hexo-博客框架" class="headerlink" title="3. 安装 Hexo 博客框架"></a>3. 安装 Hexo 博客框架</h3><p>Hexo 框架可以使用下面的 npm 命令来安装。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
+
+<h2 id="使用Hexo建站"><a href="#使用Hexo建站" class="headerlink" title="使用Hexo建站"></a>使用Hexo建站</h2><h3 id="建站"><a href="#建站" class="headerlink" title="建站"></a>建站</h3><p>安装 Hexo 完成后，请执行下列命令，Hexo 将会在指定文件夹中新建所需要的文件。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo init &lt;folder&gt;</span><br><span class="line">cd &lt;folder&gt;</span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>建站步骤可参考<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/setup.html">Hexo官方文档</a></p>
+</blockquote>
+<p>接着执行如下命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo generate</span><br><span class="line">hexo server</span><br></pre></td></tr></table></figure>
+<p>命令执行完毕后，在浏览器输入<code>localhost:4000</code>就可以预览本地博客效果。</p>
+<h3 id="将Hexo部署到GitHub"><a href="#将Hexo部署到GitHub" class="headerlink" title="将Hexo部署到GitHub"></a>将Hexo部署到GitHub</h3><p>在 GitHub 上新建一个仓库，然后修改 Hexo 的配置文件<code>_config.yml</code>中的 Deployment 配置项，修改内容如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># Deployment</span><br><span class="line">## Docs: https:&#x2F;&#x2F;hexo.io&#x2F;docs&#x2F;deployment.html</span><br><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repository: https:&#x2F;&#x2F;github.com&#x2F;xxx&#x2F;xxx.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>注意：</strong> 上面的的 <code>repository</code> 项要换成自己新建完成的 GitHub 仓库地址，也就是把上面的xxx换成你 GitHub 的用户名。</p>
+</blockquote>
+<p>配置完后，接着执行如下命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo generate</span><br><span class="line">hexo deploy</span><br></pre></td></tr></table></figure>
+<p>这样就将博客部署到GitHub上了。可以在浏览器中输入<code>https://xxx.github.io</code>查看博客效果。我的博客效果可以<a href="https://davidsheh.github.io/">点这里查看</a>。</p>
+<blockquote>
+<p>如果部署报错<code>ERROR Deployer not found: git</code> 或者 <code>ERROR Deployer not found: github</code>，就先执行<code>npm install hexo-deployer-git --save</code>安装部署插件后再运行<code>hexo deploy</code>命令</p>
+</blockquote>
+<h2 id="开始写作"><a href="#开始写作" class="headerlink" title="开始写作"></a>开始写作</h2><p>你可以执行下列命令来创建一篇新文章:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new &lt;title&gt;</span><br></pre></td></tr></table></figure>
+<p>命令执行完后，会在 Hexo 项目的<code>\source\_posts</code>目录下生成一个对应名称的<code>.md</code>文件。用编辑器打开就可以开始写文章了，注意文章得使用 Markdown 编写。文章写完后执行上面的清理、生成和部署命令将文章发布到GitHub仓库。<br>当让也可以不使用上面的生成命令，直接将事先编辑好的<code>.md</code> 文件复制到对应的目录，也是可以的。只不过用命令生成的<code>.md</code>文件会带一个<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/front-matter.html">Front-matter</a>，内容如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: 文章标题</span><br><span class="line">date: 创建时间</span><br><span class="line">tags: 文章标签</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+<p>所以，事先编辑好的<code>.md</code>文件里也应该包含相应的<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/front-matter.html">Front-matter</a>。</p>
+<h2 id="更换博客主题"><a href="#更换博客主题" class="headerlink" title="更换博客主题"></a>更换博客主题</h2><h3 id="更换默认主题"><a href="#更换默认主题" class="headerlink" title="更换默认主题"></a>更换默认主题</h3><p>Hexo 更换主题很简单，就两步：</p>
+<ol>
+<li>选择喜欢的主题，可以去<a target="_blank" rel="noopener" href="https://hexo.io/themes/">官网主题页</a>选择喜欢的主题，下载主题包。然后将主题文件夹放到 Hexo 项目的 <strong>themes</strong> 文件夹下。</li>
+<li>修改 Hexo 站点配置文件<code>_config.yml</code>中的 Extensions 配置项，修改内容如下：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># Extensions</span><br><span class="line">## Plugins: https:&#x2F;&#x2F;hexo.io&#x2F;plugins&#x2F;</span><br><span class="line">## Themes: https:&#x2F;&#x2F;hexo.io&#x2F;themes&#x2F;</span><br><span class="line">theme: next</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<blockquote>
+<p>博主使用的是<a target="_blank" rel="noopener" href="https://github.com/iissnan/hexo-theme-next">NexT主题</a>，所以 theme 项配置的是<code>next</code>，这里配置的字段一定要和 <strong>themes</strong> 文件夹下主题包的文件夹名称相同。下文关于主题的配置均是针对于 NexT 主题，主题的具体使用说明可以参考 <a target="_blank" rel="noopener" href="http://theme-next.iissnan.com/">NexT 官方网站</a>。</p>
+</blockquote>
+<h3 id="NexT-主题设置"><a href="#NexT-主题设置" class="headerlink" title="NexT 主题设置"></a>NexT 主题设置</h3><p>NexT 主题的设置在官网的<a target="_blank" rel="noopener" href="http://theme-next.iissnan.com/getting-started.html">开始使用</a>中说的很详细，我这里就不画蛇添足了，不清楚的可以直接看官网。<br>关于 NexT 主题的文档是我见过的所有 Hexo 主题中最完善的，你所能想到大部分配置都集成到主题了，基本实现了傻瓜式配置。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://davidsheh.github.io/2017/09/03/hexo-blog/" data-id="ckdl9itj5001k64s66z864pwt" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NexT/" rel="tag">NexT</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/09/09/windows-chocolatey-scoop/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Windows 系统的包管理器
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/08/29/vscode-shaderlab/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">使用 VS Code 写 Shaderlab</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/">技术笔记</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C#</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Chocolatey/" rel="tag">Chocolatey</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Fish-shell/" rel="tag">Fish shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GVoice/" rel="tag">GVoice</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/" rel="tag">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/" rel="tag">GitHub</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Homebrew/" rel="tag">Homebrew</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Homebrew-Cask/" rel="tag">Homebrew-Cask</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Json/" rel="tag">Json</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mac/" rel="tag">Mac</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/" rel="tag">Markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NexT/" rel="tag">NexT</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OpenGL/" rel="tag">OpenGL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Scoop/" rel="tag">Scoop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Shaderlab/" rel="tag">Shaderlab</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Shell/" rel="tag">Shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Solarized/" rel="tag">Solarized</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ubuntu/" rel="tag">Ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity3D/" rel="tag">Unity3D</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VS-Code/" rel="tag">VS Code</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Windows/" rel="tag">Windows</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iTerm-2/" rel="tag">iTerm 2</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wsl/" rel="tag">wsl</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%90%91%E9%87%8F/" rel="tag">向量</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/" rel="tag">游戏开发</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/C/" style="font-size: 12.5px;">C#</a> <a href="/tags/Chocolatey/" style="font-size: 10px;">Chocolatey</a> <a href="/tags/Fish-shell/" style="font-size: 10px;">Fish shell</a> <a href="/tags/GVoice/" style="font-size: 10px;">GVoice</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/GitHub/" style="font-size: 10px;">GitHub</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Homebrew/" style="font-size: 10px;">Homebrew</a> <a href="/tags/Homebrew-Cask/" style="font-size: 10px;">Homebrew-Cask</a> <a href="/tags/Json/" style="font-size: 10px;">Json</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Mac/" style="font-size: 15px;">Mac</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/NexT/" style="font-size: 10px;">NexT</a> <a href="/tags/OpenGL/" style="font-size: 17.5px;">OpenGL</a> <a href="/tags/Scoop/" style="font-size: 10px;">Scoop</a> <a href="/tags/Shaderlab/" style="font-size: 10px;">Shaderlab</a> <a href="/tags/Shell/" style="font-size: 12.5px;">Shell</a> <a href="/tags/Solarized/" style="font-size: 10px;">Solarized</a> <a href="/tags/Ubuntu/" style="font-size: 10px;">Ubuntu</a> <a href="/tags/Unity3D/" style="font-size: 20px;">Unity3D</a> <a href="/tags/VS-Code/" style="font-size: 10px;">VS Code</a> <a href="/tags/Windows/" style="font-size: 10px;">Windows</a> <a href="/tags/iTerm-2/" style="font-size: 10px;">iTerm 2</a> <a href="/tags/wsl/" style="font-size: 10px;">wsl</a> <a href="/tags/%E5%90%91%E9%87%8F/" style="font-size: 15px;">向量</a> <a href="/tags/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/" style="font-size: 15px;">游戏开发</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/09/29/wsl-usage/">WSL 使用记录</a>
+          </li>
+        
+          <li>
+            <a href="/2017/09/09/windows-chocolatey-scoop/">Windows 系统的包管理器</a>
+          </li>
+        
+          <li>
+            <a href="/2017/09/03/hexo-blog/">用Hexo搭建个人博客</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/29/vscode-shaderlab/">使用 VS Code 写 Shaderlab</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/28/mac-fishshell/">Mac开发必备工具（三）—— Fish shell</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 Sheh伟伟<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

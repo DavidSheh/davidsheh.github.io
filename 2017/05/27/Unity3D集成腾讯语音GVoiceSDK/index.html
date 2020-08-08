@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Unity3D集成腾讯语音GVoiceSDK | Sheh伟伟的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="友情提示：最近发现腾讯GVoice有另一个官网，叫做腾讯游戏服务，经过对比发现这个网站才是最新的，下面我介绍的那个估计是已经废弃的，但不知道为啥老的网站没有直接链接到新网址而是仍然保留了。不过新官网的文档更加详细，SDK也有所更新，所以建议去新官网下载SDK和Demo，接入流程基本没有啥大变化。  简述我们项目中用到了实时语音功能，在最初语音 SDK 技术选型的时候测试过融云、声网和腾讯的 GV">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Unity3D集成腾讯语音GVoiceSDK">
+<meta property="og:url" content="http://davidsheh.github.io/2017/05/27/Unity3D%E9%9B%86%E6%88%90%E8%85%BE%E8%AE%AF%E8%AF%AD%E9%9F%B3GVoiceSDK/index.html">
+<meta property="og:site_name" content="Sheh伟伟的博客">
+<meta property="og:description" content="友情提示：最近发现腾讯GVoice有另一个官网，叫做腾讯游戏服务，经过对比发现这个网站才是最新的，下面我介绍的那个估计是已经废弃的，但不知道为啥老的网站没有直接链接到新网址而是仍然保留了。不过新官网的文档更加详细，SDK也有所更新，所以建议去新官网下载SDK和Demo，接入流程基本没有啥大变化。  简述我们项目中用到了实时语音功能，在最初语音 SDK 技术选型的时候测试过融云、声网和腾讯的 GV">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/DavidSheh/MarkdownPictures/master/pictures/gvoice_1.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/DavidSheh/MarkdownPictures/master/pictures/gvoice_2.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/DavidSheh/MarkdownPictures/master/pictures/gvoice_3.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/DavidSheh/MarkdownPictures/master/pictures/gvoice_4.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/DavidSheh/MarkdownPictures/master/pictures/gvoice_5.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/DavidSheh/MarkdownPictures/master/pictures/gvoice_6.jpg">
+<meta property="article:published_time" content="2017-05-27T05:15:37.000Z">
+<meta property="article:modified_time" content="2018-03-25T09:06:32.000Z">
+<meta property="article:author" content="Sheh伟伟">
+<meta property="article:tag" content="Unity3D">
+<meta property="article:tag" content="GVoice">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/DavidSheh/MarkdownPictures/master/pictures/gvoice_1.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Sheh伟伟的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.0.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Sheh伟伟的博客</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://davidsheh.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Unity3D集成腾讯语音GVoiceSDK" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/05/27/Unity3D%E9%9B%86%E6%88%90%E8%85%BE%E8%AE%AF%E8%AF%AD%E9%9F%B3GVoiceSDK/" class="article-date">
+  <time datetime="2017-05-27T05:15:37.000Z" itemprop="datePublished">2017-05-27</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/">技术笔记</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Unity3D集成腾讯语音GVoiceSDK
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>友情提示：最近发现腾讯GVoice有另一个官网，叫做<a target="_blank" rel="noopener" href="http://gcloud.qq.com/product/6">腾讯游戏服务</a>，经过对比发现这个网站才是最新的，下面我介绍的那个估计是已经废弃的，但不知道为啥老的网站没有直接链接到新网址而是仍然保留了。不过新官网的文档更加详细，SDK也有所更新，所以建议去新官网下载SDK和Demo，接入流程基本没有啥大变化。</p>
+</blockquote>
+<h2 id="简述"><a href="#简述" class="headerlink" title="简述"></a>简述</h2><p>我们项目中用到了实时语音功能，在最初语音 SDK 技术选型的时候测试过融云、声网和腾讯的 GVoice 。融云和声网我都在我们项目中使用过，但是效果都不如王者荣耀游戏中的实时语音效果，这两天好好研究了一下腾讯的 GVoice，终于成功集成。由于腾讯 GVoice 官网的接入流程并不是很详细，如果只懂 Unity3D 不懂 Android 基础知识的朋友，可能接入过程不会一帆风顺。我虽了解一点点 Android 基础，但仍趟过了好几个坑，下面我就分享一下我在 Android 平台接入 GVoice 的过程。</p>
+<h2 id="资源准备"><a href="#资源准备" class="headerlink" title="资源准备"></a>资源准备</h2><p>进入<a target="_blank" rel="noopener" href="https://www.qcloud.com/document/product/556/7673">腾讯GVoice官网</a>下载 GVoice SDK 和 Unity3D Demo。如下图：</p>
+<p><img src="https://raw.githubusercontent.com/DavidSheh/MarkdownPictures/master/pictures/gvoice_1.jpg" alt="GVoice SDK.png"></p>
+<h2 id="接入流程"><a href="#接入流程" class="headerlink" title="接入流程"></a>接入流程</h2><h3 id="1-导入SDK"><a href="#1-导入SDK" class="headerlink" title="1. 导入SDK"></a>1. 导入SDK</h3><p>先创建一个空的 Unity 项目 GVoiceDemo，按照官网的接入流程，我们直接将下载的SDK压缩包解压后将其中的 Plugins 和 Scripts 两个文件夹都拷贝到 Unity 项目中。</p>
+<h3 id="2-创建-Jar-包"><a href="#2-创建-Jar-包" class="headerlink" title="2. 创建 Jar 包"></a>2. 创建 Jar 包</h3><p>将Unity项目导出成安卓项目，导出路径选择某个指定的文件夹，我这里在桌面新建了一个叫 unity_gvoicedemo 的文件夹，将项目导出到该文件夹中，操作如下图：</p>
+<p><img src="https://raw.githubusercontent.com/DavidSheh/MarkdownPictures/master/pictures/gvoice_2.jpg" alt="Export Project.png"><br>导出成功后会生成 GCloudVoice 和 GVoiceDemo 两个文件夹，用 eclipse 将这两个项目一起导入，如下图</p>
+<p><img src="https://raw.githubusercontent.com/DavidSheh/MarkdownPictures/master/pictures/gvoice_3.jpg" alt="Import Projects.png"></p>
+<p>导入成功后，在 UnityPlayerActivity 项目下新建一个 MainActivity 类，继承自 UnityPlayerActivity，详细代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.shehweiwei.gvoicedemo;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> android.os.Bundle;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.tencent.gcloud.voice.GCloudVoiceEngine;</span><br><span class="line"><span class="comment">// 注意：下面这句代码必须有，如果没有可能会导致闪退</span></span><br><span class="line"><span class="keyword">import</span> com.unity3d.player.UnityPlayerActivity;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">UnityPlayerActivity</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">        GCloudVoiceEngine.getInstance().init(getApplicationContext(), <span class="keyword">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>注意：代码中一定要引入<code>com.unity3d.player.UnityPlayerActivity</code>这个包，如果没有引入则进入应用就闪退，这里是个大坑，我好不容易才爬出来。</strong><br>然后，选中 MainActivity.java 文件，右键选择 Export -&gt; Java -&gt; JAR file， 然后点击 Next 按钮， 接下来操作如下图：</p>
+<p><img src="https://raw.githubusercontent.com/DavidSheh/MarkdownPictures/master/pictures/gvoice_4.jpg" alt="JAR Export.png"></p>
+<p>最后，生成一个 GVoiceDemo.jar 文件。</p>
+<h3 id="3-导入其他文件"><a href="#3-导入其他文件" class="headerlink" title="3. 导入其他文件"></a>3. 导入其他文件</h3><p>将下载的 unity_demo.zip 压缩包解压后将其中的 <code>unity_demo\Assets\Plugins\Android</code> 目录下的 AndroidManifest.xml 和 android-support-v4.jar 两个文件拷贝到项目的 <code>Plugins\Android</code> 目录下。注意还有个GCloudVoiceDemo.jar 文件我们没有拷贝，这里我们使用上一步创建的 GVoiceDemo.jar 文件来替代。注意 jar 包中的包名必须与 AndroidManifest.xml 文件和 Unity 编辑器中PlayerSettings的 Bundle Identifier 包名保持一致。所以，要把 AndroidManifest.xml 文件中的 <code>package=&quot;com.example.gcloudu3ddemo&quot;</code> 这一句代码修改成 <code>package=&quot;com.shehweiwei.gvoicedemo&quot;</code>。</p>
+<p><strong>注意：</strong>AndroidManifest.xml 文件中的入口 Activity 的名字必须和创建的 Jar 包中的新建的 Activity 名字保持一致。这里的入口 Activity 叫 MainActivity，所以 AndroidManifest.xml  文件中的代码为<code>android:name=&quot;.MainActivity&quot;</code>，当然也可以写成 <code>android:name=&quot;com.example.gcloudu3ddemo.MainActivity&quot;</code></p>
+<h3 id="4-构建Unity场景"><a href="#4-构建Unity场景" class="headerlink" title="4. 构建Unity场景"></a>4. 构建Unity场景</h3><p>这里我用uGUI搭建了一个简单的界面，有六个按钮分别调用 GVoice SDK 的六个 API ，然后一个 Text 用来显示回调结果。界面效果如下图：<br><img src="https://raw.githubusercontent.com/DavidSheh/MarkdownPictures/master/pictures/gvoice_5.jpg" alt="Create UI.png"><br>然后新建一个 GVoiceDemo 的 C# 脚本，脚本代码如下：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> UnityEngine;</span><br><span class="line"><span class="keyword">using</span> gcloud_voice;</span><br><span class="line"><span class="keyword">using</span> UnityEngine.UI;</span><br><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">GVoiceDemo</span> : <span class="title">MonoBehaviour</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 用来显示调用API返回的结果</span></span><br><span class="line">    <span class="keyword">public</span> Text result;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> IGCloudVoice m_voiceengine = <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// <span class="doctag">TODO:</span> 这里的appId和appKey使用的是官方提供的测试值，正式项目中可使用申请的值</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">const</span> <span class="keyword">string</span> appId = <span class="string">&quot;932849489&quot;</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">const</span> <span class="keyword">string</span> appKey = <span class="string">&quot;d94749efe9fce61333121de84123ef9b&quot;</span>;</span><br><span class="line">    <span class="comment">// <span class="doctag">TODO:</span> 这里使用的是测试账号，所以房间名使用默认的100，正式项目中可根据实际情况赋值</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">string</span> roomName = <span class="string">&quot;100&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Start</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        <span class="keyword">if</span> (m_voiceengine == <span class="literal">null</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            m_voiceengine = GCloudVoice.GetEngine();</span><br><span class="line">            TimeSpan ts = DateTime.UtcNow - <span class="keyword">new</span> DateTime(<span class="number">1970</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">            <span class="keyword">string</span> strTime = System.Convert.ToInt64(ts.TotalSeconds).ToString();</span><br><span class="line">            <span class="comment">// <span class="doctag">TODO:</span> 这里用时间模拟了一个openId，在正式项目中应该把这里的strTime换成用户唯一ID</span></span><br><span class="line">            m_voiceengine.SetAppInfo(appId, appKey, strTime);</span><br><span class="line">            m_voiceengine.Init();</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 注册SDK常用回调监听</span></span><br><span class="line">            m_voiceengine.OnJoinRoomComplete += OnJoinRoom;</span><br><span class="line">            m_voiceengine.OnQuitRoomComplete += OnExitRoom;</span><br><span class="line">            m_voiceengine.OnMemberVoice += OnMemberVoice;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Update</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        <span class="keyword">if</span> (m_voiceengine != <span class="literal">null</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">// 不断检测GVoice引擎回调</span></span><br><span class="line">            m_voiceengine.Poll();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">OnApplicationPause</span>(<span class="params"><span class="keyword">bool</span> pauseStatus</span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        <span class="keyword">if</span> (m_voiceengine == <span class="literal">null</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 应用暂停时GVoice引擎也暂停，应用重新开始时引擎继续</span></span><br><span class="line">        <span class="keyword">if</span> (pauseStatus)</span><br><span class="line">        &#123;</span><br><span class="line">            m_voiceengine.Pause();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            m_voiceengine.Resume();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 加入房间，BtnJoin按钮点击调用</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">JoinRoom</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        m_voiceengine.SetMode(GCloudVoiceMode.RealTime);</span><br><span class="line">        <span class="keyword">int</span> ret = m_voiceengine.JoinTeamRoom(roomName, <span class="number">15000</span>);</span><br><span class="line"></span><br><span class="line">        result.text += <span class="string">&quot;\nJoinRoom:&quot;</span> + ret;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 退出房间，BtnExit按钮点击调用</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">ExitRoom</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        <span class="keyword">int</span> ret = m_voiceengine.QuitRoom(roomName, <span class="number">6000</span>);</span><br><span class="line">        result.text += <span class="string">&quot;\nExitRoom:&quot;</span> + ret;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 打开麦克风，BtnOpenMic按钮点击调用</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">OpenMic</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        <span class="keyword">int</span> ret = m_voiceengine.OpenMic();</span><br><span class="line">        result.text += <span class="string">&quot;\nOpenMic:&quot;</span> + ret;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 关闭麦克风，BtnCloseMic按钮点击调用</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">CloseMic</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        <span class="keyword">int</span> ret = m_voiceengine.CloseMic();</span><br><span class="line">        result.text += <span class="string">&quot;\nCloseMic:&quot;</span> + ret;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 打开扬声器，BtnOpenSpeaker按钮点击调用</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">OpenSpeaker</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        <span class="keyword">int</span> ret = m_voiceengine.OpenSpeaker();</span><br><span class="line">        result.text += <span class="string">&quot;\nOpenSpeaker:&quot;</span> + ret;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 关闭扬声器，BtnCloseSpeaker按钮点击调用</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">CloseSpeaker</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        <span class="keyword">int</span> ret = m_voiceengine.CloseSpeaker();</span><br><span class="line">        result.text += <span class="string">&quot;\nCloseSpeaker:&quot;</span> + ret;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 加入房间回调</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;code&quot;&gt;</span><span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;roomName&quot;&gt;</span><span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;memberID&quot;&gt;</span><span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">OnJoinRoom</span>(<span class="params">IGCloudVoice.GCloudVoiceCompleteCode code, <span class="keyword">string</span> roomName, <span class="keyword">int</span> memberID</span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        result.text += <span class="keyword">string</span>.Format(<span class="string">&quot;\nOnJoinRoom ---&gt; code: &#123;0&#125;, roomName: &#123;1&#125;, memberID: &#123;2&#125;&quot;</span>, code, roomName, memberID);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 退出房间回调</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;code&quot;&gt;</span><span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;roomName&quot;&gt;</span><span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;memberID&quot;&gt;</span><span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">OnExitRoom</span>(<span class="params">IGCloudVoice.GCloudVoiceCompleteCode code, <span class="keyword">string</span> roomName, <span class="keyword">int</span> memberID</span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        result.text += <span class="keyword">string</span>.Format(<span class="string">&quot;\nOnExitRoom ---&gt; code: &#123;0&#125;, roomName: &#123;1&#125;, memberID: &#123;2&#125;&quot;</span>, code, roomName, memberID);</span><br><span class="line"></span><br><span class="line">        m_voiceengine.OnJoinRoomComplete -= OnJoinRoom;</span><br><span class="line">        m_voiceengine.OnQuitRoomComplete -= OnExitRoom;</span><br><span class="line">        m_voiceengine.OnMemberVoice -= OnMemberVoice;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 有成员说话时回调</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;members&quot;&gt;</span><span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;count&quot;&gt;</span><span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">OnMemberVoice</span>(<span class="params"><span class="keyword">int</span>[] members, <span class="keyword">int</span> count</span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        result.text += <span class="keyword">string</span>.Format(<span class="string">&quot;\nOnMemberVoice ---&gt; count: &#123;0&#125;, roomName: &#123;1&#125;, memberID: &#123;2&#125;&quot;</span>, count);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>将 GVoiceDemo 脚本添加到Canvas对象上，然后将脚本中对应的方法注册到对应的按钮的OnClick事件上，保存场景，然后运行到手机上，使用两个手机就可以语音聊天了，效果如下图：</p>
+<p><img src="https://raw.githubusercontent.com/DavidSheh/MarkdownPictures/master/pictures/gvoice_6.jpg" alt="App.png"></p>
+<h2 id="其他事项"><a href="#其他事项" class="headerlink" title="其他事项"></a>其他事项</h2><p>按照上面的流程集成完的项目并不能在PC上运行，如果要在PC上运行不报错，可以将下载的 unity_demo.zip 文件解压后的 <code>unity_demo\Assets\Plugins</code> 目录下的 X86 和 x86_64 两个文件夹拷贝到项目的 Plugins 文件夹下，这样PC上运行就不会报错。因为我这里没有麦克风设备，不知道在PC上能不能使用语音聊天，有条件的朋友可以试试，有结果了可以反馈给我，先谢过了！</p>
+<h2 id="项目源码"><a href="#项目源码" class="headerlink" title="项目源码"></a>项目源码</h2><p>我把项目的源码托管在了Github上了， 有需要的朋友自取。<a target="_blank" rel="noopener" href="https://github.com/DavidSheh/GVoiceDemo/">项目链接点这里</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://davidsheh.github.io/2017/05/27/Unity3D%E9%9B%86%E6%88%90%E8%85%BE%E8%AE%AF%E8%AF%AD%E9%9F%B3GVoiceSDK/" data-id="ckdl9itiz001964s68kqe4fqg" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GVoice/" rel="tag">GVoice</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Unity3D/" rel="tag">Unity3D</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/08/26/mac-homebrew/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Mac开发必备工具（一）—— Homebrew
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/02/09/Unity%E8%B7%AF%E5%BE%84%E7%9A%84%E7%9B%B8%E5%85%B3%E6%80%BB%E7%BB%93/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Unity路径的相关总结</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/">技术笔记</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C#</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Chocolatey/" rel="tag">Chocolatey</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Fish-shell/" rel="tag">Fish shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GVoice/" rel="tag">GVoice</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/" rel="tag">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/" rel="tag">GitHub</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Homebrew/" rel="tag">Homebrew</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Homebrew-Cask/" rel="tag">Homebrew-Cask</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Json/" rel="tag">Json</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mac/" rel="tag">Mac</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/" rel="tag">Markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NexT/" rel="tag">NexT</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OpenGL/" rel="tag">OpenGL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Scoop/" rel="tag">Scoop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Shaderlab/" rel="tag">Shaderlab</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Shell/" rel="tag">Shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Solarized/" rel="tag">Solarized</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ubuntu/" rel="tag">Ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity3D/" rel="tag">Unity3D</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VS-Code/" rel="tag">VS Code</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Windows/" rel="tag">Windows</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iTerm-2/" rel="tag">iTerm 2</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wsl/" rel="tag">wsl</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%90%91%E9%87%8F/" rel="tag">向量</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/" rel="tag">游戏开发</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/C/" style="font-size: 12.5px;">C#</a> <a href="/tags/Chocolatey/" style="font-size: 10px;">Chocolatey</a> <a href="/tags/Fish-shell/" style="font-size: 10px;">Fish shell</a> <a href="/tags/GVoice/" style="font-size: 10px;">GVoice</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/GitHub/" style="font-size: 10px;">GitHub</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Homebrew/" style="font-size: 10px;">Homebrew</a> <a href="/tags/Homebrew-Cask/" style="font-size: 10px;">Homebrew-Cask</a> <a href="/tags/Json/" style="font-size: 10px;">Json</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Mac/" style="font-size: 15px;">Mac</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/NexT/" style="font-size: 10px;">NexT</a> <a href="/tags/OpenGL/" style="font-size: 17.5px;">OpenGL</a> <a href="/tags/Scoop/" style="font-size: 10px;">Scoop</a> <a href="/tags/Shaderlab/" style="font-size: 10px;">Shaderlab</a> <a href="/tags/Shell/" style="font-size: 12.5px;">Shell</a> <a href="/tags/Solarized/" style="font-size: 10px;">Solarized</a> <a href="/tags/Ubuntu/" style="font-size: 10px;">Ubuntu</a> <a href="/tags/Unity3D/" style="font-size: 20px;">Unity3D</a> <a href="/tags/VS-Code/" style="font-size: 10px;">VS Code</a> <a href="/tags/Windows/" style="font-size: 10px;">Windows</a> <a href="/tags/iTerm-2/" style="font-size: 10px;">iTerm 2</a> <a href="/tags/wsl/" style="font-size: 10px;">wsl</a> <a href="/tags/%E5%90%91%E9%87%8F/" style="font-size: 15px;">向量</a> <a href="/tags/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/" style="font-size: 15px;">游戏开发</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/09/29/wsl-usage/">WSL 使用记录</a>
+          </li>
+        
+          <li>
+            <a href="/2017/09/09/windows-chocolatey-scoop/">Windows 系统的包管理器</a>
+          </li>
+        
+          <li>
+            <a href="/2017/09/03/hexo-blog/">用Hexo搭建个人博客</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/29/vscode-shaderlab/">使用 VS Code 写 Shaderlab</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/28/mac-fishshell/">Mac开发必备工具（三）—— Fish shell</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 Sheh伟伟<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

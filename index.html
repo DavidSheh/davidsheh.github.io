@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Sheh伟伟的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="做个有态度的程序员">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Sheh伟伟的博客">
+<meta property="og:url" content="http://davidsheh.github.io/index.html">
+<meta property="og:site_name" content="Sheh伟伟的博客">
+<meta property="og:description" content="做个有态度的程序员">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="Sheh伟伟">
+<meta property="article:tag" content="Unity3D,Unity,u3d,game,game developer,开发者,程序猿,游戏开发,极客,编程,代码,开源,IT网站,Developer,Programmer,Coder,Geek">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Sheh伟伟的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.0.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Sheh伟伟的博客</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://davidsheh.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-wsl-usage" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/09/29/wsl-usage/" class="article-date">
+  <time datetime="2017-09-29T12:11:02.000Z" itemprop="datePublished">2017-09-29</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/">技术笔记</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/09/29/wsl-usage/">WSL 使用记录</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>WSL 是 Windows Subsystem for Linux 的缩写。它是 Win10 系统下面的一个 Linux 子系统。</p>
+<h2 id="安装和卸载-WSL环境"><a href="#安装和卸载-WSL环境" class="headerlink" title="安装和卸载 WSL环境"></a>安装和卸载 WSL环境</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>在 Win10 上的 Microsoft Store 中搜索 Linux，就可以看到 WSL 所支持的 Linux 版本，找到想要安装的版本直接安装就可以了。目前，WSL支持 Ubuntu，Kali Linux，GNU，OpenSUSE 等，后续可能会有更多Linux发行版支持WSL。本文主要记录 Ubuntu 的使用过程。</p>
+<h3 id="安装报错"><a href="#安装报错" class="headerlink" title="安装报错"></a>安装报错</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Installing, this may take a few minutes...</span><br><span class="line">WslRegisterDistribution failed with error: 0x8007019e</span><br><span class="line">The Windows Subsystem for Linux optional component is not enabled. Please enable it and try again.</span><br><span class="line">See https:&#x2F;&#x2F;aka.ms&#x2F;wslinstall for details.</span><br><span class="line">Press any key to continue...</span><br></pre></td></tr></table></figure>
+<p>报错原因是没有启用 WSL，解决办法在输出信息里，直接打开<a target="_blank" rel="noopener" href="https://aka.ms/wslinstall">链接</a>，就可以看到解决办法。<strong>注意：</strong> 要用管理员方式打开 PowerShell。</p>
+<h3 id="卸载和重装"><a href="#卸载和重装" class="headerlink" title="卸载和重装"></a>卸载和重装</h3><p>随便去试吧，如果你搞坏了你的 WSL 环境，它很容易重新安装。在进行之前，请确保做好了任何重要内容的备份。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">C:&#x2F;&gt; lxrun.exe &#x2F;uninstall &#x2F;full</span><br><span class="line">C:&#x2F;&gt; lxrun.exe &#x2F;install</span><br></pre></td></tr></table></figure>
+
+<h2 id="设置相关"><a href="#设置相关" class="headerlink" title="设置相关"></a>设置相关</h2><h3 id="访问-Windows-磁盘"><a href="#访问-Windows-磁盘" class="headerlink" title="访问 Windows 磁盘"></a>访问 Windows 磁盘</h3><p>WSL 将 Windows 系统的磁盘符都挂在到 <code>/mnt</code> 目录下了，所以如果想在 Ubuntu 中访问 Windows 系统的 C 盘，可以使用命令 <code>cd /mnt/c</code>。</p>
+<h3 id="修改默认-Shell"><a href="#修改默认-Shell" class="headerlink" title="修改默认 Shell"></a>修改默认 Shell</h3><p>可以使用 <code>echo $SHELL</code> 命令查看当前正在使用的 Shell，使用 <code>which zsh</code> 可以查看安装的 <code>zsh</code> 路径，使用 <code>chsh -s /bin/zsh</code> 修改默认 Shell。</p>
+<h3 id="使用-Fish-Shell"><a href="#使用-Fish-Shell" class="headerlink" title="使用 Fish Shell"></a>使用 Fish Shell</h3><ol>
+<li>安装 <code>fish</code>：<code>apt-get install fish</code></li>
+<li>设置默认 <code>shell</code> 为 <code>fish</code><ul>
+<li>使用 <code>vim ~/.bashrc</code> 命令打开文件</li>
+<li>在文件末尾添加一行 <code>fish</code> 命令</li>
+</ul>
+</li>
+</ol>
+<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><ol>
+<li><code>cd /</code> 或 <code>cd ~</code> 回到根目录或回到 Home 目录</li>
+<li><code>cd -</code> 回到前一个工作路径</li>
+<li>在 Bash 中，可以按下 <code>Ctrl+W</code> 删除你键入的最后一个单词，<code>Ctrl+U</code> 可以删除行内光标所在位置之前的内容，<code>Alt+左/右</code> 可以以单词为单位移动光标，<code>Ctrl+A</code> 可以将光标移至行首，<code>Ctrl+E</code> 可以将光标移至行尾，<code>Ctrl+K</code> 可以删除光标至行尾的所有内容，<code>Ctrl+L</code> 可以清屏。</li>
+<li><code>Ctrl+D</code> 一个特殊的二进制值，表示 EOF，作用相当于在终端中输入 <code>exit</code> 后回车；</li>
+<li>Linux 中的三个终端控制键：<ol>
+<li><code>Ctrl+C</code> 比较暴力，就是发送 Terminal 到当前的程序，比如你正在运行一个查找功能，文件正在查找中，Ctrl+C就会强制结束当前的这个进程。也可以取消命令执行，比如你已经输入了一长串命令了，这时突然不想执行这个命令了，就可以按下这个组合键取消。</li>
+<li><code>Ctrl+Z</code> 是把当前的程序挂起，暂停执行这个程序，比如你正在 mysql 终端中，需要出来搞点其他的文件操作，又不想退出 mysql 终端（因为下次还得输入用户名密码进入，挺麻烦），于是可以 <code>Ctrl+Z</code> 将 mysql 挂起，然后进行其他操作，然后输入fg回车后就可以回来，当然可以挂起好多进程到后台，然后 <code>fg</code> 加编号就能把挂起的进程返回到前台。当然，配合 <code>bg</code> 和 <code>fg</code> 命令进行前后台切换会非常方便。</li>
+<li><code>Ctrl+D</code> 是发送一个 exit 信号，没有那么强烈，类似<code>Ctrl+C</code> 的操作，比如你从管理员 root 退回到你的普通用户就可以这么用。</li>
+</ol>
+</li>
+<li><code>Ctrl+R</code> 逆向搜索历史命令</li>
+<li><code>Ctrl+P</code> 访问上一条命令</li>
+<li><code>Ctrl+N</code> 访问下一条命令</li>
+<li><code>!!</code> 执行上一条命令，<code>!foo</code> 执行以 foo 开头的命令</li>
+<li><code>scp [localpath] [username]@[ip]</code></li>
+</ol>
+<h2 id="在命令行中高效移动"><a href="#在命令行中高效移动" class="headerlink" title="在命令行中高效移动"></a>在命令行中高效移动</h2><p><img src="https://clementc.github.io/figures/moving_cli.png" alt="Moving efficiently in the command line"></p>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a target="_blank" rel="noopener" href="https://github.com/iWangJiaxiang/WSL-Guideline">https://github.com/iWangJiaxiang/WSL-Guideline</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://davidsheh.github.io/2017/09/29/wsl-usage/" data-id="ckdl9itje002464s6a6dscd8a" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Shell/" rel="tag">Shell</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ubuntu/" rel="tag">Ubuntu</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/wsl/" rel="tag">wsl</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-windows-chocolatey-scoop" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/09/09/windows-chocolatey-scoop/" class="article-date">
+  <time datetime="2017-09-09T13:02:36.000Z" itemprop="datePublished">2017-09-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/09/09/windows-chocolatey-scoop/">Windows 系统的包管理器</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>自从在 Mac 下使用了 <a href="http://davidsheh.github.io/2017/08/26/mac-homebrew/">Homebrew</a> + <a href="https://davidsheh.github.io/2017/08/27/mac-iterm2/">iTerm 2</a> + <a href="https://davidsheh.github.io/2017/08/28/mac-fishshell/">Fish shell</a> 后，瞬间感觉世界清静了不少。然后就在想 Windows 下面有没有类似的软件呢？毕竟在工作中使用 Windows 还是比较多的，然后在网上还真搜到了。对应于 Mac 下的 <a href="%5Bhttp://davidsheh.github.io/2017/08/26/mac-homebrew/%5D(http://davidsheh.github.io/2017/08/26/mac-homebrew/)">Homebrew</a> + <a href="https://davidsheh.github.io/2017/08/27/mac-iterm2/">iTerm 2</a> + <a href="https://davidsheh.github.io/2017/08/28/mac-fishshell/">Fish shell</a> ， Windows 下是 Chocolatey( + Scoop) + ConEmu + PowerShell。</p>
+<h2 id="Chocolatey"><a href="#Chocolatey" class="headerlink" title="Chocolatey"></a>Chocolatey</h2><p>官网号称 Chocolatey 是在 Windows 上管理软件的明智方式，轻松管理 Windows 软件的各个方面（安装，配置，升级和卸载）。其他介绍请看官网：<a target="_blank" rel="noopener" href="https://chocolatey.org/%E3%80%82">https://chocolatey.org/。</a></p>
+<h3 id="Chocolatey-安装"><a href="#Chocolatey-安装" class="headerlink" title="Chocolatey 安装"></a>Chocolatey 安装</h3><p>Chocolatey 的安装要求用户系统至少是 Windows 7 以上或者 Server 版本 2003 以上，PowerShell 至少是 v2 以上。还需要 <code>.NET Framework 4+</code>，不过在安装 Chocolatey 前会自动检查，如果没有就会自动安装。<br>Chocolatey 可以通过两种方式安装：使用 cmd.exe 来安装和使用 PowerShell.exe 来安装。安装的具体事项可以看官网的 <a target="_blank" rel="noopener" href="https://chocolatey.org/install">Install</a>。</p>
+<h4 id="使用-cmd-exe-方式安装"><a href="#使用-cmd-exe-方式安装" class="headerlink" title="使用 cmd.exe 方式安装"></a>使用 cmd.exe 方式安装</h4><p>建议优先使用此方式安装，因为 cmd.exe 安装过程没有其他操作步骤。打开 CMD 命令行，然后输入如下命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@&quot;%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe&quot; -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command &quot;iex ((New-Object System.Net.WebClient).DownloadString(&#39;https:&#x2F;&#x2F;chocolatey.org&#x2F;install.ps1&#39;))&quot; &amp;&amp; SET &quot;PATH&#x3D;%PATH%;%ALLUSERSPROFILE%\chocolatey\bin&quot;</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意：</strong>如果安装失败，安装过程报错，报错信息如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Installation of Chocolatey to default folder requires Administrative permissions. Please run from elevated prompt.</span><br></pre></td></tr></table></figure>
+<p>具体报错信息如下图：<br><img src="https://raw.githubusercontent.com/DavidSheh/MarkdownPictures/master/pictures/chocolatey_error.jpg"><br>上面这个错误产生的原因是因为没有以管理员身份启动 cmd.exe。如何以管理员身份启动 cmd.exe 请自行搜索，这里就不再啰嗦了。</p>
+<h4 id="使用-PowerShell-exe-方式安装"><a href="#使用-PowerShell-exe-方式安装" class="headerlink" title="使用 PowerShell.exe 方式安装"></a>使用 PowerShell.exe 方式安装</h4><p>如果 cmd.exe 方式安装不成功再尝试这种方式， PowerShell.exe 安装过程会有安全性提示，要输入命令来确认。打开 PowerShell 命令行，然后输入如下命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Set-ExecutionPolicy AllSigned; iex ((New-Object System.Net.WebClient).DownloadString(&#39;https:&#x2F;&#x2F;chocolatey.org&#x2F;install.ps1&#39;))</span><br></pre></td></tr></table></figure>
+<p>安装过程可能会有安全性提示，按照提示来操作就行了。</p>
+<blockquote>
+<p>使用<code>Win + R</code> 快捷键，接着输入<code>cmd</code>然后回车打开 CMD，输入 <code>powershell</code> 然后回车打开 PowerShell。如果安装报错，也有可能跟第一种安装方式一样是因为没有使用管理员身份运行 PowerShell 的原因。默认以管理员身份启动 PowerShell 的设置可以参考<a target="_blank" rel="noopener" href="http://www.pstips.net/set-powershell-icon-launch-to-default-to-run-as-administrator.html">让PowerShell控制台默认以管理员启动</a> 。</p>
+</blockquote>
+<h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">choco -h                       # 查看帮助</span><br><span class="line">choco &lt;command&gt; -h             #查看相应命令的帮助</span><br><span class="line">choco install &lt;package name&gt;   #安装软件包</span><br><span class="line">choco search &lt;keyword&gt;         #搜索软件包，会列出跟关键字相关的所有软件包</span><br><span class="line">choco upgrade &lt;package name&gt;   #升级软件包</span><br><span class="line">choco uninstall &lt;package name&gt; #卸载软件包</span><br><span class="line">choco list --local-only        #查看本地安装的软件包</span><br></pre></td></tr></table></figure>
+<p>更多命令请参考 <a target="_blank" rel="noopener" href="https://chocolatey.org/docs/commands-reference#how-to-pass-options--switches">Command Reference</a> </p>
+<p><strong>注意：</strong><code>choco list</code> 命令查看的是所有软件包，包括本地已安装和远程存在的软件包，所以这个命令执行很耗时。一般我们查看的都是本地已安装的软件包，所以要加上 <code>--local-only</code> 参数，如果要查看远程的软件包，直接使用 <code>choco search</code> 搜索指定软件包。</p>
+<h3 id="常用软件"><a href="#常用软件" class="headerlink" title="常用软件"></a>常用软件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">choco install googlechrome #安装 Chrome 浏览器</span><br><span class="line">choco install autohotkey.portable #安装 AutoHotKey</span><br><span class="line">choco install ccleaner #安装清理工具</span><br><span class="line">choco install visualstudiocode #安装 VS Code</span><br><span class="line">choco install conemu #安装ConEmu</span><br><span class="line">choco install sourcetree #安装SourceTree</span><br><span class="line">choco install winrar #安装压缩软件</span><br><span class="line">choco install android-sdk #安装 Android SDK</span><br><span class="line">choco install git #安装Git</span><br><span class="line">choco install jdk8 #安装jdk8</span><br><span class="line">choco install nodejs #安装Node.js</span><br><span class="line">choco install virtualbox #安装虚拟机</span><br><span class="line">choco install vim #安装 Vim</span><br><span class="line">choco install docker #安装Docker</span><br><span class="line">choco install wget #安装Wget</span><br><span class="line">choco install dropbox #安装 Dropbox</span><br><span class="line">choco install tortoisesvn #安装 TortoiseSVN</span><br></pre></td></tr></table></figure>
+<p>你所能想到的 Windows 上常用的软件差不多都能找到，想要找什么软件，直接使用 <code>choco search &lt;keyword&gt;</code> 用关键字搜索，如果不知道自己想要啥软件或者记不起来要装啥软件，可以去官网的 <a target="_blank" rel="noopener" href="https://chocolatey.org/packages">Packages</a> 页下找找，几千个软件包，慢慢找去吧。</p>
+<h2 id="Scoop"><a href="#Scoop" class="headerlink" title="Scoop"></a>Scoop</h2><p>Scoop 是 Windows 上的命令行安装程序，主要针对命令行下的开发者工具，和程序猿更配哦。个人的感觉是，Scoop 更像 Mac 上的 <a href="http://davidsheh.github.io/2017/08/26/mac-homebrew/">Homebrew</a>， Chocolatey 更像 <a href="http://davidsheh.github.io/2017/08/26/mac-homebrew/">Homebrew-Cask</a>。关于 Scoop 的更多介绍请看官网：<a target="_blank" rel="noopener" href="http://scoop.sh/%EF%BC%8C%E5%90%8C%E6%97%B6%EF%BC%8CScoop">http://scoop.sh/，同时，Scoop</a> 是开源的项目，仓库地址<a target="_blank" rel="noopener" href="https://github.com/lukesampson/scoop">点这里</a>。</p>
+<h3 id="Scoop-安装"><a href="#Scoop-安装" class="headerlink" title="Scoop 安装"></a>Scoop 安装</h3><p>Scoop 的安装要求 Windows 上安装的 PowerShell 版本至少的 PowerShell 3，而且必须为你的用户帐户启用 PowerShell 。Windows 10 或 Windows Server 2012 应该默认安装的是 PowerShell 3，但 Windows 7 和Windows Server 2008 可能是比较老的版本。</p>
+<h4 id="升级-PowerShell"><a href="#升级-PowerShell" class="headerlink" title="升级 PowerShell"></a>升级 PowerShell</h4><p>如果是 Windows 7 系统可能需要升级一下 PowerShell，有两种方式可以升级：一是直接下载 <a target="_blank" rel="noopener" href="https://www.microsoft.com/en-us/download/details.aspx?id=34595">PowerShell 3 的安装包</a>，二是通过 Chocolatey 升级。推荐使用第二种方式，下面重点介绍一下第二种方式的升级方法。<br>首先安装 Chocolatey ， 安装方法见上文。使用 <code>choco search powershell</code> 命令只搜索到 PowerShell 4 和 PowerShell 5。虽然在官网 <a target="_blank" rel="noopener" href="https://chocolatey.org/packages">Packages</a> 上搜索到了 <a target="_blank" rel="noopener" href="https://chocolatey.org/packages/PowerShell/3.0.20121027">PowerShell 3</a>，但是好像没通过审核，而且我强行安装失败，最后我直接安装的 PowerShell 5，在 PowerShell 命令行下输入如下命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">choco install powershell  #默认安装的最新版5.1</span><br></pre></td></tr></table></figure>
+<p>安装过程需要同意，提示 <code>Do you want to run the script?([Y]es/[N]o/[P]rint):</code> 时，输入<code>y</code>就行了。</p>
+<blockquote>
+<p><strong>提示：</strong>可以使用 <code>Get-Host</code> 命令查看 PowerShell 版本，安装完后需要重启电脑，新版 PowerShell 才能生效。</p>
+</blockquote>
+<h4 id="开始安装-Scoop"><a href="#开始安装-Scoop" class="headerlink" title="开始安装 Scoop"></a>开始安装 Scoop</h4><p>安装 Scoop 前需要确保你已经允许 PowerShell 执行本地脚本，执行如下命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set-executionpolicy remotesigned -scope currentuser</span><br></pre></td></tr></table></figure>
+<p>执行这个命令时可能会提示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Do you want to change the execution policy?</span><br><span class="line">[Y] Yes  [A] Yes to All  [N] No  [L] No to All  [S] Suspend  [?] Help (default is &quot;N&quot;): </span><br></pre></td></tr></table></figure>
+<p>输入 <code>y</code> 或者 <code>a</code> 就可以了。接下来开始安装 Scoop，执行如下命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iex (new-object net.webclient).downloadstring(&#39;https:&#x2F;&#x2F;get.scoop.sh&#39;)</span><br></pre></td></tr></table></figure>
+<h3 id="常用命令-1"><a href="#常用命令-1" class="headerlink" title="常用命令"></a>常用命令</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">scoop help #查看帮助</span><br><span class="line">scoop install #安装 APP</span><br><span class="line">scoop uninstall #卸载 APP</span><br><span class="line">scoop list #列出已安装的 APP</span><br><span class="line">scoop search #搜索 APP</span><br><span class="line">scoop update #更新 APP 和 Scoop 自身</span><br></pre></td></tr></table></figure>
+<p>其实只需要记住 <code>scoop help</code> 这一个命令就行了，其他命令忘记了直接通过这个命令查看就行了。</p>
+<h3 id="常用软件-1"><a href="#常用软件-1" class="headerlink" title="常用软件"></a>常用软件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">scoop install 7zip #安装压缩软件</span><br><span class="line">scoop install git  #安装Git</span><br><span class="line">scoop install openssh #安装OpenSSH</span><br><span class="line">scoop install concfg #安装控制台配置文件导入导出工具</span><br></pre></td></tr></table></figure>
+<p>上面的四条命令可以合并成一个命令 <code>scoop install 7zip git openssh concfg</code>。支持的更多软件看这里：<a target="_blank" rel="noopener" href="https://github.com/lukesampson/scoop/tree/master/bucket">https://github.com/lukesampson/scoop/tree/master/bucket</a> 。</p>
+<h3 id="Scoop-的其他配置"><a href="#Scoop-的其他配置" class="headerlink" title="Scoop 的其他配置"></a>Scoop 的其他配置</h3><p><img src="https://github.com/lukesampson/scoop/raw/gh-pages/images/docs/shell-theme.png"><br>上图是 Scoop 官方给出的效果图，使用的是  <a target="_blank" rel="noopener" href="http://ethanschoonover.com/solarized">Solarized</a> 主题。主题和字体的配置需要用到 <a target="_blank" rel="noopener" href="https://github.com/lukesampson/concfg">concfg</a> 插件，<code>concfg</code> 插件是导入和导出 Windows 控制台配置（如字体和颜色）的一个工具。使用 <code>scoop install concfg</code> 命令来安装。<br>个人感觉 Scoop 最牛逼的地方在于 <a target="_blank" rel="noopener" href="https://github.com/lukesampson/scoop/wiki/Buckets">Buckets</a>，甚至是可以制作自己的 Buckets，可配置性更高了，由于篇幅的原因，这个以后有机会了再写吧。</p>
+<h3 id="Scoop-VS-Chocolatey"><a href="#Scoop-VS-Chocolatey" class="headerlink" title="Scoop VS Chocolatey"></a>Scoop VS Chocolatey</h3><p>Scoop 和 Chocolatey 不同的地方在于下面几点：</p>
+<ol>
+<li>独立安装，和已有软件不冲突</li>
+<li>没有权限对话框，因为程序安装到用户目录</li>
+<li>不会污染路径</li>
+<li>不使用 NuGet，无需担心依赖</li>
+<li>不是软件包管理器，它仅读取一个关于如何安装程序的 JSON</li>
+<li>不安装特定版本，仅仅支持最新版本</li>
+<li><strong>专注于开发者的工具</strong></li>
+</ol>
+<p>更多请参考 <a target="_blank" rel="noopener" href="https://github.com/lukesampson/scoop/wiki/Chocolatey-Comparison">Chocolatey Comparison</a>。国外有人把 Windows 下主流的包管理工具做了一个对比，分别列出了各自的优缺点，还有很多人投票，网站链接： <a target="_blank" rel="noopener" href="https://www.slant.co/improve/topics/1843/~windows-package-managers">What are the best Windows package managers?</a>。</p>
+<h2 id="一键装机"><a href="#一键装机" class="headerlink" title="一键装机"></a>一键装机</h2><p>当你在一台电脑上用 Chocolatey 和 Scoop（非程序员可以不装 Scoop） 配置过一次工作环境后，你只需要记住你所使用的软件包的名称，然后将所有的安装命令的清单云同步，那么当你换电脑了就可以很轻松的同步工作环境的配置，是不是非常酷，甚至是换工作时在新同事面前耍（装）帅（逼）。我的命令清单如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">#使用 Chocolatey 安装</span><br><span class="line">choco install googlechrome #安装 Chrome 浏览器</span><br><span class="line">choco install unity #安装最新版 Unity3D 游戏引擎</span><br><span class="line">choco install visualstudiocode #安装 VS Code</span><br><span class="line">choco install sourcetree #安装SourceTree</span><br><span class="line"></span><br><span class="line">choco install autohotkey.portable #安装 AutoHotKey</span><br><span class="line">choco install conemu #安装ConEmu</span><br><span class="line"></span><br><span class="line">choco install jdk8 #安装jdk8</span><br><span class="line">choco install android-sdk #安装 Android SDK</span><br><span class="line"></span><br><span class="line">#使用 Scoop 安装</span><br><span class="line">scoop install concfg git #安装 concfg、git 等</span><br><span class="line">concfg import solarized small #导入 Solarized 主题</span><br><span class="line">scoop install pshazz #安装自定义提示和 具有Git&amp;SSH 特性的插件</span><br></pre></td></tr></table></figure>
+<p>清单会持续更新，先就列这么多吧，以后再更新其他命令，欢迎关注 <a href="https://davidsheh.github.io/">Sheh 伟伟的个人博客</a>。</p>
+<hr>
+<p><strong>同系列文章</strong></p>
+<p><a href="http://davidsheh.github.io/2017/09/09/windows-chocolatey-scoop/">Windows 系统的包管理器</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://davidsheh.github.io/2017/09/09/windows-chocolatey-scoop/" data-id="ckdl9itjc002264s61d3p4ld3" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Chocolatey/" rel="tag">Chocolatey</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Scoop/" rel="tag">Scoop</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Windows/" rel="tag">Windows</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-hexo-blog" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/09/03/hexo-blog/" class="article-date">
+  <time datetime="2017-09-03T12:08:21.000Z" itemprop="datePublished">2017-09-03</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/09/03/hexo-blog/">用Hexo搭建个人博客</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="安装环境"><a href="#安装环境" class="headerlink" title="安装环境"></a>安装环境</h2><h3 id="1-安装Homebrew"><a href="#1-安装Homebrew" class="headerlink" title="1. 安装Homebrew"></a>1. 安装Homebrew</h3><p>Mac建议使用 Homebrew 安装必要的插件，Windows用户可以跳过这一步。关于 Homebrew 的介绍请看我的这篇博文 <a href="https://davidsheh.github.io/2017/08/26/mac-homebrew/">Mac开发必备工具（一）—— Homebrew</a>。</p>
+<h3 id="2-安装Git和Node-js"><a href="#2-安装Git和Node-js" class="headerlink" title="2. 安装Git和Node.js"></a>2. 安装Git和Node.js</h3><p>Node.js 可以通过 Homebrew 安装，安装命令如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install node</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-安装-Hexo-博客框架"><a href="#3-安装-Hexo-博客框架" class="headerlink" title="3. 安装 Hexo 博客框架"></a>3. 安装 Hexo 博客框架</h3><p>Hexo 框架可以使用下面的 npm 命令来安装。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
+
+<h2 id="使用Hexo建站"><a href="#使用Hexo建站" class="headerlink" title="使用Hexo建站"></a>使用Hexo建站</h2><h3 id="建站"><a href="#建站" class="headerlink" title="建站"></a>建站</h3><p>安装 Hexo 完成后，请执行下列命令，Hexo 将会在指定文件夹中新建所需要的文件。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo init &lt;folder&gt;</span><br><span class="line">cd &lt;folder&gt;</span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>建站步骤可参考<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/setup.html">Hexo官方文档</a></p>
+</blockquote>
+<p>接着执行如下命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo generate</span><br><span class="line">hexo server</span><br></pre></td></tr></table></figure>
+<p>命令执行完毕后，在浏览器输入<code>localhost:4000</code>就可以预览本地博客效果。</p>
+<h3 id="将Hexo部署到GitHub"><a href="#将Hexo部署到GitHub" class="headerlink" title="将Hexo部署到GitHub"></a>将Hexo部署到GitHub</h3><p>在 GitHub 上新建一个仓库，然后修改 Hexo 的配置文件<code>_config.yml</code>中的 Deployment 配置项，修改内容如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># Deployment</span><br><span class="line">## Docs: https:&#x2F;&#x2F;hexo.io&#x2F;docs&#x2F;deployment.html</span><br><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repository: https:&#x2F;&#x2F;github.com&#x2F;xxx&#x2F;xxx.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>注意：</strong> 上面的的 <code>repository</code> 项要换成自己新建完成的 GitHub 仓库地址，也就是把上面的xxx换成你 GitHub 的用户名。</p>
+</blockquote>
+<p>配置完后，接着执行如下命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo generate</span><br><span class="line">hexo deploy</span><br></pre></td></tr></table></figure>
+<p>这样就将博客部署到GitHub上了。可以在浏览器中输入<code>https://xxx.github.io</code>查看博客效果。我的博客效果可以<a href="https://davidsheh.github.io/">点这里查看</a>。</p>
+<blockquote>
+<p>如果部署报错<code>ERROR Deployer not found: git</code> 或者 <code>ERROR Deployer not found: github</code>，就先执行<code>npm install hexo-deployer-git --save</code>安装部署插件后再运行<code>hexo deploy</code>命令</p>
+</blockquote>
+<h2 id="开始写作"><a href="#开始写作" class="headerlink" title="开始写作"></a>开始写作</h2><p>你可以执行下列命令来创建一篇新文章:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new &lt;title&gt;</span><br></pre></td></tr></table></figure>
+<p>命令执行完后，会在 Hexo 项目的<code>\source\_posts</code>目录下生成一个对应名称的<code>.md</code>文件。用编辑器打开就可以开始写文章了，注意文章得使用 Markdown 编写。文章写完后执行上面的清理、生成和部署命令将文章发布到GitHub仓库。<br>当让也可以不使用上面的生成命令，直接将事先编辑好的<code>.md</code> 文件复制到对应的目录，也是可以的。只不过用命令生成的<code>.md</code>文件会带一个<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/front-matter.html">Front-matter</a>，内容如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: 文章标题</span><br><span class="line">date: 创建时间</span><br><span class="line">tags: 文章标签</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+<p>所以，事先编辑好的<code>.md</code>文件里也应该包含相应的<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/front-matter.html">Front-matter</a>。</p>
+<h2 id="更换博客主题"><a href="#更换博客主题" class="headerlink" title="更换博客主题"></a>更换博客主题</h2><h3 id="更换默认主题"><a href="#更换默认主题" class="headerlink" title="更换默认主题"></a>更换默认主题</h3><p>Hexo 更换主题很简单，就两步：</p>
+<ol>
+<li>选择喜欢的主题，可以去<a target="_blank" rel="noopener" href="https://hexo.io/themes/">官网主题页</a>选择喜欢的主题，下载主题包。然后将主题文件夹放到 Hexo 项目的 <strong>themes</strong> 文件夹下。</li>
+<li>修改 Hexo 站点配置文件<code>_config.yml</code>中的 Extensions 配置项，修改内容如下：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># Extensions</span><br><span class="line">## Plugins: https:&#x2F;&#x2F;hexo.io&#x2F;plugins&#x2F;</span><br><span class="line">## Themes: https:&#x2F;&#x2F;hexo.io&#x2F;themes&#x2F;</span><br><span class="line">theme: next</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<blockquote>
+<p>博主使用的是<a target="_blank" rel="noopener" href="https://github.com/iissnan/hexo-theme-next">NexT主题</a>，所以 theme 项配置的是<code>next</code>，这里配置的字段一定要和 <strong>themes</strong> 文件夹下主题包的文件夹名称相同。下文关于主题的配置均是针对于 NexT 主题，主题的具体使用说明可以参考 <a target="_blank" rel="noopener" href="http://theme-next.iissnan.com/">NexT 官方网站</a>。</p>
+</blockquote>
+<h3 id="NexT-主题设置"><a href="#NexT-主题设置" class="headerlink" title="NexT 主题设置"></a>NexT 主题设置</h3><p>NexT 主题的设置在官网的<a target="_blank" rel="noopener" href="http://theme-next.iissnan.com/getting-started.html">开始使用</a>中说的很详细，我这里就不画蛇添足了，不清楚的可以直接看官网。<br>关于 NexT 主题的文档是我见过的所有 Hexo 主题中最完善的，你所能想到大部分配置都集成到主题了，基本实现了傻瓜式配置。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://davidsheh.github.io/2017/09/03/hexo-blog/" data-id="ckdl9itj5001k64s66z864pwt" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NexT/" rel="tag">NexT</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-vscode-shaderlab" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/29/vscode-shaderlab/" class="article-date">
+  <time datetime="2017-08-29T10:57:25.000Z" itemprop="datePublished">2017-08-29</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/29/vscode-shaderlab/">使用 VS Code 写 Shaderlab</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Unity3D 开发中，我们一般使用 VS 写代码，但是对于写 Shader，VS 还不如自带的 MonoDeveloper 强大，而且目前我还没有发现对 Shaderlab支持比较好的 VS 扩展插件。自从试用过 VS Code 后我把电脑上的 Sublime Text 给卸载了，换成了 VS Code 一直用到现在，而且越用越觉得强大，毕竟有微软这个爸爸，发展势头还是很猛的。言归正传，这篇博客打算记录一下我使用 VS Code 写 Shaderlab 的一些经验。</p>
+<h2 id="安装插件"><a href="#安装插件" class="headerlink" title="安装插件"></a>安装插件</h2><p>首先得安装 VS Code，这个是肯定的，没啥好说的。安装好 VS Code 后，在插件页搜索 ShaderlabVSCodeFree 扩展，然后安装重启。装好插件后，使用 VS Code 打开 Shaderlab 文件，就可以愉快的写 Shader 了。该插件支持<code>.shader</code>、<code>.cginc</code>、<code>.glslinc</code>、<code>.compute</code>四种格式的 Shaderlab 文件，同时，还支持语法高亮、基础代码补全、签名帮助 三大功能，基础代码补全这个功能用了一下感觉非常赞，要是再能支持自动格式化就完美了，不过对于免费版来说，已经非常良心了。该插件还有个收费的 <a target="_blank" rel="noopener" href="https://www.assetstore.unity3d.com/en/#!/content/94653">ShaderlabVSCode Beta</a> 版，支持的功能更多，也支持代码格式化，插件作者是中国的 Unity3D 开发者，所以，如果大家手头富裕的话，请支持一下作者，去AssetStore购买 <a target="_blank" rel="noopener" href="https://www.assetstore.unity3d.com/en/#!/content/94653">ShaderlabVSCode Beta</a> 版。</p>
+<h2 id="添加代码片段"><a href="#添加代码片段" class="headerlink" title="添加代码片段"></a>添加代码片段</h2><p>为了写代码的方便，常用的 Shaderlab 代码块可以通过 File -&gt; Preferences -&gt; User Snippets 选项，然后找到 Shaderlab 语言，添加进 Json 配置文件，我放两个常用的代码片段：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">    // Place your snippets for Shaderlab here. Each snippet is defined under a snippet name and has a prefix, body and </span></span><br><span class="line"><span class="comment">    // description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:</span></span><br><span class="line"><span class="comment">    // $1, $2 for tab stops, $0 for the final cursor position, and $&#123;1:label&#125;, $&#123;2:another&#125; for placeholders. Placeholders with the </span></span><br><span class="line"><span class="comment">    // same ids are connected.</span></span><br><span class="line"><span class="comment">    // Example:</span></span><br><span class="line"><span class="comment">    &quot;Print to console&quot;: &#123;</span></span><br><span class="line"><span class="comment">        &quot;prefix&quot;: &quot;log&quot;,</span></span><br><span class="line"><span class="comment">        &quot;body&quot;: [</span></span><br><span class="line"><span class="comment">            &quot;console.log(&#x27;$1&#x27;);&quot;,</span></span><br><span class="line"><span class="comment">            &quot;$2&quot;</span></span><br><span class="line"><span class="comment">        ],</span></span><br><span class="line"><span class="comment">        &quot;description&quot;: &quot;Log output to console&quot;</span></span><br><span class="line"><span class="comment">    &#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line">    <span class="attr">&quot;Unity3D Shaderlab&quot;</span>: &#123;</span><br><span class="line">        <span class="attr">&quot;prefix&quot;</span>: <span class="string">&quot;shaderlab&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;body&quot;</span>: [</span><br><span class="line">            <span class="string">&quot;Shader \&quot;$&#123;1:New Shader&#125;\&quot;&quot;</span>,</span><br><span class="line">            <span class="string">&quot;&#123;&quot;</span>,</span><br><span class="line">                <span class="string">&quot;\tProperties&quot;</span>,</span><br><span class="line">                <span class="string">&quot;\t&#123;&quot;</span>,</span><br><span class="line">                    <span class="string">&quot;\t\t_MainTex (\&quot;Texture\&quot;, 2D) = \&quot;white\&quot; &#123;&#125;&quot;</span>,</span><br><span class="line">                <span class="string">&quot;\t&#125;&quot;</span>,</span><br><span class="line">                <span class="string">&quot;\tSubShader&quot;</span>,</span><br><span class="line">                <span class="string">&quot;\t&#123;&quot;</span>,</span><br><span class="line">                    <span class="string">&quot;\t\tTags &#123; \&quot;RenderType\&quot;=\&quot;$&#123;2:Opaque&#125;\&quot; &#125;\n&quot;</span>,</span><br><span class="line">                    <span class="string">&quot;\t\tPass&quot;</span>,</span><br><span class="line">                    <span class="string">&quot;\t\t&#123;&quot;</span>,</span><br><span class="line">                    <span class="string">&quot;\t\t\t$3&quot;</span>,    </span><br><span class="line">                    <span class="string">&quot;\t\t&#125;&quot;</span>,</span><br><span class="line">                <span class="string">&quot;\t&#125;&quot;</span>,</span><br><span class="line">            <span class="string">&quot;&#125;&quot;</span></span><br><span class="line">        ],</span><br><span class="line">        <span class="attr">&quot;description&quot;</span>: <span class="string">&quot;Unity3D Shaderlab&quot;</span></span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    <span class="attr">&quot;CGPROGRAM&quot;</span>: &#123;</span><br><span class="line">        <span class="attr">&quot;prefix&quot;</span>: <span class="string">&quot;cg&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;body&quot;</span>: [</span><br><span class="line">            <span class="string">&quot;CGPROGRAM&quot;</span>,</span><br><span class="line">            <span class="string">&quot;#pragma vertex vert&quot;</span>,</span><br><span class="line">            <span class="string">&quot;#pragma fragment frag\n&quot;</span>,</span><br><span class="line">            <span class="string">&quot;#include \&quot;UnityCG.cginc\&quot;\n&quot;</span>,</span><br><span class="line">            <span class="string">&quot;struct appdata&quot;</span>,</span><br><span class="line">            <span class="string">&quot;&#123;&quot;</span>,</span><br><span class="line">                <span class="string">&quot;\tfloat4 vertex : POSITION;&quot;</span>,</span><br><span class="line">                <span class="string">&quot;\tfloat2 uv : TEXCOORD0;&quot;</span>,</span><br><span class="line">            <span class="string">&quot;&#125;;\n&quot;</span>,</span><br><span class="line">            <span class="string">&quot;struct v2f&quot;</span>,</span><br><span class="line">            <span class="string">&quot;&#123;&quot;</span>,</span><br><span class="line">                <span class="string">&quot;\tfloat2 uv : TEXCOORD0;&quot;</span>,</span><br><span class="line">                <span class="string">&quot;\tfloat4 vertex : SV_POSITION;&quot;</span>,</span><br><span class="line">            <span class="string">&quot;&#125;;\n&quot;</span>,</span><br><span class="line">            <span class="string">&quot;sampler2D _MainTex;\n&quot;</span>,</span><br><span class="line">            <span class="string">&quot;v2f vert(appdata v)&quot;</span>,</span><br><span class="line">            <span class="string">&quot;&#123;&quot;</span>,</span><br><span class="line">                <span class="string">&quot;\tv2f o;&quot;</span>,</span><br><span class="line">                <span class="string">&quot;\to.vertex = UnityObjectToClipPos(v.vertex);&quot;</span>,</span><br><span class="line">                <span class="string">&quot;\to.uv = TRANSFORM_TEX(v.uv, _MainTex);\n&quot;</span>,</span><br><span class="line">            </span><br><span class="line">                <span class="string">&quot;\treturn o;&quot;</span>,</span><br><span class="line">            <span class="string">&quot;&#125;\n&quot;</span>,</span><br><span class="line">            </span><br><span class="line">            <span class="string">&quot;fixed4 frag(v2f i) : SV_Target&quot;</span>,</span><br><span class="line">            <span class="string">&quot;&#123;&quot;</span>,</span><br><span class="line">                <span class="string">&quot;\t// sample the texture&quot;</span>,</span><br><span class="line">                <span class="string">&quot;\tfixed4 col = tex2D(_MainTex, i.uv);&quot;</span>,</span><br><span class="line">                <span class="string">&quot;\treturn col;&quot;</span>,</span><br><span class="line">            <span class="string">&quot;&#125;&quot;</span>,</span><br><span class="line">            <span class="string">&quot;ENDCG&quot;</span></span><br><span class="line">        ],</span><br><span class="line">        <span class="attr">&quot;description&quot;</span>: <span class="string">&quot;Unity3D Shaderlab CGPROGRAM&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>保存后，可以新建一个扩展名为 <code>.shader</code> 的文本文件，然后输入<code>shaderlab</code>后回车就会自动生成一个标准的 Shaderlab 结构代码块。输入<code>cg</code>后回车就会生成一段 CGPROGRAM 代码块，赶快试试吧！<br>刚开始使用VS Code 写 Shader 先放上两个代码片段，后期再增加其他代码片段。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://davidsheh.github.io/2017/08/29/vscode-shaderlab/" data-id="ckdl9itjb001z64s672yw14ve" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Shaderlab/" rel="tag">Shaderlab</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Unity3D/" rel="tag">Unity3D</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/VS-Code/" rel="tag">VS Code</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-mac-fishshell" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/28/mac-fishshell/" class="article-date">
+  <time datetime="2017-08-28T14:53:41.000Z" itemprop="datePublished">2017-08-28</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/28/mac-fishshell/">Mac开发必备工具（三）—— Fish shell</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Fish-shell"><a href="#Fish-shell" class="headerlink" title="Fish shell"></a>Fish shell</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>fish 可以根据输入自动匹配历史命令。它的一大特点是开箱即用，没有zsh那些繁琐的配置。官网：<a target="_blank" rel="noopener" href="http://www.fishshell.com/%E3%80%82">http://www.fishshell.com/。</a></p>
+<h2 id="安装与配置"><a href="#安装与配置" class="headerlink" title="安装与配置"></a>安装与配置</h2><p>在终端里使用Homebrew安装，直接输入 <code>brew install fish</code> 等待安装完成即可。安装完了以后还不能用，因为没把fish添加到 mac 的 shell 列表里，切换到 fish shell 时显示找不到fish shell，所以我们要先添加 fish 并设置一下 shell 。首先，用 shell 命令<code>sudo vim /etc/shells</code>在 vim 中打开 Mac 的 shell 列表，执行结果如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"># List of acceptable shells for chpass(1).</span><br><span class="line"># Ftpd will not allow users to connect who are not using</span><br><span class="line"># one of these shells.</span><br><span class="line"></span><br><span class="line">&#x2F;bin&#x2F;bash</span><br><span class="line">&#x2F;bin&#x2F;csh</span><br><span class="line">&#x2F;bin&#x2F;ksh</span><br><span class="line">&#x2F;bin&#x2F;sh</span><br><span class="line">&#x2F;bin&#x2F;tcsh</span><br><span class="line">&#x2F;bin&#x2F;zsh</span><br></pre></td></tr></table></figure>
+<p>按<code>i</code>键，进入插入模式，然后在列表末尾加上<code>/usr/local/bin/fish</code>。最后文件内容如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># List of acceptable shells for chpass(1).</span><br><span class="line"># Ftpd will not allow users to connect who are not using</span><br><span class="line"># one of these shells.</span><br><span class="line"></span><br><span class="line">&#x2F;bin&#x2F;bash</span><br><span class="line">&#x2F;bin&#x2F;csh</span><br><span class="line">&#x2F;bin&#x2F;ksh</span><br><span class="line">&#x2F;bin&#x2F;sh</span><br><span class="line">&#x2F;bin&#x2F;tcsh</span><br><span class="line">&#x2F;bin&#x2F;zsh</span><br><span class="line">&#x2F;usr&#x2F;local&#x2F;bin&#x2F;fish</span><br></pre></td></tr></table></figure>
+<p>最后，按 esc 键跳到命令模式，输入<code>:wq</code> 命令保存文件并退出vim。当前模式还是 bash shell 模式，要切换到 fish shell 需要输入 <code>fish</code> 命令。每次都输入命令切换 shell 比较繁琐，我们可以通过如下命令从 bash 切换到 fish ：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chsh -s &#x2F;usr&#x2F;local&#x2F;bin&#x2F;fish</span><br></pre></td></tr></table></figure>
+<p>也可以通过如下命令切回到 bash：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chsh -s &#x2F;bin&#x2F;bash</span><br></pre></td></tr></table></figure>
+
+<h2 id="常用快捷键"><a href="#常用快捷键" class="headerlink" title="常用快捷键"></a>常用快捷键</h2><ol>
+<li>自动建议<br>Fish 会自动在光标后面给出建议，颜色为灰色。按下<code>→</code>或<code>Control + F</code>表示采纳建议，按下<code>Alt + →</code>表示只采纳一部分。</li>
+<li>Tab 键补全<br>按下 <code>Tab</code> 键，Fish 将尝试自动补全命令、参数或路径，如果有多条补全建议，可以继续使用 <code>Tab</code> 键在不同建议间切换。</li>
+</ol>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>因为博主并不是天天跟命令行打交道，shell 也根本不会，只是在学习和工作中偶尔会用到命令行，敲几行命令执行一些操作，所以这篇文章只是简单的介绍 Fish shell，作为一个学习的记录，想深入了解的可以访问<a target="_blank" rel="noopener" href="https://www.fishshell.com/">官网</a>。<br>有了 Homebrew + iTerm 2 + Fish shell，对命令行有畏惧和抵触情绪的「终端恐惧症患者」再也不用头疼了。关于 Homebrew 和 iTerm 2 的介绍请看我的另外两篇文章：<a href="http://davidsheh.github.io/2017/08/26/mac-homebrew/">Mac开发必备工具（一）—— Homebrew</a>、<a href="http://davidsheh.github.io/2017/08/27/mac-iterm2/">Mac开发必备工具（二）—— iTerm 2</a>。</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a target="_blank" rel="noopener" href="https://www.fishshell.com/docs/current/tutorial.html">fish tutorial</a></p>
+<hr>
+<p><strong>同系列文章</strong></p>
+<p><a href="http://davidsheh.github.io/2017/08/26/mac-homebrew/">Mac开发必备工具（一）—— Homebrew</a></p>
+<p><a href="http://davidsheh.github.io/2017/08/27/mac-iterm2/">Mac开发必备工具（二）—— iTerm 2</a></p>
+<p><a href="http://davidsheh.github.io/2017/08/28/mac-fishshell/">Mac开发必备工具（三）—— Fish shell</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://davidsheh.github.io/2017/08/28/mac-fishshell/" data-id="ckdl9itj6001o64s630ew2y9s" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Fish-shell/" rel="tag">Fish shell</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mac/" rel="tag">Mac</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Shell/" rel="tag">Shell</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-mac-iterm2" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/27/mac-iterm2/" class="article-date">
+  <time datetime="2017-08-27T10:20:12.000Z" itemprop="datePublished">2017-08-27</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/27/mac-iterm2/">Mac开发必备工具（二）—— iTerm 2</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="iTerm-2"><a href="#iTerm-2" class="headerlink" title="iTerm 2"></a>iTerm 2</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><blockquote>
+<p>iTerm 2 is a terminal emulator for Mac OS X that does amazing things.</p>
+</blockquote>
+<p>iTerm 2 有很多能够提升效率的实用功能。比如说窗口分割、热键窗口、智能搜索、自动完成、快速复制等等，其他功能可查看<a target="_blank" rel="noopener" href="https://www.iterm2.com/features.html">官网的Features页</a>。</p>
+<h2 id="安装与配置"><a href="#安装与配置" class="headerlink" title="安装与配置"></a>安装与配置</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>有两种方式可以安装iTerm 2：</p>
+<ol>
+<li>直接从<a target="_blank" rel="noopener" href="https://www.iterm2.com/index.html">官网</a>下载安装包。</li>
+<li>使用 Homebrew 命令<code>brew install iTerm2</code>安装。</li>
+</ol>
+<p>个人推荐使用第二种方式安装。</p>
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p>关于 iTerm 2 的配置可以参考官网介绍，然后根据自己的喜好配置。这里介绍一个实用的快捷键配置和一个主题配置。</p>
+<h4 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h4><p>快速显示和隐藏 iTerm 2 的快捷键设置如下图：<br><img src="https://raw.githubusercontent.com/DavidSheh/MarkdownPictures/master/pictures/iterm2_hotkey.jpg" alt="iTerm 2 Hotkey"><br>快捷键的设置可以根据自己的使用习惯来设置。</p>
+<h4 id="主题"><a href="#主题" class="headerlink" title="主题"></a>主题</h4><p>经过多款主题的对比，最终选择了推荐最多的一款主题<a target="_blank" rel="noopener" href="http://ethanschoonover.com/solarized">Solarized</a>。选择这款主题是因为它有自己的<a target="_blank" rel="noopener" href="http://ethanschoonover.com/solarized">官网</a>，同时支持主流的编辑器和 IDE。主题配置步骤如下：</p>
+<ol>
+<li>先去<a target="_blank" rel="noopener" href="http://ethanschoonover.com/solarized">官网</a>下载主题压缩包，<a target="_blank" rel="noopener" href="http://ethanschoonover.com/solarized/files/solarized.zip">直接下载链接点这里</a>。</li>
+<li>下载后解压，然后<code>⌘+,</code>打开 iTerm 2 的首选项，接着 Profiles -&gt; Colors -&gt; Color Presets -&gt; Import，选择刚解压的文件夹<code>solarized/iterm2-colors-solarized</code>下的<code>Solarized Dark.itermcolors</code>文件。</li>
+<li>在Color Presets 下拉菜单中选中 Solarized Dark 主题，大功告成。</li>
+<li>配置截图如下：<br><img src="https://raw.githubusercontent.com/DavidSheh/MarkdownPictures/master/pictures/iterm2_theme.jpg" alt="iTerm 2 Hotkey"></li>
+</ol>
+<p>这里放一张效果图简单的预览一下主题的效果。<br><img src="https://raw.githubusercontent.com/DavidSheh/MarkdownPictures/master/pictures/iterm2_preview.jpg" alt="Solarized Preview"></p>
+<h2 id="常用快捷键"><a href="#常用快捷键" class="headerlink" title="常用快捷键"></a>常用快捷键</h2><ol>
+<li><code>⌘+T</code> 打开一个新的标签页</li>
+<li><code>⌘+;</code> 弹出自动补齐窗口</li>
+<li><code>⌘+Shift+;</code> 弹出历史命令记录窗口</li>
+<li><code>⌘+Shift+H</code> 弹出历史粘贴记录窗口</li>
+<li><code>⌘+←</code>、<code>⌘+→</code>、 <code>⌘+&#123;</code>, <code>⌘+&#125;</code>、<code>⌘+&lt;number&gt;</code> 切换标签页</li>
+<li><code>⌘+F</code> 智能查找，支持正则查找</li>
+<li><code>⌘+[</code>、<code>⌘+]</code>、<code>⌘+Option+方向键</code> 切换 pane</li>
+<li><code>⌘+D</code>  水平切分屏幕，<code>⌘+Shift+D</code> 垂直切分屏幕</li>
+<li><code>⌘+Enter</code> 进入与返回全屏模式</li>
+</ol>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>当然，iTerm 2 的功能远远不止这些，本文只是博主在使用过程中的一个记录和总结，后续用到其他高级功能了再来补充，待续…</p>
+<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><p><a target="_blank" rel="noopener" href="http://www.iterm2.com/documentation.html">iTerm2官方文档</a></p>
+<hr>
+<p><strong>同系列文章</strong></p>
+<p><a href="http://davidsheh.github.io/2017/08/26/mac-homebrew/">Mac开发必备工具（一）—— Homebrew</a></p>
+<p><a href="http://davidsheh.github.io/2017/08/27/mac-iterm2/">Mac开发必备工具（二）—— iTerm 2</a></p>
+<p><a href="http://davidsheh.github.io/2017/08/28/mac-fishshell/">Mac开发必备工具（三）—— Fish shell</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://davidsheh.github.io/2017/08/27/mac-iterm2/" data-id="ckdl9itj9001v64s68bhg7y3z" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mac/" rel="tag">Mac</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Solarized/" rel="tag">Solarized</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iTerm-2/" rel="tag">iTerm 2</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-mac-homebrew" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/26/mac-homebrew/" class="article-date">
+  <time datetime="2017-08-26T15:18:42.000Z" itemprop="datePublished">2017-08-26</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/26/mac-homebrew/">Mac开发必备工具（一）—— Homebrew</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Homebrew"><a href="#Homebrew" class="headerlink" title="Homebrew"></a>Homebrew</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>macOS 缺失的软件包管理器。使用 Homebrew 安装 Apple 没有预装但 <a target="_blank" rel="noopener" href="https://github.com/Homebrew/homebrew-core/tree/master/Formula">你需要的东西</a>。<a target="_blank" rel="noopener" href="https://brew.sh/">官网</a>有中文说明。</p>
+<h2 id="安装与配置"><a href="#安装与配置" class="headerlink" title="安装与配置"></a>安装与配置</h2><p>Homebrew 的安装非常简单，将下面这条命令粘贴到终端：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;usr&#x2F;bin&#x2F;ruby -e &quot;$(curl -fsSL https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;Homebrew&#x2F;install&#x2F;master&#x2F;install)&quot;</span><br></pre></td></tr></table></figure>
+<p>等待命令执行完毕。其他配置见<a target="_blank" rel="noopener" href="https://brew.sh/index_zh-cn.html">官网中文说明</a>。</p>
+<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><ol>
+<li><code>brew help</code> 查看帮助</li>
+<li><code>brew install &lt;package name&gt;</code> 安装软件包</li>
+<li><code>brew uninstall &lt;package name&gt;</code> 卸载软件包</li>
+<li><code>brew list [--versions]</code> 列出已安装的软件包(包括版本)</li>
+<li><code>brew search &lt;package name&gt;</code> 查找软件包</li>
+<li><code>brew info &lt;package name&gt;</code> 查看软件包信息</li>
+<li><code>brew update</code> 更新brew</li>
+<li><code>brew outdated</code> 列出过时的软件包（已安装但不是最新版本）</li>
+<li><code>brew upgrade [&lt;package name&gt;]</code> 更新过时的软件包（不指定软件包表示更新全部）</li>
+<li><code>brew doctor</code> 检查brew运行状态</li>
+</ol>
+<h2 id="常用软件"><a href="#常用软件" class="headerlink" title="常用软件"></a>常用软件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">brew install wget</span><br><span class="line">brew install curl</span><br><span class="line">brew install openssl</span><br><span class="line"></span><br><span class="line">brew install fish      #安装fish shell</span><br><span class="line">brew install git-flow  #安装git-flow</span><br><span class="line">brew install python    #安装python</span><br></pre></td></tr></table></figure>
+
+<h2 id="Homebrew-Cask"><a href="#Homebrew-Cask" class="headerlink" title="Homebrew-Cask"></a>Homebrew-Cask</h2><p>Homebrew-Cask 是 Homebrew 的一个扩展。它能够优雅、简单、快速的安装和管理 macOS 图形界面程序，比如Google Chrome 和Dropbox等等。官网 <a target="_blank" rel="noopener" href="https://caskroom.github.io/%E3%80%82">https://caskroom.github.io/。</a></p>
+<h3 id="Cask-必装的理由"><a href="#Cask-必装的理由" class="headerlink" title="Cask 必装的理由"></a>Cask 必装的理由</h3><p>有图形界面的软件可以直接在 App Stroe 中下载更新，为啥还需要 Cask 呢？因为有的很好用的免费 Mac 软件并没有选择在 App Store 上架，对于没有上架的软件我们只能是通过搜索找到官网然后在下载安装包，这样不够优雅也不方便管理，而使用 Cask 可以通过一行命令就搞定安装了，还可以统一更新升级所有的软件，实现从非 App Store 途径安装的软件的统一管理。<br>Cask 从软件官方网站下载软件包，然后在后台安装并将 <code>.app</code> 移动到 <code>Applications</code>。通过 Cask 安装的软件也会在 Lanuchpad 显示，跟从 App Store 安装的软件没啥区别。对于那些收费的软件，用 Cask 安装只是比普通安装方法节省了时间和步骤，没啥其他的区别。</p>
+<h3 id="Cask-常用命令"><a href="#Cask-常用命令" class="headerlink" title="Cask 常用命令"></a>Cask 常用命令</h3><ol>
+<li><code>brew cask -help</code> 查看帮助</li>
+<li><code>brew cask install &lt;software name&gt;</code> 安装软件</li>
+<li><code>brew cask uninstall &lt;software name&gt;</code> 卸载软件</li>
+<li><code>brew cask search &lt;software name&gt;</code> 搜索软件</li>
+<li><code>brew cask info  &lt;software name&gt;</code> 查看软件相关信息</li>
+<li><code>brew cask list</code> 列出通过 Homebrew-Cask 安装的包</li>
+</ol>
+<blockquote>
+<p>经过测试，虽然 <code>-help</code> 是未知命令，但是仍然可查看 Cask 的命令，其他帮助命令（如 <code>brew cask -h</code> 和 <code>brew cask --help</code>）好像都不行。还有其他的命令就不一一介绍了，其他命令可以通过<code>brew cask -help</code>查看。</p>
+</blockquote>
+<h3 id="Cask-常用软件"><a href="#Cask-常用软件" class="headerlink" title="Cask 常用软件"></a>Cask 常用软件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">brew cask install iterm2         #安装iTerm 2</span><br><span class="line">brew cask install launchrocket   #管理软件后台服务</span><br><span class="line">brew cask install google-chrome  #安装Chrome</span><br><span class="line">brew cask install the-unarchiver #解压软件</span><br><span class="line">brew cask install alfred         #效率软件</span><br><span class="line">brew cask install qq             #腾讯QQ</span><br><span class="line">brew cask install evernote       #云笔记软件</span><br><span class="line">brew cask install sublime-text   #文本编辑器</span><br><span class="line">brew cask install skitch         #ervernote配套的截图软件</span><br><span class="line">brew cask install dropbox        #文件同步软件</span><br><span class="line">brew cask install zotero         #网页收藏与文献管理软件</span><br><span class="line">brew cask install anki           #记忆软件</span><br><span class="line">brew cask install virtualbox     #虚拟机，可以装个Windows</span><br><span class="line">brew cask install self-control   #避免分心的软件</span><br><span class="line">brew cask install vlc            #视频软件</span><br><span class="line">brew cask install appcleaner     #应用清理</span><br><span class="line"></span><br><span class="line">#Quick Look 系列</span><br><span class="line">brew cask install qlcolorcode    #预览脚本时自动代码配色</span><br><span class="line">brew cask install qlstephen      #预览未知拓展名的纯文本文件</span><br><span class="line">brew cask install qlmarkdown     #预览Markdown文件</span><br><span class="line">brew cask install quicklook-json #预览JSON文件</span><br><span class="line">brew cask install quicklook-csv  #预览CSV文件</span><br></pre></td></tr></table></figure>
+
+<p>Homebrew-Cask 是一个开源项目，其详细信息可以看<a target="_blank" rel="noopener" href="https://github.com/caskroom/homebrew-cask">其开源项目介绍</a>，所支持的软件列表在这里：<a target="_blank" rel="noopener" href="https://github.com/caskroom/homebrew-cask/tree/master/Casks">https://github.com/caskroom/homebrew-cask/tree/master/Casks</a> 。<br>如果觉得管理软件在后台运行的服务很麻烦，可以装个<a target="_blank" rel="noopener" href="https://github.com/jimbojsb/launchrocket">LaunchRocket</a>，这也是个开源项目。<br>关于 Quick Look 的介绍可以看这篇文章<a target="_blank" rel="noopener" href="https://sspai.com/post/31927">加强你的「一指禅」：Mac QuickLook「快速预览」兼容性扩展教程</a>，同时<a target="_blank" rel="noopener" href="https://github.com/sindresorhus/quick-look-plugins">Quick Look plugins</a>这个开源项目列出了所有支持 Homebrew-Cask 的 Quick Look 扩展，据说支持的都是程序员必备。</p>
+<h2 id="轻松实现一键装机"><a href="#轻松实现一键装机" class="headerlink" title="轻松实现一键装机"></a>轻松实现一键装机</h2><p>在使用 Mac 的过程中，总想着有没有方便、简单的办法实现在不同Mac 上同步开发环境的办法，今天在整理 Homebrew 使用笔记的时候突然冒出一个想法，如果我把所有的 Homebrew 安装命令列成一个清单形式，当在另一台新的 Mac 上工作时，那么就可以先装一个 Homebrew 然后将命令清单中的所有命令复制粘贴到终端中，等待命令执行完毕后，新的 Mac 的大部分开发环境就跟常用的 Mac 开发环境一致了。下面列出笔者的常用命令清单：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">#安装 Homebrew</span><br><span class="line">&#x2F;usr&#x2F;bin&#x2F;ruby -e &quot;$(curl -fsSL https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;Homebrew&#x2F;install&#x2F;master&#x2F;install)&quot;</span><br><span class="line"></span><br><span class="line">#安装基础套件</span><br><span class="line">brew install fish      #安装fish shell</span><br><span class="line">brew install git-flow  #安装git-flow</span><br><span class="line">brew install python    #安装python</span><br><span class="line"></span><br><span class="line">#Homebrew-Cask</span><br><span class="line">brew tap caskroom&#x2F;cask</span><br><span class="line"></span><br><span class="line"># 安装Cask基础软件</span><br><span class="line">brew cask install iterm2         #安装iTerm 2</span><br><span class="line">brew cask install visual-studio-code#微软出品的文本编辑器，可替代 Sublime Text</span><br><span class="line">brew cask install google-chrome  #安装Chrome</span><br><span class="line">brew cask install the-unarchiver #解压软件</span><br><span class="line">brew cask install alfred         #效率软件</span><br><span class="line">brew cask install qq             #腾讯QQ</span><br><span class="line">brew cask install sourcetree     #Git GUI 客户端</span><br><span class="line">brew cask install cheatsheet     # 显示当前程序的快捷键列表，默认的快捷键是长按⌘</span><br></pre></td></tr></table></figure>
+
+<p>这份清单会随着我对 Mac 的不断深入了解而持续更新，欢迎关注 <a href="https://davidsheh.github.io/">Sheh 伟伟的个人博客</a>。</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a target="_blank" rel="noopener" href="https://aaaaaashu.gitbooks.io/mac-dev-setup/content/Homebrew/index.html">Mac 开发配置手册</a></p>
+<hr>
+<p><strong>同系列文章</strong></p>
+<p><a href="http://davidsheh.github.io/2017/08/26/mac-homebrew/">Mac开发必备工具（一）—— Homebrew</a></p>
+<p><a href="http://davidsheh.github.io/2017/08/27/mac-iterm2/">Mac开发必备工具（二）—— iTerm 2</a></p>
+<p><a href="http://davidsheh.github.io/2017/08/28/mac-fishshell/">Mac开发必备工具（三）—— Fish shell</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://davidsheh.github.io/2017/08/26/mac-homebrew/" data-id="ckdl9itj8001r64s6aoknbumb" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Homebrew/" rel="tag">Homebrew</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Homebrew-Cask/" rel="tag">Homebrew-Cask</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mac/" rel="tag">Mac</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Unity3D集成腾讯语音GVoiceSDK" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/05/27/Unity3D%E9%9B%86%E6%88%90%E8%85%BE%E8%AE%AF%E8%AF%AD%E9%9F%B3GVoiceSDK/" class="article-date">
+  <time datetime="2017-05-27T05:15:37.000Z" itemprop="datePublished">2017-05-27</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/">技术笔记</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/05/27/Unity3D%E9%9B%86%E6%88%90%E8%85%BE%E8%AE%AF%E8%AF%AD%E9%9F%B3GVoiceSDK/">Unity3D集成腾讯语音GVoiceSDK</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>友情提示：最近发现腾讯GVoice有另一个官网，叫做<a target="_blank" rel="noopener" href="http://gcloud.qq.com/product/6">腾讯游戏服务</a>，经过对比发现这个网站才是最新的，下面我介绍的那个估计是已经废弃的，但不知道为啥老的网站没有直接链接到新网址而是仍然保留了。不过新官网的文档更加详细，SDK也有所更新，所以建议去新官网下载SDK和Demo，接入流程基本没有啥大变化。</p>
+</blockquote>
+<h2 id="简述"><a href="#简述" class="headerlink" title="简述"></a>简述</h2><p>我们项目中用到了实时语音功能，在最初语音 SDK 技术选型的时候测试过融云、声网和腾讯的 GVoice 。融云和声网我都在我们项目中使用过，但是效果都不如王者荣耀游戏中的实时语音效果，这两天好好研究了一下腾讯的 GVoice，终于成功集成。由于腾讯 GVoice 官网的接入流程并不是很详细，如果只懂 Unity3D 不懂 Android 基础知识的朋友，可能接入过程不会一帆风顺。我虽了解一点点 Android 基础，但仍趟过了好几个坑，下面我就分享一下我在 Android 平台接入 GVoice 的过程。</p>
+<h2 id="资源准备"><a href="#资源准备" class="headerlink" title="资源准备"></a>资源准备</h2><p>进入<a target="_blank" rel="noopener" href="https://www.qcloud.com/document/product/556/7673">腾讯GVoice官网</a>下载 GVoice SDK 和 Unity3D Demo。如下图：</p>
+<p><img src="https://raw.githubusercontent.com/DavidSheh/MarkdownPictures/master/pictures/gvoice_1.jpg" alt="GVoice SDK.png"></p>
+<h2 id="接入流程"><a href="#接入流程" class="headerlink" title="接入流程"></a>接入流程</h2><h3 id="1-导入SDK"><a href="#1-导入SDK" class="headerlink" title="1. 导入SDK"></a>1. 导入SDK</h3><p>先创建一个空的 Unity 项目 GVoiceDemo，按照官网的接入流程，我们直接将下载的SDK压缩包解压后将其中的 Plugins 和 Scripts 两个文件夹都拷贝到 Unity 项目中。</p>
+<h3 id="2-创建-Jar-包"><a href="#2-创建-Jar-包" class="headerlink" title="2. 创建 Jar 包"></a>2. 创建 Jar 包</h3><p>将Unity项目导出成安卓项目，导出路径选择某个指定的文件夹，我这里在桌面新建了一个叫 unity_gvoicedemo 的文件夹，将项目导出到该文件夹中，操作如下图：</p>
+<p><img src="https://raw.githubusercontent.com/DavidSheh/MarkdownPictures/master/pictures/gvoice_2.jpg" alt="Export Project.png"><br>导出成功后会生成 GCloudVoice 和 GVoiceDemo 两个文件夹，用 eclipse 将这两个项目一起导入，如下图</p>
+<p><img src="https://raw.githubusercontent.com/DavidSheh/MarkdownPictures/master/pictures/gvoice_3.jpg" alt="Import Projects.png"></p>
+<p>导入成功后，在 UnityPlayerActivity 项目下新建一个 MainActivity 类，继承自 UnityPlayerActivity，详细代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.shehweiwei.gvoicedemo;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> android.os.Bundle;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.tencent.gcloud.voice.GCloudVoiceEngine;</span><br><span class="line"><span class="comment">// 注意：下面这句代码必须有，如果没有可能会导致闪退</span></span><br><span class="line"><span class="keyword">import</span> com.unity3d.player.UnityPlayerActivity;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">UnityPlayerActivity</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">        GCloudVoiceEngine.getInstance().init(getApplicationContext(), <span class="keyword">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>注意：代码中一定要引入<code>com.unity3d.player.UnityPlayerActivity</code>这个包，如果没有引入则进入应用就闪退，这里是个大坑，我好不容易才爬出来。</strong><br>然后，选中 MainActivity.java 文件，右键选择 Export -&gt; Java -&gt; JAR file， 然后点击 Next 按钮， 接下来操作如下图：</p>
+<p><img src="https://raw.githubusercontent.com/DavidSheh/MarkdownPictures/master/pictures/gvoice_4.jpg" alt="JAR Export.png"></p>
+<p>最后，生成一个 GVoiceDemo.jar 文件。</p>
+<h3 id="3-导入其他文件"><a href="#3-导入其他文件" class="headerlink" title="3. 导入其他文件"></a>3. 导入其他文件</h3><p>将下载的 unity_demo.zip 压缩包解压后将其中的 <code>unity_demo\Assets\Plugins\Android</code> 目录下的 AndroidManifest.xml 和 android-support-v4.jar 两个文件拷贝到项目的 <code>Plugins\Android</code> 目录下。注意还有个GCloudVoiceDemo.jar 文件我们没有拷贝，这里我们使用上一步创建的 GVoiceDemo.jar 文件来替代。注意 jar 包中的包名必须与 AndroidManifest.xml 文件和 Unity 编辑器中PlayerSettings的 Bundle Identifier 包名保持一致。所以，要把 AndroidManifest.xml 文件中的 <code>package=&quot;com.example.gcloudu3ddemo&quot;</code> 这一句代码修改成 <code>package=&quot;com.shehweiwei.gvoicedemo&quot;</code>。</p>
+<p><strong>注意：</strong>AndroidManifest.xml 文件中的入口 Activity 的名字必须和创建的 Jar 包中的新建的 Activity 名字保持一致。这里的入口 Activity 叫 MainActivity，所以 AndroidManifest.xml  文件中的代码为<code>android:name=&quot;.MainActivity&quot;</code>，当然也可以写成 <code>android:name=&quot;com.example.gcloudu3ddemo.MainActivity&quot;</code></p>
+<h3 id="4-构建Unity场景"><a href="#4-构建Unity场景" class="headerlink" title="4. 构建Unity场景"></a>4. 构建Unity场景</h3><p>这里我用uGUI搭建了一个简单的界面，有六个按钮分别调用 GVoice SDK 的六个 API ，然后一个 Text 用来显示回调结果。界面效果如下图：<br><img src="https://raw.githubusercontent.com/DavidSheh/MarkdownPictures/master/pictures/gvoice_5.jpg" alt="Create UI.png"><br>然后新建一个 GVoiceDemo 的 C# 脚本，脚本代码如下：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> UnityEngine;</span><br><span class="line"><span class="keyword">using</span> gcloud_voice;</span><br><span class="line"><span class="keyword">using</span> UnityEngine.UI;</span><br><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">GVoiceDemo</span> : <span class="title">MonoBehaviour</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 用来显示调用API返回的结果</span></span><br><span class="line">    <span class="keyword">public</span> Text result;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> IGCloudVoice m_voiceengine = <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// <span class="doctag">TODO:</span> 这里的appId和appKey使用的是官方提供的测试值，正式项目中可使用申请的值</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">const</span> <span class="keyword">string</span> appId = <span class="string">&quot;932849489&quot;</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">const</span> <span class="keyword">string</span> appKey = <span class="string">&quot;d94749efe9fce61333121de84123ef9b&quot;</span>;</span><br><span class="line">    <span class="comment">// <span class="doctag">TODO:</span> 这里使用的是测试账号，所以房间名使用默认的100，正式项目中可根据实际情况赋值</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">string</span> roomName = <span class="string">&quot;100&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Start</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        <span class="keyword">if</span> (m_voiceengine == <span class="literal">null</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            m_voiceengine = GCloudVoice.GetEngine();</span><br><span class="line">            TimeSpan ts = DateTime.UtcNow - <span class="keyword">new</span> DateTime(<span class="number">1970</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">            <span class="keyword">string</span> strTime = System.Convert.ToInt64(ts.TotalSeconds).ToString();</span><br><span class="line">            <span class="comment">// <span class="doctag">TODO:</span> 这里用时间模拟了一个openId，在正式项目中应该把这里的strTime换成用户唯一ID</span></span><br><span class="line">            m_voiceengine.SetAppInfo(appId, appKey, strTime);</span><br><span class="line">            m_voiceengine.Init();</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 注册SDK常用回调监听</span></span><br><span class="line">            m_voiceengine.OnJoinRoomComplete += OnJoinRoom;</span><br><span class="line">            m_voiceengine.OnQuitRoomComplete += OnExitRoom;</span><br><span class="line">            m_voiceengine.OnMemberVoice += OnMemberVoice;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Update</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        <span class="keyword">if</span> (m_voiceengine != <span class="literal">null</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">// 不断检测GVoice引擎回调</span></span><br><span class="line">            m_voiceengine.Poll();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">OnApplicationPause</span>(<span class="params"><span class="keyword">bool</span> pauseStatus</span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        <span class="keyword">if</span> (m_voiceengine == <span class="literal">null</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 应用暂停时GVoice引擎也暂停，应用重新开始时引擎继续</span></span><br><span class="line">        <span class="keyword">if</span> (pauseStatus)</span><br><span class="line">        &#123;</span><br><span class="line">            m_voiceengine.Pause();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            m_voiceengine.Resume();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 加入房间，BtnJoin按钮点击调用</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">JoinRoom</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        m_voiceengine.SetMode(GCloudVoiceMode.RealTime);</span><br><span class="line">        <span class="keyword">int</span> ret = m_voiceengine.JoinTeamRoom(roomName, <span class="number">15000</span>);</span><br><span class="line"></span><br><span class="line">        result.text += <span class="string">&quot;\nJoinRoom:&quot;</span> + ret;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 退出房间，BtnExit按钮点击调用</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">ExitRoom</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        <span class="keyword">int</span> ret = m_voiceengine.QuitRoom(roomName, <span class="number">6000</span>);</span><br><span class="line">        result.text += <span class="string">&quot;\nExitRoom:&quot;</span> + ret;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 打开麦克风，BtnOpenMic按钮点击调用</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">OpenMic</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        <span class="keyword">int</span> ret = m_voiceengine.OpenMic();</span><br><span class="line">        result.text += <span class="string">&quot;\nOpenMic:&quot;</span> + ret;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 关闭麦克风，BtnCloseMic按钮点击调用</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">CloseMic</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        <span class="keyword">int</span> ret = m_voiceengine.CloseMic();</span><br><span class="line">        result.text += <span class="string">&quot;\nCloseMic:&quot;</span> + ret;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 打开扬声器，BtnOpenSpeaker按钮点击调用</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">OpenSpeaker</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        <span class="keyword">int</span> ret = m_voiceengine.OpenSpeaker();</span><br><span class="line">        result.text += <span class="string">&quot;\nOpenSpeaker:&quot;</span> + ret;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 关闭扬声器，BtnCloseSpeaker按钮点击调用</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">CloseSpeaker</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        <span class="keyword">int</span> ret = m_voiceengine.CloseSpeaker();</span><br><span class="line">        result.text += <span class="string">&quot;\nCloseSpeaker:&quot;</span> + ret;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 加入房间回调</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;code&quot;&gt;</span><span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;roomName&quot;&gt;</span><span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;memberID&quot;&gt;</span><span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">OnJoinRoom</span>(<span class="params">IGCloudVoice.GCloudVoiceCompleteCode code, <span class="keyword">string</span> roomName, <span class="keyword">int</span> memberID</span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        result.text += <span class="keyword">string</span>.Format(<span class="string">&quot;\nOnJoinRoom ---&gt; code: &#123;0&#125;, roomName: &#123;1&#125;, memberID: &#123;2&#125;&quot;</span>, code, roomName, memberID);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 退出房间回调</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;code&quot;&gt;</span><span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;roomName&quot;&gt;</span><span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;memberID&quot;&gt;</span><span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">OnExitRoom</span>(<span class="params">IGCloudVoice.GCloudVoiceCompleteCode code, <span class="keyword">string</span> roomName, <span class="keyword">int</span> memberID</span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        result.text += <span class="keyword">string</span>.Format(<span class="string">&quot;\nOnExitRoom ---&gt; code: &#123;0&#125;, roomName: &#123;1&#125;, memberID: &#123;2&#125;&quot;</span>, code, roomName, memberID);</span><br><span class="line"></span><br><span class="line">        m_voiceengine.OnJoinRoomComplete -= OnJoinRoom;</span><br><span class="line">        m_voiceengine.OnQuitRoomComplete -= OnExitRoom;</span><br><span class="line">        m_voiceengine.OnMemberVoice -= OnMemberVoice;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 有成员说话时回调</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;members&quot;&gt;</span><span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;count&quot;&gt;</span><span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">OnMemberVoice</span>(<span class="params"><span class="keyword">int</span>[] members, <span class="keyword">int</span> count</span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        result.text += <span class="keyword">string</span>.Format(<span class="string">&quot;\nOnMemberVoice ---&gt; count: &#123;0&#125;, roomName: &#123;1&#125;, memberID: &#123;2&#125;&quot;</span>, count);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>将 GVoiceDemo 脚本添加到Canvas对象上，然后将脚本中对应的方法注册到对应的按钮的OnClick事件上，保存场景，然后运行到手机上，使用两个手机就可以语音聊天了，效果如下图：</p>
+<p><img src="https://raw.githubusercontent.com/DavidSheh/MarkdownPictures/master/pictures/gvoice_6.jpg" alt="App.png"></p>
+<h2 id="其他事项"><a href="#其他事项" class="headerlink" title="其他事项"></a>其他事项</h2><p>按照上面的流程集成完的项目并不能在PC上运行，如果要在PC上运行不报错，可以将下载的 unity_demo.zip 文件解压后的 <code>unity_demo\Assets\Plugins</code> 目录下的 X86 和 x86_64 两个文件夹拷贝到项目的 Plugins 文件夹下，这样PC上运行就不会报错。因为我这里没有麦克风设备，不知道在PC上能不能使用语音聊天，有条件的朋友可以试试，有结果了可以反馈给我，先谢过了！</p>
+<h2 id="项目源码"><a href="#项目源码" class="headerlink" title="项目源码"></a>项目源码</h2><p>我把项目的源码托管在了Github上了， 有需要的朋友自取。<a target="_blank" rel="noopener" href="https://github.com/DavidSheh/GVoiceDemo/">项目链接点这里</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://davidsheh.github.io/2017/05/27/Unity3D%E9%9B%86%E6%88%90%E8%85%BE%E8%AE%AF%E8%AF%AD%E9%9F%B3GVoiceSDK/" data-id="ckdl9itiz001964s68kqe4fqg" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GVoice/" rel="tag">GVoice</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Unity3D/" rel="tag">Unity3D</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Unity路径的相关总结" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/02/09/Unity%E8%B7%AF%E5%BE%84%E7%9A%84%E7%9B%B8%E5%85%B3%E6%80%BB%E7%BB%93/" class="article-date">
+  <time datetime="2017-02-09T09:43:25.000Z" itemprop="datePublished">2017-02-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/">技术笔记</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/02/09/Unity%E8%B7%AF%E5%BE%84%E7%9A%84%E7%9B%B8%E5%85%B3%E6%80%BB%E7%BB%93/">Unity路径的相关总结</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="一、Unity中的路径变量"><a href="#一、Unity中的路径变量" class="headerlink" title="一、Unity中的路径变量"></a>一、Unity中的路径变量</h3><ol>
+<li>Application.dataPath<br>应用数据文件夹的路径，只读。</li>
+<li>Application.streamingAssetsPath<br>应用的流式数据缓存目录，该目录下可以保存一些外部数据文件。</li>
+<li>Application.temporaryCachePath<br>设备的临时数据缓存目录。</li>
+<li>Application.persistentDataPath<br>iOS/Android设备中的持久化数据存储目录，可以在此路径下存储一些持久化的数据文件，该目录下的文件不会因为App升级而删除。</li>
+</ol>
+<h3 id="二、不同平台下的路径"><a href="#二、不同平台下的路径" class="headerlink" title="二、不同平台下的路径"></a>二、不同平台下的路径</h3><p>| 路径变量  | Windows       | Android   | iOS         |<br>| :———— | :—————- | :———— | :———- | :———- |<br>| Application.dataPath | 应用的路径/appname _Data | /data/app/package name-1/base.apk | /var/containers/Bundle/Application/app sandbox/xxx.app/Data |<br>| Application.streamingAssetsPath | 应用路径/appname _Data /StreamingAssets | jar:file:///data/app/package name-1/base.apk!/assets | /var/containers/Bundle/Application/app sandbox/test.app/Data/Raw |<br>| Application.temporaryCachePath | C:\Users\username\AppData\Local\Temp\company name\product name | <strong>Internal Only:</strong> /data/user/0/package name/cache <strong>External(SDCard):</strong>  /storage/emulated/0/Android/data/package name/cache | /var/mobile/Containers/Data/Application/app sandbox/Library/Caches |<br>| Application.persistentDataPath | C:\Users\username\AppData\LocalLow\company name\product name | <strong>Internal Only:</strong> /data/user/0/ package name/files            <strong>External(SDCard):</strong>  /storage/emulated/0/Android/data/package name/files | /var/mobile/Containers/Data/Application/app sandbox/Documents |</p>
+<blockquote>
+<p>说明：Android平台下的路径会根据SD卡的访问权限不同而不同。至于iOS有没有类似的情况，由于没有相关设备，暂时没有测试。有条件的朋友可以帮我测试一下，我用5.3.4f1版本的Unity写了个简单的测试程序，项目链接：<a target="_blank" rel="noopener" href="http://pan.baidu.com/s/1gfqmORh%E3%80%82">http://pan.baidu.com/s/1gfqmORh。</a> 欢迎测试反馈，不胜感激！</p>
+</blockquote>
+<h3 id="三、常用工具方法"><a href="#三、常用工具方法" class="headerlink" title="三、常用工具方法"></a>三、常用工具方法</h3><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 获取不同平台的流式加载路径</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;filename&quot;&gt;</span>文件名<span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;returns&gt;</span><span class="doctag">&lt;/returns&gt;</span></span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">string</span> <span class="title">GetStreamingFilePath</span>(<span class="params"><span class="keyword">string</span> filename</span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        <span class="keyword">string</span> path = <span class="string">&quot;&quot;</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (Application.platform == RuntimePlatform.OSXEditor || Application.platform == RuntimePlatform.OSXPlayer ||</span><br><span class="line">            Application.platform == RuntimePlatform.WindowsEditor || Application.platform == RuntimePlatform.WindowsPlayer)</span><br><span class="line">        &#123;</span><br><span class="line">            path = Application.dataPath + <span class="string">&quot;/StreamingAssets/&quot;</span> + filename;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (Application.platform == RuntimePlatform.IPhonePlayer)</span><br><span class="line">        &#123;</span><br><span class="line">            path = Application.dataPath + <span class="string">&quot;/Raw/&quot;</span> + filename;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (Application.platform == RuntimePlatform.Android)</span><br><span class="line">        &#123;</span><br><span class="line">            path = <span class="string">&quot;jar:file://&quot;</span> + Application.dataPath + <span class="string">&quot;!/assets/&quot;</span> + filename;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            path = Application.dataPath + <span class="string">&quot;/config/&quot;</span> + filename;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> path;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 获取不同平台的持久化数据存储路径</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;filename&quot;&gt;</span>文件名<span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;returns&gt;</span><span class="doctag">&lt;/returns&gt;</span></span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">string</span> <span class="title">GetPersistentFilePath</span>(<span class="params"><span class="keyword">string</span> filename</span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        <span class="keyword">string</span> filepath = Application.persistentDataPath + <span class="string">&quot;/&quot;</span> + filename;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">if</span> UNITY_IPHONE</span></span><br><span class="line">        <span class="comment">// Set file flag to be excluded from iCloud/iTunes backup.</span></span><br><span class="line">        UnityEngine.iOS.Device.SetNoBackupFlag(filepath);</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line">        <span class="keyword">return</span> filepath;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="四、参考文献"><a href="#四、参考文献" class="headerlink" title="四、参考文献"></a>四、参考文献</h3><ol>
+<li><a target="_blank" rel="noopener" href="http://blog.csdn.net/ynnmnm/article/details/52253674">Unity3D各平台Application.xxxPath的路径</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.cnblogs.com/murongxiaopifu/p/4199541.html">Unity3D移动平台动态读取外部文件全解析</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.tuicool.com/articles/IN7RZfz">Unity各种路径</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.unity3d.com/ScriptReference/Application.html">Unity官方文档</a></li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://davidsheh.github.io/2017/02/09/Unity%E8%B7%AF%E5%BE%84%E7%9A%84%E7%9B%B8%E5%85%B3%E6%80%BB%E7%BB%93/" data-id="ckdl9itj3001g64s6fdbjd690" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Unity3D/" rel="tag">Unity3D</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Unity插件之Unity调用C_Sharp编译的DLL" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/11/15/Unity%E6%8F%92%E4%BB%B6%E4%B9%8BUnity%E8%B0%83%E7%94%A8C_Sharp%E7%BC%96%E8%AF%91%E7%9A%84DLL/" class="article-date">
+  <time datetime="2016-11-15T05:58:02.000Z" itemprop="datePublished">2016-11-15</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/">技术笔记</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/11/15/Unity%E6%8F%92%E4%BB%B6%E4%B9%8BUnity%E8%B0%83%E7%94%A8C_Sharp%E7%BC%96%E8%AF%91%E7%9A%84DLL/">Unity插件之Unity调用C#编译的DLL</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Unity插件分为两种：托管插件（Managed Plugins）和本地插件（Native Plugins）。本文先来说说Unity中的托管插件，本地插件的文章留到下一篇文章再说。<br>有时候我们会有这样的需求：给第三方公司提供Unity插件，而又不希望第三方看到具体代码，这时就可以将核心代码编译成dll文件供第三方调用。或者说，同一个公司多个项目都用到某个模块，则可以把该模块封装成dll，方便在不同项目之间共用和维护。</p>
+<blockquote>
+<p>关于dll加密的问题，以后有机会了可以考虑写点东西分享出来。</p>
+</blockquote>
+<p><strong>一、创建DLL</strong></p>
+<hr>
+<p>打开VS，选择文件 -&gt; 新建 -&gt; 项目后打开新建项目对话框。接着操作如下：</p>
+<p><img src="https://raw.githubusercontent.com/DavidSheh/MarkdownPictures/master/pictures/unity_csharp_dll_1.jpg" alt="新建项目.png"></p>
+<p>点击确定后，编写如下代码：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">MyLib</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">MyClass</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">string</span> <span class="title">GetBlogName</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;Sheh伟伟的个人博客&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> TimeSpan <span class="title">GetBlogTime</span>(<span class="params">DateTime time</span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            <span class="keyword">return</span> (time - DateTime.Parse(<span class="string">&quot;2016/11/14&quot;</span>));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后生成dll文件，操作如下图：</p>
+<p><img src="https://raw.githubusercontent.com/DavidSheh/MarkdownPictures/master/pictures/unity_csharp_dll_2.jpg" alt="build.png"></p>
+<blockquote>
+<p>提示：也可以用MonoDeveloper创建并生成dll，至于操作步骤可以查看<a target="_blank" rel="noopener" href="https://docs.unity3d.com/Manual/UsingDLL.html">官网手册</a>。</p>
+</blockquote>
+<p><strong>二、导入DLL</strong></p>
+<hr>
+<p>将MyLib项目目录下的bin/Debug目录下的MyLib.dll文件拷贝到Unity项目的Plugins目录下。这时，Unity控制台报Unhandled Exception: System.Reflection.ReflectionTypeLoadException: The classes in the module cannot be loaded的错误，报错详细信息如下：</p>
+<p><img src="https://raw.githubusercontent.com/DavidSheh/MarkdownPictures/master/pictures/unity_csharp_dll_3.jpg" alt="error.png"></p>
+<p>这是因为我用的Unity版本是5.3.4f1，支持的.NET Framework的版本为3.5。而我创建的MyLib项目的默认.NET Framework 版本为4.5.2。<br>选择项目，然后右键选择属性 -&gt; 应用程序，将目标框架改为 .NET Framework 3.5或以下 ，如下图：</p>
+<p><img src="https://raw.githubusercontent.com/DavidSheh/MarkdownPictures/master/pictures/unity_csharp_dll_4.jpg"><br>接着重新生成一下dll文件，重新导入到Unity就行了。</p>
+<p><strong>三、调用DLL</strong></p>
+<hr>
+<p>在Unity新建一个TestDll的脚本，并挂到主摄像机上，脚本代码如下：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> UnityEngine;</span><br><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"><span class="keyword">using</span> MyLib; <span class="comment">// 导入dll</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">TestDll</span> : <span class="title">MonoBehaviour</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">string</span> blogUrl = <span class="string">&quot;https://davidsheh.github.io/&quot;</span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Start</span> (<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        <span class="keyword">string</span> myBlog = <span class="keyword">string</span>.Format(<span class="string">&quot;&#123;0&#125;:&#123;1&#125;&quot;</span>, MyClass.GetBlogName(), blogUrl);</span><br><span class="line">        Debug.Log(myBlog);</span><br><span class="line"></span><br><span class="line">        TimeSpan span = MyClass.GetBlogTime(DateTime.Now);</span><br><span class="line">        Debug.Log(<span class="string">&quot;写这篇博客到现在的时间间隔：&quot;</span> + span.TotalDays);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意，调用Dll中的方法一定要使用using语句引入导入到unity中的dll类库。</p>
+<p><strong>四、导入Unity DLL</strong></p>
+<hr>
+<p>怎么导入Unity原生类库呢？别急，接下来就说说怎么在自定义的dll类库中调用Unity中的类。<br>首先选中项目，接着右键选择添加 -&gt; 引用后，弹出引用管理器，如下图：<br><img src="https://raw.githubusercontent.com/DavidSheh/MarkdownPictures/master/pictures/unity_csharp_dll_5.jpg" alt="添加引用.png"></p>
+<p>在应用管理器界面点击浏览按钮，找到UnityEngine.dll文件点击确认按钮导入，如下图所示：</p>
+<p><img src="https://raw.githubusercontent.com/DavidSheh/MarkdownPictures/master/pictures/unity_csharp_dll_6.jpg" alt="引用管理器.png"></p>
+<blockquote>
+<p>Unity类库在Mac上的路径为<code>Applications/Unity.app/Contents/Frameworks/Managed/UnityEngine.dll</code>；在Windows上的路径为<code>Program Files\Unity\Editor\Data\Managed\UnityEngine.dll</code>。</p>
+</blockquote>
+<p>接着，将项目中无用的类库都移除掉，只保留用到的System和UnityEngine两个类库，如下图：<br><img src="https://raw.githubusercontent.com/DavidSheh/MarkdownPictures/master/pictures/unity_csharp_dll_7.jpg" alt="引用.png"></p>
+<p>然后，修改MyClass脚本，代码如下：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"><span class="keyword">using</span> UnityEngine;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">MyLib</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">MyClass</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">string</span> <span class="title">GetBlogName</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;Sheh伟伟的个人博客&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> TimeSpan <span class="title">GetBlogTime</span>(<span class="params">DateTime time</span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            <span class="keyword">return</span> (time - DateTime.Parse(<span class="string">&quot;2016/11/13&quot;</span>));</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">CreateCube</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            GameObject go = GameObject.CreatePrimitive(PrimitiveType.Cube);</span><br><span class="line">            <span class="keyword">int</span> random = UnityEngine.Random.Range(<span class="number">-5</span>, <span class="number">5</span>);</span><br><span class="line">            go.transform.position = <span class="keyword">new</span> Vector3(random, random, <span class="number">0</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>代码编写完成后，重新生成一下dll，然后导入到Unity中，接着修改Unity脚本TesDll，具体代码如下：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> UnityEngine;</span><br><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"><span class="keyword">using</span> MyLib;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">TestDll</span> : <span class="title">MonoBehaviour</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">string</span> blogUrl = <span class="string">&quot;https://davidsheh.github.io/&quot;</span>;</span><br><span class="line">    <span class="keyword">string</span> myBlog;</span><br><span class="line">    <span class="keyword">double</span> time;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Start</span> (<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        myBlog = <span class="keyword">string</span>.Format(<span class="string">&quot;&#123;0&#125;:&#123;1&#125;&quot;</span>, MyClass.GetBlogName(), blogUrl);</span><br><span class="line">        Debug.Log(myBlog);</span><br><span class="line"></span><br><span class="line">        TimeSpan span = MyClass.GetBlogTime(DateTime.Now);</span><br><span class="line">        time = span.TotalDays;</span><br><span class="line">        Debug.Log(<span class="string">&quot;写这篇博客到现在的时间间隔：&quot;</span> + time);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">OnGUI</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        GUILayout.Label(myBlog);</span><br><span class="line">        GUILayout.Label(time.ToString());</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(GUILayout.Button(<span class="string">&quot;Create Cube&quot;</span>))</span><br><span class="line">        &#123;</span><br><span class="line">            MyClass.CreateCube();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行后的效果图如下：<br><img src="https://raw.githubusercontent.com/DavidSheh/MarkdownPictures/master/pictures/unity_csharp_dll_8.jpg" alt="效果图.png"></p>
+<blockquote>
+<p>源代码放在了群共享中，想要源码的可以加群：253999688</p>
+</blockquote>
+<p><strong>四、参考资料</strong></p>
+<hr>
+<p><a target="_blank" rel="noopener" href="https://docs.unity3d.com/Manual/UsingDLL.html">Managed Plugins</a></p>
+<hr>
+<blockquote>
+<p>如果本文有错误之处还请帮忙指出。</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://davidsheh.github.io/2016/11/15/Unity%E6%8F%92%E4%BB%B6%E4%B9%8BUnity%E8%B0%83%E7%94%A8C_Sharp%E7%BC%96%E8%AF%91%E7%9A%84DLL/" data-id="ckdl9itj1001c64s637tm8s9b" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C#</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Unity3D/" rel="tag">Unity3D</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">下一页 &amp;raquo;</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/">技术笔记</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C#</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Chocolatey/" rel="tag">Chocolatey</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Fish-shell/" rel="tag">Fish shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GVoice/" rel="tag">GVoice</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/" rel="tag">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/" rel="tag">GitHub</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Homebrew/" rel="tag">Homebrew</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Homebrew-Cask/" rel="tag">Homebrew-Cask</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Json/" rel="tag">Json</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mac/" rel="tag">Mac</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/" rel="tag">Markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NexT/" rel="tag">NexT</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OpenGL/" rel="tag">OpenGL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Scoop/" rel="tag">Scoop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Shaderlab/" rel="tag">Shaderlab</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Shell/" rel="tag">Shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Solarized/" rel="tag">Solarized</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ubuntu/" rel="tag">Ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity3D/" rel="tag">Unity3D</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VS-Code/" rel="tag">VS Code</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Windows/" rel="tag">Windows</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iTerm-2/" rel="tag">iTerm 2</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wsl/" rel="tag">wsl</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%90%91%E9%87%8F/" rel="tag">向量</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/" rel="tag">游戏开发</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/C/" style="font-size: 12.5px;">C#</a> <a href="/tags/Chocolatey/" style="font-size: 10px;">Chocolatey</a> <a href="/tags/Fish-shell/" style="font-size: 10px;">Fish shell</a> <a href="/tags/GVoice/" style="font-size: 10px;">GVoice</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/GitHub/" style="font-size: 10px;">GitHub</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Homebrew/" style="font-size: 10px;">Homebrew</a> <a href="/tags/Homebrew-Cask/" style="font-size: 10px;">Homebrew-Cask</a> <a href="/tags/Json/" style="font-size: 10px;">Json</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Mac/" style="font-size: 15px;">Mac</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/NexT/" style="font-size: 10px;">NexT</a> <a href="/tags/OpenGL/" style="font-size: 17.5px;">OpenGL</a> <a href="/tags/Scoop/" style="font-size: 10px;">Scoop</a> <a href="/tags/Shaderlab/" style="font-size: 10px;">Shaderlab</a> <a href="/tags/Shell/" style="font-size: 12.5px;">Shell</a> <a href="/tags/Solarized/" style="font-size: 10px;">Solarized</a> <a href="/tags/Ubuntu/" style="font-size: 10px;">Ubuntu</a> <a href="/tags/Unity3D/" style="font-size: 20px;">Unity3D</a> <a href="/tags/VS-Code/" style="font-size: 10px;">VS Code</a> <a href="/tags/Windows/" style="font-size: 10px;">Windows</a> <a href="/tags/iTerm-2/" style="font-size: 10px;">iTerm 2</a> <a href="/tags/wsl/" style="font-size: 10px;">wsl</a> <a href="/tags/%E5%90%91%E9%87%8F/" style="font-size: 15px;">向量</a> <a href="/tags/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/" style="font-size: 15px;">游戏开发</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/09/29/wsl-usage/">WSL 使用记录</a>
+          </li>
+        
+          <li>
+            <a href="/2017/09/09/windows-chocolatey-scoop/">Windows 系统的包管理器</a>
+          </li>
+        
+          <li>
+            <a href="/2017/09/03/hexo-blog/">用Hexo搭建个人博客</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/29/vscode-shaderlab/">使用 VS Code 写 Shaderlab</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/28/mac-fishshell/">Mac开发必备工具（三）—— Fish shell</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 Sheh伟伟<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
