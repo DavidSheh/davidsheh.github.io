@@ -27,8 +27,8 @@
 <meta property="og:site_name" content="Sheh伟伟的博客">
 <meta property="og:description" content="1. 用Pascal规则来命名属性、方法、事件和类名 1 2 3 4 5 6   public class HelloWorld {     public void SayHello(string name)     {     } }   Pascal规则是指名称中单词的首字母大写 ,如EmployeeSalary、 ConfimationDialog、PlainTextEncoding。  2">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2016-03-10T07:03:15.000Z">
-<meta property="article:modified_time" content="2018-03-25T09:06:32.000Z">
+<meta property="article:published_time" content="2016-03-10T15:03:15.000Z">
+<meta property="article:modified_time" content="2020-08-09T23:51:32.079Z">
 <meta property="article:author" content="Sheh伟伟">
 <meta property="article:tag" content="C#">
 <meta name="twitter:card" content="summary">
@@ -45,7 +45,7 @@
     lang   : 'zh-CN'
   };
 </script>
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/ilyabirman-likely@2/release/likely.min.css"><link rel="stylesheet" href="//cdn.jsdelivr.net/gh/theme-next/theme-next-needmoreshare2@1/needsharebutton.min.css"><style>
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/theme-next/theme-next-needmoreshare2@1/needsharebutton.min.css"><style>
 #needsharebutton-postbottom {
   cursor: pointer;
   height: 26px;
@@ -58,7 +58,20 @@
   display: initial;
   padding: 1px 4px;
 }
-</style><link rel="stylesheet" href="//cdn.jsdelivr.net/npm/social-share.js@1/dist/js/social-share.min.css">
+</style><style>
+#needsharebutton-float {
+  bottom: 88px;
+  cursor: pointer;
+  left: -8px;
+  position: fixed;
+  z-index: 9999;
+}
+#needsharebutton-float .btn {
+  border: 1px solid $btn-default-border-color;
+  border-radius: 4px;
+  padding: 0 10px 0 14px;
+}
+</style>
   <title>C#命名规则和编码规范 | Sheh伟伟的博客</title>
   
 
@@ -228,14 +241,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2016-03-10 15:03:15" itemprop="dateCreated datePublished" datetime="2016-03-10T15:03:15+08:00">2016-03-10</time>
+              <time title="创建时间：2016-03-10 15:03:15" itemprop="dateCreated datePublished" datetime="2016-03-10T15:03:15+00:00">2016-03-10</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2018-03-25 17:06:32" itemprop="dateModified" datetime="2018-03-25T17:06:32+08:00">2018-03-25</time>
+                <time title="修改时间：2020-08-09 23:51:32" itemprop="dateModified" datetime="2020-08-09T23:51:32+00:00">2020-08-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -309,40 +322,12 @@
     
     
     <div class="post-widgets">
-    <div class="likely">
-        <div class="twitter">Tweet</div>
-        <div class="facebook">Share</div>
-        <div class="linkedin">Link</div>
-        <div class="gplus">Plus</div>
-        <div class="vkontakte">Share</div>
-        <div class="odnoklassniki">Class</div>
-        <div class="telegram">Send</div>
-        <div class="whatsapp">Send</div>
-        <div class="pinterest">Pin</div>
-    </div>
-  </div>
-  <script src="//cdn.jsdelivr.net/npm/ilyabirman-likely@2/release/likely.min.js"></script><div class="post-widgets">
       <div id="needsharebutton-postbottom">
         <span class="btn">
           <i class="fa fa-share-alt" aria-hidden="true"></i>
         </span>
       </div>
-    </div><div class="post-widgets">
-    <div
-      class="social-share"
-      
-        data-sites="weibo,qq,wechat,tencent,douban,qzone,linkedin,diandian,facebook,twitter,google"
-      
-      
-        data-wechat-qrcode-title="share.title"
-      
-      
-        data-wechat-qrcode-helper="share.prompt"
-      
-    >
     </div>
-  </div>
-  <script src="//cdn.jsdelivr.net/npm/social-share.js@1/dist/js/social-share.min.js"></script>
         <div class="reward-container">
   <div></div>
   <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
@@ -611,15 +596,25 @@
   
 
   
-
+<div id="needsharebutton-float">
+      <span class="btn">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </span>
+    </div>
   <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-needmoreshare2@1/needsharebutton.min.js"></script>
   <script>
       pbOptions = {};
-        pbOptions.iconStyle = "box";
+        pbOptions.iconStyle = "default";
         pbOptions.boxForm = "horizontal";
         pbOptions.position = "bottomCenter";
-        pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+        pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook,Linkedin,Mailto,Reddit";
       new needShareButton('#needsharebutton-postbottom', pbOptions);
+      flOptions = {};
+        flOptions.iconStyle = "box";
+        flOptions.boxForm = "vertical";
+        flOptions.position = "middleRight";
+        flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      new needShareButton('#needsharebutton-float', flOptions);
   </script>
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
 
