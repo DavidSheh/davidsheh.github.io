@@ -28,7 +28,7 @@
 <meta property="og:description" content="现在新版的Unity（印象中是从5.3开始）已经提供了原生的Json库，以前一直使用LitJson，研究了一下Unity用的JsonUtility工具类的使用，发现使用还挺方便的，所以打算把项目中的Json库换成Unity原生的。在Unity3D开发中Json有什么用呢？下面就来说说Json在Unity中的使用。  一、Json有什么用？     Json在Unity中还是挺常用的一种数据格式的。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2016-10-12T10:47:55.000Z">
-<meta property="article:modified_time" content="2020-08-10T00:35:04.856Z">
+<meta property="article:modified_time" content="2020-08-12T13:05:58.973Z">
 <meta property="article:author" content="Sheh伟伟">
 <meta property="article:tag" content="Unity3D">
 <meta property="article:tag" content="Json">
@@ -47,19 +47,6 @@
   };
 </script>
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/ilyabirman-likely@2/release/likely.min.css"><link rel="stylesheet" href="//cdn.jsdelivr.net/gh/theme-next/theme-next-needmoreshare2@1/needsharebutton.min.css"><style>
-#needsharebutton-postbottom {
-  cursor: pointer;
-  height: 26px;
-  margin-top: 10px;
-  position: relative;
-}
-#needsharebutton-postbottom .btn {
-  border: 1px solid $btn-default-border-color;
-  border-radius: 3px;
-  display: initial;
-  padding: 1px 4px;
-}
-</style><style>
 #needsharebutton-float {
   bottom: 88px;
   cursor: pointer;
@@ -249,7 +236,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-08-10 00:35:04" itemprop="dateModified" datetime="2020-08-10T00:35:04+00:00">2020-08-10</time>
+                <time title="修改时间：2020-08-12 13:05:58" itemprop="dateModified" datetime="2020-08-12T13:05:58+00:00">2020-08-12</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -325,13 +312,7 @@
         <div class="pinterest">Pin</div>
     </div>
   </div>
-  <script src="//cdn.jsdelivr.net/npm/ilyabirman-likely@2/release/likely.min.js"></script><div class="post-widgets">
-      <div id="needsharebutton-postbottom">
-        <span class="btn">
-          <i class="fa fa-share-alt" aria-hidden="true"></i>
-        </span>
-      </div>
-    </div>
+  <script src="//cdn.jsdelivr.net/npm/ilyabirman-likely@2/release/likely.min.js"></script>
         <div class="reward-container">
   <div></div>
   <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
@@ -607,12 +588,6 @@
     </div>
   <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-needmoreshare2@1/needsharebutton.min.js"></script>
   <script>
-      pbOptions = {};
-        pbOptions.iconStyle = "default";
-        pbOptions.boxForm = "horizontal";
-        pbOptions.position = "bottomCenter";
-        pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook,Linkedin,Mailto,Reddit";
-      new needShareButton('#needsharebutton-postbottom', pbOptions);
       flOptions = {};
         flOptions.iconStyle = "box";
         flOptions.boxForm = "vertical";
@@ -632,7 +607,7 @@ NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
       owner       : 'DavidSheh',
       admin       : ['DavidSheh'],
       id          : 'f85788681d99796d64a39d2a444e08b2',
-        language: '',
+        language: 'zh-CN',
       distractionFreeMode: true
     });
     gitalk.render('gitalk-container');
