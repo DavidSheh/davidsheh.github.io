@@ -30,17 +30,17 @@
 <meta property="og:site_name" content="Sheh伟伟的博客">
 <meta property="og:description" content="最近想研究一下uFrame插件，于是从AssetStore下载了最新的uFrame插件。下载后导入到Unity是两个版本的unitypackage包，分别是uFrame-1.5.1r2和uFrame-1.6.3r1。网上简单查了一下，说两个版本差别还是挺大的，新版本不能向前兼容。  一、挡路的狗（Bug）     我最后选择了最新版本，双击后导入，导入完成后，控制台出现如下错误：  一大堆错误的详">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://raw.githubusercontent.com/DavidSheh/MarkdownPictures/master/pictures/uframe_1.jpg">
-<meta property="og:image" content="https://raw.githubusercontent.com/DavidSheh/MarkdownPictures/master/pictures/uframe_2.jpg">
-<meta property="og:image" content="https://raw.githubusercontent.com/DavidSheh/MarkdownPictures/master/pictures/uframe_3.jpg">
-<meta property="og:image" content="https://raw.githubusercontent.com/DavidSheh/MarkdownPictures/master/pictures/uframe_4.jpg">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/DavidSheh/MarkdownPictures/pictures/uframe_1.jpg">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/DavidSheh/MarkdownPictures/pictures/uframe_2.jpg">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/DavidSheh/MarkdownPictures/pictures/uframe_3.jpg">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/DavidSheh/MarkdownPictures/pictures/uframe_4.jpg">
 <meta property="article:published_time" content="2016-12-06T14:29:18.000Z">
-<meta property="article:modified_time" content="2020-10-24T15:27:32.428Z">
+<meta property="article:modified_time" content="2020-10-24T15:44:45.055Z">
 <meta property="article:author" content="Sheh伟伟">
 <meta property="article:tag" content="Unity3D">
 <meta property="article:tag" content="uFrame">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/DavidSheh/MarkdownPictures/master/pictures/uframe_1.jpg">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/DavidSheh/MarkdownPictures/pictures/uframe_1.jpg">
 
 <link rel="canonical" href="http://davidsheh.github.io/2016/12/06/uFrame%E6%8F%92%E4%BB%B6%E5%AF%BC%E5%85%A5%E6%8A%A5%E9%94%99/">
 
@@ -270,21 +270,21 @@
         <p>最近想研究一下uFrame插件，于是从AssetStore下载了最新的uFrame插件。下载后导入到Unity是两个版本的unitypackage包，分别是uFrame-1.5.1r2和uFrame-1.6.3r1。网上简单查了一下，说两个版本差别还是挺大的，新版本不能向前兼容。</p>
 <p><strong>一、挡路的狗（Bug）</strong></p>
 <hr>
-<p>我最后选择了最新版本，双击后导入，导入完成后，控制台出现如下错误：<br><img src="https://raw.githubusercontent.com/DavidSheh/MarkdownPictures/master/pictures/uframe_1.jpg" alt="Error1.png"><br>一大堆错误的详细信息就不一一列出了，第一个错误的详细信息如下：</p>
+<p>我最后选择了最新版本，双击后导入，导入完成后，控制台出现如下错误：<br><img src="https://cdn.jsdelivr.net/gh/DavidSheh/MarkdownPictures/pictures/uframe_1.jpg" alt="Error1.png"><br>一大堆错误的详细信息就不一一列出了，第一个错误的详细信息如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Assets&#x2F;uFrame&#x2F;MVVM&#x2F;Framework&#x2F;Editor&#x2F;Templates&#x2F;uFrameTemplates.cs(144,48): error CS0246: The type or namespace name &#96;UGUIExtensions&#39; could not be found. Are you missing a using directive or an assembly reference?</span><br></pre></td></tr></table></figure>
 <p>分析了一下，发现是UGUIExtensions这个类因为某个原因没找到，然后，我直接用VS的全局搜索整个解决方案。最后，发现UGUIBindings.cs这个脚本中的UGUIExtensions类被宏命令屏蔽了，因为我使用的Unity版本是5.3.4f1，而UGUIBindings.cs这个脚本的第一行<code>#if UNITY_4_6 || UNITY_5_0 || UNITY_5_1 || UNITY_5_2</code>直接不支持5.3.4f1，所以解决办法就是直接在第一行末尾追加<code> || UNITY_5_3</code>。<br>改完保存编译后，果然没错了。本来以为可以开始好好研究了，然而并非如此。</p>
 <p><strong>二、拦路虎（Exception）</strong></p>
 <hr>
-<p>当我导入ExampleProject案例工程的unitypackage后，一切正常没有报错，接着，我选择Window -&gt; uFrameDesigner打开uFrame的可视化编辑器后，疯狂的抛出如下异常：<br><img src="https://raw.githubusercontent.com/DavidSheh/MarkdownPictures/master/pictures/uframe_2.jpg" alt="Error2.png"></p>
+<p>当我导入ExampleProject案例工程的unitypackage后，一切正常没有报错，接着，我选择Window -&gt; uFrameDesigner打开uFrame的可视化编辑器后，疯狂的抛出如下异常：<br><img src="https://cdn.jsdelivr.net/gh/DavidSheh/MarkdownPictures/pictures/uframe_2.jpg" alt="Error2.png"></p>
 <p>异常详细信息如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">UnityException: Texture &#39;Header3&#39; is not readable, the texture memory can not be accessed from scripts. You can make the texture readable in the Texture Import Settings.</span><br><span class="line">UnityEngine.Texture2D.GetPixels32 () (at C:&#x2F;buildslave&#x2F;unity&#x2F;build&#x2F;artifacts&#x2F;generated&#x2F;common&#x2F;runtime&#x2F;TextureBindings.gen.cs:336)</span><br><span class="line">Invert.Common.TexturesExtensions.CutTextureBottomBorder (UnityEngine.Texture2D texture, Int32 cutSize) (at D:&#x2F;Invert&#x2F;uFrameGit&#x2F;uFrameTools&#x2F;Invert.Core.GraphDesigner.Unity&#x2F;ElementDesignerStyles.cs:1998)</span><br><span class="line">Invert.Core.GraphDesigner.Unity.Schemas.UnityNodeStyleSchema.ConstructHeaderImage (Boolean expanded, Color color, System.String iconName) (at D:&#x2F;Invert&#x2F;uFrameGit&#x2F;uFrameTools&#x2F;Invert.Core.GraphDesigner.Unity&#x2F;Schemas&#x2F;UnityNodeStyleSchema.cs:57)</span><br><span class="line">Invert.Core.GraphDesigner.Schemas.impl.NodeStyleSchema.GetHeaderImage (Boolean expanded, Color color, System.String iconName) (at D:&#x2F;Invert&#x2F;uFrameGit&#x2F;uFrameTools&#x2F;Invert.Core.GraphDesigner&#x2F;Schemas&#x2F;impl&#x2F;NodeStyleSchema.cs:176)</span><br><span class="line">Invert.Core.GraphDesigner.HeaderDrawer.Draw (IPlatformDrawer platform, Single scale) (at D:&#x2F;Invert&#x2F;uFrameGit&#x2F;uFrameTools&#x2F;Invert.Core.GraphDesigner&#x2F;Drawers&#x2F;impl&#x2F;HeaderDrawer.cs:97)</span><br><span class="line">Invert.Core.GraphDesigner.DiagramNodeDrawer.DrawChildren (IPlatformDrawer platform, Single scale) (at D:&#x2F;Invert&#x2F;uFrameGit&#x2F;uFrameTools&#x2F;Invert.Core.GraphDesigner&#x2F;Drawers&#x2F;impl&#x2F;DiagramNodeDrawer.cs:356)</span><br><span class="line">Invert.Core.GraphDesigner.DiagramNodeDrawer.Draw (IPlatformDrawer platform, Single scale) (at D:&#x2F;Invert&#x2F;uFrameGit&#x2F;uFrameTools&#x2F;Invert.Core.GraphDesigner&#x2F;Drawers&#x2F;impl&#x2F;DiagramNodeDrawer.cs:292)</span><br><span class="line">Invert.Core.GraphDesigner.GenericNodeDrawer&#96;2[TData,TViewModel].Draw (IPlatformDrawer platform, Single scale) (at D:&#x2F;Invert&#x2F;uFrameGit&#x2F;uFrameTools&#x2F;Invert.Core.GraphDesigner&#x2F;Drawers&#x2F;impl&#x2F;DiagramNodeDrawer.cs:64)</span><br><span class="line">Invert.Core.GraphDesigner.DiagramDrawer.Draw (IPlatformDrawer platform, Single scale) (at D:&#x2F;Invert&#x2F;uFrameGit&#x2F;uFrameTools&#x2F;Invert.Core.GraphDesigner&#x2F;Drawers&#x2F;impl&#x2F;DiagramDrawer.cs:146)</span><br><span class="line">Invert.Core.GraphDesigner.DesignerWindow.DrawDiagram (IPlatformDrawer drawer, Vector2 scrollPosition, Single scale, Rect diagramRect) (at D:&#x2F;Invert&#x2F;uFrameGit&#x2F;uFrameTools&#x2F;Invert.Core.GraphDesigner&#x2F;Windows&#x2F;DesignerWindow.cs:349)</span><br><span class="line">Invert.Core.GraphDesigner.DesignerWindow.Draw (IPlatformDrawer drawer, Single width, Single height, Vector2 scrollPosition, Single scale) (at D:&#x2F;Invert&#x2F;uFrameGit&#x2F;uFrameTools&#x2F;Invert.Core.GraphDesigner&#x2F;Windows&#x2F;DesignerWindow.cs:256)</span><br><span class="line">Invert.Core.GraphDesigner.Unity.ElementsDesigner.OnGUI () (at D:&#x2F;Invert&#x2F;uFrameGit&#x2F;uFrameTools&#x2F;Invert.Core.GraphDesigner.Unity&#x2F;ElementsDesigner.cs:256)</span><br><span class="line">System.Reflection.MonoMethod.Invoke (System.Object obj, BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) (at &#x2F;Users&#x2F;builduser&#x2F;buildslave&#x2F;mono&#x2F;build&#x2F;mcs&#x2F;class&#x2F;corlib&#x2F;System.Reflection&#x2F;MonoMethod.cs:222)</span><br></pre></td></tr></table></figure>
 <p>这时，uFrame的编辑器窗口也是卡死状态。通过分析报错信息发现，是因为一个名为Header3的图片为非可读的，所以报错了。找到Header3图片，然后修改图片格式如下：</p>
-<p><img src="https://raw.githubusercontent.com/DavidSheh/MarkdownPictures/master/pictures/uframe_3.jpg" alt="Image Setting.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/DavidSheh/MarkdownPictures/pictures/uframe_3.jpg" alt="Image Setting.png"></p>
 <p>修改完后所有的都正常了。正在我得意的以为可以好好开始研究一下案例的时候，现实总是残酷的。。。</p>
 <p><strong>三、死耗子（Error）</strong></p>
 <hr>
 <p>当我选择第一个场景双击打开点击运行后，发现报了如下错误：</p>
-<p><img src="https://raw.githubusercontent.com/DavidSheh/MarkdownPictures/master/pictures/uframe_4.jpg" alt="Error3.png"><br>详细信息就不贴了，第一个问题很明显，就是相应的场景没有添加进Build Settings，反正也不知道场景的添加顺序，我就直接把案例工程中的所有场景都添加进Build Settings。然后，重新运行就都正常了。终于可以开开心心的研究uFrame了</p>
+<p><img src="https://cdn.jsdelivr.net/gh/DavidSheh/MarkdownPictures/pictures/uframe_4.jpg" alt="Error3.png"><br>详细信息就不贴了，第一个问题很明显，就是相应的场景没有添加进Build Settings，反正也不知道场景的添加顺序，我就直接把案例工程中的所有场景都添加进Build Settings。然后，重新运行就都正常了。终于可以开开心心的研究uFrame了</p>
 <blockquote>
 <p>uFrame-1.5.1r2导入后也有很多错误，不过我懒得研究了。我喜欢用新版的，我是一个喜新厌旧的人。对uFrame-1.5.1r2感兴趣的人可以自己研究一下。</p>
 </blockquote>
