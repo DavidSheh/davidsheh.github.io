@@ -22,6 +22,55 @@
       </tags>
   </entry>
   <entry>
+    <title>C#命名规则和编码规范</title>
+    <url>/2016/03/10/C_Sharp%E5%91%BD%E5%90%8D%E8%A7%84%E5%88%99%E5%92%8C%E7%BC%96%E7%A0%81%E8%A7%84%E8%8C%83/</url>
+    <content><![CDATA[<h3 id="1-用Pascal规则来命名属性、方法、事件和类名"><a href="#1-用Pascal规则来命名属性、方法、事件和类名" class="headerlink" title="1. 用Pascal规则来命名属性、方法、事件和类名"></a>1. 用Pascal规则来命名属性、方法、事件和类名</h3><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">HelloWorld</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">SayHello</span>(<span class="params"><span class="keyword">string</span> name</span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Pascal规则是指名称中单词的首字母大写 ,如EmployeeSalary、 ConfimationDialog、PlainTextEncoding。</p>
+</blockquote>
+<h3 id="2-用Camel规则来命名成员变量、局部变量和方法的参数"><a href="#2-用Camel规则来命名成员变量、局部变量和方法的参数" class="headerlink" title="2. 用Camel规则来命名成员变量、局部变量和方法的参数"></a>2. 用Camel规则来命名成员变量、局部变量和方法的参数</h3><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Product</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">string</span> productId;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">string</span> productName;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">AddProduct</span>(<span class="params"><span class="keyword">string</span> productId,<span class="keyword">string</span> productName</span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Camel规则类似于Pascal规则 ,但名称中第一个单词的首字母不大写 ,如employeeSalary、 confimationDialog、plainTextEncoding。 </p>
+</blockquote>
+<h3 id="3-不要使用匈牙利命名法"><a href="#3-不要使用匈牙利命名法" class="headerlink" title="3. 不要使用匈牙利命名法"></a>3. 不要使用匈牙利命名法</h3><p>不要给成员变量加任何前缀（如_、m_、s_等等）。如果想要区分局部变量和成员变量，可以使用<code>this</code>关键字。</p>
+<h3 id="4-不要将常量或者只读变量的变量名全部大写，而使用Pascal规则来命名"><a href="#4-不要将常量或者只读变量的变量名全部大写，而使用Pascal规则来命名" class="headerlink" title="4. 不要将常量或者只读变量的变量名全部大写，而使用Pascal规则来命名"></a>4. 不要将常量或者只读变量的变量名全部大写，而使用Pascal规则来命名</h3><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Correct</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">const</span> <span class="keyword">string</span> ShippingType = <span class="string">&quot;DropShip&quot;</span>;</span><br><span class="line">    </span><br><span class="line"><span class="comment">// Avoid</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">const</span> <span class="keyword">string</span> SHIPPINGTYPE = <span class="string">&quot;DropShip&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-接口的名称一般以大写I作前缀"><a href="#5-接口的名称一般以大写I作前缀" class="headerlink" title="5. 接口的名称一般以大写I作前缀"></a>5. 接口的名称一般以大写<code>I</code>作前缀</h3><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title">IConvertible</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">byte</span> <span class="title">ToByte</span>(<span class="params"></span>)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="6-自定义的属性以Attribute结尾"><a href="#6-自定义的属性以Attribute结尾" class="headerlink" title="6. 自定义的属性以Attribute结尾"></a>6. 自定义的属性以<code>Attribute</code>结尾</h3><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">TableAttribute</span>:<span class="title">Attribute</span></span><br><span class="line">&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="7-自定义的异常以Exception结尾"><a href="#7-自定义的异常以Exception结尾" class="headerlink" title="7. 自定义的异常以Exception结尾"></a>7. 自定义的异常以Exception结尾</h3><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">NullEmptyException</span>:<span class="title">Exception</span></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="8-类的命名。用名词或名词短语来命名类名"><a href="#8-类的命名。用名词或名词短语来命名类名" class="headerlink" title="8. 类的命名。用名词或名词短语来命名类名"></a>8. 类的命名。用名词或名词短语来命名类名</h3><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Employee</span></span><br><span class="line">&#123;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">BusinessLocation</span></span><br><span class="line">&#123;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">DocumentCollection</span></span><br><span class="line">&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="9-方法的命名。一般将其命名为动宾短语"><a href="#9-方法的命名。一般将其命名为动宾短语" class="headerlink" title="9. 方法的命名。一般将其命名为动宾短语"></a>9. 方法的命名。一般将其命名为动宾短语</h3><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">File</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">CreateFile</span>(<span class="params"><span class="keyword">string</span> filePath</span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">GetPath</span>(<span class="params"><span class="keyword">string</span> path</span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="10-局部变量的名称要有意义"><a href="#10-局部变量的名称要有意义" class="headerlink" title="10. 局部变量的名称要有意义"></a>10. 局部变量的名称要有意义</h3><p>不要直接用用<code>i</code>,<code>j</code>,<code>k</code>,<code>l</code>,<code>m</code>,<code>n</code>,<code>x</code>,<code>y</code>,<code>z</code>等做变量名，但for循环除外</p>
+<h3 id="11-代码分块"><a href="#11-代码分块" class="headerlink" title="11. 代码分块"></a>11. 代码分块</h3><p>所有的成员变量声明在类的顶端，用一个换行把它和方法分开。同时可以使用成对的<code>#region...#endregion</code>标记，方便折叠。</p>
+<h3 id="12-布尔型变量或者方法一般可以用is、can、has或者should做前缀。如，isFinished-canWork等。"><a href="#12-布尔型变量或者方法一般可以用is、can、has或者should做前缀。如，isFinished-canWork等。" class="headerlink" title="12. 布尔型变量或者方法一般可以用is、can、has或者should做前缀。如，isFinished, canWork等。"></a>12. 布尔型变量或者方法一般可以用<code>is</code>、<code>can</code>、<code>has</code>或者<code>should</code>做前缀。如，isFinished, canWork等。</h3><h3 id="13-一般-C-的编码风格要求花括号-另起一行，不要直接跟在类名和方法后面。"><a href="#13-一般-C-的编码风格要求花括号-另起一行，不要直接跟在类名和方法后面。" class="headerlink" title="13.  一般 C# 的编码风格要求花括号{另起一行，不要直接跟在类名和方法后面。"></a>13.  一般 C# 的编码风格要求花括号<code>&#123;</code>另起一行，不要直接跟在类名和方法后面。</h3><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">Sample</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// <span class="doctag">TODO:</span> 在此处添加构造函数逻辑</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="14-可以用缩写作为UI元素的前缀"><a href="#14-可以用缩写作为UI元素的前缀" class="headerlink" title="14. 可以用缩写作为UI元素的前缀"></a>14. 可以用缩写作为UI元素的前缀</h3><p>常见UI组件的一般缩写形式：</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line">Label --&gt; lbl、Text --&gt; txt、Button --&gt; btn</span><br><span class="line">Image --&gt; img、 Widget --&gt; Wgt、 List --&gt; lst、CheckBox --&gt; chk</span><br><span class="line">Hyperlink --&gt; lnk、Panel --&gt; pnl、Table --&gt; tab</span><br><span class="line">ImageButton --&gt; imb</span><br></pre></td></tr></table></figure>
+
+<h3 id="15-判断条件是一个布尔变量时不要使用-进行条件判断"><a href="#15-判断条件是一个布尔变量时不要使用-进行条件判断" class="headerlink" title="15. 判断条件是一个布尔变量时不要使用==进行条件判断"></a>15. 判断条件是一个布尔变量时不要使用<code>==</code>进行条件判断</h3><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 不友好的写法</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">bool</span> isFinished = <span class="literal">true</span>;</span><br><span class="line"><span class="keyword">if</span>(isFinished == <span class="literal">true</span>)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 正确的写法</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">bool</span> isFinished = <span class="literal">true</span>;</span><br><span class="line"><span class="keyword">if</span>(isFinished)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br><span class="line">```    </span><br><span class="line"></span><br><span class="line"><span class="meta">### 16. 慎用缩写</span></span><br><span class="line">变量名是一个单词的尽量不要缩写，多单词组成的变量名可适当缩写。</span><br><span class="line"></span><br><span class="line"><span class="meta">### 17. 在类的顶部声明所有的成员变量，静态变量声明在最前面</span></span><br><span class="line">```csharp</span><br><span class="line"><span class="comment">// Correct</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Account</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">string</span> BankName;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">decimal</span> Reserves;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">string</span> Number &#123;<span class="keyword">get</span>; <span class="keyword">set</span>;&#125;</span><br><span class="line">    <span class="keyword">public</span> DateTime DateOpened &#123;<span class="keyword">get</span>; <span class="keyword">set</span>;&#125;</span><br><span class="line">    <span class="keyword">public</span> DateTime DateClosed &#123;<span class="keyword">get</span>; <span class="keyword">set</span>;&#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">decimal</span> Balance &#123;<span class="keyword">get</span>; <span class="keyword">set</span>;&#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// Constructor</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Account</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        <span class="comment">// ...</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="18-方法的书写规范"><a href="#18-方法的书写规范" class="headerlink" title="18. 方法的书写规范"></a>18. 方法的书写规范</h3><p>如果一个方法超过25行，就需要考虑是否可以重构和拆分成多个方法。方法命名要见名知意，好的方法名可以省略多余的注释。方法功能尽量单一。</p>
+<h3 id="19-其他"><a href="#19-其他" class="headerlink" title="19. 其他"></a>19. 其他</h3><p>补充两条：</p>
+<ol>
+<li>方法名中尽量少用get，表示区数据的函数直接描述行为，如MsgFromFile()</li>
+<li>尽量少用set，应用属性替代</li>
+</ol>
+<h3 id="参考文章："><a href="#参考文章：" class="headerlink" title="参考文章："></a>参考文章：</h3><ol>
+<li><a href="http://www.dofactory.com/reference/csharp-coding-standards">C# Coding Standards and Naming Conventions</a></li>
+<li><a href="https://blogs.msdn.microsoft.com/brada/2005/01/26/internal-coding-guidelines/">Internal Coding Guidelines</a></li>
+</ol>
+]]></content>
+      <categories>
+        <category>技术笔记</category>
+      </categories>
+      <tags>
+        <tag>C#</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Git快速入门</title>
     <url>/2016/08/22/Git%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/</url>
     <content><![CDATA[<p><img src="https://cdn.jsdelivr.net/gh/DavidSheh/BlogPictures/pictures/git.jpg" alt="Git Logo"></p>
@@ -87,55 +136,6 @@
       </categories>
       <tags>
         <tag>Git</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>C#命名规则和编码规范</title>
-    <url>/2016/03/10/C_Sharp%E5%91%BD%E5%90%8D%E8%A7%84%E5%88%99%E5%92%8C%E7%BC%96%E7%A0%81%E8%A7%84%E8%8C%83/</url>
-    <content><![CDATA[<h3 id="1-用Pascal规则来命名属性、方法、事件和类名"><a href="#1-用Pascal规则来命名属性、方法、事件和类名" class="headerlink" title="1. 用Pascal规则来命名属性、方法、事件和类名"></a>1. 用Pascal规则来命名属性、方法、事件和类名</h3><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">HelloWorld</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">SayHello</span>(<span class="params"><span class="keyword">string</span> name</span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>Pascal规则是指名称中单词的首字母大写 ,如EmployeeSalary、 ConfimationDialog、PlainTextEncoding。</p>
-</blockquote>
-<h3 id="2-用Camel规则来命名成员变量、局部变量和方法的参数"><a href="#2-用Camel规则来命名成员变量、局部变量和方法的参数" class="headerlink" title="2. 用Camel规则来命名成员变量、局部变量和方法的参数"></a>2. 用Camel规则来命名成员变量、局部变量和方法的参数</h3><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Product</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">string</span> productId;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">string</span> productName;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">AddProduct</span>(<span class="params"><span class="keyword">string</span> productId,<span class="keyword">string</span> productName</span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>Camel规则类似于Pascal规则 ,但名称中第一个单词的首字母不大写 ,如employeeSalary、 confimationDialog、plainTextEncoding。 </p>
-</blockquote>
-<h3 id="3-不要使用匈牙利命名法"><a href="#3-不要使用匈牙利命名法" class="headerlink" title="3. 不要使用匈牙利命名法"></a>3. 不要使用匈牙利命名法</h3><p>不要给成员变量加任何前缀（如_、m_、s_等等）。如果想要区分局部变量和成员变量，可以使用<code>this</code>关键字。</p>
-<h3 id="4-不要将常量或者只读变量的变量名全部大写，而使用Pascal规则来命名"><a href="#4-不要将常量或者只读变量的变量名全部大写，而使用Pascal规则来命名" class="headerlink" title="4. 不要将常量或者只读变量的变量名全部大写，而使用Pascal规则来命名"></a>4. 不要将常量或者只读变量的变量名全部大写，而使用Pascal规则来命名</h3><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Correct</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">const</span> <span class="keyword">string</span> ShippingType = <span class="string">&quot;DropShip&quot;</span>;</span><br><span class="line">    </span><br><span class="line"><span class="comment">// Avoid</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">const</span> <span class="keyword">string</span> SHIPPINGTYPE = <span class="string">&quot;DropShip&quot;</span>;</span><br></pre></td></tr></table></figure>
-
-<h3 id="5-接口的名称一般以大写I作前缀"><a href="#5-接口的名称一般以大写I作前缀" class="headerlink" title="5. 接口的名称一般以大写I作前缀"></a>5. 接口的名称一般以大写<code>I</code>作前缀</h3><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title">IConvertible</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">byte</span> <span class="title">ToByte</span>(<span class="params"></span>)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="6-自定义的属性以Attribute结尾"><a href="#6-自定义的属性以Attribute结尾" class="headerlink" title="6. 自定义的属性以Attribute结尾"></a>6. 自定义的属性以<code>Attribute</code>结尾</h3><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">TableAttribute</span>:<span class="title">Attribute</span></span><br><span class="line">&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="7-自定义的异常以Exception结尾"><a href="#7-自定义的异常以Exception结尾" class="headerlink" title="7. 自定义的异常以Exception结尾"></a>7. 自定义的异常以Exception结尾</h3><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">NullEmptyException</span>:<span class="title">Exception</span></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="8-类的命名。用名词或名词短语来命名类名"><a href="#8-类的命名。用名词或名词短语来命名类名" class="headerlink" title="8. 类的命名。用名词或名词短语来命名类名"></a>8. 类的命名。用名词或名词短语来命名类名</h3><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Employee</span></span><br><span class="line">&#123;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">BusinessLocation</span></span><br><span class="line">&#123;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">DocumentCollection</span></span><br><span class="line">&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="9-方法的命名。一般将其命名为动宾短语"><a href="#9-方法的命名。一般将其命名为动宾短语" class="headerlink" title="9. 方法的命名。一般将其命名为动宾短语"></a>9. 方法的命名。一般将其命名为动宾短语</h3><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">File</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">CreateFile</span>(<span class="params"><span class="keyword">string</span> filePath</span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">GetPath</span>(<span class="params"><span class="keyword">string</span> path</span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="10-局部变量的名称要有意义"><a href="#10-局部变量的名称要有意义" class="headerlink" title="10. 局部变量的名称要有意义"></a>10. 局部变量的名称要有意义</h3><p>不要直接用用<code>i</code>,<code>j</code>,<code>k</code>,<code>l</code>,<code>m</code>,<code>n</code>,<code>x</code>,<code>y</code>,<code>z</code>等做变量名，但for循环除外</p>
-<h3 id="11-代码分块"><a href="#11-代码分块" class="headerlink" title="11. 代码分块"></a>11. 代码分块</h3><p>所有的成员变量声明在类的顶端，用一个换行把它和方法分开。同时可以使用成对的<code>#region...#endregion</code>标记，方便折叠。</p>
-<h3 id="12-布尔型变量或者方法一般可以用is、can、has或者should做前缀。如，isFinished-canWork等。"><a href="#12-布尔型变量或者方法一般可以用is、can、has或者should做前缀。如，isFinished-canWork等。" class="headerlink" title="12. 布尔型变量或者方法一般可以用is、can、has或者should做前缀。如，isFinished, canWork等。"></a>12. 布尔型变量或者方法一般可以用<code>is</code>、<code>can</code>、<code>has</code>或者<code>should</code>做前缀。如，isFinished, canWork等。</h3><h3 id="13-一般-C-的编码风格要求花括号-另起一行，不要直接跟在类名和方法后面。"><a href="#13-一般-C-的编码风格要求花括号-另起一行，不要直接跟在类名和方法后面。" class="headerlink" title="13.  一般 C# 的编码风格要求花括号{另起一行，不要直接跟在类名和方法后面。"></a>13.  一般 C# 的编码风格要求花括号<code>&#123;</code>另起一行，不要直接跟在类名和方法后面。</h3><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">Sample</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// <span class="doctag">TODO:</span> 在此处添加构造函数逻辑</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="14-可以用缩写作为UI元素的前缀"><a href="#14-可以用缩写作为UI元素的前缀" class="headerlink" title="14. 可以用缩写作为UI元素的前缀"></a>14. 可以用缩写作为UI元素的前缀</h3><p>常见UI组件的一般缩写形式：</p>
-<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line">Label --&gt; lbl、Text --&gt; txt、Button --&gt; btn</span><br><span class="line">Image --&gt; img、 Widget --&gt; Wgt、 List --&gt; lst、CheckBox --&gt; chk</span><br><span class="line">Hyperlink --&gt; lnk、Panel --&gt; pnl、Table --&gt; tab</span><br><span class="line">ImageButton --&gt; imb</span><br></pre></td></tr></table></figure>
-
-<h3 id="15-判断条件是一个布尔变量时不要使用-进行条件判断"><a href="#15-判断条件是一个布尔变量时不要使用-进行条件判断" class="headerlink" title="15. 判断条件是一个布尔变量时不要使用==进行条件判断"></a>15. 判断条件是一个布尔变量时不要使用<code>==</code>进行条件判断</h3><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 不友好的写法</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">bool</span> isFinished = <span class="literal">true</span>;</span><br><span class="line"><span class="keyword">if</span>(isFinished == <span class="literal">true</span>)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 正确的写法</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">bool</span> isFinished = <span class="literal">true</span>;</span><br><span class="line"><span class="keyword">if</span>(isFinished)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br><span class="line">```    </span><br><span class="line"></span><br><span class="line"><span class="meta">### 16. 慎用缩写</span></span><br><span class="line">变量名是一个单词的尽量不要缩写，多单词组成的变量名可适当缩写。</span><br><span class="line"></span><br><span class="line"><span class="meta">### 17. 在类的顶部声明所有的成员变量，静态变量声明在最前面</span></span><br><span class="line">```csharp</span><br><span class="line"><span class="comment">// Correct</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Account</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">string</span> BankName;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">decimal</span> Reserves;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">string</span> Number &#123;<span class="keyword">get</span>; <span class="keyword">set</span>;&#125;</span><br><span class="line">    <span class="keyword">public</span> DateTime DateOpened &#123;<span class="keyword">get</span>; <span class="keyword">set</span>;&#125;</span><br><span class="line">    <span class="keyword">public</span> DateTime DateClosed &#123;<span class="keyword">get</span>; <span class="keyword">set</span>;&#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">decimal</span> Balance &#123;<span class="keyword">get</span>; <span class="keyword">set</span>;&#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// Constructor</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Account</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        <span class="comment">// ...</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="18-方法的书写规范"><a href="#18-方法的书写规范" class="headerlink" title="18. 方法的书写规范"></a>18. 方法的书写规范</h3><p>如果一个方法超过25行，就需要考虑是否可以重构和拆分成多个方法。方法命名要见名知意，好的方法名可以省略多余的注释。方法功能尽量单一。</p>
-<h3 id="19-其他"><a href="#19-其他" class="headerlink" title="19. 其他"></a>19. 其他</h3><p>补充两条：</p>
-<ol>
-<li>方法名中尽量少用get，表示区数据的函数直接描述行为，如MsgFromFile()</li>
-<li>尽量少用set，应用属性替代</li>
-</ol>
-<h3 id="参考文章："><a href="#参考文章：" class="headerlink" title="参考文章："></a>参考文章：</h3><ol>
-<li><a href="http://www.dofactory.com/reference/csharp-coding-standards">C# Coding Standards and Naming Conventions</a></li>
-<li><a href="https://blogs.msdn.microsoft.com/brada/2005/01/26/internal-coding-guidelines/">Internal Coding Guidelines</a></li>
-</ol>
-]]></content>
-      <categories>
-        <category>技术笔记</category>
-      </categories>
-      <tags>
-        <tag>C#</tag>
       </tags>
   </entry>
   <entry>
@@ -247,29 +247,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Unity3D安卓出包报错</title>
-    <url>/2016/08/23/Unity3D%E5%AE%89%E5%8D%93%E5%87%BA%E5%8C%85%E6%8A%A5%E9%94%99/</url>
-    <content><![CDATA[<p>今天又遇到了在安卓出包时，直接报错了两个错误，报错信息分别如下：</p>
-<p>Installation failed with the following output:<br>    pkg: /data/local/tmp/Package.apk</p>
-<p>UnityException: Unable to install APK!<br>Installation failed. See the Console for details.</p>
-<p>两个错误信息的详细描述如下：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Installation failed with the following output:</span><br><span class="line">    pkg: &#x2F;data&#x2F;local&#x2F;tmp&#x2F;Package.apk</span><br><span class="line"></span><br><span class="line">Failure [INSTALL_FAILED_PERMISSION_MODEL_DOWNGRADE]</span><br><span class="line"></span><br><span class="line">5194 KB&#x2F;s (24217926 bytes in 4.553s)</span><br><span class="line"></span><br><span class="line">UnityEditor.HostView:OnGUI()</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">UnityException: Unable to install APK!</span><br><span class="line">Installation failed. See the Console for details.</span><br><span class="line">UnityEditor.Android.PostProcessAndroidPlayer.ShowErrDlgAndThrow (System.String title, System.String message, System.Exception ex)</span><br><span class="line">UnityEditor.Android.PostProcessAndroidPlayer.ShowErrDlgAndThrow (System.String title, System.String message)</span><br><span class="line">UnityEditor.Android.PostProcessAndroidPlayer.UploadAndStartPlayer (System.String manifestName, System.String stagingArea, UnityEditor.Android.AndroidDevice device, System.String packageName, Boolean developmentPlayer, Boolean retryUpload)</span><br><span class="line">UnityEditor.Android.PostProcessAndroidPlayer.PostProcessInternal (System.String stagingAreaData, System.String stagingArea, System.String playerPackage, System.String installPath, System.String companyName, System.String productName, BuildOptions options, UnityEditor.RuntimeClassRegistry usedClassRegistry)</span><br><span class="line">UnityEditor.Android.PostProcessAndroidPlayer.PostProcess (BuildTarget target, System.String stagingAreaData, System.String stagingArea, System.String playerPackage, System.String installPath, System.String companyName, System.String productName, BuildOptions options, UnityEditor.RuntimeClassRegistry usedClassRegistry)</span><br><span class="line">UnityEditor.Android.AndroidBuildPostprocessor.PostProcess (BuildPostProcessArgs args)</span><br><span class="line">UnityEditor.PostprocessBuildPlayer.Postprocess (BuildTarget target, System.String installPath, System.String companyName, System.String productName, Int32 width, Int32 height, System.String downloadWebplayerUrl, System.String manualDownloadWebplayerUrl, BuildOptions options, UnityEditor.RuntimeClassRegistry usedClassRegistry) (at C:&#x2F;buildslave&#x2F;unity&#x2F;build&#x2F;Editor&#x2F;Mono&#x2F;BuildPipeline&#x2F;PostprocessBuildPlayer.cs:316)</span><br><span class="line">UnityEditor.HostView:OnGUI()</span><br></pre></td></tr></table></figure>
-
-<p>安卓出包时出现这个bug的原因，是因为当前项目的包名和手机上已安装的某个app包名相同，导致了冲突。解决办法就是直接将手机上导致冲突的app直接卸载掉就OK了。<br>这个bug已经遇到过多次了，是因为我在真机测试时装了一个测试程序，然后过了一段时间后，PlayerSettings中的某些设置被改变了，没有删除安装的测试包，就直接<code>Build And Run</code>，然后就报上述的错误了。<br>把这个Bug在博客里记录一下，加深点印象，顺便分享出去，希望能帮到遇到同样问题的朋友。</p>
-<blockquote>
-<p>如果本文有错误之处还请帮忙指出。</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>技术笔记</category>
-      </categories>
-      <tags>
-        <tag>Unity3D</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>TextMeshPro插件使用备忘</title>
     <url>/2017/04/26/TextMeshPro%E6%8F%92%E4%BB%B6%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98/</url>
     <content><![CDATA[<h2 id="简要说明"><a href="#简要说明" class="headerlink" title="简要说明"></a>简要说明</h2><p>TextMeshPro 插件版本：<a href="https://www.assetstore.unity3d.com/cn/#">1.0.55.0b8</a> (Mar 31, 2017)</p>
@@ -290,6 +267,29 @@
       <tags>
         <tag>Unity3D</tag>
         <tag>TextMeshPro</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Unity3D安卓出包报错</title>
+    <url>/2016/08/23/Unity3D%E5%AE%89%E5%8D%93%E5%87%BA%E5%8C%85%E6%8A%A5%E9%94%99/</url>
+    <content><![CDATA[<p>今天又遇到了在安卓出包时，直接报错了两个错误，报错信息分别如下：</p>
+<p>Installation failed with the following output:<br>    pkg: /data/local/tmp/Package.apk</p>
+<p>UnityException: Unable to install APK!<br>Installation failed. See the Console for details.</p>
+<p>两个错误信息的详细描述如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Installation failed with the following output:</span><br><span class="line">    pkg: &#x2F;data&#x2F;local&#x2F;tmp&#x2F;Package.apk</span><br><span class="line"></span><br><span class="line">Failure [INSTALL_FAILED_PERMISSION_MODEL_DOWNGRADE]</span><br><span class="line"></span><br><span class="line">5194 KB&#x2F;s (24217926 bytes in 4.553s)</span><br><span class="line"></span><br><span class="line">UnityEditor.HostView:OnGUI()</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">UnityException: Unable to install APK!</span><br><span class="line">Installation failed. See the Console for details.</span><br><span class="line">UnityEditor.Android.PostProcessAndroidPlayer.ShowErrDlgAndThrow (System.String title, System.String message, System.Exception ex)</span><br><span class="line">UnityEditor.Android.PostProcessAndroidPlayer.ShowErrDlgAndThrow (System.String title, System.String message)</span><br><span class="line">UnityEditor.Android.PostProcessAndroidPlayer.UploadAndStartPlayer (System.String manifestName, System.String stagingArea, UnityEditor.Android.AndroidDevice device, System.String packageName, Boolean developmentPlayer, Boolean retryUpload)</span><br><span class="line">UnityEditor.Android.PostProcessAndroidPlayer.PostProcessInternal (System.String stagingAreaData, System.String stagingArea, System.String playerPackage, System.String installPath, System.String companyName, System.String productName, BuildOptions options, UnityEditor.RuntimeClassRegistry usedClassRegistry)</span><br><span class="line">UnityEditor.Android.PostProcessAndroidPlayer.PostProcess (BuildTarget target, System.String stagingAreaData, System.String stagingArea, System.String playerPackage, System.String installPath, System.String companyName, System.String productName, BuildOptions options, UnityEditor.RuntimeClassRegistry usedClassRegistry)</span><br><span class="line">UnityEditor.Android.AndroidBuildPostprocessor.PostProcess (BuildPostProcessArgs args)</span><br><span class="line">UnityEditor.PostprocessBuildPlayer.Postprocess (BuildTarget target, System.String installPath, System.String companyName, System.String productName, Int32 width, Int32 height, System.String downloadWebplayerUrl, System.String manualDownloadWebplayerUrl, BuildOptions options, UnityEditor.RuntimeClassRegistry usedClassRegistry) (at C:&#x2F;buildslave&#x2F;unity&#x2F;build&#x2F;Editor&#x2F;Mono&#x2F;BuildPipeline&#x2F;PostprocessBuildPlayer.cs:316)</span><br><span class="line">UnityEditor.HostView:OnGUI()</span><br></pre></td></tr></table></figure>
+
+<p>安卓出包时出现这个bug的原因，是因为当前项目的包名和手机上已安装的某个app包名相同，导致了冲突。解决办法就是直接将手机上导致冲突的app直接卸载掉就OK了。<br>这个bug已经遇到过多次了，是因为我在真机测试时装了一个测试程序，然后过了一段时间后，PlayerSettings中的某些设置被改变了，没有删除安装的测试包，就直接<code>Build And Run</code>，然后就报上述的错误了。<br>把这个Bug在博客里记录一下，加深点印象，顺便分享出去，希望能帮到遇到同样问题的朋友。</p>
+<blockquote>
+<p>如果本文有错误之处还请帮忙指出。</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>技术笔记</category>
+      </categories>
+      <tags>
+        <tag>Unity3D</tag>
       </tags>
   </entry>
   <entry>
@@ -461,6 +461,38 @@
       </tags>
   </entry>
   <entry>
+    <title>Hello World</title>
+    <url>/2015/05/27/hello-world/</url>
+    <content><![CDATA[<h1 id="欢迎来到Sheh伟伟的个人博客！"><a href="#欢迎来到Sheh伟伟的个人博客！" class="headerlink" title="欢迎来到Sheh伟伟的个人博客！"></a>欢迎来到Sheh伟伟的个人博客！</h1><hr>
+<p>一直想折腾一个自己的博客，用来记录工作中学习到的点点滴滴。今天终于选定了一款博客主题——yilia，并成功发布了。</p>
+<p>本博客采用的是<a href="http://hexo.io/">Hexo</a>——一个开源的静态博客生成器。感谢Hexo的作者tommy351。采用的主题是<a href="https://github.com/litten/hexo-theme-yilia">yilia</a>，感谢yilia的作者litten。</p>
+<p>从上周六就开始倒腾这个博客了，期间遇到各种问题，差点半途放弃了，最后还是查资料，请教成功发布个人博客的人，把所有问题都解决了。其中，遇到最坑爹的一个问题是接入多说评论系统。搞不懂，为什么多说主页上不说明白点，搞得我走了好多弯路。一开始以为用QQ登录多说就可以了，最后才发现要点击多说主页的<strong>我要安装</strong>按钮注册多说才行。为什么是<strong>我要安装</strong>而不是<strong>我要注册</strong>呢？</p>
+<a id="more"></a>
+<blockquote>
+<p>为什么要话这么多时间精力倒腾这个博客呢？</p>
+</blockquote>
+<blockquote>
+<ul>
+<li>记录学习笔记，分享学习心得</li>
+<li>宣传自己的一个小平台，认识一些志同道合的朋友</li>
+<li>好像很酷的样子，可以装X</li>
+<li>还有…也许的也许呢…</li>
+</ul>
+</blockquote>
+<p>好了，开篇就写这么多吧，博客开通第一天，留个纪念。以后会都抽时间写点技术笔记。</p>
+<blockquote>
+<p><strong>ps:</strong><br>我是程序猿一枚，开篇的文章名字就取<strong>Hello World</strong>吧，哈哈。。。</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>技术笔记</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+        <tag>yilia</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>用Hexo搭建个人博客</title>
     <url>/2017/09/03/hexo-blog/</url>
     <content><![CDATA[<h2 id="安装环境"><a href="#安装环境" class="headerlink" title="安装环境"></a>安装环境</h2><h3 id="1-安装Homebrew"><a href="#1-安装Homebrew" class="headerlink" title="1. 安装Homebrew"></a>1. 安装Homebrew</h3><p>Mac建议使用 Homebrew 安装必要的插件，Windows用户可以跳过这一步。关于 Homebrew 的介绍请看我的这篇博文 <a href="https://davidsheh.github.io/2017/08/26/mac-homebrew/">Mac开发必备工具（一）—— Homebrew</a>。</p>
@@ -538,41 +570,9 @@
         <category>开发工具</category>
       </categories>
       <tags>
+        <tag>Hexo</tag>
         <tag>Blog</tag>
-        <tag>Hexo</tag>
         <tag>NexT</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2015/05/27/hello-world/</url>
-    <content><![CDATA[<h1 id="欢迎来到Sheh伟伟的个人博客！"><a href="#欢迎来到Sheh伟伟的个人博客！" class="headerlink" title="欢迎来到Sheh伟伟的个人博客！"></a>欢迎来到Sheh伟伟的个人博客！</h1><hr>
-<p>一直想折腾一个自己的博客，用来记录工作中学习到的点点滴滴。今天终于选定了一款博客主题——yilia，并成功发布了。</p>
-<p>本博客采用的是<a href="http://hexo.io/">Hexo</a>——一个开源的静态博客生成器。感谢Hexo的作者tommy351。采用的主题是<a href="https://github.com/litten/hexo-theme-yilia">yilia</a>，感谢yilia的作者litten。</p>
-<p>从上周六就开始倒腾这个博客了，期间遇到各种问题，差点半途放弃了，最后还是查资料，请教成功发布个人博客的人，把所有问题都解决了。其中，遇到最坑爹的一个问题是接入多说评论系统。搞不懂，为什么多说主页上不说明白点，搞得我走了好多弯路。一开始以为用QQ登录多说就可以了，最后才发现要点击多说主页的<strong>我要安装</strong>按钮注册多说才行。为什么是<strong>我要安装</strong>而不是<strong>我要注册</strong>呢？</p>
-<a id="more"></a>
-<blockquote>
-<p>为什么要话这么多时间精力倒腾这个博客呢？</p>
-</blockquote>
-<blockquote>
-<ul>
-<li>记录学习笔记，分享学习心得</li>
-<li>宣传自己的一个小平台，认识一些志同道合的朋友</li>
-<li>好像很酷的样子，可以装X</li>
-<li>还有…也许的也许呢…</li>
-</ul>
-</blockquote>
-<p>好了，开篇就写这么多吧，博客开通第一天，留个纪念。以后会都抽时间写点技术笔记。</p>
-<blockquote>
-<p><strong>ps:</strong><br>我是程序猿一枚，开篇的文章名字就取<strong>Hello World</strong>吧，哈哈。。。</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>技术笔记</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
-        <tag>yilia</tag>
       </tags>
   </entry>
   <entry>
@@ -785,6 +785,24 @@
       </tags>
   </entry>
   <entry>
+    <title>使用 VS Code 写 Shaderlab</title>
+    <url>/2017/08/29/vscode-shaderlab/</url>
+    <content><![CDATA[<p>Unity3D 开发中，我们一般使用 VS 写代码，但是对于写 Shader，VS 还不如自带的 MonoDeveloper 强大，而且目前我还没有发现对 Shaderlab支持比较好的 VS 扩展插件。自从试用过 VS Code 后我把电脑上的 Sublime Text 给卸载了，换成了 VS Code 一直用到现在，而且越用越觉得强大，毕竟有微软这个爸爸，发展势头还是很猛的。言归正传，这篇博客打算记录一下我使用 VS Code 写 Shaderlab 的一些经验。</p>
+<h2 id="安装插件"><a href="#安装插件" class="headerlink" title="安装插件"></a>安装插件</h2><p>首先得安装 VS Code，这个是肯定的，没啥好说的。安装好 VS Code 后，在插件页搜索 ShaderlabVSCodeFree 扩展，然后安装重启。装好插件后，使用 VS Code 打开 Shaderlab 文件，就可以愉快的写 Shader 了。该插件支持<code>.shader</code>、<code>.cginc</code>、<code>.glslinc</code>、<code>.compute</code>四种格式的 Shaderlab 文件，同时，还支持语法高亮、基础代码补全、签名帮助 三大功能，基础代码补全这个功能用了一下感觉非常赞，要是再能支持自动格式化就完美了，不过对于免费版来说，已经非常良心了。该插件还有个收费的 <a href="https://www.assetstore.unity3d.com/en/#!/content/94653">ShaderlabVSCode Beta</a> 版，支持的功能更多，也支持代码格式化，插件作者是中国的 Unity3D 开发者，所以，如果大家手头富裕的话，请支持一下作者，去AssetStore购买 <a href="https://www.assetstore.unity3d.com/en/#!/content/94653">ShaderlabVSCode Beta</a> 版。</p>
+<h2 id="添加代码片段"><a href="#添加代码片段" class="headerlink" title="添加代码片段"></a>添加代码片段</h2><p>为了写代码的方便，常用的 Shaderlab 代码块可以通过 File -&gt; Preferences -&gt; User Snippets 选项，然后找到 Shaderlab 语言，添加进 Json 配置文件，我放两个常用的代码片段：</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">    // Place your snippets for Shaderlab here. Each snippet is defined under a snippet name and has a prefix, body and </span></span><br><span class="line"><span class="comment">    // description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:</span></span><br><span class="line"><span class="comment">    // $1, $2 for tab stops, $0 for the final cursor position, and $&#123;1:label&#125;, $&#123;2:another&#125; for placeholders. Placeholders with the </span></span><br><span class="line"><span class="comment">    // same ids are connected.</span></span><br><span class="line"><span class="comment">    // Example:</span></span><br><span class="line"><span class="comment">    &quot;Print to console&quot;: &#123;</span></span><br><span class="line"><span class="comment">        &quot;prefix&quot;: &quot;log&quot;,</span></span><br><span class="line"><span class="comment">        &quot;body&quot;: [</span></span><br><span class="line"><span class="comment">            &quot;console.log(&#x27;$1&#x27;);&quot;,</span></span><br><span class="line"><span class="comment">            &quot;$2&quot;</span></span><br><span class="line"><span class="comment">        ],</span></span><br><span class="line"><span class="comment">        &quot;description&quot;: &quot;Log output to console&quot;</span></span><br><span class="line"><span class="comment">    &#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line">    <span class="attr">&quot;Unity3D Shaderlab&quot;</span>: &#123;</span><br><span class="line">        <span class="attr">&quot;prefix&quot;</span>: <span class="string">&quot;shaderlab&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;body&quot;</span>: [</span><br><span class="line">            <span class="string">&quot;Shader \&quot;$&#123;1:New Shader&#125;\&quot;&quot;</span>,</span><br><span class="line">            <span class="string">&quot;&#123;&quot;</span>,</span><br><span class="line">                <span class="string">&quot;\tProperties&quot;</span>,</span><br><span class="line">                <span class="string">&quot;\t&#123;&quot;</span>,</span><br><span class="line">                    <span class="string">&quot;\t\t_MainTex (\&quot;Texture\&quot;, 2D) = \&quot;white\&quot; &#123;&#125;&quot;</span>,</span><br><span class="line">                <span class="string">&quot;\t&#125;&quot;</span>,</span><br><span class="line">                <span class="string">&quot;\tSubShader&quot;</span>,</span><br><span class="line">                <span class="string">&quot;\t&#123;&quot;</span>,</span><br><span class="line">                    <span class="string">&quot;\t\tTags &#123; \&quot;RenderType\&quot;=\&quot;$&#123;2:Opaque&#125;\&quot; &#125;\n&quot;</span>,</span><br><span class="line">                    <span class="string">&quot;\t\tPass&quot;</span>,</span><br><span class="line">                    <span class="string">&quot;\t\t&#123;&quot;</span>,</span><br><span class="line">                    <span class="string">&quot;\t\t\t$3&quot;</span>,    </span><br><span class="line">                    <span class="string">&quot;\t\t&#125;&quot;</span>,</span><br><span class="line">                <span class="string">&quot;\t&#125;&quot;</span>,</span><br><span class="line">            <span class="string">&quot;&#125;&quot;</span></span><br><span class="line">        ],</span><br><span class="line">        <span class="attr">&quot;description&quot;</span>: <span class="string">&quot;Unity3D Shaderlab&quot;</span></span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    <span class="attr">&quot;CGPROGRAM&quot;</span>: &#123;</span><br><span class="line">        <span class="attr">&quot;prefix&quot;</span>: <span class="string">&quot;cg&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;body&quot;</span>: [</span><br><span class="line">            <span class="string">&quot;CGPROGRAM&quot;</span>,</span><br><span class="line">            <span class="string">&quot;#pragma vertex vert&quot;</span>,</span><br><span class="line">            <span class="string">&quot;#pragma fragment frag\n&quot;</span>,</span><br><span class="line">            <span class="string">&quot;#include \&quot;UnityCG.cginc\&quot;\n&quot;</span>,</span><br><span class="line">            <span class="string">&quot;struct appdata&quot;</span>,</span><br><span class="line">            <span class="string">&quot;&#123;&quot;</span>,</span><br><span class="line">                <span class="string">&quot;\tfloat4 vertex : POSITION;&quot;</span>,</span><br><span class="line">                <span class="string">&quot;\tfloat2 uv : TEXCOORD0;&quot;</span>,</span><br><span class="line">            <span class="string">&quot;&#125;;\n&quot;</span>,</span><br><span class="line">            <span class="string">&quot;struct v2f&quot;</span>,</span><br><span class="line">            <span class="string">&quot;&#123;&quot;</span>,</span><br><span class="line">                <span class="string">&quot;\tfloat2 uv : TEXCOORD0;&quot;</span>,</span><br><span class="line">                <span class="string">&quot;\tfloat4 vertex : SV_POSITION;&quot;</span>,</span><br><span class="line">            <span class="string">&quot;&#125;;\n&quot;</span>,</span><br><span class="line">            <span class="string">&quot;sampler2D _MainTex;\n&quot;</span>,</span><br><span class="line">            <span class="string">&quot;v2f vert(appdata v)&quot;</span>,</span><br><span class="line">            <span class="string">&quot;&#123;&quot;</span>,</span><br><span class="line">                <span class="string">&quot;\tv2f o;&quot;</span>,</span><br><span class="line">                <span class="string">&quot;\to.vertex = UnityObjectToClipPos(v.vertex);&quot;</span>,</span><br><span class="line">                <span class="string">&quot;\to.uv = TRANSFORM_TEX(v.uv, _MainTex);\n&quot;</span>,</span><br><span class="line">            </span><br><span class="line">                <span class="string">&quot;\treturn o;&quot;</span>,</span><br><span class="line">            <span class="string">&quot;&#125;\n&quot;</span>,</span><br><span class="line">            </span><br><span class="line">            <span class="string">&quot;fixed4 frag(v2f i) : SV_Target&quot;</span>,</span><br><span class="line">            <span class="string">&quot;&#123;&quot;</span>,</span><br><span class="line">                <span class="string">&quot;\t// sample the texture&quot;</span>,</span><br><span class="line">                <span class="string">&quot;\tfixed4 col = tex2D(_MainTex, i.uv);&quot;</span>,</span><br><span class="line">                <span class="string">&quot;\treturn col;&quot;</span>,</span><br><span class="line">            <span class="string">&quot;&#125;&quot;</span>,</span><br><span class="line">            <span class="string">&quot;ENDCG&quot;</span></span><br><span class="line">        ],</span><br><span class="line">        <span class="attr">&quot;description&quot;</span>: <span class="string">&quot;Unity3D Shaderlab CGPROGRAM&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>保存后，可以新建一个扩展名为 <code>.shader</code> 的文本文件，然后输入<code>shaderlab</code>后回车就会自动生成一个标准的 Shaderlab 结构代码块。输入<code>cg</code>后回车就会生成一段 CGPROGRAM 代码块，赶快试试吧！<br>刚开始使用VS Code 写 Shader 先放上两个代码片段，后期再增加其他代码片段。</p>
+]]></content>
+      <categories>
+        <category>开发工具</category>
+      </categories>
+      <tags>
+        <tag>Unity3D</tag>
+        <tag>VS Code</tag>
+        <tag>Shaderlab</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Windows 系统的包管理器</title>
     <url>/2017/09/09/windows-chocolatey-scoop/</url>
     <content><![CDATA[<p>自从在 Mac 下使用了 <a href="http://davidsheh.github.io/2017/08/26/mac-homebrew/">Homebrew</a> + <a href="https://davidsheh.github.io/2017/08/27/mac-iterm2/">iTerm 2</a> + <a href="https://davidsheh.github.io/2017/08/28/mac-fishshell/">Fish shell</a> 后，瞬间感觉世界清静了不少。然后就在想 Windows 下面有没有类似的软件呢？毕竟在工作中使用 Windows 还是比较多的，然后在网上还真搜到了。对应于 Mac 下的 <a href="%5Bhttp://davidsheh.github.io/2017/08/26/mac-homebrew/%5D(http://davidsheh.github.io/2017/08/26/mac-homebrew/)">Homebrew</a> + <a href="https://davidsheh.github.io/2017/08/27/mac-iterm2/">iTerm 2</a> + <a href="https://davidsheh.github.io/2017/08/28/mac-fishshell/">Fish shell</a> ， Windows 下是 Chocolatey( + Scoop) + ConEmu + PowerShell。</p>
@@ -851,24 +869,6 @@
         <tag>Windows</tag>
         <tag>Chocolatey</tag>
         <tag>Scoop</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>使用 VS Code 写 Shaderlab</title>
-    <url>/2017/08/29/vscode-shaderlab/</url>
-    <content><![CDATA[<p>Unity3D 开发中，我们一般使用 VS 写代码，但是对于写 Shader，VS 还不如自带的 MonoDeveloper 强大，而且目前我还没有发现对 Shaderlab支持比较好的 VS 扩展插件。自从试用过 VS Code 后我把电脑上的 Sublime Text 给卸载了，换成了 VS Code 一直用到现在，而且越用越觉得强大，毕竟有微软这个爸爸，发展势头还是很猛的。言归正传，这篇博客打算记录一下我使用 VS Code 写 Shaderlab 的一些经验。</p>
-<h2 id="安装插件"><a href="#安装插件" class="headerlink" title="安装插件"></a>安装插件</h2><p>首先得安装 VS Code，这个是肯定的，没啥好说的。安装好 VS Code 后，在插件页搜索 ShaderlabVSCodeFree 扩展，然后安装重启。装好插件后，使用 VS Code 打开 Shaderlab 文件，就可以愉快的写 Shader 了。该插件支持<code>.shader</code>、<code>.cginc</code>、<code>.glslinc</code>、<code>.compute</code>四种格式的 Shaderlab 文件，同时，还支持语法高亮、基础代码补全、签名帮助 三大功能，基础代码补全这个功能用了一下感觉非常赞，要是再能支持自动格式化就完美了，不过对于免费版来说，已经非常良心了。该插件还有个收费的 <a href="https://www.assetstore.unity3d.com/en/#!/content/94653">ShaderlabVSCode Beta</a> 版，支持的功能更多，也支持代码格式化，插件作者是中国的 Unity3D 开发者，所以，如果大家手头富裕的话，请支持一下作者，去AssetStore购买 <a href="https://www.assetstore.unity3d.com/en/#!/content/94653">ShaderlabVSCode Beta</a> 版。</p>
-<h2 id="添加代码片段"><a href="#添加代码片段" class="headerlink" title="添加代码片段"></a>添加代码片段</h2><p>为了写代码的方便，常用的 Shaderlab 代码块可以通过 File -&gt; Preferences -&gt; User Snippets 选项，然后找到 Shaderlab 语言，添加进 Json 配置文件，我放两个常用的代码片段：</p>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">    // Place your snippets for Shaderlab here. Each snippet is defined under a snippet name and has a prefix, body and </span></span><br><span class="line"><span class="comment">    // description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:</span></span><br><span class="line"><span class="comment">    // $1, $2 for tab stops, $0 for the final cursor position, and $&#123;1:label&#125;, $&#123;2:another&#125; for placeholders. Placeholders with the </span></span><br><span class="line"><span class="comment">    // same ids are connected.</span></span><br><span class="line"><span class="comment">    // Example:</span></span><br><span class="line"><span class="comment">    &quot;Print to console&quot;: &#123;</span></span><br><span class="line"><span class="comment">        &quot;prefix&quot;: &quot;log&quot;,</span></span><br><span class="line"><span class="comment">        &quot;body&quot;: [</span></span><br><span class="line"><span class="comment">            &quot;console.log(&#x27;$1&#x27;);&quot;,</span></span><br><span class="line"><span class="comment">            &quot;$2&quot;</span></span><br><span class="line"><span class="comment">        ],</span></span><br><span class="line"><span class="comment">        &quot;description&quot;: &quot;Log output to console&quot;</span></span><br><span class="line"><span class="comment">    &#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line">    <span class="attr">&quot;Unity3D Shaderlab&quot;</span>: &#123;</span><br><span class="line">        <span class="attr">&quot;prefix&quot;</span>: <span class="string">&quot;shaderlab&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;body&quot;</span>: [</span><br><span class="line">            <span class="string">&quot;Shader \&quot;$&#123;1:New Shader&#125;\&quot;&quot;</span>,</span><br><span class="line">            <span class="string">&quot;&#123;&quot;</span>,</span><br><span class="line">                <span class="string">&quot;\tProperties&quot;</span>,</span><br><span class="line">                <span class="string">&quot;\t&#123;&quot;</span>,</span><br><span class="line">                    <span class="string">&quot;\t\t_MainTex (\&quot;Texture\&quot;, 2D) = \&quot;white\&quot; &#123;&#125;&quot;</span>,</span><br><span class="line">                <span class="string">&quot;\t&#125;&quot;</span>,</span><br><span class="line">                <span class="string">&quot;\tSubShader&quot;</span>,</span><br><span class="line">                <span class="string">&quot;\t&#123;&quot;</span>,</span><br><span class="line">                    <span class="string">&quot;\t\tTags &#123; \&quot;RenderType\&quot;=\&quot;$&#123;2:Opaque&#125;\&quot; &#125;\n&quot;</span>,</span><br><span class="line">                    <span class="string">&quot;\t\tPass&quot;</span>,</span><br><span class="line">                    <span class="string">&quot;\t\t&#123;&quot;</span>,</span><br><span class="line">                    <span class="string">&quot;\t\t\t$3&quot;</span>,    </span><br><span class="line">                    <span class="string">&quot;\t\t&#125;&quot;</span>,</span><br><span class="line">                <span class="string">&quot;\t&#125;&quot;</span>,</span><br><span class="line">            <span class="string">&quot;&#125;&quot;</span></span><br><span class="line">        ],</span><br><span class="line">        <span class="attr">&quot;description&quot;</span>: <span class="string">&quot;Unity3D Shaderlab&quot;</span></span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    <span class="attr">&quot;CGPROGRAM&quot;</span>: &#123;</span><br><span class="line">        <span class="attr">&quot;prefix&quot;</span>: <span class="string">&quot;cg&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;body&quot;</span>: [</span><br><span class="line">            <span class="string">&quot;CGPROGRAM&quot;</span>,</span><br><span class="line">            <span class="string">&quot;#pragma vertex vert&quot;</span>,</span><br><span class="line">            <span class="string">&quot;#pragma fragment frag\n&quot;</span>,</span><br><span class="line">            <span class="string">&quot;#include \&quot;UnityCG.cginc\&quot;\n&quot;</span>,</span><br><span class="line">            <span class="string">&quot;struct appdata&quot;</span>,</span><br><span class="line">            <span class="string">&quot;&#123;&quot;</span>,</span><br><span class="line">                <span class="string">&quot;\tfloat4 vertex : POSITION;&quot;</span>,</span><br><span class="line">                <span class="string">&quot;\tfloat2 uv : TEXCOORD0;&quot;</span>,</span><br><span class="line">            <span class="string">&quot;&#125;;\n&quot;</span>,</span><br><span class="line">            <span class="string">&quot;struct v2f&quot;</span>,</span><br><span class="line">            <span class="string">&quot;&#123;&quot;</span>,</span><br><span class="line">                <span class="string">&quot;\tfloat2 uv : TEXCOORD0;&quot;</span>,</span><br><span class="line">                <span class="string">&quot;\tfloat4 vertex : SV_POSITION;&quot;</span>,</span><br><span class="line">            <span class="string">&quot;&#125;;\n&quot;</span>,</span><br><span class="line">            <span class="string">&quot;sampler2D _MainTex;\n&quot;</span>,</span><br><span class="line">            <span class="string">&quot;v2f vert(appdata v)&quot;</span>,</span><br><span class="line">            <span class="string">&quot;&#123;&quot;</span>,</span><br><span class="line">                <span class="string">&quot;\tv2f o;&quot;</span>,</span><br><span class="line">                <span class="string">&quot;\to.vertex = UnityObjectToClipPos(v.vertex);&quot;</span>,</span><br><span class="line">                <span class="string">&quot;\to.uv = TRANSFORM_TEX(v.uv, _MainTex);\n&quot;</span>,</span><br><span class="line">            </span><br><span class="line">                <span class="string">&quot;\treturn o;&quot;</span>,</span><br><span class="line">            <span class="string">&quot;&#125;\n&quot;</span>,</span><br><span class="line">            </span><br><span class="line">            <span class="string">&quot;fixed4 frag(v2f i) : SV_Target&quot;</span>,</span><br><span class="line">            <span class="string">&quot;&#123;&quot;</span>,</span><br><span class="line">                <span class="string">&quot;\t// sample the texture&quot;</span>,</span><br><span class="line">                <span class="string">&quot;\tfixed4 col = tex2D(_MainTex, i.uv);&quot;</span>,</span><br><span class="line">                <span class="string">&quot;\treturn col;&quot;</span>,</span><br><span class="line">            <span class="string">&quot;&#125;&quot;</span>,</span><br><span class="line">            <span class="string">&quot;ENDCG&quot;</span></span><br><span class="line">        ],</span><br><span class="line">        <span class="attr">&quot;description&quot;</span>: <span class="string">&quot;Unity3D Shaderlab CGPROGRAM&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>保存后，可以新建一个扩展名为 <code>.shader</code> 的文本文件，然后输入<code>shaderlab</code>后回车就会自动生成一个标准的 Shaderlab 结构代码块。输入<code>cg</code>后回车就会生成一段 CGPROGRAM 代码块，赶快试试吧！<br>刚开始使用VS Code 写 Shader 先放上两个代码片段，后期再增加其他代码片段。</p>
-]]></content>
-      <categories>
-        <category>开发工具</category>
-      </categories>
-      <tags>
-        <tag>Unity3D</tag>
-        <tag>VS Code</tag>
-        <tag>Shaderlab</tag>
       </tags>
   </entry>
   <entry>
@@ -1028,29 +1028,6 @@
       </tags>
   </entry>
   <entry>
-    <title>「Unity游戏开发」向量在游戏开发中的应用（一）</title>
-    <url>/2016/03/05/%E3%80%8CUnity%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E3%80%8D%E5%90%91%E9%87%8F%E5%9C%A8%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8%EF%BC%88%E4%B8%80%EF%BC%89/</url>
-    <content><![CDATA[<p>向量在游戏开发中是非常实用的，我们在学校学完向量的知识后，只知道向量的基本知识，但对于如何将所学到的向量知识运用到实际的游戏开发中却不知所措。我计划写几篇关于向量在游戏中的应用的文章，总结一下在实际工作中所遇到过的运用向量机智处理问题的技巧。接下来要写的东西都是记录在我的云笔记中，现在计划整理一下后分享出来。<br>    对于向量的那些基本性质我不想说太多，有兴趣的读者可以自行查阅相关文档，这里只说向量的大小和方向。不知道读者朋友曾经玩过安卓上一款比较火的跳跃游戏没有，游戏名字叫《涂鸦跳跃》，英文名为「Doodle Jump」，游戏截图如下：<br><img src="https://cdn.jsdelivr.net/gh/DavidSheh/BlogPictures/pictures/DoodleJump.jpeg" alt="Doodle Jump"><br>    在玩《涂鸦跳跃》时，不知道你有没有想过这么一个问题：从下往上跳跃会直接穿过平台，从上往下掉不会穿过平台，这是如何实现的？<br>    关于这个问题，我的思考是：可以利用小人运动的速度的方向来判定是否启用碰撞体，速度方向向上时禁用碰撞体，速度方向向下时启用碰撞体。可能我说的这个思路读者朋友还是不明觉厉，下面我用Unity3D写了一个小Demo来帮助理解我的思路。<br>先上动态效果图：<br><img src="https://cdn.jsdelivr.net/gh/DavidSheh/BlogPictures/pictures/CubeJump.gif" alt="CubeJump"></p>
-<p>具体实现代码如下：</p>
-<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">using</span> UnityEngine;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">PlayerController</span> : <span class="title">MonoBehaviour</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> Vector3 jumpForce = <span class="keyword">new</span> Vector3(<span class="number">10</span>, <span class="number">35</span>, <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">private</span> Rigidbody mRigidbody;</span><br><span class="line">    <span class="keyword">private</span> BoxCollider boxCollider;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 是否处于碰撞状态  </span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">bool</span> stayCollision = <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Awake</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        <span class="keyword">this</span>.mRigidbody = <span class="keyword">this</span>.GetComponent&lt;Rigidbody&gt;();</span><br><span class="line">        <span class="keyword">this</span>.boxCollider = <span class="keyword">this</span>.GetComponent&lt;BoxCollider&gt;();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Update</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        <span class="comment">// 当刚体静止时，按空格键跳跃才有效  </span></span><br><span class="line">        <span class="keyword">if</span> (mRigidbody.IsSleeping() &amp;&amp; Input.GetKeyDown(KeyCode.Space))</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">// 给刚体施加一个力，是其运动起来  </span></span><br><span class="line">            <span class="keyword">this</span>.mRigidbody.AddForce(jumpForce);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>.mRigidbody.velocity.y &gt; <span class="number">0</span>) <span class="comment">// 速度方向向上  </span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">// 这里不能重复设置isTrigger,否则IsSleeping()方法会失效  </span></span><br><span class="line">            <span class="comment">// 这里具体原因不得而知，因为被官方封装起来了，  </span></span><br><span class="line">            <span class="comment">// 但是猜测是因为刚体规定自身方法没有调用时为休眠状态  </span></span><br><span class="line">            <span class="keyword">if</span> (!<span class="keyword">this</span>.boxCollider.isTrigger)</span><br><span class="line">                <span class="keyword">this</span>.boxCollider.isTrigger = <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (!stayCollision) <span class="comment">// Player没有发生碰撞  </span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (<span class="keyword">this</span>.boxCollider.isTrigger)</span><br><span class="line">                <span class="keyword">this</span>.boxCollider.isTrigger = <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">OnTriggerEnter</span>(<span class="params">Collider collider</span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        stayCollision = <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">OnTriggerExit</span>(<span class="params">Collider collider</span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        stayCollision = <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>在这个小案例中，运用了速度向量的方向来判断是向上碰撞还是向下碰撞。作为《向量在游戏开发中的应用》这个小系列文章的第一篇，就用这个非常简单的小案例来开始吧。后续会更精彩，但更新时间不定。</p>
-<p>本Demo使用的的开发工具是Unity5.0.1f1和VS2013，建议下载源码后用Unity5.0.1f1或者更高的版本打开。源码地址：<a href="http://download.csdn.net/detail/wenxin2011/9453669">http://download.csdn.net/detail/wenxin2011/9453669</a></p>
-<hr>
-<p><strong>同系列文章</strong></p>
-<p><a href="http://davidsheh.github.io/2016/03/05/%E3%80%8CUnity%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E3%80%8D%E5%90%91%E9%87%8F%E5%9C%A8%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8%EF%BC%88%E4%B8%80%EF%BC%89/">「Unity游戏开发」向量在游戏开发中的应用（一）</a></p>
-<p><a href="http://davidsheh.github.io/2016/03/24/%E3%80%8CUnity%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E3%80%8D%E5%90%91%E9%87%8F%E5%9C%A8%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8%EF%BC%88%E4%BA%8C%EF%BC%89/">「Unity游戏开发」向量在游戏开发中的应用（二）</a></p>
-<p><a href="http://davidsheh.github.io/2016/04/07/%E3%80%8CUnity%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E3%80%8D%E5%90%91%E9%87%8F%E5%9C%A8%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8%EF%BC%88%E4%B8%89%EF%BC%89/">「Unity游戏开发」向量在游戏开发中的应用（三）</a></p>
-]]></content>
-      <categories>
-        <category>技术笔记</category>
-      </categories>
-      <tags>
-        <tag>Unity3D</tag>
-        <tag>游戏开发</tag>
-        <tag>向量</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>「Modern OpenGL系列（四）」在OpenGL中使用Shader</title>
     <url>/2016/05/08/%E3%80%8CModern%20OpenGL%E7%B3%BB%E5%88%97%EF%BC%88%E5%9B%9B%EF%BC%89%E3%80%8D%E5%9C%A8OpenGL%E4%B8%AD%E4%BD%BF%E7%94%A8Shader/</url>
     <content><![CDATA[<p> 在[上一篇文章]( <a href="http://davidsheh.github.io/2016/05/08/%E3%80%8CModern">http://davidsheh.github.io/2016/05/08/「Modern</a> OpenGL系列（三）」用OpenGL绘制一个三角形/)中已经介绍了OpenGL窗口的创建。本文接着说如何用OpenGL绘制一个三角形。<br>1 . 添加头文件<code>shader.h</code>，代码如下：</p>
@@ -1080,6 +1057,29 @@
       </categories>
       <tags>
         <tag>OpenGL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>「Unity游戏开发」向量在游戏开发中的应用（一）</title>
+    <url>/2016/03/05/%E3%80%8CUnity%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E3%80%8D%E5%90%91%E9%87%8F%E5%9C%A8%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8%EF%BC%88%E4%B8%80%EF%BC%89/</url>
+    <content><![CDATA[<p>向量在游戏开发中是非常实用的，我们在学校学完向量的知识后，只知道向量的基本知识，但对于如何将所学到的向量知识运用到实际的游戏开发中却不知所措。我计划写几篇关于向量在游戏中的应用的文章，总结一下在实际工作中所遇到过的运用向量机智处理问题的技巧。接下来要写的东西都是记录在我的云笔记中，现在计划整理一下后分享出来。<br>    对于向量的那些基本性质我不想说太多，有兴趣的读者可以自行查阅相关文档，这里只说向量的大小和方向。不知道读者朋友曾经玩过安卓上一款比较火的跳跃游戏没有，游戏名字叫《涂鸦跳跃》，英文名为「Doodle Jump」，游戏截图如下：<br><img src="https://cdn.jsdelivr.net/gh/DavidSheh/BlogPictures/pictures/DoodleJump.jpeg" alt="Doodle Jump"><br>    在玩《涂鸦跳跃》时，不知道你有没有想过这么一个问题：从下往上跳跃会直接穿过平台，从上往下掉不会穿过平台，这是如何实现的？<br>    关于这个问题，我的思考是：可以利用小人运动的速度的方向来判定是否启用碰撞体，速度方向向上时禁用碰撞体，速度方向向下时启用碰撞体。可能我说的这个思路读者朋友还是不明觉厉，下面我用Unity3D写了一个小Demo来帮助理解我的思路。<br>先上动态效果图：<br><img src="https://cdn.jsdelivr.net/gh/DavidSheh/BlogPictures/pictures/CubeJump.gif" alt="CubeJump"></p>
+<p>具体实现代码如下：</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">using</span> UnityEngine;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">PlayerController</span> : <span class="title">MonoBehaviour</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> Vector3 jumpForce = <span class="keyword">new</span> Vector3(<span class="number">10</span>, <span class="number">35</span>, <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">private</span> Rigidbody mRigidbody;</span><br><span class="line">    <span class="keyword">private</span> BoxCollider boxCollider;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 是否处于碰撞状态  </span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">bool</span> stayCollision = <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Awake</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        <span class="keyword">this</span>.mRigidbody = <span class="keyword">this</span>.GetComponent&lt;Rigidbody&gt;();</span><br><span class="line">        <span class="keyword">this</span>.boxCollider = <span class="keyword">this</span>.GetComponent&lt;BoxCollider&gt;();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Update</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        <span class="comment">// 当刚体静止时，按空格键跳跃才有效  </span></span><br><span class="line">        <span class="keyword">if</span> (mRigidbody.IsSleeping() &amp;&amp; Input.GetKeyDown(KeyCode.Space))</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">// 给刚体施加一个力，是其运动起来  </span></span><br><span class="line">            <span class="keyword">this</span>.mRigidbody.AddForce(jumpForce);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>.mRigidbody.velocity.y &gt; <span class="number">0</span>) <span class="comment">// 速度方向向上  </span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">// 这里不能重复设置isTrigger,否则IsSleeping()方法会失效  </span></span><br><span class="line">            <span class="comment">// 这里具体原因不得而知，因为被官方封装起来了，  </span></span><br><span class="line">            <span class="comment">// 但是猜测是因为刚体规定自身方法没有调用时为休眠状态  </span></span><br><span class="line">            <span class="keyword">if</span> (!<span class="keyword">this</span>.boxCollider.isTrigger)</span><br><span class="line">                <span class="keyword">this</span>.boxCollider.isTrigger = <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (!stayCollision) <span class="comment">// Player没有发生碰撞  </span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (<span class="keyword">this</span>.boxCollider.isTrigger)</span><br><span class="line">                <span class="keyword">this</span>.boxCollider.isTrigger = <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">OnTriggerEnter</span>(<span class="params">Collider collider</span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        stayCollision = <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">OnTriggerExit</span>(<span class="params">Collider collider</span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        stayCollision = <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在这个小案例中，运用了速度向量的方向来判断是向上碰撞还是向下碰撞。作为《向量在游戏开发中的应用》这个小系列文章的第一篇，就用这个非常简单的小案例来开始吧。后续会更精彩，但更新时间不定。</p>
+<p>本Demo使用的的开发工具是Unity5.0.1f1和VS2013，建议下载源码后用Unity5.0.1f1或者更高的版本打开。源码地址：<a href="http://download.csdn.net/detail/wenxin2011/9453669">http://download.csdn.net/detail/wenxin2011/9453669</a></p>
+<hr>
+<p><strong>同系列文章</strong></p>
+<p><a href="http://davidsheh.github.io/2016/03/05/%E3%80%8CUnity%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E3%80%8D%E5%90%91%E9%87%8F%E5%9C%A8%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8%EF%BC%88%E4%B8%80%EF%BC%89/">「Unity游戏开发」向量在游戏开发中的应用（一）</a></p>
+<p><a href="http://davidsheh.github.io/2016/03/24/%E3%80%8CUnity%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E3%80%8D%E5%90%91%E9%87%8F%E5%9C%A8%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8%EF%BC%88%E4%BA%8C%EF%BC%89/">「Unity游戏开发」向量在游戏开发中的应用（二）</a></p>
+<p><a href="http://davidsheh.github.io/2016/04/07/%E3%80%8CUnity%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E3%80%8D%E5%90%91%E9%87%8F%E5%9C%A8%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8%EF%BC%88%E4%B8%89%EF%BC%89/">「Unity游戏开发」向量在游戏开发中的应用（三）</a></p>
+]]></content>
+      <categories>
+        <category>技术笔记</category>
+      </categories>
+      <tags>
+        <tag>Unity3D</tag>
+        <tag>游戏开发</tag>
+        <tag>向量</tag>
       </tags>
   </entry>
   <entry>
@@ -1123,35 +1123,6 @@
       </tags>
   </entry>
   <entry>
-    <title>「代码整洁之道」读书笔记</title>
-    <url>/2016/03/03/%E3%80%8C%E4%BB%A3%E7%A0%81%E6%95%B4%E6%B4%81%E4%B9%8B%E9%81%93%E3%80%8D%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</url>
-    <content><![CDATA[<ol>
-<li>函数要尽可能短小，最好不要超过20行。而且函数应该做一件事，做好这件事，只做这一件事。</li>
-<li>函数参数尽可能的少，建议一般不要超过三个。如果函数看来需要两个、三个或三个以上参数，就说明其中一些参数应该封装为类了。</li>
-<li>对于一元函数，函数和参数应当形成一种非常良好的动词/名词对形式。如，<code>write(name)</code>。</li>
-<li>函数要么做什么事，要么回答什么事，但二者不可得兼。函数应该修改某对象的状态，或是返回该对象的有关信息。两样都干常会导致混乱。</li>
-<li>函数是语言的动词，类是名词。</li>
-<li>如果可能尽量不写注释，而是让变量和函数本身见名知意。</li>
-<li>暂时未完成的部分使用TODO注释，让开发工具将未完成的部分放到工作列表。</li>
-<li>没必要在代码里添加归属与署名，因为源代码控制系统已经帮我们做了这些事，完全没必要让这样的注释搞脏代码。</li>
-<li>不要保留注释掉的代码，代码被注释掉说明是无用的。源代码控制系统会记录这些删掉的代码，不用担心找不回来。</li>
-<li>自上向下展示函数调用依赖顺序，被调用的函数应该放在执行调用的函数下面。</li>
-<li>每行代码不要超过120个字符，而最佳长度为80到100个字符。</li>
-<li>对象暴露行为，隐藏数据。便于添加新对象类型而无需修改既有行为，同时也难以在既有对象中添加新行为。数据结构暴露数据，没有明显的行为。便于向既有数据结构添加新行为，同时也难以向既有函数添加新数据结构。</li>
-<li>定义一个函数最好别返回null值。返回null值基本上是再给自己增加工作量，也是在给调用者添乱。如果你打算在方法中返回null值，不如抛出异常，或是返回特例对象。如果你在调用某个第三方API中可能返回null值的方法，可以考虑用新方法打包这个方法，在新方法中抛出异常或是返回特例对象。</li>
-</ol>
-<blockquote>
-<p>以上是《代码简洁之道》前十章的读书笔记。只记录了笔者认为在实际工作用比较实用的部分，没有长篇大论的摘抄。主要用于阅读备忘，方便以后复习。</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>读书笔记</category>
-      </categories>
-      <tags>
-        <tag>重构</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>「Unity游戏开发」向量在游戏开发中的应用（二）</title>
     <url>/2016/03/24/%E3%80%8CUnity%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E3%80%8D%E5%90%91%E9%87%8F%E5%9C%A8%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8%EF%BC%88%E4%BA%8C%EF%BC%89/</url>
     <content><![CDATA[<p>在<a href="http://davidsheh.github.io/2016/03/05/%E3%80%8CUnity%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E3%80%8D%E5%90%91%E9%87%8F%E5%9C%A8%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8%EF%BC%88%E4%B8%80%EF%BC%89/">上一篇博客</a>中讲了利用向量方向的性质来解决问题。这篇博客将继续用一个简单的小例子来讲解如何将向量的点乘性质应用到实际的游戏开发中。</p>
@@ -1180,6 +1151,35 @@
         <tag>Unity3D</tag>
         <tag>游戏开发</tag>
         <tag>向量</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>「代码整洁之道」读书笔记</title>
+    <url>/2016/03/03/%E3%80%8C%E4%BB%A3%E7%A0%81%E6%95%B4%E6%B4%81%E4%B9%8B%E9%81%93%E3%80%8D%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<ol>
+<li>函数要尽可能短小，最好不要超过20行。而且函数应该做一件事，做好这件事，只做这一件事。</li>
+<li>函数参数尽可能的少，建议一般不要超过三个。如果函数看来需要两个、三个或三个以上参数，就说明其中一些参数应该封装为类了。</li>
+<li>对于一元函数，函数和参数应当形成一种非常良好的动词/名词对形式。如，<code>write(name)</code>。</li>
+<li>函数要么做什么事，要么回答什么事，但二者不可得兼。函数应该修改某对象的状态，或是返回该对象的有关信息。两样都干常会导致混乱。</li>
+<li>函数是语言的动词，类是名词。</li>
+<li>如果可能尽量不写注释，而是让变量和函数本身见名知意。</li>
+<li>暂时未完成的部分使用TODO注释，让开发工具将未完成的部分放到工作列表。</li>
+<li>没必要在代码里添加归属与署名，因为源代码控制系统已经帮我们做了这些事，完全没必要让这样的注释搞脏代码。</li>
+<li>不要保留注释掉的代码，代码被注释掉说明是无用的。源代码控制系统会记录这些删掉的代码，不用担心找不回来。</li>
+<li>自上向下展示函数调用依赖顺序，被调用的函数应该放在执行调用的函数下面。</li>
+<li>每行代码不要超过120个字符，而最佳长度为80到100个字符。</li>
+<li>对象暴露行为，隐藏数据。便于添加新对象类型而无需修改既有行为，同时也难以在既有对象中添加新行为。数据结构暴露数据，没有明显的行为。便于向既有数据结构添加新行为，同时也难以向既有函数添加新数据结构。</li>
+<li>定义一个函数最好别返回null值。返回null值基本上是再给自己增加工作量，也是在给调用者添乱。如果你打算在方法中返回null值，不如抛出异常，或是返回特例对象。如果你在调用某个第三方API中可能返回null值的方法，可以考虑用新方法打包这个方法，在新方法中抛出异常或是返回特例对象。</li>
+</ol>
+<blockquote>
+<p>以上是《代码简洁之道》前十章的读书笔记。只记录了笔者认为在实际工作用比较实用的部分，没有长篇大论的摘抄。主要用于阅读备忘，方便以后复习。</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>读书笔记</category>
+      </categories>
+      <tags>
+        <tag>重构</tag>
       </tags>
   </entry>
   <entry>
@@ -1324,6 +1324,54 @@
       </tags>
   </entry>
   <entry>
+    <title>「翻译」Unity中的AssetBundle详解（五）</title>
+    <url>/2017/09/23/%E3%80%8C%E7%BF%BB%E8%AF%91%E3%80%8DUnity%E4%B8%AD%E7%9A%84AssetBundle%E8%AF%A6%E8%A7%A3%EF%BC%88%E4%BA%94%EF%BC%89/</url>
+    <content><![CDATA[<h2 id="AssetBundle-管理器"><a href="#AssetBundle-管理器" class="headerlink" title="AssetBundle 管理器"></a>AssetBundle 管理器</h2><p>AssetBundle Manager 可以在<a href="https://www.assetstore.unity3d.com/en/#!/content/45836">这里</a>下载，是由 Unity 制作的一种工具，可以使 AssetBundles 更加精简。下载和导入 AssetBundle Manager 软件包不仅添加了一个新的API调用来加载和使用AssetBundles，而且还添加了一些编辑器功能来简化工作流。此功能可以在“资产”菜单选项下找到。此新部分将包含以下选项：</p>
+<h3 id="模拟模式"><a href="#模拟模式" class="headerlink" title="模拟模式"></a>模拟模式</h3><p>启用模拟模式允许 AssetBundle Manager 使用 AssetBundles，但不需要实际构建捆绑包。编辑器会看到 Assets 已分配给 AssetBundles，并直接使用 Assets ，而不是实际上从 AssetBundle 中提取 Assets。<br>使用模拟模式的主要优点是 Assets 可以被修改、更新、添加和删除，而不需要每次重新构建和部署AssetBundles。值得注意的是，AssetBundle 变体不适用于模拟模式。如果你需要使用变体，则你需要使用本地 AssetBundle 服务器。</p>
+<h3 id="本地-AssetBundle-服务器"><a href="#本地-AssetBundle-服务器" class="headerlink" title="本地 AssetBundle 服务器"></a>本地 AssetBundle 服务器</h3><p>AssetBundle Manager 还可以启动一个本地 AssetBundle 服务器，该服务器可用于在编辑器或本地构建（包括移动端）中测试 AssetBundles。获取本地 AssetBundle 服务器工作的规定是必须在项目的根目录中创建一个名为AssetBundles的文件夹，该文件夹与 Assets 文件夹的级别相同。如下图：<br><img src="https://docs.unity3d.com/uploads/Main/AssetBundles-Manager-4.png"></p>
+<p>创建文件夹后，你需要将 AssetBundles 构建到此文件夹。为此，请从新菜单选项中选择Build AssetBundles。这将为你构建它们到该目录。现在你已经建立了 AssetBundles（或已经决定使用模拟模式），并准备开始加载 AssetBundles。我们来看看 AssetBundle Manager 对我们提供的新的API调用。</p>
+<h4 id="AssetBundleManager-Initialize"><a href="#AssetBundleManager-Initialize" class="headerlink" title="AssetBundleManager.Initialize()"></a>AssetBundleManager.Initialize()</h4><p>此函数加载 AssetBundleManifest 对象。在使用 AssetBundle Manager 开始加载资产之前，你需要调用它。在一个非常简单的例子中，初始化 AssetBundle Manager 可能如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">IEnumerator Start()</span><br><span class="line">&#123;</span><br><span class="line">    yield return StartCoroutine(Initialize());</span><br><span class="line">&#125;</span><br><span class="line">IEnumerator Initialize()</span><br><span class="line">&#123;</span><br><span class="line">    var request &#x3D; AssetBundleManager.Initialize();</span><br><span class="line">    if (request !&#x3D; null)</span><br><span class="line">        yield return StartCoroutine(request);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>AssetBundle Manager 使用你在 Initialize() 期间加载的清单来帮助幕后的许多功能，包括依赖关系管理。</p>
+<h4 id="Loading-Assets"><a href="#Loading-Assets" class="headerlink" title="Loading Assets"></a>Loading Assets</h4><p>你正在使用 AssetBundle Manager，你已初始化它，现在你可以加载某些资产。我们来看看如何加载 AssetBundle 并从该 Bundle 中实例化一个对象：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">IEnumerator InstantiateGameObjectAsync (string assetBundleName, string assetName)</span><br><span class="line">&#123;</span><br><span class="line">    &#x2F;&#x2F; Load asset from assetBundle.</span><br><span class="line">    AssetBundleLoadAssetOperation request &#x3D; AssetBundleManager.LoadAssetAsync(assetBundleName, assetName, typeof(GameObject));</span><br><span class="line">    if (request &#x3D;&#x3D; null)</span><br><span class="line">        yield break;</span><br><span class="line">    yield return StartCoroutine(request);</span><br><span class="line">    &#x2F;&#x2F; Get the asset.</span><br><span class="line">    GameObject prefab &#x3D; request.GetAsset&lt;GameObject&gt; ();</span><br><span class="line">    if (prefab !&#x3D; null)</span><br><span class="line">        GameObject.Instantiate(prefab);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>AssetBundle Manager 会异步执行所有的加载操作，因此它返回一个加载操作请求，它在调用 <code>yield return StartCoroutine（request）</code>时加载 Bundle;接着我们需要做的是调用<code>GetAsset&lt;T&gt;()</code> 从 AssetBundle 加载游戏对象。</p>
+<h4 id="Loading-Scenes"><a href="#Loading-Scenes" class="headerlink" title="Loading Scenes"></a>Loading Scenes</h4><p>如果你有一个 AssetBundle 名称分配给场景，并且你需要加载该场景，则需要遵循稍微不同的代码路径。模式是相同的，但有微小的差异。以下是从AssetBundle加载场景的方法：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">IEnumerator InitializeLevelAsync (string levelName, bool isAdditive)</span><br><span class="line">&#123;</span><br><span class="line">    &#x2F;&#x2F; Load level from assetBundle.</span><br><span class="line">    AssetBundleLoadOperation request &#x3D; AssetBundleManager.LoadLevelAsync(sceneAssetBundle, levelName, isAdditive);</span><br><span class="line">    if (request &#x3D;&#x3D; null)</span><br><span class="line">        yield break;</span><br><span class="line">    yield return StartCoroutine(request);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>正如你所看到的，加载场景也是一个异步的，LoadLevelAsync返回一个加载操作请求，需要传递给一个StartCoroutine 才能加载场景。</p>
+<h4 id="Load-Variants"><a href="#Load-Variants" class="headerlink" title="Load Variants"></a>Load Variants</h4><p>使用 AssetBundle Manager 加载变量实际上并不会改变在场景或资产中加载的代码。所有需要完成的操作都是设置 AssetBundleManager 的 ActiveVariants 属性。ActiveVariants 属性是一个字符串数组。只需构建一个字符串数组，其中包含在将它们分配给资产时创建的变体名称。以下是如何使用 hd 变体加载场景 AssetBundle。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">IEnumerator InitializeLevelAsync (string levelName, bool isAdditive, string[] variants)</span><br><span class="line">&#123;</span><br><span class="line">    &#x2F;&#x2F;Set the activeVariants.</span><br><span class="line">    AssetBundleManager.ActiveVariants &#x3D; variants;</span><br><span class="line">    &#x2F;&#x2F; Load level from assetBundle.</span><br><span class="line">    AssetBundleLoadOperation request &#x3D; AssetBundleManager.LoadLevelAsync(variantSceneAssetBundle, levelName, isAdditive);</span><br><span class="line">    if (request &#x3D;&#x3D; null)</span><br><span class="line">        yield break;</span><br><span class="line">    yield return StartCoroutine(request);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在代码中的其他地方构建的字符串数组（可能是从按钮点击或其他一些情况）中传递的地方。如果可用，则将加载与设置的活动变体相匹配的 Bundles。</p>
+<h2 id="使用-AssetBundles-进行修补"><a href="#使用-AssetBundles-进行修补" class="headerlink" title="使用 AssetBundles 进行修补"></a>使用 AssetBundles 进行修补</h2><p>修补 AssetBundles 与下载新的 AssetBundle 并替换已存在的 AssetBundle 一样简单。如果使用<code>WWW.LoadFromCacheOrDownload</code> 或 <code>UnityWebRequest</code> 来管理应用程序的缓存AssetBundles，则将不同的版本参数传递到所选的 API 将触发下载新的 AssetBundles。补丁系统中更难解决的问题是检测哪个 AssetBundles 需要被替换。补丁系统需要两个信息列表：</p>
+<ul>
+<li>当前下载的 AssetBundles 的列表及其版本信息</li>
+<li>服务器上的 AssetBundles 列表及其版本信息</li>
+</ul>
+<p>修补程序应该下载服务器端 AssetBundles 的列表，并比较 AssetBundle 列表。应该重新下载缺少 AssetBundles 或版本信息已更改的 AssetBundles。还可以编写一个自定义系统来检测对 AssetBundles 的更改。编写自己系统的大多数开发人员都选择使用行业标准的数据格式来存储 AssetBundle 文件列表，例如JSON，以及用一个标准 C# 类来计算校验和，如MD5。Unity 使用确定性方式排序的数据构建 AssetBundles。这允许具有自定义下载器的应用程序实现差分补丁（differential patching）。<br>Unity 不提供用于差分修补的任何内置机制，当使用内置缓存系统时，<code>WWW.LoadFromCacheOrDownload</code> 和 <code>UnityWebRequest</code> 都不会执行差异修补。如果需要进行差分修补，则必须写入自定义下载器。</p>
+<blockquote>
+<p>原文链接：</p>
+<ol>
+<li><a href="https://docs.unity3d.com/Manual/AssetBundles-Manager.html">AssetBundle Manager</a></li>
+<li><a href="https://docs.unity3d.com/Manual/AssetBundles-Patching.html">Patching with AssetBundles</a></li>
+</ol>
+</blockquote>
+<hr>
+<h3 id="同系列文章"><a href="#同系列文章" class="headerlink" title="同系列文章"></a>同系列文章</h3><p><strong>同系列文章</strong></p>
+<p><a href="http://davidsheh.github.io/2017/07/14/%E3%80%8C%E7%BF%BB%E8%AF%91%E3%80%8DUnity%E4%B8%AD%E7%9A%84AssetBundle%E8%AF%A6%E8%A7%A3%EF%BC%88%E4%B8%80%EF%BC%89/">「翻译」Unity中的AssetBundle详解（一）</a></p>
+<p><a href="http://davidsheh.github.io/2017/08/13/%E3%80%8C%E7%BF%BB%E8%AF%91%E3%80%8DUnity%E4%B8%AD%E7%9A%84AssetBundle%E8%AF%A6%E8%A7%A3%EF%BC%88%E4%BA%8C%EF%BC%89/">「翻译」Unity中的AssetBundle详解（二）</a></p>
+<p><a href="http://davidsheh.github.io/2017/08/21/%E3%80%8C%E7%BF%BB%E8%AF%91%E3%80%8DUnity%E4%B8%AD%E7%9A%84AssetBundle%E8%AF%A6%E8%A7%A3%EF%BC%88%E4%B8%89%EF%BC%89/">「翻译」Unity中的AssetBundle详解（三）</a></p>
+<p><a href="http://davidsheh.github.io/2017/09/17/%E3%80%8C%E7%BF%BB%E8%AF%91%E3%80%8DUnity%E4%B8%AD%E7%9A%84AssetBundle%E8%AF%A6%E8%A7%A3%EF%BC%88%E5%9B%9B%EF%BC%89/">「翻译」Unity中的AssetBundle详解（四）</a> </p>
+<p><a href="http://davidsheh.github.io/2017/09/23/%E3%80%8C%E7%BF%BB%E8%AF%91%E3%80%8DUnity%E4%B8%AD%E7%9A%84AssetBundle%E8%AF%A6%E8%A7%A3%EF%BC%88%E4%BA%94%EF%BC%89/">「翻译」Unity中的AssetBundle详解（五）</a> </p>
+]]></content>
+      <categories>
+        <category>技术翻译</category>
+      </categories>
+      <tags>
+        <tag>Unity3D</tag>
+        <tag>AssetBundle</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>「翻译」Unity中的AssetBundle详解（六）</title>
     <url>/2017/09/24/%E3%80%8C%E7%BF%BB%E8%AF%91%E3%80%8DUnity%E4%B8%AD%E7%9A%84AssetBundle%E8%AF%A6%E8%A7%A3%EF%BC%88%E5%85%AD%EF%BC%89/</url>
     <content><![CDATA[<h2 id="故障排除"><a href="#故障排除" class="headerlink" title="故障排除"></a>故障排除</h2><p>本节介绍通常在使用 AssetBundles 的项目中出现的几个问题。</p>
@@ -1412,54 +1460,6 @@
 <p><a href="http://davidsheh.github.io/2017/09/17/%E3%80%8C%E7%BF%BB%E8%AF%91%E3%80%8DUnity%E4%B8%AD%E7%9A%84AssetBundle%E8%AF%A6%E8%A7%A3%EF%BC%88%E5%9B%9B%EF%BC%89/">「翻译」Unity中的AssetBundle详解（四）</a> </p>
 <p><a href="http://davidsheh.github.io/2017/09/23/%E3%80%8C%E7%BF%BB%E8%AF%91%E3%80%8DUnity%E4%B8%AD%E7%9A%84AssetBundle%E8%AF%A6%E8%A7%A3%EF%BC%88%E4%BA%94%EF%BC%89/">「翻译」Unity中的AssetBundle详解（五）</a> </p>
 <p><a href="http://davidsheh.github.io/2017/09/24/%E3%80%8C%E7%BF%BB%E8%AF%91%E3%80%8DUnity%E4%B8%AD%E7%9A%84AssetBundle%E8%AF%A6%E8%A7%A3%EF%BC%88%E5%85%AD%EF%BC%89/">「翻译」Unity中的AssetBundle详解（六）</a></p>
-]]></content>
-      <categories>
-        <category>技术翻译</category>
-      </categories>
-      <tags>
-        <tag>Unity3D</tag>
-        <tag>AssetBundle</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>「翻译」Unity中的AssetBundle详解（五）</title>
-    <url>/2017/09/23/%E3%80%8C%E7%BF%BB%E8%AF%91%E3%80%8DUnity%E4%B8%AD%E7%9A%84AssetBundle%E8%AF%A6%E8%A7%A3%EF%BC%88%E4%BA%94%EF%BC%89/</url>
-    <content><![CDATA[<h2 id="AssetBundle-管理器"><a href="#AssetBundle-管理器" class="headerlink" title="AssetBundle 管理器"></a>AssetBundle 管理器</h2><p>AssetBundle Manager 可以在<a href="https://www.assetstore.unity3d.com/en/#!/content/45836">这里</a>下载，是由 Unity 制作的一种工具，可以使 AssetBundles 更加精简。下载和导入 AssetBundle Manager 软件包不仅添加了一个新的API调用来加载和使用AssetBundles，而且还添加了一些编辑器功能来简化工作流。此功能可以在“资产”菜单选项下找到。此新部分将包含以下选项：</p>
-<h3 id="模拟模式"><a href="#模拟模式" class="headerlink" title="模拟模式"></a>模拟模式</h3><p>启用模拟模式允许 AssetBundle Manager 使用 AssetBundles，但不需要实际构建捆绑包。编辑器会看到 Assets 已分配给 AssetBundles，并直接使用 Assets ，而不是实际上从 AssetBundle 中提取 Assets。<br>使用模拟模式的主要优点是 Assets 可以被修改、更新、添加和删除，而不需要每次重新构建和部署AssetBundles。值得注意的是，AssetBundle 变体不适用于模拟模式。如果你需要使用变体，则你需要使用本地 AssetBundle 服务器。</p>
-<h3 id="本地-AssetBundle-服务器"><a href="#本地-AssetBundle-服务器" class="headerlink" title="本地 AssetBundle 服务器"></a>本地 AssetBundle 服务器</h3><p>AssetBundle Manager 还可以启动一个本地 AssetBundle 服务器，该服务器可用于在编辑器或本地构建（包括移动端）中测试 AssetBundles。获取本地 AssetBundle 服务器工作的规定是必须在项目的根目录中创建一个名为AssetBundles的文件夹，该文件夹与 Assets 文件夹的级别相同。如下图：<br><img src="https://docs.unity3d.com/uploads/Main/AssetBundles-Manager-4.png"></p>
-<p>创建文件夹后，你需要将 AssetBundles 构建到此文件夹。为此，请从新菜单选项中选择Build AssetBundles。这将为你构建它们到该目录。现在你已经建立了 AssetBundles（或已经决定使用模拟模式），并准备开始加载 AssetBundles。我们来看看 AssetBundle Manager 对我们提供的新的API调用。</p>
-<h4 id="AssetBundleManager-Initialize"><a href="#AssetBundleManager-Initialize" class="headerlink" title="AssetBundleManager.Initialize()"></a>AssetBundleManager.Initialize()</h4><p>此函数加载 AssetBundleManifest 对象。在使用 AssetBundle Manager 开始加载资产之前，你需要调用它。在一个非常简单的例子中，初始化 AssetBundle Manager 可能如下所示：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">IEnumerator Start()</span><br><span class="line">&#123;</span><br><span class="line">    yield return StartCoroutine(Initialize());</span><br><span class="line">&#125;</span><br><span class="line">IEnumerator Initialize()</span><br><span class="line">&#123;</span><br><span class="line">    var request &#x3D; AssetBundleManager.Initialize();</span><br><span class="line">    if (request !&#x3D; null)</span><br><span class="line">        yield return StartCoroutine(request);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>AssetBundle Manager 使用你在 Initialize() 期间加载的清单来帮助幕后的许多功能，包括依赖关系管理。</p>
-<h4 id="Loading-Assets"><a href="#Loading-Assets" class="headerlink" title="Loading Assets"></a>Loading Assets</h4><p>你正在使用 AssetBundle Manager，你已初始化它，现在你可以加载某些资产。我们来看看如何加载 AssetBundle 并从该 Bundle 中实例化一个对象：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">IEnumerator InstantiateGameObjectAsync (string assetBundleName, string assetName)</span><br><span class="line">&#123;</span><br><span class="line">    &#x2F;&#x2F; Load asset from assetBundle.</span><br><span class="line">    AssetBundleLoadAssetOperation request &#x3D; AssetBundleManager.LoadAssetAsync(assetBundleName, assetName, typeof(GameObject));</span><br><span class="line">    if (request &#x3D;&#x3D; null)</span><br><span class="line">        yield break;</span><br><span class="line">    yield return StartCoroutine(request);</span><br><span class="line">    &#x2F;&#x2F; Get the asset.</span><br><span class="line">    GameObject prefab &#x3D; request.GetAsset&lt;GameObject&gt; ();</span><br><span class="line">    if (prefab !&#x3D; null)</span><br><span class="line">        GameObject.Instantiate(prefab);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>AssetBundle Manager 会异步执行所有的加载操作，因此它返回一个加载操作请求，它在调用 <code>yield return StartCoroutine（request）</code>时加载 Bundle;接着我们需要做的是调用<code>GetAsset&lt;T&gt;()</code> 从 AssetBundle 加载游戏对象。</p>
-<h4 id="Loading-Scenes"><a href="#Loading-Scenes" class="headerlink" title="Loading Scenes"></a>Loading Scenes</h4><p>如果你有一个 AssetBundle 名称分配给场景，并且你需要加载该场景，则需要遵循稍微不同的代码路径。模式是相同的，但有微小的差异。以下是从AssetBundle加载场景的方法：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">IEnumerator InitializeLevelAsync (string levelName, bool isAdditive)</span><br><span class="line">&#123;</span><br><span class="line">    &#x2F;&#x2F; Load level from assetBundle.</span><br><span class="line">    AssetBundleLoadOperation request &#x3D; AssetBundleManager.LoadLevelAsync(sceneAssetBundle, levelName, isAdditive);</span><br><span class="line">    if (request &#x3D;&#x3D; null)</span><br><span class="line">        yield break;</span><br><span class="line">    yield return StartCoroutine(request);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>正如你所看到的，加载场景也是一个异步的，LoadLevelAsync返回一个加载操作请求，需要传递给一个StartCoroutine 才能加载场景。</p>
-<h4 id="Load-Variants"><a href="#Load-Variants" class="headerlink" title="Load Variants"></a>Load Variants</h4><p>使用 AssetBundle Manager 加载变量实际上并不会改变在场景或资产中加载的代码。所有需要完成的操作都是设置 AssetBundleManager 的 ActiveVariants 属性。ActiveVariants 属性是一个字符串数组。只需构建一个字符串数组，其中包含在将它们分配给资产时创建的变体名称。以下是如何使用 hd 变体加载场景 AssetBundle。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">IEnumerator InitializeLevelAsync (string levelName, bool isAdditive, string[] variants)</span><br><span class="line">&#123;</span><br><span class="line">    &#x2F;&#x2F;Set the activeVariants.</span><br><span class="line">    AssetBundleManager.ActiveVariants &#x3D; variants;</span><br><span class="line">    &#x2F;&#x2F; Load level from assetBundle.</span><br><span class="line">    AssetBundleLoadOperation request &#x3D; AssetBundleManager.LoadLevelAsync(variantSceneAssetBundle, levelName, isAdditive);</span><br><span class="line">    if (request &#x3D;&#x3D; null)</span><br><span class="line">        yield break;</span><br><span class="line">    yield return StartCoroutine(request);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>在代码中的其他地方构建的字符串数组（可能是从按钮点击或其他一些情况）中传递的地方。如果可用，则将加载与设置的活动变体相匹配的 Bundles。</p>
-<h2 id="使用-AssetBundles-进行修补"><a href="#使用-AssetBundles-进行修补" class="headerlink" title="使用 AssetBundles 进行修补"></a>使用 AssetBundles 进行修补</h2><p>修补 AssetBundles 与下载新的 AssetBundle 并替换已存在的 AssetBundle 一样简单。如果使用<code>WWW.LoadFromCacheOrDownload</code> 或 <code>UnityWebRequest</code> 来管理应用程序的缓存AssetBundles，则将不同的版本参数传递到所选的 API 将触发下载新的 AssetBundles。补丁系统中更难解决的问题是检测哪个 AssetBundles 需要被替换。补丁系统需要两个信息列表：</p>
-<ul>
-<li>当前下载的 AssetBundles 的列表及其版本信息</li>
-<li>服务器上的 AssetBundles 列表及其版本信息</li>
-</ul>
-<p>修补程序应该下载服务器端 AssetBundles 的列表，并比较 AssetBundle 列表。应该重新下载缺少 AssetBundles 或版本信息已更改的 AssetBundles。还可以编写一个自定义系统来检测对 AssetBundles 的更改。编写自己系统的大多数开发人员都选择使用行业标准的数据格式来存储 AssetBundle 文件列表，例如JSON，以及用一个标准 C# 类来计算校验和，如MD5。Unity 使用确定性方式排序的数据构建 AssetBundles。这允许具有自定义下载器的应用程序实现差分补丁（differential patching）。<br>Unity 不提供用于差分修补的任何内置机制，当使用内置缓存系统时，<code>WWW.LoadFromCacheOrDownload</code> 和 <code>UnityWebRequest</code> 都不会执行差异修补。如果需要进行差分修补，则必须写入自定义下载器。</p>
-<blockquote>
-<p>原文链接：</p>
-<ol>
-<li><a href="https://docs.unity3d.com/Manual/AssetBundles-Manager.html">AssetBundle Manager</a></li>
-<li><a href="https://docs.unity3d.com/Manual/AssetBundles-Patching.html">Patching with AssetBundles</a></li>
-</ol>
-</blockquote>
-<hr>
-<h3 id="同系列文章"><a href="#同系列文章" class="headerlink" title="同系列文章"></a>同系列文章</h3><p><strong>同系列文章</strong></p>
-<p><a href="http://davidsheh.github.io/2017/07/14/%E3%80%8C%E7%BF%BB%E8%AF%91%E3%80%8DUnity%E4%B8%AD%E7%9A%84AssetBundle%E8%AF%A6%E8%A7%A3%EF%BC%88%E4%B8%80%EF%BC%89/">「翻译」Unity中的AssetBundle详解（一）</a></p>
-<p><a href="http://davidsheh.github.io/2017/08/13/%E3%80%8C%E7%BF%BB%E8%AF%91%E3%80%8DUnity%E4%B8%AD%E7%9A%84AssetBundle%E8%AF%A6%E8%A7%A3%EF%BC%88%E4%BA%8C%EF%BC%89/">「翻译」Unity中的AssetBundle详解（二）</a></p>
-<p><a href="http://davidsheh.github.io/2017/08/21/%E3%80%8C%E7%BF%BB%E8%AF%91%E3%80%8DUnity%E4%B8%AD%E7%9A%84AssetBundle%E8%AF%A6%E8%A7%A3%EF%BC%88%E4%B8%89%EF%BC%89/">「翻译」Unity中的AssetBundle详解（三）</a></p>
-<p><a href="http://davidsheh.github.io/2017/09/17/%E3%80%8C%E7%BF%BB%E8%AF%91%E3%80%8DUnity%E4%B8%AD%E7%9A%84AssetBundle%E8%AF%A6%E8%A7%A3%EF%BC%88%E5%9B%9B%EF%BC%89/">「翻译」Unity中的AssetBundle详解（四）</a> </p>
-<p><a href="http://davidsheh.github.io/2017/09/23/%E3%80%8C%E7%BF%BB%E8%AF%91%E3%80%8DUnity%E4%B8%AD%E7%9A%84AssetBundle%E8%AF%A6%E8%A7%A3%EF%BC%88%E4%BA%94%EF%BC%89/">「翻译」Unity中的AssetBundle详解（五）</a> </p>
 ]]></content>
       <categories>
         <category>技术翻译</category>
@@ -2045,15 +2045,14 @@
   <entry>
     <title>「重构：改善代码的既有设计」读书笔记</title>
     <url>/2016/03/03/%E3%80%8C%E9%87%8D%E6%9E%84%EF%BC%9A%E6%94%B9%E5%96%84%E4%BB%A3%E7%A0%81%E7%9A%84%E6%97%A2%E6%9C%89%E8%AE%BE%E8%AE%A1%E3%80%8D%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</url>
-    <content><![CDATA[<h3 id="第1章-重构，第一个案例"><a href="#第1章-重构，第一个案例" class="headerlink" title="第1章 重构，第一个案例"></a>第1章 重构，第一个案例</h3><ol>
+    <content><![CDATA[<h2 id="重构的几种情况"><a href="#重构的几种情况" class="headerlink" title="重构的几种情况"></a>重构的几种情况</h2><ol>
 <li>代码块俞小，代码的功能就俞容易管理，代码的处理和移动也就俞轻松。（功能也就越单一）</li>
 <li>任何不会被修改的变量都可以被当成参数传入新的函数，至于会被修改的变量需要慎重。如果只有一个变量会被修改，可以把它当做返回值。</li>
 <li>绝大多数情况下，函数应该放在它所使用的数据的所属对象内。</li>
 <li>最好不要在另一个对象的属性基础上运用switch语句。如果不得不使用，也应该在对象自己的数据上使用，而不是在别人的数据上使用。</li>
 <li>使用继承来适当组织类关系后，可以用多态取代switch语句。</li>
-<li>一部影片可以在生命周期内修改自己的分类，一个对象却不能在生命周期内修改自己所属的类。</li>
 </ol>
-<h3 id="第2章-重构原则"><a href="#第2章-重构原则" class="headerlink" title="第2章 重构原则"></a>第2章 重构原则</h3><ol>
+<h2 id="重构原则"><a href="#重构原则" class="headerlink" title="重构原则"></a>重构原则</h2><ol>
 <li>三次法则：第一次做某件事时只管去做；第二次做类似的事会产生反感，但无论如何还是可以去做；第三次在做类似的是，你就应该重构。事不过三，三则重构。</li>
 <li>在重构中引入间接层的某些价值：<ul>
 <li>允许逻辑共享</li>
@@ -2064,7 +2063,7 @@
 </li>
 <li>封装条件逻辑。对象有一种奇妙的机制：多态消息，可以灵活而清晰地表达条件逻辑。将条件逻辑转化为消息形式，往往能降低代码的重复、增加清晰度并提高弹性。</li>
 </ol>
-<h3 id="第3章-代码的坏味道"><a href="#第3章-代码的坏味道" class="headerlink" title="第3章 代码的坏味道"></a>第3章 代码的坏味道</h3><ol>
+<h2 id="代码的坏味道"><a href="#代码的坏味道" class="headerlink" title="代码的坏味道"></a>代码的坏味道</h2><ol>
 <li>重复代码：设法合二为一<ul>
 <li>同一个类的两个函数还有相同的表达式，这时需要提炼出重复代码。</li>
 <li>两个互为兄弟的子类内含有相同的表达式，可以提炼相同代码，并放到父类中。如果只是代码间相似，并非完全相同，那么可以将相似部分和差异部分拆开，构成单独的函数。然后你可以使用模板方法的设计模式。</li>
@@ -2119,8 +2118,7 @@
 </ul>
 </li>
 </ol>
-<h3 id="第4章-构筑测试体系"><a href="#第4章-构筑测试体系" class="headerlink" title="第4章 构筑测试体系"></a>第4章 构筑测试体系</h3><pre><code>确保所有测试都完全自动化，让他们检查自己的测试结果。</code></pre>
-<h3 id="第5章-重构列表"><a href="#第5章-重构列表" class="headerlink" title="第5章 重构列表"></a>第5章 重构列表</h3><h3 id="第6章-重新组织函数"><a href="#第6章-重新组织函数" class="headerlink" title="第6章 重新组织函数"></a>第6章 重新组织函数</h3><ol>
+<h2 id="重新组织函数"><a href="#重新组织函数" class="headerlink" title="重新组织函数"></a>重新组织函数</h2><ol>
 <li>提炼函数<ul>
 <li>动机：首先，如果每个函数的粒度都很小，那么函数被服用的机会就更大；其次，这回是高层函数读起来就像一系列注释；再次，如果函数都是细粒度，那么函数的覆写也会更容易些。函数的长度不是问题，关键在于函数名称和函数本体之间的语义距离。如果提炼可以强化代码的清晰度，那么就去做，就算函数名称比提炼出来的代码还长也无所谓。</li>
 <li>做法：创造一个新函数，根据这个函数的意图来对它命名（以它“做什么”来命名，而不是以它“怎样做”命名）。</li>
@@ -2134,7 +2132,7 @@
 <li>以函数对象取代函数</li>
 <li>替换算法</li>
 </ol>
-<h3 id="第7章-在对象之间搬移特性"><a href="#第7章-在对象之间搬移特性" class="headerlink" title="第7章 在对象之间搬移特性"></a>第7章 在对象之间搬移特性</h3><ol>
+<h2 id="在对象之间搬移特性"><a href="#在对象之间搬移特性" class="headerlink" title="在对象之间搬移特性"></a>在对象之间搬移特性</h2><ol>
 <li>在对象的设计过程中，“决定把责任放在哪儿”即使不是最重要的事，也是最重要的事之一。</li>
 <li>搬移函数</li>
 <li>搬移字段</li>
@@ -2145,7 +2143,7 @@
 <li>引入外加函数</li>
 <li>引入本地扩展</li>
 </ol>
-<h3 id="第8章-重新组织数据"><a href="#第8章-重新组织数据" class="headerlink" title="第8章 重新组织数据"></a>第8章 重新组织数据</h3><ol>
+<h2 id="重新组织数据"><a href="#重新组织数据" class="headerlink" title="重新组织数据"></a>重新组织数据</h2><ol>
 <li>自封装字段</li>
 <li>以对象取代数据值</li>
 <li>将值对象改为引用对象</li>
@@ -2170,7 +2168,7 @@
 <li>以State/Strategy取代类型码</li>
 <li>以字段取代子类</li>
 </ol>
-<h3 id="第9章-简化条件表达式"><a href="#第9章-简化条件表达式" class="headerlink" title="第9章 简化条件表达式"></a>第9章 简化条件表达式</h3><ol>
+<h2 id="简化条件表达式"><a href="#简化条件表达式" class="headerlink" title="简化条件表达式"></a>简化条件表达式</h2><ol>
 <li>分解条件表达式<blockquote>
 <p>如果条件表达式中的条件太多太长，则可以把条件抽取成一个函数，增加代码可读性。</p>
 </blockquote>
@@ -2192,7 +2190,7 @@
 <li>引入<code>Null</code>对象</li>
 <li>引入断言</li>
 </ol>
-<h3 id="第10章-简化函数调用"><a href="#第10章-简化函数调用" class="headerlink" title="第10章 简化函数调用"></a>第10章 简化函数调用</h3><ol>
+<h2 id="简化函数调用"><a href="#简化函数调用" class="headerlink" title="简化函数调用"></a>简化函数调用</h2><ol>
 <li>函数改名</li>
 <li>添加参数</li>
 <li>移除参数</li>
@@ -2229,7 +2227,7 @@
 <li>以异常取代错误码</li>
 <li>以测试取代异常</li>
 </ol>
-<h3 id="第11章-处理概括关系"><a href="#第11章-处理概括关系" class="headerlink" title="第11章 处理概括关系"></a>第11章 处理概括关系</h3><ol>
+<h2 id="处理概括关系"><a href="#处理概括关系" class="headerlink" title="处理概括关系"></a>处理概括关系</h2><ol>
 <li><p>字段上移</p>
 <ul>
 <li>如果两个子类拥有相同的字段，则将该字段移至超类。</li>
@@ -2263,7 +2261,7 @@
 <li><p>以继承取代委托</p>
 </li>
 </ol>
-<h3 id="第12章-大型重构"><a href="#第12章-大型重构" class="headerlink" title="第12章 大型重构"></a>第12章 大型重构</h3><ol>
+<h2 id="大型重构"><a href="#大型重构" class="headerlink" title="大型重构"></a>大型重构</h2><ol>
 <li>梳理并分解继承体系<ul>
 <li>如果某个继承体系同时承担两项责任，则可以建立两个继承体系，并通过委托关系让其中一个可以调用另一个。</li>
 <li>要指出继承体系是否承担了两项不同的责任并不困难：如果继承体系中的某一特定层级上的所有类，其子类名称都以相同的形容词开始，那么这个体系可能就是承担着两项不同的责任。</li>
@@ -2273,20 +2271,19 @@
 <li>将领域和表述/显示分离<br> 某些GUI类之中包含了领域逻辑，将领域逻辑分离出来，为它们建立独立的领域类。</li>
 <li>提炼继承体系<br> 如果你有某个类做了太多工作，其中一部分工作是以大量条件表达式完成的，那么可以建立继承体系，以一个子类表示一种特殊情况。</li>
 </ol>
-<h3 id="第13章-重构，复用与现实"><a href="#第13章-重构，复用与现实" class="headerlink" title="第13章 重构，复用与现实"></a>第13章 重构，复用与现实</h3><ol>
+<h2 id="重构，复用与现实"><a href="#重构，复用与现实" class="headerlink" title="重构，复用与现实"></a>重构，复用与现实</h2><ol>
 <li>现实的检验</li>
 <li>为什么开发者不愿意重构他们的程序</li>
 <li>再论现实检验</li>
 <li>重构的资源和参考资料</li>
 <li>从重构联想到软件复用和技术传播</li>
 </ol>
-<h3 id="第14章-重构工具"><a href="#第14章-重构工具" class="headerlink" title="第14章 重构工具"></a>第14章 重构工具</h3><ol>
+<h2 id="重构工具"><a href="#重构工具" class="headerlink" title="重构工具"></a>重构工具</h2><ol>
 <li>使用工具进行重构</li>
 <li>重构工具的技术标准</li>
 <li>重构工具的实用标准</li>
 </ol>
-<h3 id="第15章-总结"><a href="#第15章-总结" class="headerlink" title="第15章 总结"></a>第15章 总结</h3><p>###要点列表</p>
-<ol>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ol>
 <li>如果你发现自己需要为程序添加一个特性，而代码结构使你无法很方便地达成目的，那就先重构那个程序，使特性的添加比较容易进行，然后再添加新特性。</li>
 <li>重构前，先检查自己是否有一套可靠的测试机制。这些测试必须有自我检验能力。</li>
 <li>重构技术就是以微小的步伐修改程序。如果你犯下错误，很容易便可发现它。</li>
