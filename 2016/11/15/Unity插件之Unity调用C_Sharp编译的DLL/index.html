@@ -30,21 +30,21 @@
 <meta property="og:site_name" content="Sheh伟伟的博客">
 <meta property="og:description" content="Unity插件分为两种：托管插件（Managed Plugins）和本地插件（Native Plugins）。本文先来说说Unity中的托管插件，本地插件的文章留到下一篇文章再说。 有时候我们会有这样的需求：给第三方公司提供Unity插件，而又不希望第三方看到具体代码，这时就可以将核心代码编译成dll文件供第三方调用。或者说，同一个公司多个项目都用到某个模块，则可以把该模块封装成dll，方便在不同">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/DavidSheh/MarkdownPictures/pictures/unity_csharp_dll_1.jpg">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/DavidSheh/MarkdownPictures/pictures/unity_csharp_dll_2.jpg">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/DavidSheh/MarkdownPictures/pictures/unity_csharp_dll_3.jpg">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/DavidSheh/MarkdownPictures/pictures/unity_csharp_dll_4.jpg">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/DavidSheh/MarkdownPictures/pictures/unity_csharp_dll_5.jpg">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/DavidSheh/MarkdownPictures/pictures/unity_csharp_dll_6.jpg">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/DavidSheh/MarkdownPictures/pictures/unity_csharp_dll_7.jpg">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/DavidSheh/MarkdownPictures/pictures/unity_csharp_dll_8.jpg">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/DavidSheh/BlogPictures/pictures/unity_csharp_dll_1.jpg">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/DavidSheh/BlogPictures/pictures/unity_csharp_dll_2.jpg">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/DavidSheh/BlogPictures/pictures/unity_csharp_dll_3.jpg">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/DavidSheh/BlogPictures/pictures/unity_csharp_dll_4.jpg">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/DavidSheh/BlogPictures/pictures/unity_csharp_dll_5.jpg">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/DavidSheh/BlogPictures/pictures/unity_csharp_dll_6.jpg">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/DavidSheh/BlogPictures/pictures/unity_csharp_dll_7.jpg">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/DavidSheh/BlogPictures/pictures/unity_csharp_dll_8.jpg">
 <meta property="article:published_time" content="2016-11-15T13:58:02.000Z">
-<meta property="article:modified_time" content="2020-10-24T15:44:45.055Z">
+<meta property="article:modified_time" content="2020-10-26T02:48:44.014Z">
 <meta property="article:author" content="Sheh伟伟">
 <meta property="article:tag" content="C#">
 <meta property="article:tag" content="Unity3D">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/DavidSheh/MarkdownPictures/pictures/unity_csharp_dll_1.jpg">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/DavidSheh/BlogPictures/pictures/unity_csharp_dll_1.jpg">
 
 <link rel="canonical" href="http://davidsheh.github.io/2016/11/15/Unity%E6%8F%92%E4%BB%B6%E4%B9%8BUnity%E8%B0%83%E7%94%A8C_Sharp%E7%BC%96%E8%AF%91%E7%9A%84DLL/">
 
@@ -278,21 +278,21 @@
 <p><strong>一、创建DLL</strong></p>
 <hr>
 <p>打开VS，选择文件 -&gt; 新建 -&gt; 项目后打开新建项目对话框。接着操作如下：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/DavidSheh/MarkdownPictures/pictures/unity_csharp_dll_1.jpg" alt="新建项目.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/DavidSheh/BlogPictures/pictures/unity_csharp_dll_1.jpg" alt="新建项目.png"></p>
 <p>点击确定后，编写如下代码：</p>
 <figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">MyLib</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">MyClass</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">string</span> <span class="title">GetBlogName</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;Sheh伟伟的个人博客&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> TimeSpan <span class="title">GetBlogTime</span>(<span class="params">DateTime time</span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            <span class="keyword">return</span> (time - DateTime.Parse(<span class="string">&quot;2016/11/14&quot;</span>));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>然后生成dll文件，操作如下图：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/DavidSheh/MarkdownPictures/pictures/unity_csharp_dll_2.jpg" alt="build.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/DavidSheh/BlogPictures/pictures/unity_csharp_dll_2.jpg" alt="build.png"></p>
 <blockquote>
 <p>提示：也可以用MonoDeveloper创建并生成dll，至于操作步骤可以查看<a target="_blank" rel="noopener" href="https://docs.unity3d.com/Manual/UsingDLL.html">官网手册</a>。</p>
 </blockquote>
 <p><strong>二、导入DLL</strong></p>
 <hr>
 <p>将MyLib项目目录下的bin/Debug目录下的MyLib.dll文件拷贝到Unity项目的Plugins目录下。这时，Unity控制台报Unhandled Exception: System.Reflection.ReflectionTypeLoadException: The classes in the module cannot be loaded的错误，报错详细信息如下：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/DavidSheh/MarkdownPictures/pictures/unity_csharp_dll_3.jpg" alt="error.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/DavidSheh/BlogPictures/pictures/unity_csharp_dll_3.jpg" alt="error.png"></p>
 <p>这是因为我用的Unity版本是5.3.4f1，支持的.NET Framework的版本为3.5。而我创建的MyLib项目的默认.NET Framework 版本为4.5.2。<br>选择项目，然后右键选择属性 -&gt; 应用程序，将目标框架改为 .NET Framework 3.5或以下 ，如下图：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/DavidSheh/MarkdownPictures/pictures/unity_csharp_dll_4.jpg"><br>接着重新生成一下dll文件，重新导入到Unity就行了。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/DavidSheh/BlogPictures/pictures/unity_csharp_dll_4.jpg"><br>接着重新生成一下dll文件，重新导入到Unity就行了。</p>
 <p><strong>三、调用DLL</strong></p>
 <hr>
 <p>在Unity新建一个TestDll的脚本，并挂到主摄像机上，脚本代码如下：</p>
@@ -300,18 +300,18 @@
 <p>注意，调用Dll中的方法一定要使用using语句引入导入到unity中的dll类库。</p>
 <p><strong>四、导入Unity DLL</strong></p>
 <hr>
-<p>怎么导入Unity原生类库呢？别急，接下来就说说怎么在自定义的dll类库中调用Unity中的类。<br>首先选中项目，接着右键选择添加 -&gt; 引用后，弹出引用管理器，如下图：<br><img src="https://cdn.jsdelivr.net/gh/DavidSheh/MarkdownPictures/pictures/unity_csharp_dll_5.jpg" alt="添加引用.png"></p>
+<p>怎么导入Unity原生类库呢？别急，接下来就说说怎么在自定义的dll类库中调用Unity中的类。<br>首先选中项目，接着右键选择添加 -&gt; 引用后，弹出引用管理器，如下图：<br><img src="https://cdn.jsdelivr.net/gh/DavidSheh/BlogPictures/pictures/unity_csharp_dll_5.jpg" alt="添加引用.png"></p>
 <p>在应用管理器界面点击浏览按钮，找到UnityEngine.dll文件点击确认按钮导入，如下图所示：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/DavidSheh/MarkdownPictures/pictures/unity_csharp_dll_6.jpg" alt="引用管理器.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/DavidSheh/BlogPictures/pictures/unity_csharp_dll_6.jpg" alt="引用管理器.png"></p>
 <blockquote>
 <p>Unity类库在Mac上的路径为<code>Applications/Unity.app/Contents/Frameworks/Managed/UnityEngine.dll</code>；在Windows上的路径为<code>Program Files\Unity\Editor\Data\Managed\UnityEngine.dll</code>。</p>
 </blockquote>
-<p>接着，将项目中无用的类库都移除掉，只保留用到的System和UnityEngine两个类库，如下图：<br><img src="https://cdn.jsdelivr.net/gh/DavidSheh/MarkdownPictures/pictures/unity_csharp_dll_7.jpg" alt="引用.png"></p>
+<p>接着，将项目中无用的类库都移除掉，只保留用到的System和UnityEngine两个类库，如下图：<br><img src="https://cdn.jsdelivr.net/gh/DavidSheh/BlogPictures/pictures/unity_csharp_dll_7.jpg" alt="引用.png"></p>
 <p>然后，修改MyClass脚本，代码如下：</p>
 <figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"><span class="keyword">using</span> UnityEngine;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">MyLib</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">MyClass</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">string</span> <span class="title">GetBlogName</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;Sheh伟伟的个人博客&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> TimeSpan <span class="title">GetBlogTime</span>(<span class="params">DateTime time</span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            <span class="keyword">return</span> (time - DateTime.Parse(<span class="string">&quot;2016/11/13&quot;</span>));</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">CreateCube</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            GameObject go = GameObject.CreatePrimitive(PrimitiveType.Cube);</span><br><span class="line">            <span class="keyword">int</span> random = UnityEngine.Random.Range(<span class="number">-5</span>, <span class="number">5</span>);</span><br><span class="line">            go.transform.position = <span class="keyword">new</span> Vector3(random, random, <span class="number">0</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>代码编写完成后，重新生成一下dll，然后导入到Unity中，接着修改Unity脚本TesDll，具体代码如下：</p>
 <figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> UnityEngine;</span><br><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"><span class="keyword">using</span> MyLib;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">TestDll</span> : <span class="title">MonoBehaviour</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">string</span> blogUrl = <span class="string">&quot;https://davidsheh.github.io/&quot;</span>;</span><br><span class="line">    <span class="keyword">string</span> myBlog;</span><br><span class="line">    <span class="keyword">double</span> time;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Start</span> (<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        myBlog = <span class="keyword">string</span>.Format(<span class="string">&quot;&#123;0&#125;:&#123;1&#125;&quot;</span>, MyClass.GetBlogName(), blogUrl);</span><br><span class="line">        Debug.Log(myBlog);</span><br><span class="line"></span><br><span class="line">        TimeSpan span = MyClass.GetBlogTime(DateTime.Now);</span><br><span class="line">        time = span.TotalDays;</span><br><span class="line">        Debug.Log(<span class="string">&quot;写这篇博客到现在的时间间隔：&quot;</span> + time);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">OnGUI</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        GUILayout.Label(myBlog);</span><br><span class="line">        GUILayout.Label(time.ToString());</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(GUILayout.Button(<span class="string">&quot;Create Cube&quot;</span>))</span><br><span class="line">        &#123;</span><br><span class="line">            MyClass.CreateCube();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>运行后的效果图如下：<br><img src="https://cdn.jsdelivr.net/gh/DavidSheh/MarkdownPictures/pictures/unity_csharp_dll_8.jpg" alt="效果图.png"></p>
+<p>运行后的效果图如下：<br><img src="https://cdn.jsdelivr.net/gh/DavidSheh/BlogPictures/pictures/unity_csharp_dll_8.jpg" alt="效果图.png"></p>
 <blockquote>
 <p>源代码放在了群共享中，想要源码的可以加群：253999688</p>
 </blockquote>
