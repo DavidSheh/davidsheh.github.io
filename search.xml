@@ -1,27 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Android Studio连接真机没反应</title>
-    <url>/2016/03/10/Android%20Studio%E8%BF%9E%E6%8E%A5%E7%9C%9F%E6%9C%BA%E6%B2%A1%E5%8F%8D%E5%BA%94/</url>
-    <content><![CDATA[<p>刚好遇到这个问题，在网上百度了一下，看到有人分享了引起该问题的几个原因：</p>
-<ol>
-<li>手机设置问题。开USB调试 方法： 手机设置 - 开发人员选项 - USB调试 - 勾选</li>
-<li>数据线问题。 有的数据线只能用来充电，有的可以连接存储。识别方法很简单。。插上机器有USB存储设备的提示的就可以用。另外数据线如果都露线皮了。。就赶紧扔了。十块八块的总比你为这个破问题纠结一下午的好。</li>
-<li>是否下载了对应手机版本的SDK，以Android Studio为例，点开 SDK Manager 之后。看你手机所使用的系统版本号对应的SDK是否已下载。。没有就赶紧下。。手机对应的Android版本查看方法是 手机设置 - 关于手机 - Android 版本。<br>（链接：<a href="http://www.mamicode.com/info-detail-471776.html%EF%BC%89">http://www.mamicode.com/info-detail-471776.html）</a><br>我将上面的三个原因都排除后，仍然连不上。后来发现手机驱动安装失败了，我的手机是MX4 Pro，看到好多人都有这个问题也没看到好的解决办法。我突然想起以前在学校的时候用的豌豆荚，可以帮助手机安装驱动，就下了一个豌豆荚，连上手机后自动安装好了驱动，我看到驱动安装成功，也连上豌豆荚了。然后关闭豌豆荚，重启了AS，居然一切正常了。这个问题困扰了几个小时了，希望这个回到能帮到遇到此问题的人。</li>
-</ol>
-<blockquote>
-<p>PS：本文最先发表于知乎（链接：<a href="https://www.zhihu.com/question/30588024/answer/70352952?group_id=691021647997583360#comment-123524275%EF%BC%89%EF%BC%8C%E5%90%8E%E6%9D%A5%E6%9C%89%E7%9F%A5%E5%8F%8B%E5%BB%BA%E8%AE%AE%E5%8F%91%E8%A1%A8%E5%88%B0%E5%8D%9A%E5%AE%A2%E4%B8%8A%EF%BC%8C%E8%BF%99%E6%A0%B7%E8%83%BD%E5%B8%AE%E5%8A%A9%E6%9B%B4%E5%A4%9A%E4%BA%BA%E3%80%82%E5%90%8C%E6%97%B6%EF%BC%8C%E4%B9%9F%E5%8F%91%E7%8E%B0%E5%BE%88%E5%A4%9A%E5%88%9A%E7%94%A8Android">https://www.zhihu.com/question/30588024/answer/70352952?group_id=691021647997583360#comment-123524275），后来有知友建议发表到博客上，这样能帮助更多人。同时，也发现很多刚用Android</a> Studio的朋友或者刚学Android的朋友都有遇到这样的问题。所以，决定将这个问题的解决办法发到博客来，希望能帮到更多的人。</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>开发工具</category>
-      </categories>
-      <tags>
-        <tag>Android</tag>
-        <tag>Android Studio</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>C#命名规则和编码规范</title>
     <url>/2016/03/10/C_Sharp%E5%91%BD%E5%90%8D%E8%A7%84%E5%88%99%E5%92%8C%E7%BC%96%E7%A0%81%E8%A7%84%E8%8C%83/</url>
     <content><![CDATA[<h3 id="1-用Pascal规则来命名属性、方法、事件和类名"><a href="#1-用Pascal规则来命名属性、方法、事件和类名" class="headerlink" title="1. 用Pascal规则来命名属性、方法、事件和类名"></a>1. 用Pascal规则来命名属性、方法、事件和类名</h3><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">HelloWorld</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">SayHello</span>(<span class="params"><span class="keyword">string</span> name</span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -270,29 +249,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Unity3D安卓出包报错</title>
-    <url>/2016/08/23/Unity3D%E5%AE%89%E5%8D%93%E5%87%BA%E5%8C%85%E6%8A%A5%E9%94%99/</url>
-    <content><![CDATA[<p>今天又遇到了在安卓出包时，直接报错了两个错误，报错信息分别如下：</p>
-<p>Installation failed with the following output:<br>    pkg: /data/local/tmp/Package.apk</p>
-<p>UnityException: Unable to install APK!<br>Installation failed. See the Console for details.</p>
-<p>两个错误信息的详细描述如下：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Installation failed with the following output:</span><br><span class="line">    pkg: &#x2F;data&#x2F;local&#x2F;tmp&#x2F;Package.apk</span><br><span class="line"></span><br><span class="line">Failure [INSTALL_FAILED_PERMISSION_MODEL_DOWNGRADE]</span><br><span class="line"></span><br><span class="line">5194 KB&#x2F;s (24217926 bytes in 4.553s)</span><br><span class="line"></span><br><span class="line">UnityEditor.HostView:OnGUI()</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">UnityException: Unable to install APK!</span><br><span class="line">Installation failed. See the Console for details.</span><br><span class="line">UnityEditor.Android.PostProcessAndroidPlayer.ShowErrDlgAndThrow (System.String title, System.String message, System.Exception ex)</span><br><span class="line">UnityEditor.Android.PostProcessAndroidPlayer.ShowErrDlgAndThrow (System.String title, System.String message)</span><br><span class="line">UnityEditor.Android.PostProcessAndroidPlayer.UploadAndStartPlayer (System.String manifestName, System.String stagingArea, UnityEditor.Android.AndroidDevice device, System.String packageName, Boolean developmentPlayer, Boolean retryUpload)</span><br><span class="line">UnityEditor.Android.PostProcessAndroidPlayer.PostProcessInternal (System.String stagingAreaData, System.String stagingArea, System.String playerPackage, System.String installPath, System.String companyName, System.String productName, BuildOptions options, UnityEditor.RuntimeClassRegistry usedClassRegistry)</span><br><span class="line">UnityEditor.Android.PostProcessAndroidPlayer.PostProcess (BuildTarget target, System.String stagingAreaData, System.String stagingArea, System.String playerPackage, System.String installPath, System.String companyName, System.String productName, BuildOptions options, UnityEditor.RuntimeClassRegistry usedClassRegistry)</span><br><span class="line">UnityEditor.Android.AndroidBuildPostprocessor.PostProcess (BuildPostProcessArgs args)</span><br><span class="line">UnityEditor.PostprocessBuildPlayer.Postprocess (BuildTarget target, System.String installPath, System.String companyName, System.String productName, Int32 width, Int32 height, System.String downloadWebplayerUrl, System.String manualDownloadWebplayerUrl, BuildOptions options, UnityEditor.RuntimeClassRegistry usedClassRegistry) (at C:&#x2F;buildslave&#x2F;unity&#x2F;build&#x2F;Editor&#x2F;Mono&#x2F;BuildPipeline&#x2F;PostprocessBuildPlayer.cs:316)</span><br><span class="line">UnityEditor.HostView:OnGUI()</span><br></pre></td></tr></table></figure>
-
-<p>安卓出包时出现这个bug的原因，是因为当前项目的包名和手机上已安装的某个app包名相同，导致了冲突。解决办法就是直接将手机上导致冲突的app直接卸载掉就OK了。<br>这个bug已经遇到过多次了，是因为我在真机测试时装了一个测试程序，然后过了一段时间后，PlayerSettings中的某些设置被改变了，没有删除安装的测试包，就直接<code>Build And Run</code>，然后就报上述的错误了。<br>把这个Bug在博客里记录一下，加深点印象，顺便分享出去，希望能帮到遇到同样问题的朋友。</p>
-<blockquote>
-<p>如果本文有错误之处还请帮忙指出。</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>技术笔记</category>
-      </categories>
-      <tags>
-        <tag>Unity3D</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Unity3D集成腾讯语音GVoiceSDK</title>
     <url>/2017/05/27/Unity3D%E9%9B%86%E6%88%90%E8%85%BE%E8%AE%AF%E8%AF%AD%E9%9F%B3GVoiceSDK/</url>
     <content><![CDATA[<blockquote>
@@ -386,8 +342,8 @@
         <category>技术笔记</category>
       </categories>
       <tags>
-        <tag>C#</tag>
         <tag>Unity3D</tag>
+        <tag>C#</tag>
       </tags>
   </entry>
   <entry>
@@ -458,38 +414,6 @@
       </categories>
       <tags>
         <tag>Unity3D</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2015/05/27/hello-world/</url>
-    <content><![CDATA[<h1 id="欢迎来到Sheh伟伟的个人博客！"><a href="#欢迎来到Sheh伟伟的个人博客！" class="headerlink" title="欢迎来到Sheh伟伟的个人博客！"></a>欢迎来到Sheh伟伟的个人博客！</h1><hr>
-<p>一直想折腾一个自己的博客，用来记录工作中学习到的点点滴滴。今天终于选定了一款博客主题——yilia，并成功发布了。</p>
-<p>本博客采用的是<a href="http://hexo.io/">Hexo</a>——一个开源的静态博客生成器。感谢Hexo的作者tommy351。采用的主题是<a href="https://github.com/litten/hexo-theme-yilia">yilia</a>，感谢yilia的作者litten。</p>
-<p>从上周六就开始倒腾这个博客了，期间遇到各种问题，差点半途放弃了，最后还是查资料，请教成功发布个人博客的人，把所有问题都解决了。其中，遇到最坑爹的一个问题是接入多说评论系统。搞不懂，为什么多说主页上不说明白点，搞得我走了好多弯路。一开始以为用QQ登录多说就可以了，最后才发现要点击多说主页的<strong>我要安装</strong>按钮注册多说才行。为什么是<strong>我要安装</strong>而不是<strong>我要注册</strong>呢？</p>
-<a id="more"></a>
-<blockquote>
-<p>为什么要话这么多时间精力倒腾这个博客呢？</p>
-</blockquote>
-<blockquote>
-<ul>
-<li>记录学习笔记，分享学习心得</li>
-<li>宣传自己的一个小平台，认识一些志同道合的朋友</li>
-<li>好像很酷的样子，可以装X</li>
-<li>还有…也许的也许呢…</li>
-</ul>
-</blockquote>
-<p>好了，开篇就写这么多吧，博客开通第一天，留个纪念。以后会都抽时间写点技术笔记。</p>
-<blockquote>
-<p><strong>ps:</strong><br>我是程序猿一枚，开篇的文章名字就取<strong>Hello World</strong>吧，哈哈。。。</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>技术笔记</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
-        <tag>yilia</tag>
       </tags>
   </entry>
   <entry>
@@ -1629,8 +1553,8 @@
         <category>开发工具</category>
       </categories>
       <tags>
-        <tag>GitHub</tag>
         <tag>Unity3D</tag>
+        <tag>GitHub</tag>
       </tags>
   </entry>
   <entry>
