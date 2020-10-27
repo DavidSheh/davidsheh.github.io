@@ -2,13 +2,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://davidsheh.github.io/C_Sharp%E5%91%BD%E5%90%8D%E8%A7%84%E5%88%99%E5%92%8C%E7%BC%96%E7%A0%81%E8%A7%84%E8%8C%83/</loc>
-    
-    <lastmod>2020-10-27</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://davidsheh.github.io/Git%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/</loc>
     
     <lastmod>2020-10-27</lastmod>
@@ -276,6 +269,13 @@
   
   <url>
     <loc>http://davidsheh.github.io/tags/index.html</loc>
+    
+    <lastmod>2020-10-27</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://davidsheh.github.io/C_Sharp%E5%91%BD%E5%90%8D%E8%A7%84%E5%88%99%E5%92%8C%E7%BC%96%E7%A0%81%E8%A7%84%E8%8C%83/</loc>
     
     <lastmod>2020-10-27</lastmod>
     
