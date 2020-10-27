@@ -504,6 +504,33 @@
       </tags>
   </entry>
   <entry>
+    <title>Jenkins 使用备忘</title>
+    <url>/jenkins-usage/</url>
+    <content><![CDATA[<h2 id="安装-Jenkins"><a href="#安装-Jenkins" class="headerlink" title="安装 Jenkins"></a>安装 Jenkins</h2><p>使用 Homebrew 安装Jenkins。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">brew install jenkins</span><br></pre></td></tr></table></figure>
+
+<h2 id="启动-Jenkins"><a href="#启动-Jenkins" class="headerlink" title="启动 Jenkins"></a>启动 Jenkins</h2><p>直接在终端输入如下命令启动</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">jenkins</span><br></pre></td></tr></table></figure>
+<p>当终端输出的日志最后显示如下所示，表示启动成功。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">信息:</span><br><span class="line"></span><br><span class="line">*************************************************************</span><br><span class="line">*************************************************************</span><br><span class="line">*************************************************************</span><br><span class="line"></span><br><span class="line">Jenkins initial setup is required. An admin user has been created and a password generated.</span><br><span class="line">Please use the following password to proceed to installation:</span><br><span class="line"></span><br><span class="line">8c3545925a714342acb94cdad830fcdc</span><br><span class="line"></span><br><span class="line">This may also be found at: &#x2F;Users&#x2F;davidsheh&#x2F;.jenkins&#x2F;secrets&#x2F;initialAdminPassword</span><br><span class="line"></span><br><span class="line">*************************************************************</span><br><span class="line">*************************************************************</span><br><span class="line">*************************************************************</span><br><span class="line">信息: Jenkins is fully up and running</span><br></pre></td></tr></table></figure>
+<p>这里只拷贝了部分日志，注意<code>*</code>号之间的内容里包含一个默认的密码，下面会用到。</p>
+<h2 id="进入-Jenkins"><a href="#进入-Jenkins" class="headerlink" title="进入 Jenkins"></a>进入 Jenkins</h2><p>当启动 Jenkins 后，打开浏览器，在地址栏输入 <code>localhost:8080</code> 后进入 Jenkins 图形界面。然后在 <code>Administrator password</code> 输入终端打印的那个密码。</p>
+<h2 id="安装插件"><a href="#安装插件" class="headerlink" title="安装插件"></a>安装插件</h2><p>如果遇到插件列表无法安装或更新，可以进入到<br>Jenkins -&gt; Manage Jenkins -&gt; Configure Global Security 管理页面，找到 <code>Plugin Manager</code> 选项下的 <code>Use browser for metadata download</code> 并勾选。</p>
+<h2 id="安装插件-1"><a href="#安装插件-1" class="headerlink" title="安装插件"></a>安装插件</h2><p>如果遇到插件列表无法安装或更新，可以进入到<br>Jenkins -&gt; Manage Jenkins -&gt; Configure System 管理页面，找到 <code>Locale</code> 选项，在输入框中输入 <code>zh_CN</code> ，并勾选 <code>Ignore browser preference and force this language to all users</code>。</p>
+<h2 id="停止-Jenkins"><a href="#停止-Jenkins" class="headerlink" title="停止 Jenkins"></a>停止 Jenkins</h2><p>进入终端，使用快捷键 <code>Ctrl + C</code> 可以停止 Jenkins。</p>
+<h2 id="FAQ"><a href="#FAQ" class="headerlink" title="FAQ"></a>FAQ</h2><h3 id="启动-Jenkins-时有警告出现，警告信息如下："><a href="#启动-Jenkins-时有警告出现，警告信息如下：" class="headerlink" title="启动 Jenkins 时有警告出现，警告信息如下："></a>启动 Jenkins 时有警告出现，警告信息如下：</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">三月 11, 2018 8:43:57 下午 hudson.model.AsyncPeriodicWork$1 run</span><br><span class="line">信息: Finished Download metadata. 20,269 ms</span><br><span class="line">三月 11, 2018 8:43:58 下午 hudson.model.UpdateCenter updateDefaultSite</span><br><span class="line">警告: Upgrading Jenkins. Failed to update the default Update Site &#39;default&#39;. Plugin upgrades may fail.</span><br><span class="line">java.net.SocketTimeoutException: connect timed out</span><br><span class="line">    at java.net.PlainSocketImpl.socketConnect(Native Method)</span><br><span class="line">    at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)</span><br><span class="line">    at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)</span><br><span class="line">    at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)</span><br><span class="line">    at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)</span><br><span class="line">    at java.net.Socket.connect(Socket.java:589)</span><br><span class="line">    at sun.security.ssl.SSLSocketImpl.connect(SSLSocketImpl.java:668)</span><br><span class="line">    at sun.net.NetworkClient.doConnect(NetworkClient.java:175)</span><br><span class="line">    at sun.net.www.http.HttpClient.openServer(HttpClient.java:463)</span><br><span class="line">    at sun.net.www.http.HttpClient.openServer(HttpClient.java:558)</span><br><span class="line">    at sun.net.www.protocol.https.HttpsClient.&lt;init&gt;(HttpsClient.java:264)</span><br><span class="line">    at sun.net.www.protocol.https.HttpsClient.New(HttpsClient.java:367)</span><br><span class="line">    at sun.net.www.protocol.https.AbstractDelegateHttpsURLConnection.getNewHttpClient(AbstractDelegateHttpsURLConnection.java:191)</span><br><span class="line">    at sun.net.www.protocol.http.HttpURLConnection.plainConnect0(HttpURLConnection.java:1138)</span><br><span class="line">    at sun.net.www.protocol.http.HttpURLConnection.plainConnect(HttpURLConnection.java:1032)</span><br><span class="line">    at sun.net.www.protocol.https.AbstractDelegateHttpsURLConnection.connect(AbstractDelegateHttpsURLConnection.java:177)</span><br><span class="line">    at sun.net.www.protocol.http.HttpURLConnection.getInputStream0(HttpURLConnection.java:1546)</span><br><span class="line">    at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1474)</span><br><span class="line">    at sun.net.www.protocol.https.HttpsURLConnectionImpl.getInputStream(HttpsURLConnectionImpl.java:254)</span><br><span class="line">    at hudson.model.DownloadService.loadJSON(DownloadService.java:167)</span><br><span class="line">    at hudson.model.UpdateSite.updateDirectlyNow(UpdateSite.java:190)</span><br><span class="line">    at hudson.model.UpdateCenter.updateDefaultSite(UpdateCenter.java:2194)</span><br><span class="line">    at jenkins.install.SetupWizard.init(SetupWizard.java:173)</span><br><span class="line">    at jenkins.install.InstallState$InitialSecuritySetup.initializeState(InstallState.java:142)</span><br><span class="line">    at jenkins.model.Jenkins.setInstallState(Jenkins.java:1035)</span><br><span class="line">    at jenkins.install.InstallUtil.proceedToNextStateFrom(InstallUtil.java:97)</span><br><span class="line">    at jenkins.install.InstallState$Unknown.initializeState(InstallState.java:75)</span><br><span class="line">    at jenkins.model.Jenkins.&lt;init&gt;(Jenkins.java:923)</span><br><span class="line">    at hudson.model.Hudson.&lt;init&gt;(Hudson.java:85)</span><br><span class="line">    at hudson.model.Hudson.&lt;init&gt;(Hudson.java:81)</span><br><span class="line">    at hudson.WebAppMain$3.run(WebAppMain.java:233)</span><br><span class="line"></span><br><span class="line">三月 11, 2018 8:43:58 下午 hudson.UDPBroadcastThread run</span><br><span class="line">信息: Cannot listen to UDP port 33,848, skipping: java.net.SocketException: Can&#39;t assign requested address</span><br><span class="line">三月 11, 2018 8:43:58 下午 hudson.WebAppMain$3 run</span><br></pre></td></tr></table></figure>
+<p>原因是因为 GFW 把对应的 IP 给墙了。我的解决方案是，使用 <code>Ctrl + C</code> 停止 Jenkins，然后使用命令 <code>rm -rf ~/.jenkins/</code> 删除 Jenkins 配置文件，然后打开翻墙工具，重新使用 <code>jenkins</code> 命令启动 Jenkins，然后问题解决了。另外一个方案是采用离线安装插件的方式，链接点<a href="http://blog.csdn.net/liyuming0000/article/details/46879583">这里</a></p>
+<h2 id="更换界面主题"><a href="#更换界面主题" class="headerlink" title="更换界面主题"></a>更换界面主题</h2><p><a href="https://devopscube.com/setup-custom-materialized-ui-theme-jenkins/">https://devopscube.com/setup-custom-materialized-ui-theme-jenkins/</a></p>
+<h2 id="备份-Jenkins-配置"><a href="#备份-Jenkins-配置" class="headerlink" title="备份 Jenkins 配置"></a>备份 Jenkins 配置</h2><p>使用 Thin Backup 插件备份配置。链接：<br><a href="https://devopscube.com/jenkins-backup-data-configurations/">https://devopscube.com/jenkins-backup-data-configurations/</a></p>
+]]></content>
+      <categories>
+        <category>开发工具</category>
+      </categories>
+      <tags>
+        <tag>Jenkins</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>在 Mac 上配置 C++ 环境</title>
     <url>/mac-c-env/</url>
     <content><![CDATA[<h2 id="使用-VSCode-编写-C-程序一步到位"><a href="#使用-VSCode-编写-C-程序一步到位" class="headerlink" title="使用 VSCode 编写 C++ 程序一步到位"></a>使用 VSCode 编写 C++ 程序一步到位</h2><ol>
@@ -843,10 +870,10 @@
         <category>技术笔记</category>
       </categories>
       <tags>
+        <tag>Linux</tag>
         <tag>Shell</tag>
         <tag>wsl</tag>
         <tag>Ubuntu</tag>
-        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
@@ -1051,6 +1078,35 @@
       </tags>
   </entry>
   <entry>
+    <title>「代码整洁之道」读书笔记</title>
+    <url>/%E3%80%8C%E4%BB%A3%E7%A0%81%E6%95%B4%E6%B4%81%E4%B9%8B%E9%81%93%E3%80%8D%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<ol>
+<li>函数要尽可能短小，最好不要超过20行。而且函数应该做一件事，做好这件事，只做这一件事。</li>
+<li>函数参数尽可能的少，建议一般不要超过三个。如果函数看来需要两个、三个或三个以上参数，就说明其中一些参数应该封装为类了。</li>
+<li>对于一元函数，函数和参数应当形成一种非常良好的动词/名词对形式。如，<code>write(name)</code>。</li>
+<li>函数要么做什么事，要么回答什么事，但二者不可得兼。函数应该修改某对象的状态，或是返回该对象的有关信息。两样都干常会导致混乱。</li>
+<li>函数是语言的动词，类是名词。</li>
+<li>如果可能尽量不写注释，而是让变量和函数本身见名知意。</li>
+<li>暂时未完成的部分使用TODO注释，让开发工具将未完成的部分放到工作列表。</li>
+<li>没必要在代码里添加归属与署名，因为源代码控制系统已经帮我们做了这些事，完全没必要让这样的注释搞脏代码。</li>
+<li>不要保留注释掉的代码，代码被注释掉说明是无用的。源代码控制系统会记录这些删掉的代码，不用担心找不回来。</li>
+<li>自上向下展示函数调用依赖顺序，被调用的函数应该放在执行调用的函数下面。</li>
+<li>每行代码不要超过120个字符，而最佳长度为80到100个字符。</li>
+<li>对象暴露行为，隐藏数据。便于添加新对象类型而无需修改既有行为，同时也难以在既有对象中添加新行为。数据结构暴露数据，没有明显的行为。便于向既有数据结构添加新行为，同时也难以向既有函数添加新数据结构。</li>
+<li>定义一个函数最好别返回null值。返回null值基本上是再给自己增加工作量，也是在给调用者添乱。如果你打算在方法中返回null值，不如抛出异常，或是返回特例对象。如果你在调用某个第三方API中可能返回null值的方法，可以考虑用新方法打包这个方法，在新方法中抛出异常或是返回特例对象。</li>
+</ol>
+<blockquote>
+<p>以上是《代码简洁之道》前十章的读书笔记。只记录了笔者认为在实际工作用比较实用的部分，没有长篇大论的摘抄。主要用于阅读备忘，方便以后复习。</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>读书笔记</category>
+      </categories>
+      <tags>
+        <tag>重构</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>「Unity游戏开发」向量在游戏开发中的应用（二）</title>
     <url>/%E3%80%8CUnity%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E3%80%8D%E5%90%91%E9%87%8F%E5%9C%A8%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8%EF%BC%88%E4%BA%8C%EF%BC%89/</url>
     <content><![CDATA[<p>在<a href="http://davidsheh.github.io/2016/03/05/%E3%80%8CUnity%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E3%80%8D%E5%90%91%E9%87%8F%E5%9C%A8%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8%EF%BC%88%E4%B8%80%EF%BC%89/">上一篇博客</a>中讲了利用向量方向的性质来解决问题。这篇博客将继续用一个简单的小例子来讲解如何将向量的点乘性质应用到实际的游戏开发中。</p>
@@ -1079,35 +1135,6 @@
         <tag>Unity3D</tag>
         <tag>游戏开发</tag>
         <tag>向量</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>「代码整洁之道」读书笔记</title>
-    <url>/%E3%80%8C%E4%BB%A3%E7%A0%81%E6%95%B4%E6%B4%81%E4%B9%8B%E9%81%93%E3%80%8D%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</url>
-    <content><![CDATA[<ol>
-<li>函数要尽可能短小，最好不要超过20行。而且函数应该做一件事，做好这件事，只做这一件事。</li>
-<li>函数参数尽可能的少，建议一般不要超过三个。如果函数看来需要两个、三个或三个以上参数，就说明其中一些参数应该封装为类了。</li>
-<li>对于一元函数，函数和参数应当形成一种非常良好的动词/名词对形式。如，<code>write(name)</code>。</li>
-<li>函数要么做什么事，要么回答什么事，但二者不可得兼。函数应该修改某对象的状态，或是返回该对象的有关信息。两样都干常会导致混乱。</li>
-<li>函数是语言的动词，类是名词。</li>
-<li>如果可能尽量不写注释，而是让变量和函数本身见名知意。</li>
-<li>暂时未完成的部分使用TODO注释，让开发工具将未完成的部分放到工作列表。</li>
-<li>没必要在代码里添加归属与署名，因为源代码控制系统已经帮我们做了这些事，完全没必要让这样的注释搞脏代码。</li>
-<li>不要保留注释掉的代码，代码被注释掉说明是无用的。源代码控制系统会记录这些删掉的代码，不用担心找不回来。</li>
-<li>自上向下展示函数调用依赖顺序，被调用的函数应该放在执行调用的函数下面。</li>
-<li>每行代码不要超过120个字符，而最佳长度为80到100个字符。</li>
-<li>对象暴露行为，隐藏数据。便于添加新对象类型而无需修改既有行为，同时也难以在既有对象中添加新行为。数据结构暴露数据，没有明显的行为。便于向既有数据结构添加新行为，同时也难以向既有函数添加新数据结构。</li>
-<li>定义一个函数最好别返回null值。返回null值基本上是再给自己增加工作量，也是在给调用者添乱。如果你打算在方法中返回null值，不如抛出异常，或是返回特例对象。如果你在调用某个第三方API中可能返回null值的方法，可以考虑用新方法打包这个方法，在新方法中抛出异常或是返回特例对象。</li>
-</ol>
-<blockquote>
-<p>以上是《代码简洁之道》前十章的读书笔记。只记录了笔者认为在实际工作用比较实用的部分，没有长篇大论的摘抄。主要用于阅读备忘，方便以后复习。</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>读书笔记</category>
-      </categories>
-      <tags>
-        <tag>重构</tag>
       </tags>
   </entry>
   <entry>
