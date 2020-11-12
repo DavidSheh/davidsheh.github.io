@@ -881,7 +881,6 @@
 <li>Unity 的官方示例库 <a href="https://github.com/Unity-Technologies/EntityComponentSystemSamples">EntityComponentSystemSamples</a></li>
 <li>Job System 示例库 <a href="https://github.com/stella3d/job-system-cookbook">job-system-cookbook</a></li>
 <li><a href="https://software.intel.com/en-us/articles/get-started-with-the-unity-entity-component-system-ecs-c-sharp-job-system-and-burst-compiler">Get Started with the Unity* Entity Component System (ECS), C# Job System, and Burst Compiler</a></li>
-<li><a href="https://github.com/egametang/ET">ET 框架</a></li>
 </ol>
 ]]></content>
       <categories>
