@@ -576,6 +576,65 @@
       </tags>
   </entry>
   <entry>
+    <title>Linux 学习笔记</title>
+    <url>/post/linux-notes/</url>
+    <content><![CDATA[<h2 id="最重要的命令"><a href="#最重要的命令" class="headerlink" title="最重要的命令"></a>最重要的命令</h2><ul>
+<li><code>man</code> 查看帮助手册，例如 <code>man ls</code> 表示查看 <code>ls</code> 命令的帮助手册</li>
+<li><code>-h</code>、<code>--h</code>、<code>-help</code>、<code>--help</code> 查看命令帮助</li>
+</ul>
+<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><ul>
+<li><code>mkdir</code> 创建一个文件夹；</li>
+<li><code>touch</code> 创建一个空文件，touch 的另一个作用是更新文件的时间戳,也就是最后编辑时间,内容保持不变；</li>
+<li><code>rm &lt;file&gt;</code> 删除文件，<code>rm -f &lt;file&gt;</code> 强制删除文件；</li>
+<li><code>cp &lt;old&gt; &lt;new&gt;</code> 复制文件；</li>
+<li><code>mv &lt;old&gt; &lt;new&gt;</code> 移动或重命名文件；</li>
+<li><code>cat file</code> 显示文件内容；</li>
+<li><code>ls foo</code> 可以用于检查 <code>foo</code> 文件或目录是否存在；</li>
+<li><code>&gt;</code> 将输出重定向到文件名，<code>&gt;&gt;</code> 将输出附加到文件名；</li>
+<li><code>diff &lt;f1&gt; &lt;f2&gt;</code> 对比文件 1 和 2 的差异；</li>
+<li><code>wc &lt;file&gt;</code> 统计文件行数、字数和大小，显示的结果中的数字分别表示文件内容的行数、字数和字节大小；</li>
+<li><code>head &lt;file&gt;</code> 显示文件的前 10 行内容，<code>tail &lt;file&gt;</code> 显示文件的最后 10 行内容；</li>
+<li><code>which bash</code> 显示程序（bash）路径；</li>
+<li><code>grep -i &lt;string&gt; &lt;file&gt;</code> 在指定文件中查找字符串，其中 <code>-i</code> 表示忽略大小写；</li>
+<li><code>ps</code> 显示进程；<code>top</code> 按资源占用从高到低排序显示进程；</li>
+<li><code>kill -&lt;level&gt; &lt;pid&gt;</code> 杀掉一个进程；</li>
+<li><code>cd ..</code> 回到上一层目录；<code>cd -</code> 回到上一个目录；<code>cd ~</code> 回到主目录（Home 目录），等同于 <code>cd</code>；<code>cd /</code> 回到根目录；</li>
+<li><code>scp</code> 命令可以在多台设备上相互拷贝文件；<code>scp -r</code> 命令可以在多台设备上拷贝文件夹</li>
+<li><code>find</code> 查找文件，用find可以根据文件名查找，或者根据类型查找，通过不同的参数设置，如 <code>find . -name &quot;a.txt&quot;</code> 表示在当前目录找文件名为 a.txt 的路径</li>
+<li><code>grep</code> 搜索字符，搜过文件中的字符是非常常用的功能之一,比如写代码时候搜过一个函数都在哪里调用了。或者分析日志时候过滤出有用数据都可以用grep。如 <code>bash$ grep test *.txt</code> 表示在当前目录下搜索包含 test 字符的 .txt 文件。</li>
+</ul>
+<p>下面放一张网友总结的 Linux 常用命令脑图（原始链接已经找不到了）：<br><img src="https://cdn.jsdelivr.net/gh/DavidSheh/BlogPictures/pictures/linux_command.jpg" alt="linux_command"></p>
+<blockquote>
+<p>组合命令：多个命令之间可以用分号 <code>;</code> 隔开，表示依次执行多个命令。但是更好地使用组合命令是用 <code>&amp;&amp;</code> 隔开多个命令，这种方式的好处是等待前一个命令成功后再执行下一个命令。</p>
+</blockquote>
+<h2 id="常用快捷键"><a href="#常用快捷键" class="headerlink" title="常用快捷键"></a>常用快捷键</h2><ul>
+<li><code>Tab</code> 命令补全</li>
+<li><code>Ctrl</code>+<code>C</code> 终止命令执行</li>
+<li><code>Ctrl</code>+<code>U</code> 清除已输入的命令</li>
+<li><code>Ctrl</code>+<code>D</code> 关闭命令行窗口</li>
+<li><code>Ctrl</code>+<code>L</code> 清除屏幕</li>
+<li><code>Ctrl</code>+<code>A</code> 将光标移动到命令行开头</li>
+<li><code>Ctrl</code>+<code>E</code> 将光标移动到命令行结尾</li>
+<li><code>Alt</code>+<code>Enter</code> 终端窗口最大/最小化</li>
+<li><code>Ctrl</code>+<code>Up/Down Arrow</code> 上下滚动终端屏幕</li>
+</ul>
+<p>Linux 系统的命令行下，可以直接使用 <code>man</code> 命令查询 C/C++ 函数和例子。<br>比如 <code>man socket</code> 查询 socket 函数，直接 <code>man getaddrinfo</code> 可以查看例子。下面再放一张珍藏的常用快捷键示意图：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/DavidSheh/BlogPictures/pictures/linux_shortcuts.jpg" alt="linux_shortcuts"></p>
+<h2 id="Linux下的路径表示方法"><a href="#Linux下的路径表示方法" class="headerlink" title="Linux下的路径表示方法"></a>Linux下的路径表示方法</h2><ul>
+<li>以”/“开头的表示从根目录开始,根目录就是linux的最上层目录, 例如 /home</li>
+<li>以”./“开头的表示从当前目录开始,当前目录就是当前终端所在的目录,也称为工作目录,例如 ./samples</li>
+<li>以”~”符号开头的，表示从用户目录开始,用户目录表示当前用户的根目录,用户根目录一般路径为/home/用户名,在我机器上就是/home/wei, 例如 ~/samples 的绝对路径就是/home/wei/samples。</li>
+</ul>
+<h2 id="推荐教程"><a href="#推荐教程" class="headerlink" title="推荐教程"></a>推荐教程</h2><p><a href="https://www.learnenough.com/command-line-tutorial/basics">Learn Enough Command Line to Be Dangerous</a></p>
+]]></content>
+      <categories>
+        <category>技术笔记</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>在 Mac 上配置 C++ 环境</title>
     <url>/post/mac-c-env/</url>
     <content><![CDATA[<h2 id="使用-VSCode-编写-C-程序一步到位"><a href="#使用-VSCode-编写-C-程序一步到位" class="headerlink" title="使用 VSCode 编写 C++ 程序一步到位"></a>使用 VSCode 编写 C++ 程序一步到位</h2><ol>
