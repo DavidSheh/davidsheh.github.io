@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon-48x48.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.ico">
+  <link rel="mask-icon" href="/images/favicon-48x48.ico" color="#222">
+  <meta name="google-site-verification" content="y9ZCJa24kwItzuTNHY7NV3lBg0zYD3ifEb3fjQxh4DI">
+  <meta name="msvalidate.01" content="9545D27E24C905307CDC8D3A1BB63430">
+  <meta name="baidu-site-verification" content="rGx0MfxJhv">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"davidsheh.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="Unity ECS 提供了一种更好的游戏设计方法，使开发者专注于正在解决的实际问题：组成游戏的数据和行为。它利用 C＃Job System 和 Burst Compiler 使应用程序能够充分利用当今的多核处理器。从面向对象的设计转向面向数据的设计使开发者可以更轻松地重用代码，并使其他人更容易理解和处理代码。  ECS 优点  * 编写极高性能的代码 (Extremely performant c">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Unity ECS 笔记">
+<meta property="og:url" content="http://davidsheh.github.io/post/unity-ecs-note/index.html">
+<meta property="og:site_name" content="Sheh伟伟的博客">
+<meta property="og:description" content="Unity ECS 提供了一种更好的游戏设计方法，使开发者专注于正在解决的实际问题：组成游戏的数据和行为。它利用 C＃Job System 和 Burst Compiler 使应用程序能够充分利用当今的多核处理器。从面向对象的设计转向面向数据的设计使开发者可以更轻松地重用代码，并使其他人更容易理解和处理代码。  ECS 优点  * 编写极高性能的代码 (Extremely performant c">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-04-02T17:47:01.000Z">
+<meta property="article:modified_time" content="2020-11-12T12:14:19.358Z">
+<meta property="article:author" content="Sheh伟伟">
+<meta property="article:tag" content="Unity">
+<meta property="article:tag" content="ECS">
+<meta property="article:tag" content="Burst">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://davidsheh.github.io/post/unity-ecs-note/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Unity ECS 笔记 | Sheh伟伟的博客</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-104471088-1"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-104471088-1');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Sheh伟伟的博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">写写代码，玩玩游戏</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://davidsheh.github.io/post/unity-ecs-note/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/favicon-48x48.ico">
+      <meta itemprop="name" content="Sheh伟伟">
+      <meta itemprop="description" content="写写代码，玩玩游戏">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sheh伟伟的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Unity ECS 笔记
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-04-02 17:47:01" itemprop="dateCreated datePublished" datetime="2019-04-02T17:47:01+00:00">2019-04-02</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">技术笔记</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>Unity ECS 提供了一种更好的游戏设计方法，使开发者专注于正在解决的实际问题：组成游戏的数据和行为。它利用 C＃Job System 和 Burst Compiler 使应用程序能够充分利用当今的多核处理器。从面向对象的设计转向面向数据的设计使开发者可以更轻松地重用代码，并使其他人更容易理解和处理代码。</p>
+<h2 id="ECS-优点"><a href="#ECS-优点" class="headerlink" title="ECS 优点"></a>ECS 优点</h2><ul>
+<li>编写极高性能的代码 (Extremely performant code)</li>
+<li>更易于阅读的代码 (Easier to read)</li>
+<li>更易于代码重用 (Easier to reuse code)</li>
+<li>Burst 编译器 (Burst compiler)</li>
+<li>C# 作业系统 (C# Job System )</li>
+</ul>
+<h2 id="ECS-基本概念"><a href="#ECS-基本概念" class="headerlink" title="ECS 基本概念"></a>ECS 基本概念</h2><ul>
+<li>Entity 是实例,作为承载组件的载体,也是框架中维护对象的实体</li>
+<li>Component 只包含数据,具备这个组件便具有这个功能</li>
+<li>System 作为逻辑维护,维护对应的组件执行相关操作</li>
+</ul>
+<h2 id="ESC-的使用"><a href="#ESC-的使用" class="headerlink" title="ESC 的使用"></a>ESC 的使用</h2><h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">using Unity.Entities;</span><br><span class="line">using UnityEngine;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; Entity 实体：挂载 GameObjectEntity 组件的游戏对象。需要自定义结构体给 Entity 组装需要的 Component</span><br><span class="line">struct Components</span><br><span class="line">&#123;</span><br><span class="line">    public Transform transform;</span><br><span class="line">    public Rotator rotator;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; Component 数据：可以在Inspector窗口中编辑的旋转速度值</span><br><span class="line">[RequireComponent(typeof(GameObjectEntity))]</span><br><span class="line">class Rotator : MonoBehaviour</span><br><span class="line">&#123;</span><br><span class="line">    public float speed;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; System 行为：继承自ComponentSystem来处理旋转操作</span><br><span class="line">class RotatorSystem : ComponentSystem</span><br><span class="line">&#123;</span><br><span class="line">    override protected void OnUpdate()</span><br><span class="line">    &#123;</span><br><span class="line">        foreach (var e in GetEntities&lt;Components&gt;())</span><br><span class="line">        &#123;</span><br><span class="line">            e.transform.rotation *&#x3D; Quaternion.AngleAxis(e.rotator.speed * Time.deltaTime, Vector3.up);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Entity-Debugger"><a href="#Entity-Debugger" class="headerlink" title="Entity Debugger"></a>Entity Debugger</h3><p>Unity ECS 系统提供的一个可视化的调试 ECS 的工具，通过工具可以看到 Entity 数量和某个 Entity 所包含的 Component，以及对应的 System 的耗时。</p>
+<h2 id="Job-System"><a href="#Job-System" class="headerlink" title="Job System"></a>Job System</h2><p>在 Unity 中，Unity API 必须在主线程中使用，无法在子线程调用。Job System 旨在让用户能更加容易地编写与 Unity API 交互的多线程代码。</p>
+<h3 id="多线程的问题"><a href="#多线程的问题" class="headerlink" title="多线程的问题"></a>多线程的问题</h3><p>当创建的多线程数量超过 CPU 内核数量时，会导致线程相互争夺 CPU资源，从而导致频繁的上下文切换。而 CPU 执行上下文切换时，需要做大量工作来确保新线程的状态是正确的，这是相当耗费资源的，应尽可能避免。</p>
+<h3 id="Job-System-概览"><a href="#Job-System-概览" class="headerlink" title="Job System 概览"></a>Job System 概览</h3><ul>
+<li>数据和方法分离 (Separate data from function)</li>
+<li>多核处理 (Multi-core processing)</li>
+<li>节省多线程 (Save multi-threading)</li>
+</ul>
+<h3 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br></pre></td><td class="code"><pre><span class="line">using UnityEngine;</span><br><span class="line">using Unity.Collections;</span><br><span class="line">using Unity.Jobs;</span><br><span class="line">using UnityEngine.Jobs;</span><br><span class="line"></span><br><span class="line">public class CubeAccelerationParallelFor : MonoBehaviour</span><br><span class="line">&#123;</span><br><span class="line">    [SerializeField]</span><br><span class="line">    protected int m_ObjectCount &#x3D; 10000;</span><br><span class="line"></span><br><span class="line">    [SerializeField]</span><br><span class="line">    protected float m_ObjectPlacementRadius &#x3D; 100f;</span><br><span class="line"></span><br><span class="line">    protected GameObject[] m_Objects;</span><br><span class="line">    protected Transform[] m_Transforms;</span><br><span class="line"></span><br><span class="line">    public Vector3 m_Acceleration &#x3D; new Vector3(0.0002f, 0.0001f, 0.0002f);</span><br><span class="line"></span><br><span class="line">    NativeArray&lt;Vector3&gt; m_Velocities;</span><br><span class="line">    TransformAccessArray m_TransformsAccessArray;</span><br><span class="line"></span><br><span class="line">    PositionUpdateJob m_Job;</span><br><span class="line">    AccelerationJob m_AccelJob;</span><br><span class="line"></span><br><span class="line">    JobHandle m_PositionJobHandle;</span><br><span class="line">    JobHandle m_AccelJobHandle;</span><br><span class="line"></span><br><span class="line">    void Awake()</span><br><span class="line">    &#123;</span><br><span class="line">        m_Objects &#x3D; new GameObject[m_ObjectCount];</span><br><span class="line">        m_Transforms &#x3D; new Transform[m_ObjectCount];</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    void Start()</span><br><span class="line">    &#123;</span><br><span class="line">        m_Velocities &#x3D; new NativeArray&lt;Vector3&gt;(m_ObjectCount, Allocator.Persistent);</span><br><span class="line">        </span><br><span class="line">        for (int i &#x3D; 0; i &lt; m_ObjectCount; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            var cube &#x3D; CreateCube();</span><br><span class="line">            cube.transform.position &#x3D; Random.insideUnitSphere * m_ObjectPlacementRadius;</span><br><span class="line">            m_Objects[i] &#x3D; cube;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        for (int i &#x3D; 0; i &lt; m_ObjectCount; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            var obj &#x3D; m_Objects[i];</span><br><span class="line">            m_Transforms[i] &#x3D; obj.transform;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        m_TransformsAccessArray &#x3D; new TransformAccessArray(m_Transforms);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    struct PositionUpdateJob : IJobParallelForTransform</span><br><span class="line">    &#123;</span><br><span class="line">        [ReadOnly]&#x2F;&#x2F;通过将其声明为只读，允许多个作业并行访问数据</span><br><span class="line">        public NativeArray&lt;Vector3&gt; velocity;  &#x2F;&#x2F; 通过 AccelerationJob 赋值</span><br><span class="line"></span><br><span class="line">        public float deltaTime;</span><br><span class="line"></span><br><span class="line">        public void Execute(int i, TransformAccess transform)</span><br><span class="line">        &#123;</span><br><span class="line">            transform.position +&#x3D; velocity[i] * deltaTime;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    struct AccelerationJob : IJobParallelFor</span><br><span class="line">    &#123;</span><br><span class="line">        public NativeArray&lt;Vector3&gt; velocity;</span><br><span class="line"></span><br><span class="line">        public Vector3 acceleration;</span><br><span class="line"></span><br><span class="line">        public void Execute(int i)</span><br><span class="line">        &#123;</span><br><span class="line">            velocity[i] &#x3D; i * acceleration;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void Update()</span><br><span class="line">    &#123;</span><br><span class="line">        m_AccelJob &#x3D; new AccelerationJob()</span><br><span class="line">        &#123;</span><br><span class="line">            velocity &#x3D; m_Velocities,</span><br><span class="line">            acceleration &#x3D; m_Acceleration,</span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line">        m_Job &#x3D; new PositionUpdateJob()</span><br><span class="line">        &#123;</span><br><span class="line">            deltaTime &#x3D; Time.deltaTime,</span><br><span class="line">            velocity &#x3D; m_Velocities,</span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F;安排并行工作。第一个参数是每次迭代执行的次数,第二个参数是批量大小</span><br><span class="line">        m_AccelJobHandle &#x3D; m_AccelJob.Schedule(m_ObjectCount, 64);</span><br><span class="line">        m_PositionJobHandle &#x3D; m_Job.Schedule(m_TransformsAccessArray, m_AccelJobHandle);</span><br><span class="line"></span><br><span class="line">        m_PositionJobHandle.Complete();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    private void OnDestroy()</span><br><span class="line">    &#123;</span><br><span class="line">        m_Velocities.Dispose();</span><br><span class="line">        m_TransformsAccessArray.Dispose();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private GameObject CreateCube()</span><br><span class="line">    &#123;</span><br><span class="line">        var cube &#x3D; GameObject.CreatePrimitive(PrimitiveType.Cube);</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F; 关闭阴影</span><br><span class="line">        var renderer &#x3D; cube.GetComponent&lt;MeshRenderer&gt;();</span><br><span class="line">        renderer.shadowCastingMode &#x3D; UnityEngine.Rendering.ShadowCastingMode.Off;</span><br><span class="line">        renderer.receiveShadows &#x3D; false;</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F; 禁用 Collider</span><br><span class="line">        var collider &#x3D; cube.GetComponent&lt;Collider&gt;();</span><br><span class="line">        collider.enabled &#x3D; false;</span><br><span class="line"></span><br><span class="line">        return cube;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Burst"><a href="#Burst" class="headerlink" title="Burst"></a>Burst</h2><p>Burst 是一种新的基于 LLVM 的数学感知后端编译器。它将 C＃ 的 Job 编译为高度优化的机器代码，可以利用编译的平台的特定功能。Burst主要用于与Job系统高效协作。可以通过使用属性 [BurstCompile] 装饰 Job 结构,从而在代码中简单地使用 Burst 编译器 。</p>
+<p>Burst是一个实验包，目前支持Unity 2018.3及更高版本，且目前还只是预览版。</p>
+<p>更多介绍请参考：<a target="_blank" rel="noopener" href="https://docs.unity3d.com/Packages/com.unity.burst@0.2/manual/index.html">https://docs.unity3d.com/Packages/com.unity.burst@0.2/manual/index.html</a></p>
+<blockquote>
+<p>LLVM是一个自由软件项目，它是一种编译器基础设施，以C++写成，包含一系列模块化的编译器组件和工具链，用来开发编译器前端和后端。</p>
+</blockquote>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ol>
+<li>Unity 的官方示例库 <a target="_blank" rel="noopener" href="https://github.com/Unity-Technologies/EntityComponentSystemSamples">EntityComponentSystemSamples</a></li>
+<li>Job System 示例库 <a target="_blank" rel="noopener" href="https://github.com/stella3d/job-system-cookbook">job-system-cookbook</a></li>
+<li><a target="_blank" rel="noopener" href="https://software.intel.com/en-us/articles/get-started-with-the-unity-entity-component-system-ecs-c-sharp-job-system-and-burst-compiler">Get Started with the Unity* Entity Component System (ECS), C# Job System, and Burst Compiler</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/egametang/ET">ET 框架</a></li>
+</ol>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div></div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.jpg" alt="Sheh伟伟 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.jpg" alt="Sheh伟伟 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Sheh伟伟
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://davidsheh.github.io/post/unity-ecs-note/" title="Unity ECS 笔记">http://davidsheh.github.io/post/unity-ecs-note/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Unity/" rel="tag"># Unity</a>
+              <a href="/tags/ECS/" rel="tag"># ECS</a>
+              <a href="/tags/Burst/" rel="tag"># Burst</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/post/blog-pic-bed/" rel="prev" title="搭建免费稳定的个人博客图床">
+      <i class="fa fa-chevron-left"></i> 搭建免费稳定的个人博客图床
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#ECS-%E4%BC%98%E7%82%B9"><span class="nav-number">1.</span> <span class="nav-text">ECS 优点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ECS-%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">2.</span> <span class="nav-text">ECS 基本概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ESC-%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-number">3.</span> <span class="nav-text">ESC 的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81"><span class="nav-number">3.1.</span> <span class="nav-text">代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Entity-Debugger"><span class="nav-number">3.2.</span> <span class="nav-text">Entity Debugger</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Job-System"><span class="nav-number">4.</span> <span class="nav-text">Job System</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-number">4.1.</span> <span class="nav-text">多线程的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Job-System-%E6%A6%82%E8%A7%88"><span class="nav-number">4.2.</span> <span class="nav-text">Job System 概览</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81-1"><span class="nav-number">4.3.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Burst"><span class="nav-number">5.</span> <span class="nav-text">Burst</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"><span class="nav-number">6.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Sheh伟伟"
+      src="/images/favicon-48x48.ico">
+  <p class="site-author-name" itemprop="name">Sheh伟伟</p>
+  <div class="site-description" itemprop="description">写写代码，玩玩游戏</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">40</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">39</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/DavidSheh" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;DavidSheh" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="http://weibo.com/1586558567/profile?topnav=1&wvr=6&is_all=1" title="Weibo → http:&#x2F;&#x2F;weibo.com&#x2F;1586558567&#x2F;profile?topnav&#x3D;1&amp;wvr&#x3D;6&amp;is_all&#x3D;1" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/764150976@qq.com" title="E-Mail → 764150976@qq.com"><i class="fa fa-fw fa-envelope"></i></a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+<!--google_adsense-->
+
+<!--/google_adsense-->
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2015 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sheh伟伟</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : 'a64275d932b30b7c6654',
+      clientSecret: '58cfd039fc57204bdaf145cb0973c7d72ba817a4',
+      repo        : 'davidsheh.github.io',
+      owner       : 'DavidSheh',
+      admin       : ['DavidSheh'],
+      id          : 'ed77e668b97f9a7030cd4d3f24f19199',
+        language: 'zh-CN',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+</body>
+</html>

@@ -199,6 +199,87 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://davidsheh.github.io/post/unity-ecs-note/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/favicon-48x48.ico">
+      <meta itemprop="name" content="Sheh伟伟">
+      <meta itemprop="description" content="写写代码，玩玩游戏">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sheh伟伟的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/unity-ecs-note/" class="post-title-link" itemprop="url">Unity ECS 笔记</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-04-02 17:47:01" itemprop="dateCreated datePublished" datetime="2019-04-02T17:47:01+00:00">2019-04-02</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">技术笔记</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          Unity ECS 提供了一种更好的游戏设计方法，使开发者专注于正在解决的实际问题：组成游戏的数据和行为。它利用 C＃Job System 和 Burst Compiler 使应用程序能够充分利用当今的多核处理器。从面向对象的设计转向面向数据的设计使开发者可以更轻松地重用代码，并使其他人更容易理解和处理代码。
+
+ECS 优点
+ * 编写极高性能的代码 (Extremely performant code)
+ * 更易于阅读的代码 (Easier to read)
+ * 更易于代码重用 (Easier to reuse code)
+ * Burst 编译器 (Burst compiler)
+ *
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/post/unity-ecs-note/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://davidsheh.github.io/post/blog-pic-bed/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -957,104 +1038,6 @@ Chocolatey
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://davidsheh.github.io/post/hexo-blog/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/favicon-48x48.ico">
-      <meta itemprop="name" content="Sheh伟伟">
-      <meta itemprop="description" content="写写代码，玩玩游戏">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Sheh伟伟的博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/post/hexo-blog/" class="post-title-link" itemprop="url">用Hexo搭建个人博客</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2017-09-03 20:08:21" itemprop="dateCreated datePublished" datetime="2017-09-03T20:08:21+00:00">2017-09-03</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">开发工具</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          安装环境
-1. 安装Homebrew
-Mac建议使用 Homebrew 安装必要的插件，Windows用户可以跳过这一步。关于 Homebrew 的介绍请看我的这篇博文 Mac开发必备工具（一）—— Homebrew。
-
-2. 安装Git和Node.js
-Node.js 可以通过 Homebrew 安装，安装命令如下：
-
-1
-
-
-brew install node
-
-
-3. 安装 Hexo 博客框架
-Hexo 框架可以使用下面的 npm 命令来安装。
-
-1
-
-
-npm install -g hexo-cli
-
-
-使用Hexo建站
-建站
-安装 Hexo 完成后，请执行下列命令，Hexo 将会在指
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/post/hexo-blog/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1126,7 +1109,7 @@ npm install -g hexo-cli
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">39</span>
+          <span class="site-state-item-count">40</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1139,7 +1122,7 @@ npm install -g hexo-cli
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">36</span>
+        <span class="site-state-item-count">39</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
