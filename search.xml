@@ -301,12 +301,40 @@
   <entry>
     <title>Unity路径的相关总结</title>
     <url>/post/Unity%E8%B7%AF%E5%BE%84%E7%9A%84%E7%9B%B8%E5%85%B3%E6%80%BB%E7%BB%93/</url>
-    <content><![CDATA[<h3 id="Unity中的路径变量"><a href="#Unity中的路径变量" class="headerlink" title="Unity中的路径变量"></a>Unity中的路径变量</h3><ol>
-<li>Application.dataPath<br>应用数据文件夹的路径，只读。</li>
-<li>Application.streamingAssetsPath<br>应用的流式数据缓存目录，该目录下可以保存一些外部数据文件。</li>
-<li>Application.temporaryCachePath<br>设备的临时数据缓存目录。</li>
-<li>Application.persistentDataPath<br>iOS/Android设备中的持久化数据存储目录，可以在此路径下存储一些持久化的数据文件，该目录下的文件不会因为App升级而删除。</li>
-</ol>
+    <content><![CDATA[<h3 id="Unity中的路径变量"><a href="#Unity中的路径变量" class="headerlink" title="Unity中的路径变量"></a>Unity中的路径变量</h3><table>
+<thead>
+<tr>
+<th align="left">变量</th>
+<th align="left">属性</th>
+<th align="left">使用情景</th>
+<th align="left">其他说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">Application.dataPath</td>
+<td align="left">只读</td>
+<td align="left">应用数据文件夹的路径</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">Application.streamingAssetsPath</td>
+<td align="left">只读</td>
+<td align="left">资源跟随App发布时使用</td>
+<td align="left">Android下不存在物理文件，不要用System.IO.File 访问</td>
+</tr>
+<tr>
+<td align="left">Application.temporaryCachePath</td>
+<td align="left">读写</td>
+<td align="left">下载临时资源时使用</td>
+<td align="left">设备的临时数据缓存目录。存储空间不足时，会被操作系统清理</td>
+</tr>
+<tr>
+<td align="left">Application.persistentDataPath</td>
+<td align="left">读写</td>
+<td align="left">资源热更新时使用</td>
+<td align="left">iOS/Android设备中的持久化数据存储目录，可以在此路径下存储一些持久化的数据文件，该目录下的文件不会因为App升级而删除。iOS下注意关闭 iClound 同步，否则可能提审被拒</td>
+</tr>
+</tbody></table>
 <h3 id="不同平台下的路径"><a href="#不同平台下的路径" class="headerlink" title="不同平台下的路径"></a>不同平台下的路径</h3><table>
 <thead>
 <tr>
