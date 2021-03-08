@@ -199,6 +199,85 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://davidsheh.github.io/post/mac-fishshell/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/favicon-48x48.ico">
+      <meta itemprop="name" content="Sheh伟伟">
+      <meta itemprop="description" content="写写代码，玩玩游戏">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sheh伟伟的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/mac-fishshell/" class="post-title-link" itemprop="url">Mac开发必备工具（三）—— Fish shell</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-08-28 22:53:41" itemprop="dateCreated datePublished" datetime="2017-08-28T22:53:41+00:00">2017-08-28</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">开发工具</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          Fish shell
+简介
+fish 可以根据输入自动匹配历史命令。它的一大特点是开箱即用，没有zsh那些繁琐的配置。官网：http://www.fishshell.com/。
+
+安装与配置
+在终端里使用Homebrew安装，直接输入 brew install fish 等待安装完成即可。安装完了以后还不能用，因为没把fish添加到 mac 的 shell 列表里，切换到 fish shell 时显示找不到fish shell，所以我们要先添加 fish 并设置一下 shell 。首先，用 shell 命令sudo vim /etc/shells在 vim 中打开 Mac 的 shell 列表
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/post/mac-fishshell/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://davidsheh.github.io/post/mac-iterm2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -963,91 +1042,6 @@ Asset Server启动起来了就可以关掉，
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://davidsheh.github.io/post/%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8BUnity%E5%8E%9F%E7%94%9FJson%E5%BA%93/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/favicon-48x48.ico">
-      <meta itemprop="name" content="Sheh伟伟">
-      <meta itemprop="description" content="写写代码，玩玩游戏">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Sheh伟伟的博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/post/%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8BUnity%E5%8E%9F%E7%94%9FJson%E5%BA%93/" class="post-title-link" itemprop="url">快速上手Unity原生Json库</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2016-10-12 10:47:55" itemprop="dateCreated datePublished" datetime="2016-10-12T10:47:55+00:00">2016-10-12</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">技术笔记</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          现在新版的Unity（印象中是从5.3开始）已经提供了原生的Json库，以前一直使用LitJson，研究了一下Unity用的JsonUtility工具类的使用，发现使用还挺方便的，所以打算把项目中的Json库换成Unity原生的。在Unity3D开发中Json有什么用呢？下面就来说说Json在Unity中的使用。
-
-一、Json有什么用？
-
-
-
-
-Json在Unity中还是挺常用的一种数据格式的。那么，在Unity开发中哪些地方会用到Json呢？我相信没有太多编程经验的人肯定对这个问题比较感兴趣。在Unity中，有三种情况下会用到Json：
-
- 1. 跟服务器进行数据交互
- 2. 配置文件
- 
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/post/%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8BUnity%E5%8E%9F%E7%94%9FJson%E5%BA%93/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1119,7 +1113,7 @@ Json在Unity中还是挺常用的一种数据格式的。那么，在Unity开发
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">29</span>
+          <span class="site-state-item-count">30</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1132,7 +1126,7 @@ Json在Unity中还是挺常用的一种数据格式的。那么，在Unity开发
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">37</span>
+        <span class="site-state-item-count">39</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
