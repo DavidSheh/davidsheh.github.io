@@ -199,6 +199,90 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://davidsheh.github.io/post/csharp-some-confused/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/favicon-48x48.ico">
+      <meta itemprop="name" content="Sheh伟伟">
+      <meta itemprop="description" content="写写代码，玩玩游戏">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sheh伟伟的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/csharp-some-confused/" class="post-title-link" itemprop="url">C# 中常见的易混淆概念</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-02-15 20:22:51" itemprop="dateCreated datePublished" datetime="2020-02-15T20:22:51+00:00">2020-02-15</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">技术笔记</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          虚方法和抽象方法的区别
+ * 抽象方法在抽象类中定义，并且没有方法体，要求派生的非抽象子类必须重写抽象方法。
+ * 虚方法在抽象类和非抽象类中都可以定义，有默认方法体，派生子类可以使用 override 关键字覆盖父类虚方法，但也可以不重写父类的虚方法。
+ * Difference between virtual and abstract methods [duplicate]
+
+抽象类和接口的区别
+主要区别
+ * 抽象类中可以包含抽象方法和其他方法，接口中只能包含抽象方法。
+ * 一个类只能继承一个抽象类，但是可以实现多个接口。
+ * 抽象类和接口都不能实例化。
+ * 抽象类可以有构造函数，
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/post/csharp-some-confused/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://davidsheh.github.io/post/unity-ugui-optimize/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -985,87 +1069,10 @@ npm install -g hexo-cli
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://davidsheh.github.io/post/vscode-shaderlab/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/favicon-48x48.ico">
-      <meta itemprop="name" content="Sheh伟伟">
-      <meta itemprop="description" content="写写代码，玩玩游戏">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Sheh伟伟的博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/post/vscode-shaderlab/" class="post-title-link" itemprop="url">使用 VS Code 写 Shaderlab</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2017-08-29 18:57:25" itemprop="dateCreated datePublished" datetime="2017-08-29T18:57:25+00:00">2017-08-29</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">开发工具</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          Unity3D 开发中，我们一般使用 VS 写代码，但是对于写 Shader，VS 还不如自带的 MonoDeveloper 强大，而且目前我还没有发现对 Shaderlab支持比较好的 VS 扩展插件。自从试用过 VS Code 后我把电脑上的 Sublime Text 给卸载了，换成了 VS Code 一直用到现在，而且越用越觉得强大，毕竟有微软这个爸爸，发展势头还是很猛的。言归正传，这篇博客打算记录一下我使用 VS Code 写 Shaderlab 的一些经验。
-
-安装插件
-首先得安装 VS Code，这个是肯定的，没啥好说的。安装好 VS Code 后，在插件页搜索 Shaderlab
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/post/vscode-shaderlab/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1133,7 +1140,7 @@ npm install -g hexo-cli
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">30</span>
+          <span class="site-state-item-count">31</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
