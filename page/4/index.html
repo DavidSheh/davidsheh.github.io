@@ -199,7 +199,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://davidsheh.github.io/post/Markdown%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/">
+    <link itemprop="mainEntityOfPage" href="http://davidsheh.github.io/post/Git%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/favicon-48x48.ico">
@@ -213,7 +213,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/post/Markdown%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/" class="post-title-link" itemprop="url">Markdown快速入门</a>
+            <a href="/post/Git%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/" class="post-title-link" itemprop="url">Git快速入门</a>
         </h2>
 
         <div class="post-meta">
@@ -223,7 +223,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2015-06-07 20:43:55" itemprop="dateCreated datePublished" datetime="2015-06-07T20:43:55+00:00">2015-06-07</time>
+              <time title="创建时间：2016-08-22 23:08:06" itemprop="dateCreated datePublished" datetime="2016-08-22T23:08:06+00:00">2016-08-22</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -246,19 +246,871 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          摘要
-Markdown快速入门中文文档对于非编程人员来说理解有一定的难度。笔者写这篇文章的目的有两个，一个是尝试用更加简单的方式来讲解Markdown语法；二是对自己学习的一个总结。
+          如果你不想看长篇的Git教程，想快速了解Git的使用，那么本文可能会对你入门Git有所帮助。由于笔者用的是Windows系统，所以本文只写Git在Windows上的使用。
 
-Markdown简介
-Markdown 的目标是实现「易读易写」。Markdown 语法的目标是：成为一种适用于网络的书写语言。
-Markdown可以用来写文档、做笔记和写博客，让你更专注于内容而不是排版。它的语法易记，掌握后你会发现使用简单的标记就可以实现简洁大方的排版。本博客的所有排版都是用的Markdown语言实现的。
+一、Git安装
 
-Markdown语法
-标题
-Markdown 支持两种标题的语法，Setext 和 
+
+
+
+去Git官网下载Git的安装程序，安装的过程我就不多说了，没啥好说的。
+
+二、创建本地仓库
+
+
+
+
+Git安装完成后有一个Git Bash，打开Git Bash。输入如下命令：
+
+1
+2
+3
+
+
+cd d:
+mkdir learngit
+cd learngit
+
+
+上述命令表示切换到电脑D盘，然后创建一个learngit的文件夹并将目录切换到该文件夹下。不确定自己是否已切换到指定目录，可以使用pwd
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/post/Markdown%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/#more" rel="contents">
+              <a class="btn" href="/post/Git%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://davidsheh.github.io/post/%E3%80%8CModern%20OpenGL%E7%B3%BB%E5%88%97%EF%BC%88%E5%9B%9B%EF%BC%89%E3%80%8D%E5%9C%A8OpenGL%E4%B8%AD%E4%BD%BF%E7%94%A8Shader/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/favicon-48x48.ico">
+      <meta itemprop="name" content="Sheh伟伟">
+      <meta itemprop="description" content="写写代码，玩玩游戏">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sheh伟伟的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/%E3%80%8CModern%20OpenGL%E7%B3%BB%E5%88%97%EF%BC%88%E5%9B%9B%EF%BC%89%E3%80%8D%E5%9C%A8OpenGL%E4%B8%AD%E4%BD%BF%E7%94%A8Shader/" class="post-title-link" itemprop="url">「Modern OpenGL系列（四）」在OpenGL中使用Shader</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-05-08 20:19:28" itemprop="dateCreated datePublished" datetime="2016-05-08T20:19:28+00:00">2016-05-08</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">技术笔记</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          在[上一篇文章]( http://davidsheh.github.io/post/「Modern OpenGL系列（三）」用OpenGL绘制一个三角形/)中已经介绍了OpenGL窗口的创建。本文接着说如何用OpenGL绘制一个三角形。
+1 . 添加头文件shader.h，代码如下：
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+
+
+#pragma once
+
+#include <string>
+#include <GL\glew.h>
+
+class Shader
+{
+public:
+    Shader(const std::s
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/post/%E3%80%8CModern%20OpenGL%E7%B3%BB%E5%88%97%EF%BC%88%E5%9B%9B%EF%BC%89%E3%80%8D%E5%9C%A8OpenGL%E4%B8%AD%E4%BD%BF%E7%94%A8Shader/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://davidsheh.github.io/post/%E3%80%8CModern%20OpenGL%E7%B3%BB%E5%88%97%EF%BC%88%E4%B8%89%EF%BC%89%E3%80%8D%E7%94%A8OpenGL%E7%BB%98%E5%88%B6%E4%B8%80%E4%B8%AA%E4%B8%89%E8%A7%92%E5%BD%A2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/favicon-48x48.ico">
+      <meta itemprop="name" content="Sheh伟伟">
+      <meta itemprop="description" content="写写代码，玩玩游戏">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sheh伟伟的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/%E3%80%8CModern%20OpenGL%E7%B3%BB%E5%88%97%EF%BC%88%E4%B8%89%EF%BC%89%E3%80%8D%E7%94%A8OpenGL%E7%BB%98%E5%88%B6%E4%B8%80%E4%B8%AA%E4%B8%89%E8%A7%92%E5%BD%A2/" class="post-title-link" itemprop="url">「Modern OpenGL系列（三）」用OpenGL绘制一个三角形</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-05-08 18:42:52" itemprop="dateCreated datePublished" datetime="2016-05-08T18:42:52+00:00">2016-05-08</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">技术笔记</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          在[上一篇文章](http://davidsheh.github.io/post/「Modern OpenGL系列（二）」创建OpenGL窗口/)中已经介绍了OpenGL窗口的创建。本文接着说如何用OpenGL绘制一个三角形。
+1 . 添加头文件mesh.h，代码如下：
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+
+
+#pragma once
+
+#include <glm\glm.hpp>
+#include <
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/post/%E3%80%8CModern%20OpenGL%E7%B3%BB%E5%88%97%EF%BC%88%E4%B8%89%EF%BC%89%E3%80%8D%E7%94%A8OpenGL%E7%BB%98%E5%88%B6%E4%B8%80%E4%B8%AA%E4%B8%89%E8%A7%92%E5%BD%A2/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://davidsheh.github.io/post/%E3%80%8CModern%20OpenGL%E7%B3%BB%E5%88%97%EF%BC%88%E4%BA%8C%EF%BC%89%E3%80%8D%E5%88%9B%E5%BB%BAOpenGL%E7%AA%97%E5%8F%A3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/favicon-48x48.ico">
+      <meta itemprop="name" content="Sheh伟伟">
+      <meta itemprop="description" content="写写代码，玩玩游戏">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sheh伟伟的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/%E3%80%8CModern%20OpenGL%E7%B3%BB%E5%88%97%EF%BC%88%E4%BA%8C%EF%BC%89%E3%80%8D%E5%88%9B%E5%BB%BAOpenGL%E7%AA%97%E5%8F%A3/" class="post-title-link" itemprop="url">「Modern OpenGL系列（二）」创建OpenGL窗口</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-05-02 11:29:11" itemprop="dateCreated datePublished" datetime="2016-05-02T11:29:11+00:00">2016-05-02</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">技术笔记</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          在博主的[上一篇文章](http://davidsheh.github.io/post/「Modern OpenGL系列（一）」十步搞定OpenGL开发环境/)中已经介绍了OpenGL开发环境的搭建，本篇博文将验证开发环境是否搭建成功。同时，也是迈出OpenGL开发的第一步。我们使用上一篇文章中新建的项目，创建一个OpenGL窗口。
+
+ 1. 添加头文件display.h。 1
+    2
+    3
+    4
+    5
+    6
+    7
+    8
+    9
+    10
+    11
+    12
+    13
+    14
+    15
+    16
+    17
+    1
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/post/%E3%80%8CModern%20OpenGL%E7%B3%BB%E5%88%97%EF%BC%88%E4%BA%8C%EF%BC%89%E3%80%8D%E5%88%9B%E5%BB%BAOpenGL%E7%AA%97%E5%8F%A3/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://davidsheh.github.io/post/%E3%80%8CModern%20OpenGL%E7%B3%BB%E5%88%97%EF%BC%88%E4%B8%80%EF%BC%89%E3%80%8D%E5%8D%81%E6%AD%A5%E6%90%9E%E5%AE%9AOpenGL%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/favicon-48x48.ico">
+      <meta itemprop="name" content="Sheh伟伟">
+      <meta itemprop="description" content="写写代码，玩玩游戏">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sheh伟伟的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/%E3%80%8CModern%20OpenGL%E7%B3%BB%E5%88%97%EF%BC%88%E4%B8%80%EF%BC%89%E3%80%8D%E5%8D%81%E6%AD%A5%E6%90%9E%E5%AE%9AOpenGL%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/" class="post-title-link" itemprop="url">「Modern OpenGL系列（一）」十步搞定OpenGL开发环境</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-05-01 22:36:43" itemprop="dateCreated datePublished" datetime="2016-05-01T22:36:43+00:00">2016-05-01</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">技术笔记</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          OpenGL官网：https://www.opengl.org。
+开发常用的SDK库：https://www.opengl.org/sdk/libs/
+
+搭建环境前的准备
+在搭建OpenGL开发环境前先下载好下面的三个压缩文件：
+
+ 1. GLEW（OpenGL Extension Wrangler Library）：详细介绍。压缩包下载链接：Binaries Windows 32-bit and 64-bit
+ 2. GLM（OpenGL Mathematics）：详细介绍。压缩包下载链接：glm-0.9.7.4.zip
+ 3. SDL（Simple DirectMedia Layer）：详
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/post/%E3%80%8CModern%20OpenGL%E7%B3%BB%E5%88%97%EF%BC%88%E4%B8%80%EF%BC%89%E3%80%8D%E5%8D%81%E6%AD%A5%E6%90%9E%E5%AE%9AOpenGL%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://davidsheh.github.io/post/%E3%80%8CUnity%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E3%80%8D%E5%90%91%E9%87%8F%E5%9C%A8%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8%EF%BC%88%E4%B8%89%EF%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/favicon-48x48.ico">
+      <meta itemprop="name" content="Sheh伟伟">
+      <meta itemprop="description" content="写写代码，玩玩游戏">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sheh伟伟的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/%E3%80%8CUnity%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E3%80%8D%E5%90%91%E9%87%8F%E5%9C%A8%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8%EF%BC%88%E4%B8%89%EF%BC%89/" class="post-title-link" itemprop="url">「Unity游戏开发」向量在游戏开发中的应用（三）</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-04-07 18:33:14" itemprop="dateCreated datePublished" datetime="2016-04-07T18:33:14+00:00">2016-04-07</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">技术笔记</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          在上一篇博客中讲了利用向量点乘在游戏开发中应用的几种情景。本篇博客将用一个简单的小例子来讲解在实际的游戏开发中如何利用向量的叉乘来解决问题。
+
+向量叉乘的几何意义
+ 1. 叉积的长度 |a×b| 可以解释成以a和b为邻边的平行四边形的面积。
+ 2. 混合积 [a b c] = (a×b)·c可以得到以a，b，c为棱的平行六面体的体积。
+
+关于向量叉乘的其他定义、规律以及应用有兴趣的朋友可以参考百度百科，这里就不再啰嗦了。本篇博客不想在叉乘其他地方纠结太多，只说一下如何用叉乘判断方向。
+
+如何用向量叉乘判断方向
+在网上有很多人将向量的应用总结为一句话：点乘判断角度，叉乘判断方向。关于点乘在上一篇
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/post/%E3%80%8CUnity%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E3%80%8D%E5%90%91%E9%87%8F%E5%9C%A8%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8%EF%BC%88%E4%B8%89%EF%BC%89/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://davidsheh.github.io/post/%E3%80%8CUnity%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E3%80%8D%E5%90%91%E9%87%8F%E5%9C%A8%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8%EF%BC%88%E4%BA%8C%EF%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/favicon-48x48.ico">
+      <meta itemprop="name" content="Sheh伟伟">
+      <meta itemprop="description" content="写写代码，玩玩游戏">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sheh伟伟的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/%E3%80%8CUnity%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E3%80%8D%E5%90%91%E9%87%8F%E5%9C%A8%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8%EF%BC%88%E4%BA%8C%EF%BC%89/" class="post-title-link" itemprop="url">「Unity游戏开发」向量在游戏开发中的应用（二）</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-03-24 16:45:23" itemprop="dateCreated datePublished" datetime="2016-03-24T16:45:23+00:00">2016-03-24</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">技术笔记</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          在上一篇博客中讲了利用向量方向的性质来解决问题。这篇博客将继续用一个简单的小例子来讲解如何将向量的点乘性质应用到实际的游戏开发中。
+
+向量点乘的几何定义
+设二维空间内有两个向量U和V，它们的夹角为θ（[0, π]），则内积定义为以下实数：
+向量点乘的公式：U·V = |U||V|**cosθ
+根据该公式可以退到下面五条结论：
+1. **U·V > 0，表示向量U和V之间的夹角小于90度（锐角）
+2. U·V < 0，表示向量U和V之间的夹角大于90度（钝角）
+3. U·V = 0，表示向量U和V之间的夹角为90度（相互垂直）
+4. U·V = 1，表示向量U和V的方向相同
+5. U·V = -
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/post/%E3%80%8CUnity%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E3%80%8D%E5%90%91%E9%87%8F%E5%9C%A8%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8%EF%BC%88%E4%BA%8C%EF%BC%89/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://davidsheh.github.io/post/C_Sharp%E5%91%BD%E5%90%8D%E8%A7%84%E5%88%99%E5%92%8C%E7%BC%96%E7%A0%81%E8%A7%84%E8%8C%83/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/favicon-48x48.ico">
+      <meta itemprop="name" content="Sheh伟伟">
+      <meta itemprop="description" content="写写代码，玩玩游戏">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sheh伟伟的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/C_Sharp%E5%91%BD%E5%90%8D%E8%A7%84%E5%88%99%E5%92%8C%E7%BC%96%E7%A0%81%E8%A7%84%E8%8C%83/" class="post-title-link" itemprop="url">C#命名规则和编码规范</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-03-10 15:03:15" itemprop="dateCreated datePublished" datetime="2016-03-10T15:03:15+00:00">2016-03-10</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">技术笔记</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          1. 用Pascal规则来命名属性、方法、事件和类名
+1
+2
+3
+4
+5
+6
+
+
+public class HelloWorld
+{
+    public void SayHello(string name)
+    {
+    }
+}
+
+
+Pascal规则是指名称中单词的首字母大写 ,如EmployeeSalary、 ConfimationDialog、PlainTextEncoding。
+
+2. 用Camel规则来命名成员变量、局部变量和方法的参数
+1
+2
+3
+4
+5
+6
+7
+8
+9
+
+
+public class Product
+{
+    private string productId
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/post/C_Sharp%E5%91%BD%E5%90%8D%E8%A7%84%E5%88%99%E5%92%8C%E7%BC%96%E7%A0%81%E8%A7%84%E8%8C%83/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://davidsheh.github.io/post/Android%20Studio%E8%BF%9E%E6%8E%A5%E7%9C%9F%E6%9C%BA%E6%B2%A1%E5%8F%8D%E5%BA%94/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/favicon-48x48.ico">
+      <meta itemprop="name" content="Sheh伟伟">
+      <meta itemprop="description" content="写写代码，玩玩游戏">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sheh伟伟的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/Android%20Studio%E8%BF%9E%E6%8E%A5%E7%9C%9F%E6%9C%BA%E6%B2%A1%E5%8F%8D%E5%BA%94/" class="post-title-link" itemprop="url">Android Studio连接真机没反应</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-03-10 12:32:30" itemprop="dateCreated datePublished" datetime="2016-03-10T12:32:30+00:00">2016-03-10</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">开发工具</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          刚好遇到这个问题，在网上百度了一下，看到有人分享了引起该问题的几个原因：
+
+ 1. 手机设置问题。开USB调试 方法： 手机设置 - 开发人员选项 - USB调试 - 勾选
+ 2. 数据线问题。 有的数据线只能用来充电，有的可以连接存储。识别方法很简单。。插上机器有USB存储设备的提示的就可以用。另外数据线如果都露线皮了。。就赶紧扔了。十块八块的总比你为这个破问题纠结一下午的好。
+ 3. 是否下载了对应手机版本的SDK，以Android Studio为例，点开 SDK Manager 之后。看你手机所使用的系统版本号对应的SDK是否已下载。。没有就赶紧下。。手机对应的Android版本查看方法
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/post/Android%20Studio%E8%BF%9E%E6%8E%A5%E7%9C%9F%E6%9C%BA%E6%B2%A1%E5%8F%8D%E5%BA%94/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://davidsheh.github.io/post/%E3%80%8CUnity%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E3%80%8D%E5%90%91%E9%87%8F%E5%9C%A8%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8%EF%BC%88%E4%B8%80%EF%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/favicon-48x48.ico">
+      <meta itemprop="name" content="Sheh伟伟">
+      <meta itemprop="description" content="写写代码，玩玩游戏">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sheh伟伟的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/%E3%80%8CUnity%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E3%80%8D%E5%90%91%E9%87%8F%E5%9C%A8%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8%EF%BC%88%E4%B8%80%EF%BC%89/" class="post-title-link" itemprop="url">「Unity游戏开发」向量在游戏开发中的应用（一）</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-03-05 18:37:25" itemprop="dateCreated datePublished" datetime="2016-03-05T18:37:25+00:00">2016-03-05</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">技术笔记</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          向量在游戏开发中是非常实用的，我们在学校学完向量的知识后，只知道向量的基本知识，但对于如何将所学到的向量知识运用到实际的游戏开发中却不知所措。我计划写几篇关于向量在游戏中的应用的文章，总结一下在实际工作中所遇到过的运用向量机智处理问题的技巧。接下来要写的东西都是记录在我的云笔记中，现在计划整理一下后分享出来。
+对于向量的那些基本性质我不想说太多，有兴趣的读者可以自行查阅相关文档，这里只说向量的大小和方向。不知道读者朋友曾经玩过安卓上一款比较火的跳跃游戏没有，游戏名字叫「涂鸦跳跃」，英文名为「Doodle Jump」，游戏截图如下：
+
+在玩「涂鸦跳跃」时，不知道你有没有想过这么一个问题：从下往上
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/post/%E3%80%8CUnity%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E3%80%8D%E5%90%91%E9%87%8F%E5%9C%A8%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8%EF%BC%88%E4%B8%80%EF%BC%89/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -281,7 +1133,7 @@ Markdown 支持两种标题的语法，Setext 和
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span>
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -349,20 +1201,20 @@ Markdown 支持两种标题的语法，Setext 和
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-count">45</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">39</span>
+        <span class="site-state-item-count">44</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

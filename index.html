@@ -811,7 +811,7 @@ Installing, this may take a few m
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://davidsheh.github.io/post/mac-c-env/">
+    <link itemprop="mainEntityOfPage" href="http://davidsheh.github.io/post/%E3%80%8C%E7%BF%BB%E8%AF%91%E3%80%8DUnity%E4%B8%AD%E7%9A%84AssetBundle%E8%AF%A6%E8%A7%A3%EF%BC%88%E5%85%AD%EF%BC%89/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/favicon-48x48.ico">
@@ -825,7 +825,7 @@ Installing, this may take a few m
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/post/mac-c-env/" class="post-title-link" itemprop="url">在 Mac 上配置 C++ 环境</a>
+            <a href="/post/%E3%80%8C%E7%BF%BB%E8%AF%91%E3%80%8DUnity%E4%B8%AD%E7%9A%84AssetBundle%E8%AF%A6%E8%A7%A3%EF%BC%88%E5%85%AD%EF%BC%89/" class="post-title-link" itemprop="url">「翻译」Unity中的AssetBundle详解（六）</a>
         </h2>
 
         <div class="post-meta">
@@ -835,7 +835,7 @@ Installing, this may take a few m
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2017-09-16 22:49:16" itemprop="dateCreated datePublished" datetime="2017-09-16T22:49:16+00:00">2017-09-16</time>
+              <time title="创建时间：2017-09-24 21:35:06" itemprop="dateCreated datePublished" datetime="2017-09-24T21:35:06+00:00">2017-09-24</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -843,7 +843,7 @@ Installing, this may take a few m
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">技术笔记</span></a>
+                  <a href="/categories/%E6%8A%80%E6%9C%AF%E7%BF%BB%E8%AF%91/" itemprop="url" rel="index"><span itemprop="name">技术翻译</span></a>
                 </span>
             </span>
 
@@ -858,23 +858,14 @@ Installing, this may take a few m
     <div class="post-body" itemprop="articleBody">
 
       
-          使用 VSCode 编写 C++ 程序一步到位
- 1. 安装C/C++插件，请认准微软官方出品
- 2. 安装Code Runner插件
- 3. 写代码，然后保存
- 4. 使用快捷键Ctrl+Alt+N编译并运行代码
+          故障排除
+本节介绍通常在使用 AssetBundles 的项目中出现的几个问题。
 
-使用 Xcode 强大的 IDE
- 1. 打开 Xcode，点 Create a new Xcode project
- 2. 选择 macOS -> Command Line Tool
- 3. 下一步后，填写项目的基本信息，然后，Language 这一项选择 C++
- 4. 项目创建完后，点击三角形的按钮就开始编译了
-
-C++ 代码在命令行编译并运行的步骤
- 1. 打开终端（⌘ 
+Asset 重复
+当对象被构建到 AssetBundle 中时，Unity 5 的 AssetBundle 系统会发现对象的所有依赖关系。这是使用资产数据库完成的。此依赖关系信息用于确定将包含在 AssetBundle 中的对象集。明确分配给 AssetBundle 的对象只会内置到该 AssetBundle 中。当对象的 AssetImporter 的 assetBundleName 属性设置为非空字符串时，对象将被“显式分配”。在 AssetBundle 中未明确分配的任何对象将包含在所有的 AssetBu
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/post/mac-c-env/#more" rel="contents">
+              <a class="btn" href="/post/%E3%80%8C%E7%BF%BB%E8%AF%91%E3%80%8DUnity%E4%B8%AD%E7%9A%84AssetBundle%E8%AF%A6%E8%A7%A3%EF%BC%88%E5%85%AD%EF%BC%89/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -898,7 +889,7 @@ C++ 代码在命令行编译并运行的步骤
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://davidsheh.github.io/post/windows-chocolatey-scoop/">
+    <link itemprop="mainEntityOfPage" href="http://davidsheh.github.io/post/%E3%80%8C%E7%BF%BB%E8%AF%91%E3%80%8DUnity%E4%B8%AD%E7%9A%84AssetBundle%E8%AF%A6%E8%A7%A3%EF%BC%88%E4%BA%94%EF%BC%89/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/favicon-48x48.ico">
@@ -912,7 +903,7 @@ C++ 代码在命令行编译并运行的步骤
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/post/windows-chocolatey-scoop/" class="post-title-link" itemprop="url">Windows 系统的包管理器</a>
+            <a href="/post/%E3%80%8C%E7%BF%BB%E8%AF%91%E3%80%8DUnity%E4%B8%AD%E7%9A%84AssetBundle%E8%AF%A6%E8%A7%A3%EF%BC%88%E4%BA%94%EF%BC%89/" class="post-title-link" itemprop="url">「翻译」Unity中的AssetBundle详解（五）</a>
         </h2>
 
         <div class="post-meta">
@@ -922,7 +913,7 @@ C++ 代码在命令行编译并运行的步骤
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2017-09-09 21:02:36" itemprop="dateCreated datePublished" datetime="2017-09-09T21:02:36+00:00">2017-09-09</time>
+              <time title="创建时间：2017-09-23 20:15:24" itemprop="dateCreated datePublished" datetime="2017-09-23T20:15:24+00:00">2017-09-23</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -930,7 +921,7 @@ C++ 代码在命令行编译并运行的步骤
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">开发工具</span></a>
+                  <a href="/categories/%E6%8A%80%E6%9C%AF%E7%BF%BB%E8%AF%91/" itemprop="url" rel="index"><span itemprop="name">技术翻译</span></a>
                 </span>
             </span>
 
@@ -945,13 +936,14 @@ C++ 代码在命令行编译并运行的步骤
     <div class="post-body" itemprop="articleBody">
 
       
-          自从在 Mac 下使用了 Homebrew + iTerm 2 + Fish shell 后，瞬间感觉世界清静了不少。然后就在想 Windows 下面有没有类似的软件呢？毕竟在工作中使用 Windows 还是比较多的，然后在网上还真搜到了。对应于 Mac 下的 Homebrew + iTerm 2 + Fish shell ， Windows 下是 Chocolatey( + Scoop) + ConEmu + PowerShell。
+          AssetBundle 管理器
+AssetBundle Manager 可以在这里下载，是由 Unity 制作的一种工具，可以使 AssetBundles 更加精简。下载和导入 AssetBundle Manager 软件包不仅添加了一个新的API调用来加载和使用AssetBundles，而且还添加了一些编辑器功能来简化工作流。此功能可以在“资产”菜单选项下找到。此新部分将包含以下选项：
 
-Chocolatey
-官网号称 Chocolatey 是在 Windows 上管理软件的明智方式，轻松管理 Windows 软件的各个方面（安装，配置，升级和
+模拟模式
+启用模拟模式允许 AssetBundle Manager 使用 AssetBundles，但不需要实际构建捆绑包。编辑器会看到 Assets 已分配给 AssetBundles，并直接使用 Ass
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/post/windows-chocolatey-scoop/#more" rel="contents">
+              <a class="btn" href="/post/%E3%80%8C%E7%BF%BB%E8%AF%91%E3%80%8DUnity%E4%B8%AD%E7%9A%84AssetBundle%E8%AF%A6%E8%A7%A3%EF%BC%88%E4%BA%94%EF%BC%89/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -975,7 +967,7 @@ Chocolatey
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://davidsheh.github.io/post/hexo-blog/">
+    <link itemprop="mainEntityOfPage" href="http://davidsheh.github.io/post/%E3%80%8C%E7%BF%BB%E8%AF%91%E3%80%8DUnity%E4%B8%AD%E7%9A%84AssetBundle%E8%AF%A6%E8%A7%A3%EF%BC%88%E5%9B%9B%EF%BC%89/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/favicon-48x48.ico">
@@ -989,7 +981,7 @@ Chocolatey
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/post/hexo-blog/" class="post-title-link" itemprop="url">用Hexo搭建个人博客</a>
+            <a href="/post/%E3%80%8C%E7%BF%BB%E8%AF%91%E3%80%8DUnity%E4%B8%AD%E7%9A%84AssetBundle%E8%AF%A6%E8%A7%A3%EF%BC%88%E5%9B%9B%EF%BC%89/" class="post-title-link" itemprop="url">「翻译」Unity中的AssetBundle详解（四）</a>
         </h2>
 
         <div class="post-meta">
@@ -999,7 +991,7 @@ Chocolatey
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2017-09-03 20:08:21" itemprop="dateCreated datePublished" datetime="2017-09-03T20:08:21+00:00">2017-09-03</time>
+              <time title="创建时间：2017-09-17 21:23:12" itemprop="dateCreated datePublished" datetime="2017-09-17T21:23:12+00:00">2017-09-17</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1007,7 +999,7 @@ Chocolatey
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">开发工具</span></a>
+                  <a href="/categories/%E6%8A%80%E6%9C%AF%E7%BF%BB%E8%AF%91/" itemprop="url" rel="index"><span itemprop="name">技术翻译</span></a>
                 </span>
             </span>
 
@@ -1022,34 +1014,11 @@ Chocolatey
     <div class="post-body" itemprop="articleBody">
 
       
-          安装环境
-1. 安装Homebrew
-Mac建议使用 Homebrew 安装必要的插件，Windows用户可以跳过这一步。关于 Homebrew 的介绍请看我的这篇博文 Mac开发必备工具（一）—— Homebrew。
-
-2. 安装Git和Node.js
-Node.js 可以通过 Homebrew 安装，安装命令如下：
-
-1
-
-
-brew install node
-
-
-3. 安装 Hexo 博客框架
-Hexo 框架可以使用下面的 npm 命令来安装。
-
-1
-
-
-npm install -g hexo-cli
-
-
-使用Hexo建站
-建站
-安装 Hexo 完成后，请执行下列命令，Hexo 将会在指
+          AssetBundle依赖关系
+如果一个或多个UnityEngine.Objects包含位于另一个bundle中的UnityEngine.Object的引用，则AssetBundles可以依赖于其他AssetBundles。如果UnityEngine.Object包含一个在其他任何AssetBundle中都不包含的UnityEngine.Object的引用，则不会发生依赖关系。在这种情况下，在构建AssetBundles时，将bundle所依赖的对象的副本复制到捆绑包中。如果多个bundle中的多个对象包含对未分配给bundle的同一对象的引用，那么对该对象具有依赖关系的每个bundle将各自
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/post/hexo-blog/#more" rel="contents">
+              <a class="btn" href="/post/%E3%80%8C%E7%BF%BB%E8%AF%91%E3%80%8DUnity%E4%B8%AD%E7%9A%84AssetBundle%E8%AF%A6%E8%A7%A3%EF%BC%88%E5%9B%9B%EF%BC%89/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1072,7 +1041,7 @@ npm install -g hexo-cli
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1140,20 +1109,20 @@ npm install -g hexo-cli
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-count">45</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">39</span>
+        <span class="site-state-item-count">44</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
