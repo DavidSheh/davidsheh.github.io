@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon-48x48.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.ico">
+  <link rel="mask-icon" href="/images/favicon-48x48.ico" color="#222">
+  <meta name="google-site-verification" content="y9ZCJa24kwItzuTNHY7NV3lBg0zYD3ifEb3fjQxh4DI">
+  <meta name="msvalidate.01" content="9545D27E24C905307CDC8D3A1BB63430">
+  <meta name="baidu-site-verification" content="codeva-SMbTvc8LWn">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"codebug.top","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.22.0","exturl":true,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false,"trigger":"auto"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="一些基础知识点介绍  1. 数据类型           * double（双精度类型），一般64bit      * float（浮点数类型），一般是32bit，如float2, float3, float4      * half（半精度类型），一般是16bit。用于几何位置或纹理坐标。      * fixed（定点数类型），一般是11bit。精度更低。一般用于颜色。      * vec（">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Unity Shader 学习笔记">
+<meta property="og:url" content="http://codebug.top/post/unity-shader-notes/index.html">
+<meta property="og:site_name" content="CodeBug">
+<meta property="og:description" content="一些基础知识点介绍  1. 数据类型           * double（双精度类型），一般64bit      * float（浮点数类型），一般是32bit，如float2, float3, float4      * half（半精度类型），一般是16bit。用于几何位置或纹理坐标。      * fixed（定点数类型），一般是11bit。精度更低。一般用于颜色。      * vec（">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-03-18T17:28:12.000Z">
+<meta property="article:modified_time" content="2024-01-20T14:16:18.000Z">
+<meta property="article:author" content="行是知成">
+<meta property="article:tag" content="Unity">
+<meta property="article:tag" content="Shader">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://codebug.top/post/unity-shader-notes/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://codebug.top/post/unity-shader-notes/","path":"post/unity-shader-notes/","title":"Unity Shader 学习笔记"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Unity Shader 学习笔记 | CodeBug</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-104471088-1"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"UA-104471088-1","only_pageview":false,"measure_protocol_api_secret":null}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="CodeBug" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">CodeBug</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">看看书，写写代码，做做投资</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E4%BA%9B%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E7%82%B9%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.</span> <span class="nav-text">一些基础知识点介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#UnityCG"><span class="nav-number">2.</span> <span class="nav-text">UnityCG</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%92%8C%E8%BF%90%E7%AE%97"><span class="nav-number">3.</span> <span class="nav-text">数据和运算</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%96%E8%BE%91%E5%99%A8%E8%BE%85%E5%8A%A9%E6%A0%87%E7%AD%BE"><span class="nav-number">4.</span> <span class="nav-text">编辑器辅助标签</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B7%B1%E5%BA%A6%E6%B5%8B%E8%AF%95%EF%BC%88ZTest%EF%BC%89"><span class="nav-number">5.</span> <span class="nav-text">深度测试（ZTest）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tags-%E8%AF%AD%E5%8F%A5"><span class="nav-number">6.</span> <span class="nav-text">Tags 语句</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B7%B7%E5%90%88"><span class="nav-number">7.</span> <span class="nav-text">混合</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B6%E4%BB%96"><span class="nav-number">8.</span> <span class="nav-text">其他</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%99%E7%A8%8B"><span class="nav-number">9.</span> <span class="nav-text">教程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"><span class="nav-number">10.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="行是知成"
+      src="/images/favicon-48x48.ico">
+  <p class="site-author-name" itemprop="name">行是知成</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">53</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">48</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0RhdmlkU2hlaA==" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;DavidSheh"><i class="fab fa-github fa-fw"></i></span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cDovL3dlaWJvLmNvbS8xNTg2NTU4NTY3L3Byb2ZpbGU/dG9wbmF2PTEmd3ZyPTYmaXNfYWxsPTE=" title="Weibo → http:&#x2F;&#x2F;weibo.com&#x2F;1586558567&#x2F;profile?topnav&#x3D;1&amp;wvr&#x3D;6&amp;is_all&#x3D;1"><i class="fab fa-weibo fa-fw"></i></span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly93d3cuemhpaHUuY29tL3Blb3BsZS9kYXZpZHNoZWg=" title="ZhiHu → https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;davidsheh"><i class="fab fa-zhihu fa-fw"></i></span>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/764150976@qq.com" title="E-Mail → 764150976@qq.com" rel="noopener me"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <span class="exturl cc-opacity" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC8="><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          链接
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <span class="exturl" data-url="aHR0cHM6Ly9jcnlwdG9sZWFybi5hY2FkZW15Lw==" title="https:&#x2F;&#x2F;cryptolearn.academy&#x2F;">CryptoLearn</span>
+            </li>
+            <li class="links-of-blogroll-item">
+              <span class="exturl" data-url="aHR0cDovL3pob3VqaWFuaGFuZy5jb20v" title="http:&#x2F;&#x2F;zhoujianhang.com&#x2F;">无敌小拳头</span>
+            </li>
+        </ul>
+      </div>
+    </div>
+        <div class="pjax">
+        </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://codebug.top/post/unity-shader-notes/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/favicon-48x48.ico">
+      <meta itemprop="name" content="行是知成">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CodeBug">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Unity Shader 学习笔记 | CodeBug">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Unity Shader 学习笔记
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-03-18 17:28:12" itemprop="dateCreated datePublished" datetime="2019-03-18T17:28:12+00:00">2019-03-18</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-01-20 14:16:18" itemprop="dateModified" datetime="2024-01-20T14:16:18+00:00">2024-01-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">技术笔记</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="一些基础知识点介绍"><a href="#一些基础知识点介绍" class="headerlink" title="一些基础知识点介绍"></a>一些基础知识点介绍</h2><ol>
+<li><p>数据类型</p>
+<ul>
+<li>double（双精度类型），一般64bit</li>
+<li>float（浮点数类型），一般是32bit，如float2, float3, float4</li>
+<li>half（半精度类型），一般是16bit。用于几何位置或纹理坐标。</li>
+<li>fixed（定点数类型），一般是11bit。精度更低。一般用于颜色。</li>
+<li>vec（向量值类型）, 如vec2, vec3, vec4</li>
+</ul>
+</li>
+<li><p>常见方法</p>
+<ul>
+<li>tex2D(sampler2D, TEXCOORD0)</li>
+<li>length(float2&#x2F;float3&#x2F;float4) 求向量模</li>
+<li>atan -&gt; arctan</li>
+<li>asin -&gt; arcsin</li>
+<li>saturate(x)。如果x取值小于0，则返回值为0；如果x取值大于1，则返回值为1；若x在0到1之间，则直接返回x的值。</li>
+<li>discard 丢弃片段。例如uv的x&#x2F;y坐标满足某个条件时丢弃对应的片段，那么这些丢弃的片段都不绘制了。但是discard是一条消耗比较大的指令，因为只要有个一包含discard指令的着色器，就可能会导致某些重要的优化失效，渲染可能会执行的更差，</li>
+<li>step(a, x)。Returns (x &gt;&#x3D; a) ? 1 : 0</li>
+</ul>
+</li>
+<li><p>常见结构体</p>
+<ul>
+<li>SurfaceOutput，表面着色器输出结构体 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">struct SurfaceOutput &#123;</span><br><span class="line">    half3 Albedo; //该像素的颜色值</span><br><span class="line">    half3 Normal; //该像素的法向量</span><br><span class="line">    half3 Emission; //该像素的辐射光，辐射光是最简单的一种光，它直接从物体发出并且不受任何光源影响</span><br><span class="line">    half Specular; //该像素的镜面高光</span><br><span class="line">    half Gloss; //该像素的光泽度</span><br><span class="line">    half Alpha; //该像素的透明度</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
+<li>Input，输入结构体。如果我们的shader很复杂并且需要知道像素的其他相关信息，我们就可以将以下变量包含在输入结构体中，以此来查询其他的相关变量。<ul>
+<li>float3 viewDir – 视图方向( view direction)值。为了计算视差效果（Parallax effects），边缘光照（rim lighting）等，需要包含视图方向（view direction）值。</li>
+<li>float4  with COLOR semantic（比如float4 currentColor，即用户自定义和颜色相关的变量名称） – 每个顶点（per-vertex）颜色的插值。</li>
+<li>float4 screenPos – 为了反射效果，需要包含屏幕坐标系中的位置信息时包含此参数。</li>
+<li>float3 worldPos – 世界坐标系中的位置。</li>
+<li>float3 worldRefl – 表示世界坐标系中的反射向量(reflect vector)。如果表面着色器(surface shader) 不为SurfaceOutput结构中的Normal赋值，也就是说Normal不会发生变化，也就不需要重新求取worldRefl值了，那么就可以直接通过Input结构体传递该参数。</li>
+<li>float3 worldNormal – 表示世界坐标系中的法线向量(normal vector)。如果表面着色器(surface shader) 不为SurfaceOutput结构中的Normal赋值，也就是说Normal不会发生变化，也就不需要重新求取worldNormal值了，那么就可以直接通过Input结构体传递该参数。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Properties常见语句</p>
+<ul>
+<li>float 例句：<code>_SomeValue(&quot;SomeValue&quot;, float) = 10</code></li>
+<li>Color 例句：<code>_Color(&quot;Background Color&quot;, Color) = (1,1,1,1)</code></li>
+<li>Texture 例句：<code>_MainTex(&quot;Albedo (RGB)&quot;, 2D) = &quot;white&quot; &#123;&#125;</code>。其中{option}，它只对2D，Rect或者Cube贴图有关，在写输入时我们最少要在贴图之后写一对什么都不含的空白的{}，当我们需要打开特定选项时可以把其写在这对花括号内。如果需要同时打开多个选项，可以使用空白分隔。可能的选择有ObjectLinear, EyeLinear, SphereMap, CubeReflect, CubeNormal中的一个，这些都是OpenGL中TexGen的模式。使用<code>[NoScaleOffset]</code>标签可以在检视窗口中隐藏纹理的 Tiling 和 Offset 两个参数选项。如<code>[NoScaleOffset]_MainTex(&quot;Albedo (RGB)&quot;, 2D) = &quot;white&quot; &#123;&#125;</code></li>
+<li>Range 例句：<code>_SomeRange(&quot;SomeRange&quot;, Range(0.25, 0.5)) = 0.25</code></li>
+<li>Vector 例句：<code>_SomeVector(&quot;SomeVector&quot;, Vector) = (1,1,1,1)</code></li>
+<li>Rect 例句：</li>
+<li>Cube 例句：</li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<p><span class="exturl" data-url="aHR0cHM6Ly9vbmV2Y2F0LmNvbS8yMDEzLzA3L3NoYWRlci10dXRvcmlhbC0x">https://onevcat.com/2013/07/shader-tutorial-1<i class="fa fa-external-link-alt"></i></span></p>
+</blockquote>
+<ol start="6">
+<li><p>Tags。</p>
+<p> <code>Tags &#123; &quot;RenderType&quot;=&quot;Opaque&quot; &quot;IgnoreProjector&quot;=&quot;True&quot; &quot;ForceNoShadowCasting&quot;=&quot;True&quot; &quot;Queue&quot;=&quot;Transparent&quot;&#125;</code></p>
+<p> Tags的种类：</p>
+<ul>
+<li>RenderType 渲染类型。分为两种：<ul>
+<li>Opaque 不透明</li>
+<li>Transparent 透明</li>
+</ul>
+</li>
+<li>IgnoreProjector 忽略Projector的影响。只有<code>&quot;True&quot;</code>和<code>&quot;False&quot;</code>两种值。</li>
+<li>ForceNoShadowCasting 强制关闭阴影投射。只有<code>&quot;True&quot;</code>和<code>&quot;False&quot;</code>两种值。</li>
+<li>Queue 指定渲染队列。将透明和不透明物体进行混合，如果渲染队列设置不正确则会导致不透明物体无法呈现在透明物体之后。预定义的Queue有:<ul>
+<li>Background 最早被调用的渲染，用来渲染天空盒或者背景。</li>
+<li>Geometry 这是默认值，用来渲染非透明物体（普通情况下，场景中的绝大多数物体应该是非透明的）。</li>
+<li>AlphaTest 用来渲染经过Alpha Test的像素，单独为AlphaTest设定一个Queue是出于对效率的考虑。</li>
+<li>Transparent 以从后往前的顺序渲染透明物体。</li>
+<li>Overlay 用来渲染叠加的效果，是渲染的最后阶段（比如镜头光晕等特效）。<blockquote>
+<p>这些预定义的值本质上是一组定义好的整数，Background &#x3D; 1000， Geometry &#x3D; 2000, AlphaTest &#x3D; 2450， Transparent &#x3D; 3000，最后Overlay &#x3D; 4000。<br> 在我们实际设置Queue值时，不仅能使用上面的几个预定义值，我们也可以指定自己的Queue值，写成类似这样：”Queue”&#x3D;”Transparent+100”，<br> 表示一个在Transparent之后100的Queue上进行调用。通过调整Queue值，我们可以确保某些物体一定在另一些物体之前或者之后渲染。</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>LOD。它是 Level of Detail 的缩写，在这里例子里我们指定了其为200（其实这是 Unity 的内建 Diffuse 着色器的设定值）。这个数值决定了我们能用什么样的 Shader。在 Unity 的 Quality Settings中我们可以设定允许的最大 LOD，当设定的 LOD 小于 SubShader 所指定的 LOD 时，这个 SubShader 将不可用。Unity 内建 Shader 定义了一组 LOD 的数值，我们在实现自己的 Shader 的时候可以将其作为参考来设定自己的 LOD 数值，这样在之后调整根据设备图形性能来调整画质时可以进行比较精确的控制。</p>
+</li>
+</ol>
+<ul>
+<li>VertexLit 及其系列 &#x3D; 100</li>
+<li>Decal, Reflective VertexLit &#x3D; 150</li>
+<li>Diffuse &#x3D; 200</li>
+<li>Diffuse Detail, Reflective Bumped Unlit, Reflective Bumped VertexLit &#x3D; 250</li>
+<li>Bumped, Specular &#x3D; 300</li>
+<li>Bumped Specular &#x3D; 400</li>
+<li>Parallax &#x3D; 500</li>
+<li>Parallax Specular &#x3D; 600</li>
+</ul>
+<h2 id="UnityCG"><a href="#UnityCG" class="headerlink" title="UnityCG"></a>UnityCG</h2><ol>
+<li><p>Cg API文档：<span class="exturl" data-url="aHR0cDovL2h0dHAuZGV2ZWxvcGVyLm52aWRpYS5jb20vQ2cvaW5kZXhfc3RkbGliLmh0bWw=">http://http.developer.nvidia.com/Cg/index_stdlib.html<i class="fa fa-external-link-alt"></i></span></p>
+</li>
+<li><p>常量</p>
+<ul>
+<li><code>#define PI 3.141592653589</code></li>
+<li><code>const float PI = 3.14159;//pi = 3.14159265358979323846264338327</code></li>
+</ul>
+</li>
+<li><p>顶点输入参数的语义（semantic）：</p>
+<ul>
+<li>POSITION  位置</li>
+<li>NORMAL    法向量</li>
+<li>TEXCOORD0 纹理坐标</li>
+<li>TANGENT   切向量</li>
+<li>COLOR     颜色</li>
+</ul>
+</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">struct vertexInput &#123;</span><br><span class="line">    float4 vertex : POSITION; // position (in object coordinates, i.e. local or model coordinates)</span><br><span class="line">    float4 tangent : TANGENT; // vector orthogonal to the surface normal</span><br><span class="line">    float3 normal : NORMAL; // surface normal vector (in object coordinates; usually normalized to unit length)</span><br><span class="line">    float4 texcoord : TEXCOORD0;  // 0th set of texture coordinates (a.k.a. “UV”; between 0 and 1) </span><br><span class="line">    float4 texcoord1 : TEXCOORD1; // 1st set of tex. coors. </span><br><span class="line">    float4 texcoord2 : TEXCOORD2; // 2nd set of tex. coors. </span><br><span class="line">    float4 texcoord3 : TEXCOORD3; // 3rd set of tex. coors. </span><br><span class="line">    fixed4 color : COLOR; // color (usually constant)</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li><p>Unity 在 UnityCG.cginc 中预定义的输入结构体：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">struct appdata_base &#123;</span><br><span class="line">    float4 vertex : POSITION;</span><br><span class="line">    float3 normal : NORMAL;</span><br><span class="line">    float4 texcoord : TEXCOORD0;</span><br><span class="line">&#125;;</span><br><span class="line">struct appdata_tan &#123;</span><br><span class="line">    float4 vertex : POSITION;</span><br><span class="line">    float4 tangent : TANGENT;</span><br><span class="line">    float3 normal : NORMAL;</span><br><span class="line">    float4 texcoord : TEXCOORD0;</span><br><span class="line">&#125;;</span><br><span class="line">struct appdata_full &#123;</span><br><span class="line">    float4 vertex : POSITION;</span><br><span class="line">    float4 tangent : TANGENT;</span><br><span class="line">    float3 normal : NORMAL;</span><br><span class="line">    float4 texcoord : TEXCOORD0;</span><br><span class="line">    float4 texcoord1 : TEXCOORD1;</span><br><span class="line">    float4 texcoord2 : TEXCOORD2;</span><br><span class="line">    float4 texcoord3 : TEXCOORD3;</span><br><span class="line">    fixed4 color : COLOR;</span><br><span class="line">    // and additional texture coordinates only on XBOX360</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">struct appdata_img &#123;</span><br><span class="line">    float4 vertex : POSITION;</span><br><span class="line">    half2 texcoord : TEXCOORD0;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>引入预定义结构体。如果要使用Unity预定义的一些结构体，则需要在着色器中使用<code>#include &quot;UnityCG.cginc&quot;</code>语句引入<code>UnityCG.cginc</code>文件。示例代码如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">Shader &quot;cginc&quot; &#123; </span><br><span class="line">   SubShader &#123; </span><br><span class="line">      Pass &#123; </span><br><span class="line">         CGPROGRAM </span><br><span class="line"> </span><br><span class="line">         #pragma vertex vert  </span><br><span class="line">         #pragma fragment frag </span><br><span class="line">         #include &quot;UnityCG.cginc&quot;</span><br><span class="line"> </span><br><span class="line">         struct vertexOutput &#123;</span><br><span class="line">            float4 pos : SV_POSITION;</span><br><span class="line">            float4 col : TEXCOORD0;</span><br><span class="line">         &#125;;</span><br><span class="line"> </span><br><span class="line">         vertexOutput vert(appdata_full input) </span><br><span class="line">         &#123;</span><br><span class="line">            vertexOutput output;</span><br><span class="line"> </span><br><span class="line">            output.pos =  mul(UNITY_MATRIX_MVP, input.vertex);</span><br><span class="line">            output.col = input.texcoord;</span><br><span class="line"></span><br><span class="line">            return output;</span><br><span class="line">         &#125;</span><br><span class="line"> </span><br><span class="line">         float4 frag(vertexOutput input) : COLOR </span><br><span class="line">         &#123;</span><br><span class="line">            return input.col; </span><br><span class="line">         &#125;</span><br><span class="line"> </span><br><span class="line">         ENDCG  </span><br><span class="line">      &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="数据和运算"><a href="#数据和运算" class="headerlink" title="数据和运算"></a>数据和运算</h2><ol>
+<li><p>数据类型的精度</p>
+<ul>
+<li>float 精度最高，消耗最大</li>
+<li>half  精度适中，消耗一般。可用于表示几何位置或纹理坐标</li>
+<li>fixed 精度最低，消耗最小。常用于颜色</li>
+</ul>
+</li>
+<li><p>Unity内置的uniform参数：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">uniform float4 _Time, _SinTime, _CosTime; // time values</span><br><span class="line">uniform float4 _ProjectionParams; // x = 1 or -1 (-1 if projection is flipped) y = near plane; z = far plane; w = 1/far plane</span><br><span class="line">uniform float4 _ScreenParams; // x = width; y = height; z = 1 + 1/width; w = 1 + 1/height</span><br><span class="line">uniform float3 _WorldSpaceCameraPos;</span><br><span class="line">uniform float4x4 _Object2World; // model matrix</span><br><span class="line">uniform float4x4 _World2Object; // inverse model matrix </span><br><span class="line">uniform float4 _WorldSpaceLightPos0; // position or direction of light source for forward rendering</span><br><span class="line"></span><br><span class="line">uniform float4x4 UNITY_MATRIX_MVP; // model view projection matrix </span><br><span class="line">uniform float4x4 UNITY_MATRIX_MV; // model view matrix</span><br><span class="line">uniform float4x4 UNITY_MATRIX_V; // view matrix</span><br><span class="line">uniform float4x4 UNITY_MATRIX_P; // projection matrix</span><br><span class="line">uniform float4x4 UNITY_MATRIX_VP; // view projection matrix</span><br><span class="line">uniform float4x4 UNITY_MATRIX_T_MV; // transpose of model view matrix</span><br><span class="line">uniform float4x4 UNITY_MATRIX_IT_MV; // transpose of the inverse model view matrix</span><br><span class="line">uniform float4 UNITY_LIGHTMODEL_AMBIENT; // ambient color</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>OpenGL着色语言中的变量类型限定符：</p>
+</li>
+</ol>
+<ul>
+<li>统一变量（uniform）<br>统一变量存储应用程序通过OpenGL ES 3.0 API（Unity中是通过C#）传入着色器的只读值，对于保存着色器所需要的所有数据类型（如变换矩阵、照明参数和颜色）都很有用。本质上，一个着色器的任何参数在所有顶点或者片段中都应该以统一变量的形式传入。在编译时已知值的变量应该是常量，而不是统一变量，这样可以提高效率。<br>统一变量在全局作用域中声明，只需要统一限定符。还需要注意的是，统一变量的命名空间在顶点着色器和片段着色器中都是共享的。统一变量通常保存在硬件中，这个区域被称作“常量存储”，是硬件中为存储常量值而分配的特殊空间。</li>
+</ul>
+<p>OpenGL ES2.0 的三种变量类型（uniform，attribute和varying）:<span class="exturl" data-url="aHR0cDovL2Jsb2cuY3Nkbi5uZXQvamFja2VyczY3OS9hcnRpY2xlL2RldGFpbHMvNjg0ODA4NQ==">http://blog.csdn.net/jackers679/article/details/6848085<i class="fa fa-external-link-alt"></i></span></p>
+<ol start="4">
+<li><p>POSITION vs SV_POSITION<br>它们都是 CG&#x2F;HLSL 中的语义（semantics）。POSITION 将告诉 Unity 把模型的顶点坐标填充到输入参数 v 中，SV_POSITION 将告诉 Unity 顶点着色器的输出是剪裁空间中的顶点坐标。SV_ 前缀的变量代表 system value。</p>
+</li>
+<li><p>在Shader中+、-、*、&#x2F;都是两个操作数各对应分量的运算。矩阵和向量、矩阵和矩阵之间的乘法使用<code>mul</code>函数。向量的点乘和叉乘分别使用<code>dot</code>和<code>cross</code>函数。</p>
+</li>
+</ol>
+<h2 id="编辑器辅助标签"><a href="#编辑器辅助标签" class="headerlink" title="编辑器辅助标签"></a>编辑器辅助标签</h2><ul>
+<li><code>[Header(Color Ramp Sample)]</code>在检视窗口中添加一个标签文本。</li>
+<li><code>[KeywordEnum(None, Top_Bottom, Left_Right, Custom_UV)] Stereo (&quot;Stereo Mode&quot;, Float) = 0</code>在检视窗口中添加一个弹出列表控件</li>
+<li><code>[Toggle(STEREO_DEBUG)] _StereoDebug (&quot;Stereo Debug Tinting&quot;, Float) = 0</code>在检视窗口中添加一个Toggle控件</li>
+<li>使用<code>[NoScaleOffset]</code>标签可以在检视窗口中隐藏纹理的 Tiling 和 Offset 两个参数选项。如<code>[NoScaleOffset]_MainTex(&quot;Albedo (RGB)&quot;, 2D) = &quot;white&quot; &#123;&#125;</code></li>
+</ul>
+<h2 id="深度测试（ZTest）"><a href="#深度测试（ZTest）" class="headerlink" title="深度测试（ZTest）"></a>深度测试（ZTest）</h2><p>ZTest 可取值为：Greater , GEqual , Less , LEqual , Equal , NotEqual , Always , Never , Off，默认是 LEqual，ZTest Off 等同于 ZTest Always。ZWrite 可取值为：On , Off，默认是 On。系统中存在一个颜色缓冲区和一个深度缓冲区，分别存储颜色值和深度值，来决定画面上应该显示什么颜色。深度值是物体在世界空间中距离摄像机的远近。距离越近，深度值越小；距离越远，深度值越大。</p>
+<h2 id="Tags-语句"><a href="#Tags-语句" class="headerlink" title="Tags 语句"></a>Tags 语句</h2><p>Tags 语句是用来给子着色器或通道分配一些键值对，用于控制渲染顺序、渲染类型、投影器效果等参数。例如，<code>Tags&#123; &quot;PreviewType&quot; = &quot;Plane&quot; &#125;</code>语句的含义如下：<br>    - PreviewType 标签是用来指示材质检视面板预览应如何显示材质。34<br>    - PreviewType &#x3D; “Plane” 的意思是，材质在检视面板中会显示为一个平面，而不是默认的球形。这个标签一般用于 UI 着色器，比如透明、粒子、字体等。</p>
+<h2 id="混合"><a href="#混合" class="headerlink" title="混合"></a>混合</h2><p>Unity 使用 Blend 命令来设置混合的渲染状态，Blend 命令的参数是源因子和目标因子，它们分别表示片段着色器的输出值和渲染目标的原有值的乘数1。例如：<code>Blend SrcAlpha OneMinusSrcAlpha</code> 表示开启Alpha混合（即传统的透明度混合），并指定混合因子。其他混合命令如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Blend SrcAlpha OneMinusSrcAlpha // Traditional transparency</span><br><span class="line">Blend One OneMinusSrcAlpha // Premultiplied transparency</span><br><span class="line">Blend One One // Additive</span><br><span class="line">Blend OneMinusDstColor One // Soft Additive</span><br><span class="line">Blend DstColor Zero // Multiplicative</span><br><span class="line">Blend DstColor SrcColor // 2x Multiplicative</span><br></pre></td></tr></table></figure>
+
+<p>颜色与颜色之间可以进行加减乘除进行混合运算。加法可以起到颜色叠加的效果，但是由于颜色值的值域为0~1，相加很容易达到1，颜色会愈发明亮，因此叠加建议使用乘法；减法可以进行反色处理，但是同样是值域的原因，数值达到0，颜色就很暗淡，因此要做反色建议使用除法。关于混合的更多内容请参考官方文档：<span class="exturl" data-url="aHR0cHM6Ly9kb2NzLnVuaXR5M2QuY29tL2NuLzIwMTguMy9NYW51YWwvU0wtQmxlbmQuaHRtbA==">ShaderLab: Blending<i class="fa fa-external-link-alt"></i></span>。</p>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p><code>o.uv = TRANSFORM_TEX(v.texcoord, _MainTex);</code> 等价于 <code>o.uv = v.texcoord.xy * _MainTex_ST.xy + _MainTex_ST.zw;</code>。注意，在这两句代码的前面变量声明的部分要多声明一句<code>float4 _MainTex_ST;</code>。<code>TRANSFORM_TEX</code> 是 Unity 内置的宏，在 UnityCG.cginc 中定义的：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// Transforms 2D UV by scale/bias property</span><br><span class="line">#define TRANSFORM_TEX(tex, name)(tex.xy * name##_ST.xy + name##_ST.zw)</span><br></pre></td></tr></table></figure>
+
+<h2 id="教程"><a href="#教程" class="headerlink" title="教程"></a>教程</h2><ul>
+<li>浅墨：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL1FpYW5Nby9Bd2Vzb21lLVVuaXR5LVNoYWRlcg==">https://github.com/QianMo/Awesome-Unity-Shader<i class="fa fa-external-link-alt"></i></span></li>
+<li>风宇冲：<span class="exturl" data-url="aHR0cHM6Ly9ibG9nLnNpbmEuY29tLmNuL3MvYXJ0aWNsZWxpc3RfMTE5MjMwOTM5NF80XzEuaHRtbA==">https://blog.sina.com.cn/s/articlelist_1192309394_4_1.html<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9kb2NzLnVuaXR5LmNuL2NuLzIwMTguMy9NYW51YWwvU0wtU3ViU2hhZGVyVGFncy5odG1s">ShaderLab：向子着色器分配标签<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly96aHVhbmxhbi56aGlodS5jb20vcC8zODk4OTIyODY=">Unity Shader 子着色器标签（SubShader Tags） - 知乎专栏<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NiYmJjL2FydGljbGUvZGV0YWlscy82OTM4NTY1Mw==">【Unity Shader】浅析Unity shader中RenderType的作用及_CameraDepthNormalsTexture …<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly93d3cuamlhbnNodS5jb20vcC9kNWNiZTQyYmNkOWE=">ShaderLab之SubShader - 简书<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>请我一杯咖啡吧！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.jpg" alt="行是知成 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/alipay.jpg" alt="行是知成 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>行是知成
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="http://codebug.top/post/unity-shader-notes/" title="Unity Shader 学习笔记">http://codebug.top/post/unity-shader-notes/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC8="><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</span> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Unity/" rel="tag"># Unity</a>
+              <a href="/tags/Shader/" rel="tag"># Shader</a>
+          </div>
+
+        
+  <div class="social-like a2a_kit a2a_kit_size_32 a2a_default_style">
+    <a class="a2a_dd" target="_blank" rel="noopener" href="https://www.addtoany.com/share"></a>
+      <a class="a2a_button_facebook"></a>
+      <a class="a2a_button_twitter"></a>
+      <a class="a2a_button_wechat"></a>
+      <a class="a2a_button_qzone"></a>
+      <a class="a2a_button_telegram"></a>
+  </div>
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/post/blog-pic-bed/" rel="prev" title="搭建免费稳定的个人博客图床">
+                  <i class="fa fa-angle-left"></i> 搭建免费稳定的个人博客图床
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/post/unity-ecs-note/" rel="next" title="Unity ECS 笔记">
+                  Unity ECS 笔记 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2015 – 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">CodeBug</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZy9taXN0Lw==">NexT.Mist</span> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+  <span class="exturl github-corner" data-url="aHR0cHM6Ly9naXRodWIuY29tL0RhdmlkU2hlaA==" title="在 GitHub 上关注我" aria-label="在 GitHub 上关注我"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></span>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script><script src="/js/pjax.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+
+  <script src="/js/third-party/addtoany.js"></script>
+
+  
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"DavidSheh","repo":"davidsheh.github.io","client_id":"a64275d932b30b7c6654","client_secret":"58cfd039fc57204bdaf145cb0973c7d72ba817a4","admin_user":"DavidSheh","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"1dfaeea92a3c83a5b50ff974e2142197"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>

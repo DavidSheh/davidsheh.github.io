@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon-48x48.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.ico">
+  <link rel="mask-icon" href="/images/favicon-48x48.ico" color="#222">
+  <meta name="google-site-verification" content="y9ZCJa24kwItzuTNHY7NV3lBg0zYD3ifEb3fjQxh4DI">
+  <meta name="msvalidate.01" content="9545D27E24C905307CDC8D3A1BB63430">
+  <meta name="baidu-site-verification" content="codeva-SMbTvc8LWn">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"codebug.top","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.22.0","exturl":true,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false,"trigger":"auto"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="为什么要学 DOTS ？ DOTS 代表了 Unity 的未来。Unity 的架构正在朝着全面采用 DOTS 的方向发展。面向数据的设计(DoD)堪称是实时3D 行业的未来。利用 DoD 原理和实现来解决问题并开发复杂的解决方案已成为大势所趋，尤其是在游戏领域。 例如，瑞典游戏工作室 Far North Entertainment 就使用了 DOTS 来解决他们的性能问题，相关说明见 “Creat">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Unity DOTS-Subscene 介绍">
+<meta property="og:url" content="http://codebug.top/post/unity-dots-subscene/index.html">
+<meta property="og:site_name" content="CodeBug">
+<meta property="og:description" content="为什么要学 DOTS ？ DOTS 代表了 Unity 的未来。Unity 的架构正在朝着全面采用 DOTS 的方向发展。面向数据的设计(DoD)堪称是实时3D 行业的未来。利用 DoD 原理和实现来解决问题并开发复杂的解决方案已成为大势所趋，尤其是在游戏领域。 例如，瑞典游戏工作室 Far North Entertainment 就使用了 DOTS 来解决他们的性能问题，相关说明见 “Creat">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/DavidSheh/BlogPictures@master/pictures/unity_dots_archite.webp">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/DavidSheh/BlogPictures@master/pictures/unity_dots_flow1.webp">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/DavidSheh/BlogPictures@master/pictures/unity_dots_flow2.webp">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/DavidSheh/BlogPictures@master/pictures/unity_dots_baking1.webp">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/DavidSheh/BlogPictures@master/pictures/unity_dots_baking2.webp">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/DavidSheh/BlogPictures@master/pictures/unity_subscence1.webp">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/DavidSheh/BlogPictures@master/pictures/unity_subscence2.webp">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/DavidSheh/BlogPictures@master/pictures/unity_subscence3.webp">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/DavidSheh/BlogPictures@master/pictures/unity_dots_entity1.webp">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/DavidSheh/BlogPictures@master/pictures/unity_dots_entity2.webp">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/DavidSheh/BlogPictures@master/pictures/unity_dots_section.webp">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/DavidSheh/BlogPictures@master/pictures/unity-dots-mindmap.webp">
+<meta property="article:published_time" content="2023-08-03T10:16:33.000Z">
+<meta property="article:modified_time" content="2024-09-14T10:36:51.000Z">
+<meta property="article:author" content="行是知成">
+<meta property="article:tag" content="Unity3D">
+<meta property="article:tag" content="DOTS">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/DavidSheh/BlogPictures@master/pictures/unity_dots_archite.webp">
+
+
+<link rel="canonical" href="http://codebug.top/post/unity-dots-subscene/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://codebug.top/post/unity-dots-subscene/","path":"post/unity-dots-subscene/","title":"Unity DOTS-Subscene 介绍"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Unity DOTS-Subscene 介绍 | CodeBug</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-104471088-1"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"UA-104471088-1","only_pageview":false,"measure_protocol_api_secret":null}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="CodeBug" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">CodeBug</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">看看书，写写代码，做做投资</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%AD%A6-DOTS-%EF%BC%9F"><span class="nav-number">1.</span> <span class="nav-text">为什么要学 DOTS ？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DOTS-%E4%BB%8B%E7%BB%8D"><span class="nav-number">2.</span> <span class="nav-text">DOTS 介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%83%98%E7%84%99%EF%BC%88Baking%EF%BC%89"><span class="nav-number">3.</span> <span class="nav-text">烘焙（Baking）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%9A%E8%BF%87%E7%83%98%E7%84%99%E8%BD%AC%E6%8D%A2%E6%95%B0%E6%8D%AE"><span class="nav-number">3.1.</span> <span class="nav-text">通过烘焙转换数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%83%98%E7%84%99%E8%BF%87%E7%A8%8B"><span class="nav-number">3.2.</span> <span class="nav-text">烘焙过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%83%98%E7%84%99%E9%98%B6%E6%AE%B5"><span class="nav-number">3.3.</span> <span class="nav-text">烘焙阶段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B"><span class="nav-number">3.4.</span> <span class="nav-text">代码示例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Subscene"><span class="nav-number">4.</span> <span class="nav-text">Subscene</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81-Subscene"><span class="nav-number">4.1.</span> <span class="nav-text">为什么需要 Subscene ?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%BA%E6%99%AF%E6%A6%82%E8%A7%88"><span class="nav-number">4.2.</span> <span class="nav-text">场景概览</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%90%E5%9C%BA%E6%99%AF%E4%BB%8B%E7%BB%8D"><span class="nav-number">4.3.</span> <span class="nav-text">子场景介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%BA%E6%99%AF%E7%9A%84%E6%B5%81%E5%BC%8F%E8%BD%BD%E5%85%A5%EF%BC%88Scene-streaming%EF%BC%89"><span class="nav-number">4.4.</span> <span class="nav-text">场景的流式载入（Scene streaming）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%A0%E8%BD%BD%E5%9C%BA%E6%99%AF"><span class="nav-number">4.5.</span> <span class="nav-text">加载场景</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8D%B8%E8%BD%BD%E5%9C%BA%E6%99%AF"><span class="nav-number">4.5.1.</span> <span class="nav-text">卸载场景</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9C%BA%E6%99%AF%E5%88%87%E7%89%87%EF%BC%88Scene-Section%EF%BC%89"><span class="nav-number">4.5.2.</span> <span class="nav-text">场景切片（Scene Section）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9C%BA%E6%99%AF%E5%92%8C%E5%88%87%E7%89%87%E7%9A%84%E5%85%83%E5%AE%9E%E4%BD%93"><span class="nav-number">4.5.3.</span> <span class="nav-text">场景和切片的元实体</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9C%BA%E6%99%AF%E5%AE%9E%E4%BE%8B%E5%8C%96"><span class="nav-number">4.5.4.</span> <span class="nav-text">场景实例化</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%96%99"><span class="nav-number">5.</span> <span class="nav-text">学习资料</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-number">6.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="行是知成"
+      src="/images/favicon-48x48.ico">
+  <p class="site-author-name" itemprop="name">行是知成</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">53</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">48</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0RhdmlkU2hlaA==" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;DavidSheh"><i class="fab fa-github fa-fw"></i></span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cDovL3dlaWJvLmNvbS8xNTg2NTU4NTY3L3Byb2ZpbGU/dG9wbmF2PTEmd3ZyPTYmaXNfYWxsPTE=" title="Weibo → http:&#x2F;&#x2F;weibo.com&#x2F;1586558567&#x2F;profile?topnav&#x3D;1&amp;wvr&#x3D;6&amp;is_all&#x3D;1"><i class="fab fa-weibo fa-fw"></i></span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly93d3cuemhpaHUuY29tL3Blb3BsZS9kYXZpZHNoZWg=" title="ZhiHu → https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;davidsheh"><i class="fab fa-zhihu fa-fw"></i></span>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/764150976@qq.com" title="E-Mail → 764150976@qq.com" rel="noopener me"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <span class="exturl cc-opacity" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC8="><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          链接
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <span class="exturl" data-url="aHR0cHM6Ly9jcnlwdG9sZWFybi5hY2FkZW15Lw==" title="https:&#x2F;&#x2F;cryptolearn.academy&#x2F;">CryptoLearn</span>
+            </li>
+            <li class="links-of-blogroll-item">
+              <span class="exturl" data-url="aHR0cDovL3pob3VqaWFuaGFuZy5jb20v" title="http:&#x2F;&#x2F;zhoujianhang.com&#x2F;">无敌小拳头</span>
+            </li>
+        </ul>
+      </div>
+    </div>
+        <div class="pjax">
+        </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://codebug.top/post/unity-dots-subscene/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/favicon-48x48.ico">
+      <meta itemprop="name" content="行是知成">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CodeBug">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Unity DOTS-Subscene 介绍 | CodeBug">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Unity DOTS-Subscene 介绍
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-08-03 10:16:33" itemprop="dateCreated datePublished" datetime="2023-08-03T10:16:33+00:00">2023-08-03</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-09-14 10:36:51" itemprop="dateModified" datetime="2024-09-14T10:36:51+00:00">2024-09-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">技术笔记</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="为什么要学-DOTS-？"><a href="#为什么要学-DOTS-？" class="headerlink" title="为什么要学 DOTS ？"></a>为什么要学 DOTS ？</h2><p><strong>DOTS 代表了 Unity 的未来。</strong>Unity 的架构正在朝着全面采用 DOTS 的方向发展。面向数据的设计(DoD)堪称是实时3D 行业的未来。利用 DoD 原理和实现来解决问题并开发复杂的解决方案已成为大势所趋，尤其是在游戏领域。<br>例如，瑞典游戏工作室 Far North Entertainment 就使用了 DOTS 来解决他们的性能问题，相关说明见 “<span class="exturl" data-url="aHR0cHM6Ly9ibG9nLnVuaXR5LmNvbS9nYW1lcy9jcmVhdGluZy1hLXRoaXJkLXBlcnNvbi16b21iaWUtc2hvb3Rlci13aXRoLWRvdHM=">Creating a third-person zombie shooter with DOTS<i class="fa fa-external-link-alt"></i></span>”（使用DOTS创建第三人称僵尸扫荡游戏）。<br>还有国内公司海彼游戏研运的《蛋壳特攻队》，就是使用的 Unity DOTS 技术，相关技术介绍见<span class="exturl" data-url="aHR0cHM6Ly9tcC53ZWl4aW4ucXEuY29tL3MvSlZKbV9jSG5Dc3A5S0l4clBmZ2VnUQ==">《弹壳特攻队》开发技术分享<i class="fa fa-external-link-alt"></i></span>。<br>据称使用了 DoD 的非 Unity 游戏示例包括：暴雪的《守望先锋》和 CD Projekt 的《巫师3》。</p>
+<h2 id="DOTS-介绍"><a href="#DOTS-介绍" class="headerlink" title="DOTS 介绍"></a>DOTS 介绍</h2><p>DOTS 是 Data-Oriented Tech Stack 的缩写，官方翻译为多线程式数据导向型技术堆栈。它可以利用多核处理器来实现数据的并行处理并提高 Unity 项目的性能。<br>目前，DOTS 可与不同的格式共存，并与 Unity MonoBehaviours（非 DOTS 结构）一起使用。最终，Unity 将完全过渡到 DOTS。<br>DOTS 包含以下元素：</p>
+<ol>
+<li>实体组件系统(ECS) - 提供使用面向数据的方法进行编码的框架。它通过 Entities 软件包进行分发，您可以通过 Package Manager 来添加编辑器。在 1.0 版本中，分成了两个软件包 Entities 和 Entities Graphics。</li>
+<li>C# 作业系统（Job System） - 提供一种生成多线程代码的简单方法。它通过Jobs软件包进行分发。</li>
+<li>Burst 编译器 - 可生成快速、优化的本机代码。它通过Burst软件包进行分发，可通过 Package Manager 在编辑器中使用。</li>
+<li>本机容器 - 属于 ECS 数据结构，可提供对内存的控制。</li>
+</ol>
+<p><img src="https://cdn.jsdelivr.net/gh/DavidSheh/BlogPictures@master/pictures/unity_dots_archite.webp" alt="unity_dots_archite"></p>
+<h2 id="烘焙（Baking）"><a href="#烘焙（Baking）" class="headerlink" title="烘焙（Baking）"></a>烘焙（Baking）</h2><h3 id="通过烘焙转换数据"><a href="#通过烘焙转换数据" class="headerlink" title="通过烘焙转换数据"></a>通过烘焙转换数据</h3><p>烘焙是将 Unity 编辑器中的游戏对象数据（<strong>Authoring data</strong>，即创作数据）转换成写入实体场景的实体（<strong>Runtime data</strong>，即运行时数据）的过程。烘焙是一个不可逆的过程，它将一组性能密集型但灵活的游戏对象转变为一组针对性能进行优化的实体和组件。<br><strong>创作数据（Authoring data）</strong>：是在编辑应用程序期间创建的任何数据，例如脚本、资产或任何其他游戏相关数据。这种数据类型灵活且可读：专为人类交互而设计。<br><strong>运行时数据（Runtime data ）</strong>：是 ECS 在运行时处理的数据，例如进入 Play 模式时处理的数据。此数据类型针对性能和存储效率进行了优化：专为计算机处理而设计。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/DavidSheh/BlogPictures@master/pictures/unity_dots_flow1.webp" alt="unity_dots_flow1"><br><img src="https://cdn.jsdelivr.net/gh/DavidSheh/BlogPictures@master/pictures/unity_dots_flow2.webp" alt="unity_dots_flow2"></p>
+<h3 id="烘焙过程"><a href="#烘焙过程" class="headerlink" title="烘焙过程"></a>烘焙过程</h3><p>烘焙仅发生在编辑器中，而不是在游戏中，就像资产导入一样。烘焙仅在编辑器中进行，因为每次需要时处理数据的 GameObject 表示及其烘焙代码需要大量时间和处理能力。此过程意味着如果 Unity 在游戏中执行烘焙，应用程序的性能将会降低。<br>每当创作场景中的创作数据发生变化时，就会触发烘焙过程。 Unity 如何烘焙数据取决于您是否将创作场景作为子场景打开。<br>如果相应的创作场景的子场景打开，则会触发实时烘焙。实时烘焙是指在您处理创作数据时，Unity 将创作数据烘焙到 ECS 数据中。根据 Unity 需要处理的创作数据量，它要么增量执行烘焙过程，要么执行数据的完整烘焙：</p>
+<ul>
+<li>完整烘焙（Full baking）：Unity 处理整个场景并对其进行烘焙。</li>
+<li>增量烘焙（Incremental baking）：Unity只烘焙修改过的数据。<br>如果相应创作场景的子场景关闭，则 Unity 将在后台执行异步烘焙。它在创作场景中执行数据的完整烘焙。</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/DavidSheh/BlogPictures@master/pictures/unity_dots_baking1.webp" alt="unity_dots_baking1"><br><img src="https://cdn.jsdelivr.net/gh/DavidSheh/BlogPictures@master/pictures/unity_dots_baking2.webp" alt="unity_dots_baking2"></p>
+<h3 id="烘焙阶段"><a href="#烘焙阶段" class="headerlink" title="烘焙阶段"></a>烘焙阶段</h3><p>烘焙分成三个阶段：</p>
+<ol>
+<li>实体创建：在 Baker 运行之前，Unity 会为子场景中的每个创作游戏对象创建一个实体。在此阶段，除了一些内部元数据之外，实体没有任何组件。</li>
+<li>烘焙器（Baker）阶段：Unity 创建实体后，它会运行烘焙器。每个烘焙器处理特定的创作组件类型，并且多个烘焙器可以使用相同的创作组件类型。Unity 的 ECS 提供了一些默认的烘焙器。比如用于渲染的渲染烘焙器、用于物理的刚体烘焙器等。</li>
+<li>烘焙系统阶段：所有烘焙器运行完毕后，Unity 运行烘焙系统。烘焙系统是具有 BakingSystem 属性的 ECS 系统，用于指定它们只能在烘焙过程中运行。</li>
+</ol>
+<h3 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a>代码示例</h3><p>简单的烘培示例：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//这个 RotationSpeedAuthoring 类必须遵循 MonoBehaviour 约定</span></span><br><span class="line"><span class="comment">//并且应该保存在名为 RotationSpeedAuthoring.cs的文件中</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">RotationSpeedAuthoring</span> : <span class="title">MonoBehaviour</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">float</span> DegreesPerSecond;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">struct</span> RotationSpeed : IComponentData</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">float</span> RadiansPerSecond;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">SimpleBaker</span> : <span class="title">Baker</span>&lt;<span class="title">RotationSpeedAuthoring</span>&gt;</span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">override</span> <span class="keyword">void</span> <span class="title">Bake</span>(<span class="params">RotationSpeedAuthoring authoring</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">var</span> entity = GetEntity(TransformUsageFlags.Dynamic);</span><br><span class="line">        AddComponent(entity, <span class="keyword">new</span> RotationSpeed</span><br><span class="line">        &#123;</span><br><span class="line">            RadiansPerSecond = math.radians(authoring.DegreesPerSecond)</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>为了保持增量烘焙工作，需要跟踪烘焙游戏对象时使用了哪些数据。 Unity 会自动跟踪创作组件中的任何字段，如果任何数据发生变化，面包师就会重新运行。<br>但是，Unity 不会自动跟踪其他来源的数据，例如创作组件或资产。你需要向烘焙器添加依赖项，以便它可以跟踪此类数据。</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">struct</span> DependentData : IComponentData</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">float</span> Distance;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">int</span> VertexCount;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">DependentDataAuthoring</span> : <span class="title">MonoBehaviour</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> GameObject Other;</span><br><span class="line">    <span class="keyword">public</span> Mesh Mesh;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">GetComponentBaker</span> : <span class="title">Baker</span>&lt;<span class="title">DependentDataAuthoring</span>&gt;</span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">override</span> <span class="keyword">void</span> <span class="title">Bake</span>(<span class="params">DependentDataAuthoring authoring</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 在任何提前退出之前，声明对外部引用的依赖。</span></span><br><span class="line">        <span class="comment">// 因为即使这些值为 null，它们仍然可能是对缺失对象的适当 Unity 引用。</span></span><br><span class="line">        <span class="comment">// 依赖项确保在恢复这些对象时将触发烘焙器。</span></span><br><span class="line"></span><br><span class="line">        DependsOn(authoring.Other);</span><br><span class="line">        DependsOn(authoring.Mesh);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (authoring.Other == <span class="literal">null</span>) <span class="keyword">return</span>;</span><br><span class="line">        <span class="keyword">if</span> (authoring.Mesh == <span class="literal">null</span>) <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">var</span> transform = GetComponent&lt;Transform&gt;();</span><br><span class="line">        <span class="keyword">var</span> transformOther = GetComponent&lt;Transform&gt;(authoring.Other);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (transform == <span class="literal">null</span>) <span class="keyword">return</span>;</span><br><span class="line">        <span class="keyword">if</span> (transformOther == <span class="literal">null</span>) <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">var</span> entity = GetEntity(TransformUsageFlags.Dynamic);</span><br><span class="line">        AddComponent(entity, <span class="keyword">new</span> DependentData</span><br><span class="line">        &#123;</span><br><span class="line">            Distance = Vector3.Distance(transform.position, transformOther.position),</span><br><span class="line">            VertexCount = authoring.Mesh.vertexCount</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Subscene"><a href="#Subscene" class="headerlink" title="Subscene"></a>Subscene</h2><h3 id="为什么需要-Subscene"><a href="#为什么需要-Subscene" class="headerlink" title="为什么需要 Subscene ?"></a>为什么需要 Subscene ?</h3><p>由于某些项目包含大量数据，因此如果数据包含在一个创作场景中，Unity 编辑器可能很难处理所有数据。 ECS 可以有效地处理数百万个实体，但在其游戏对象表示中，它们可能会导致编辑器停止运行。因此，将创作数据放入几个较小的创作场景中会更有效。<br>这样有以下两点优势：</p>
+<ol>
+<li>便于多人协作。</li>
+<li>方便全局预览，不会导致 Unity 编辑器卡死。</li>
+</ol>
+<h3 id="场景概览"><a href="#场景概览" class="headerlink" title="场景概览"></a>场景概览</h3><p>在实体组件系统（ECS）中，场景的工作方式有所不同。这是因为 Unity 的核心场景系统与 ECS 不兼容。在 ECS 中，场景被分成以下三种类型：</p>
+<ol>
+<li>创作场景（Authoring scenes）：创作场景是一种可以像任何其他场景一样打开和编辑的场景，但设计用于烘焙处理。它包含 Unity 在运行时将其转换为 ECS 数据的 GameObjects 和 MonoBehaviour 组件。</li>
+<li>实体场景（Entity scenes）：实体场景包含烘焙过程产生的 ECS 数据。</li>
+<li>子场景（Subscenes）：子场景是对创作或实体场景的引用。在 Unity 编辑器中，您创建一个子场景以添加创作元素。当子场景关闭时，会触发相关实体场景的烘焙过程。<br>子场景和实体场景经常相互混淆。但子场景只不过是一个附着点，用于方便地加载实体场景。<br>子场景是一个 GameObject 组件，允许将场景加载为其 GameObject 创作表示（以对其进行操作）或其 ECS 表示（只读，但高性能）。</li>
+</ol>
+<h3 id="子场景介绍"><a href="#子场景介绍" class="headerlink" title="子场景介绍"></a>子场景介绍</h3><p>实体组件系统 (ECS) 使用子场景而不是场景来管理应用程序的内容。这是因为 Unity 的核心场景系统与 ECS 不兼容。你可以将 GameObjects 和 MonoBehaviour 组件添加到子场景中，然后烘焙将 GameObjects 和 MonoBehaviour 组件转换为实体和 ECS 组件。还可以选择创建自己的烘培器以将 ECS 组件附加到转换后的实体。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/DavidSheh/BlogPictures@master/pictures/unity_subscence1.webp" alt="unity_subscence1"><br><img src="https://cdn.jsdelivr.net/gh/DavidSheh/BlogPictures@master/pictures/unity_subscence2.webp" alt="unity_subscence2"><br><img src="https://cdn.jsdelivr.net/gh/DavidSheh/BlogPictures@master/pictures/unity_subscence3.webp" alt="unity_subscence3"></p>
+<p>当子场景打开时，会发生以下情况：</p>
+<ul>
+<li>在“层次结构”窗口中，Unity 显示具有 SubScene 组件的游戏对象下的子场景中的所有创作游戏对象。</li>
+<li>场景视图根据首选项窗口的实体部分中的场景视图模式设置显示运行时数据（实体）或创作数据（游戏对象）。</li>
+<li>初始烘焙过程在子场景中的所有创作组件上运行。</li>
+<li>对创作组件所做的任何更改都会触发增量烘焙过程。<br>当子场景关闭时，Unity 会流式载入烘焙场景的内容。当您进入“播放”模式时，关闭的子场景中的实体需要几帧才能变得可用。在构建中，子场景的行为与编辑器中关闭的子场景相同，因此它们的实体不能立即可用。</li>
+</ul>
+<blockquote>
+<p>注意：Unity 不会流式载入打开的子场景的内容。当您进入播放模式时，打开的子场景中的实体立即可用。</p>
+</blockquote>
+<p><img src="https://cdn.jsdelivr.net/gh/DavidSheh/BlogPictures@master/pictures/unity_dots_entity1.webp" alt="unity_dots_entity1"><br><img src="https://cdn.jsdelivr.net/gh/DavidSheh/BlogPictures@master/pictures/unity_dots_entity2.webp" alt="unity_dots_entity2"></p>
+<h3 id="场景的流式载入（Scene-streaming）"><a href="#场景的流式载入（Scene-streaming）" class="headerlink" title="场景的流式载入（Scene streaming）"></a>场景的流式载入（Scene streaming）</h3><p>加载大场景可能需要几帧。为了避免卡顿，实体中的所有场景加载都是异步的。这称为流式载入。<br>流式载入的主要优点是：</p>
+<ul>
+<li>当 Unity 在后台载入场景时，应用程序可以保持响应。</li>
+<li>Unity 可以在大于内存容量的无缝世界中动态加载和卸载场景，而不会中断游戏玩法。</li>
+<li>在播放模式下，如果实体场景文件丢失或过时，Unity 会按需转换场景。由于实体场景的烘焙和加载是异步发生的并且在单独的进程中，因此编辑器保持响应。<br>流式载入的主要缺点是：</li>
+<li>应用程序不能假设场景数据存在，特别是在启动时。这可能会使您的代码变得更加复杂。</li>
+<li>系统从场景系统组加载场景，场景系统组是初始化组的一部分。在该帧中更新较晚的系统会在同一帧中接收加载的数据，但早于该组更新的系统直到下一帧才会接收加载的数据。您的代码可能需要考虑到这一点。</li>
+</ul>
+<h3 id="加载场景"><a href="#加载场景" class="headerlink" title="加载场景"></a>加载场景</h3><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Runtime component, SceneSystem uses EntitySceneReference to identify scenes.</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">struct</span> SceneLoader : IComponentData</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> EntitySceneReference SceneReference;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">if</span> UNITY_EDITOR// Authoring component, a SceneAsset can only be used in the Editor</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">SceneLoaderAuthoring</span> : <span class="title">MonoBehaviour</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> UnityEditor.SceneAsset Scene;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">class</span> <span class="title">Baker</span> : <span class="title">Baker</span>&lt;<span class="title">SceneLoaderAuthoring</span>&gt;</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">override</span> <span class="keyword">void</span> <span class="title">Bake</span>(<span class="params">SceneLoaderAuthoring authoring</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">var</span> reference = <span class="keyword">new</span> EntitySceneReference(authoring.Scene);</span><br><span class="line">            <span class="keyword">var</span> entity = GetEntity(TransformUsageFlags.None);</span><br><span class="line">            AddComponent(entity, <span class="keyword">new</span> SceneLoader</span><br><span class="line">            &#123;</span><br><span class="line">                SceneReference = reference</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"></span><br><span class="line">[<span class="meta">RequireMatchingQueriesForUpdate</span>]</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">partial</span> <span class="keyword">class</span> <span class="title">SceneLoaderSystem</span> : <span class="title">SystemBase</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">private</span> EntityQuery newRequests;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">override</span> <span class="keyword">void</span> <span class="title">OnCreate</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        newRequests = GetEntityQuery(<span class="keyword">typeof</span>(SceneLoader));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">override</span> <span class="keyword">void</span> <span class="title">OnUpdate</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">var</span> requests = newRequests.ToComponentDataArray&lt;SceneLoader&gt;(Allocator.Temp);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Can&#x27;t use a foreach with a query as SceneSystem.LoadSceneAsync does structural changes</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; requests.Length; i += <span class="number">1</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            SceneSystem.LoadSceneAsync(World.Unmanaged, requests[i].SceneReference);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        requests.Dispose();</span><br><span class="line">        EntityManager.DestroyEntity(newRequests);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用 <code>EntitySceneReference</code> 来在烘焙过程中保留对场景的引用并在运行时加载它们。在调用 <code>SceneSystem.LoadSceneAsync</code> 期间，仅创建场景实体。 Unity 使用此实体在内部控制加载过程的其余部分。<br>在此调用期间不会加载场景头文件（scene header）、切片实体（section entities）及其内容，并且它们会在几帧后准备就绪。<br><code>SceneSystem.LoadSceneAsync</code> 会引起结构更改。这些结构变化阻止我们在 foreach 中使用查询调用此函数。</p>
+<h4 id="卸载场景"><a href="#卸载场景" class="headerlink" title="卸载场景"></a>卸载场景</h4><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> unloadParameters = SceneSystem.UnloadParameters.DestroyMetaEntities;</span><br><span class="line">SceneSystem.UnloadScene(World.Unmanaged, sceneEntity, unloadParameters);</span><br></pre></td></tr></table></figure>
+
+<p>默认情况下， <code>SceneSystem.UnloadScene</code> 仅卸载切片（sections ）的内容，但保留场景和切片的元实体（meta entities）。如果稍后要再次加载场景，这非常有用，因为准备好这些元实体可以加快场景的加载速度。<br>要卸载内容并删除元实体， 调用 <code>SceneSystem.UnloadScene</code> 时请使用 <code>UnloadParameters.DestroyMetaEntities</code> 参数。</p>
+<h4 id="场景切片（Scene-Section）"><a href="#场景切片（Scene-Section）" class="headerlink" title="场景切片（Scene Section）"></a>场景切片（Scene Section）</h4><p>Unity 将场景中的所有实体分组为切片，默认为切片 0。场景中的每个实体都有一个 SceneSection 共享组件，指示该实体属于哪个切片。SceneSection 包含场景的 GUID（Hash128 ）和切片编号（整数）。<br>切片索引不需要是连续的，但默认切片 0 始终存在，即使它是空的。例如，您可以有默认切片 0 和索引为 123 的切片。在编辑器中，场景切片仅在子场景关闭时应用。打开的子场景包含第 0 切片中的所有实体。<br><img src="https://cdn.jsdelivr.net/gh/DavidSheh/BlogPictures@master/pictures/unity_dots_section.webp" alt="unity_dots_section"></p>
+<p>有两种方式可以将实体分配到指定的切片：</p>
+<ol>
+<li>使用创作组件 SceneSectionComponent 。此创作组件会影响其所在的创作游戏对象及其所有子对象（递归地）。</li>
+<li>编写自定义烘焙系统来直接设置 SceneSection 值。你无法在 Baker 中为 SceneSection 分配值。</li>
+</ol>
+<h4 id="场景和切片的元实体"><a href="#场景和切片的元实体" class="headerlink" title="场景和切片的元实体"></a>场景和切片的元实体</h4><p>烘焙创作场景会生成实体场景文件。每个实体场景文件的标头包含：</p>
+<ul>
+<li>切片列表，其中包含文件名、文件大小和边界体积等数据。</li>
+<li>AssetBundle 依赖项 (GUID) 列表。</li>
+<li>可选的自定义元数据。<br>切片和 Bundles 的列表决定了 Unity 在加载场景时需要加载的文件列表。您可以选择将自定义元数据用于特定于游戏的目的。例如，您可以将 PVS（潜在可见集）信息存储为自定义元数据，以决定何时流式传输场景，或者可以存储某些条件以决定何时加载场景。<br>加载实体场景分两步进行：</li>
+</ul>
+<ol>
+<li>解析阶段加载标头并为每个场景和每个切片创建一个元实体。</li>
+<li>Unity 加载各切片的内容。</li>
+</ol>
+<h4 id="场景实例化"><a href="#场景实例化" class="headerlink" title="场景实例化"></a>场景实例化</h4><p>要实例化世界上某个位置的场景，可以执行以下操作：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> loadParameters = <span class="keyword">new</span> SceneSystem.LoadParameters()</span><br><span class="line">    &#123; Flags = SceneLoadFlags.NewInstance &#125;;</span><br><span class="line"><span class="keyword">var</span> sceneEntity = SceneSystem.LoadSceneAsync(state.WorldUnmanaged,</span><br><span class="line">    sceneReference, loadParameters);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> ecb = <span class="keyword">new</span> EntityCommandBuffer(Allocator.Persistent,</span><br><span class="line">    PlaybackPolicy.MultiPlayback);</span><br><span class="line"><span class="keyword">var</span> postLoadEntity = ecb.CreateEntity();</span><br><span class="line"><span class="keyword">var</span> postLoadOffset = <span class="keyword">new</span> PostLoadOffset</span><br><span class="line">&#123;</span><br><span class="line">    Offset = sceneOffset</span><br><span class="line">&#125;;</span><br><span class="line">ecb.AddComponent(postLoadEntity, postLoadOffset);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> postLoadCommandBuffer = <span class="keyword">new</span> PostLoadCommandBuffer()</span><br><span class="line">&#123;</span><br><span class="line">    CommandBuffer = ecb</span><br><span class="line">&#125;;</span><br><span class="line">state.EntityManager.AddComponentData(sceneEntity, postLoadCommandBuffer);</span><br></pre></td></tr></table></figure>
+
+<p>上面的代码使用名为 <code>PostLoadOffset</code> 的组件来存储要应用于实例的偏移量。</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">struct</span> PostLoadOffset : IComponentData</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> float3 Offset;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>最后，使用自定义系统来应用变换：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">[<span class="meta">UpdateInGroup(typeof(ProcessAfterLoadGroup))</span>]</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">partial</span> <span class="keyword">struct</span> PostprocessSystem : ISystem</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">private</span> EntityQuery offsetQuery;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">OnCreate</span>(<span class="params"><span class="keyword">ref</span> SystemState state</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        offsetQuery = <span class="keyword">new</span> EntityQueryBuilder(Allocator.Temp)</span><br><span class="line">            .WithAll&lt;PostLoadOffset&gt;()</span><br><span class="line">            .Build(<span class="keyword">ref</span> state);</span><br><span class="line">        state.RequireForUpdate(offsetQuery);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">OnUpdate</span>(<span class="params"><span class="keyword">ref</span> SystemState state</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// Query the instance information from the entity created in the EntityCommandBuffer.</span></span><br><span class="line">        <span class="keyword">var</span> offsets = offsetQuery.ToComponentDataArray&lt;PostLoadOffset&gt;(Allocator.Temp);</span><br><span class="line">        <span class="keyword">foreach</span> (<span class="keyword">var</span> offset <span class="keyword">in</span> offsets)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">// Use that information to apply the transforms to the entities in the instance.</span></span><br><span class="line">            <span class="keyword">foreach</span> (<span class="keyword">var</span> transform <span class="keyword">in</span> SystemAPI.Query&lt;RefRW&lt;LocalTransform&gt;&gt;())</span><br><span class="line">            &#123;</span><br><span class="line">                transform.ValueRW.Position += offset.Offset;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        state.EntityManager.DestroyEntity(offsetQuery);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="学习资料"><a href="#学习资料" class="headerlink" title="学习资料"></a>学习资料</h2><ol>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL1VuaXR5LVRlY2hub2xvZ2llcy9FbnRpdHlDb21wb25lbnRTeXN0ZW1TYW1wbGVz">官方 ECS 案例 GitHub 仓库<i class="fa fa-external-link-alt"></i></span></li>
+<li>官方文档翻译后的思维导图，如下：<br><img src="https://cdn.jsdelivr.net/gh/DavidSheh/BlogPictures@master/pictures/unity-dots-mindmap.webp" alt="unity-dots-mindmap"></li>
+</ol>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9kb2NzLnVuaXR5M2QuY29tL1BhY2thZ2VzL2NvbS51bml0eS5lbnRpdGllc0AxLjAvbWFudWFsL2luZGV4Lmh0bWw=">Entities 1.0.14<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9sZWFybi51M2QuY24vdHV0b3JpYWwvZG90cy1ndWlkZT9jaGFwdGVySWQ9NjQyMTQ5N2QyYWNiNDcwMDIxYmM1YjUyIzY0MjE0ZDU5NzliNWEyMDAxZWQxZThjNA==">DOTS 指南<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly93d3cuc2xpZGVzaGFyZS5uZXQvdW5pdHkzZC9jb252ZXJ0aW5nLXNjZW5lLWRhdGEtdG8tZG90cy11bml0ZS1jb3BlbmhhZ2VuLTIwMTk=">Converting Scene Data to DOTS<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly96aHVhbmxhbi56aGlodS5jb20vcC8zODI5MDIxNzA=">Unity DOTS编码实践：SubScene<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>请我一杯咖啡吧！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.jpg" alt="行是知成 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/alipay.jpg" alt="行是知成 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>行是知成
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="http://codebug.top/post/unity-dots-subscene/" title="Unity DOTS-Subscene 介绍">http://codebug.top/post/unity-dots-subscene/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC8="><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</span> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Unity3D/" rel="tag"># Unity3D</a>
+              <a href="/tags/DOTS/" rel="tag"># DOTS</a>
+          </div>
+
+        
+  <div class="social-like a2a_kit a2a_kit_size_32 a2a_default_style">
+    <a class="a2a_dd" target="_blank" rel="noopener" href="https://www.addtoany.com/share"></a>
+      <a class="a2a_button_facebook"></a>
+      <a class="a2a_button_twitter"></a>
+      <a class="a2a_button_wechat"></a>
+      <a class="a2a_button_qzone"></a>
+      <a class="a2a_button_telegram"></a>
+  </div>
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/post/unity_materialpropertyblock/" rel="prev" title="Unity3D MaterialPropertyBlock 的一个坑">
+                  <i class="fa fa-angle-left"></i> Unity3D MaterialPropertyBlock 的一个坑
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/post/lua-serialization/" rel="next" title="C# 对象序列化成 Lua 代码">
+                  C# 对象序列化成 Lua 代码 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2015 – 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">CodeBug</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZy9taXN0Lw==">NexT.Mist</span> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+  <span class="exturl github-corner" data-url="aHR0cHM6Ly9naXRodWIuY29tL0RhdmlkU2hlaA==" title="在 GitHub 上关注我" aria-label="在 GitHub 上关注我"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></span>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script><script src="/js/pjax.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+
+  <script src="/js/third-party/addtoany.js"></script>
+
+  
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"DavidSheh","repo":"davidsheh.github.io","client_id":"a64275d932b30b7c6654","client_secret":"58cfd039fc57204bdaf145cb0973c7d72ba817a4","admin_user":"DavidSheh","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"23eadd3db0fafaabe714c2d9fd86c1db"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>
