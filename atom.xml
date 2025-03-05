@@ -1,0 +1,656 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>CodeBug</title>
+  <icon>http://codebug.top/icon.png</icon>
+  <subtitle>看看书，写写代码，做做投资</subtitle>
+  <link href="http://codebug.top/atom.xml" rel="self"/>
+  
+  <link href="http://codebug.top/"/>
+  <updated>2024-09-10T03:50:56.000Z</updated>
+  <id>http://codebug.top/</id>
+  
+  <author>
+    <name>行是知成</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>C# 对象序列化成 Lua 代码</title>
+    <link href="http://codebug.top/post/lua-serialization/"/>
+    <id>http://codebug.top/post/lua-serialization/</id>
+    <published>2024-09-09T18:45:21.000Z</published>
+    <updated>2024-09-10T03:50:56.000Z</updated>
+    
+    
+    <summary type="html">Lua Serialization
+Lua Serialization 是一种轻量级的序列化工具，用于将 C# 对象序列化成 Lua 代码。它可以帮助你将 C# 中的实例对象保存为 Lua 代码形式的配置文件，方便在 Lua 环境中使用。这对于在 Unity3D + Lua 的游戏开发工作流中非常有用。
+
+特点
+ 1. 支持将 C# 对象序列化成 Lua 代码。
+ 2. 支持多种数据类型的导出，包括基本类型（int、float、double、bool、string、enum、array），以及复杂类型如 List 和 Dictionary。
+ 3. 支持忽略某些字段的导出。
+ 4. 支持序列化</summary>
+    
+    
+    
+    <category term="技术笔记" scheme="http://codebug.top/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="C#" scheme="http://codebug.top/tags/c-sharp/"/>
+    
+    <category term="Unity3D" scheme="http://codebug.top/tags/Unity3D/"/>
+    
+    <category term="Lua" scheme="http://codebug.top/tags/Lua/"/>
+    
+    <category term="Serialization" scheme="http://codebug.top/tags/Serialization/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Unity DOTS-Subscene 介绍</title>
+    <link href="http://codebug.top/post/unity-dots-subscene/"/>
+    <id>http://codebug.top/post/unity-dots-subscene/</id>
+    <published>2023-08-03T10:16:33.000Z</published>
+    <updated>2024-09-14T10:36:51.000Z</updated>
+    
+    
+    <summary type="html">为什么要学 DOTS ？
+DOTS 代表了 Unity 的未来。Unity 的架构正在朝着全面采用 DOTS 的方向发展。面向数据的设计(DoD)堪称是实时3D 行业的未来。利用 DoD 原理和实现来解决问题并开发复杂的解决方案已成为大势所趋，尤其是在游戏领域。
+例如，瑞典游戏工作室 Far North Entertainment 就使用了 DOTS 来解决他们的性能问题，相关说明见 “Creating a third-person zombie shooter with DOTS”（使用DOTS创建第三人称僵尸扫荡游戏）。
+还有国内公司海彼游戏研运的《蛋壳特攻队》，就是使用的 Unity D</summary>
+    
+    
+    
+    <category term="技术笔记" scheme="http://codebug.top/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="Unity3D" scheme="http://codebug.top/tags/Unity3D/"/>
+    
+    <category term="DOTS" scheme="http://codebug.top/tags/DOTS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Unity3D MaterialPropertyBlock 的一个坑</title>
+    <link href="http://codebug.top/post/unity_materialpropertyblock/"/>
+    <id>http://codebug.top/post/unity_materialpropertyblock/</id>
+    <published>2021-07-22T09:21:36.000Z</published>
+    <updated>2024-01-06T12:35:42.000Z</updated>
+    
+    
+    <summary type="html">遇到的问题
+项目中有个预制体里面包含了 SpriteRender、Spine 的 MeshRenderer ，以及粒子系统特效。需求是要求游戏里的这个预制体对象在某一种状态下半透明。使用 MaterialPropertyBlock 修改预制体对象中的一个 Sprite 的材质颜色时，该对象直接变成了全白显示。
+
+产生问题的原因
+Sprite 的着色器中的 _Color 属性使用了 [PerRendererData] 标签。因为 Unity 在内部使用 MaterialPropertyBlock 进行 Sprite 渲染，所以使用 MaterialPropertyBlock 发送一些 [PerR</summary>
+    
+    
+    
+    <category term="技术笔记" scheme="http://codebug.top/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="Unity3D" scheme="http://codebug.top/tags/Unity3D/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Rider 常用快捷键</title>
+    <link href="http://codebug.top/post/rider_shortcut/"/>
+    <id>http://codebug.top/post/rider_shortcut/</id>
+    <published>2021-06-25T16:17:13.000Z</published>
+    <updated>2024-07-08T11:14:21.000Z</updated>
+    
+    
+    <summary type="html">Rider 常用快捷键
+编辑
+ * Ctrl + /注释
+ * Shift + F6 重命名
+ * Ctrl + Y 删除一行
+ * Ctrl + Alt + Left/Right 返回上次编辑位置
+ * Ctrl + Alt + L 格式化代码
+ * Ctrl + D 复制当前行
+ * Shift + Alt + Up 将行往上移动
+ * Ctrl + W区域选择
+
+查找
+ * Ctrl + F 在当前文件查找
+ * Ctrl + Shift + F 全局查找
+ * Ctrl + N 全局查找类
+ * Ctrl + Shift + N 全局查找代码文件
+ * Ctrl + R 查找并替换
+ </summary>
+    
+    
+    
+    <category term="技术笔记" scheme="http://codebug.top/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="Tools" scheme="http://codebug.top/tags/Tools/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Unity 开发中常见的 C# 性能问题</title>
+    <link href="http://codebug.top/post/unity-csharp-performance/"/>
+    <id>http://codebug.top/post/unity-csharp-performance/</id>
+    <published>2020-05-28T12:41:17.000Z</published>
+    <updated>2024-01-06T12:35:42.000Z</updated>
+    
+    
+    <summary type="html">for VS. foreach
+老版本的 Unity （测试用的是 Unity 5.0.2f1) foreach 是有大概 40B 的 GC，所以，项目重遍历 IList、ArrayList 和 Dictionary 时都不要用 foreach。
+使用 for 替代，或者使用如下写法：
+
+ * List 的非 foreach 遍历
+   
+   1
+   2
+   3
+   4
+   5
+   
+   
+   List&lt;int&gt; data = new List&lt;int&gt;();
+   var e = data.GetEnumerator();
+   while(e.MoveNext())
+   </summary>
+    
+    
+    
+    <category term="技术笔记" scheme="http://codebug.top/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="C#" scheme="http://codebug.top/tags/c-sharp/"/>
+    
+    <category term="Unity3D" scheme="http://codebug.top/tags/Unity3D/"/>
+    
+    <category term="性能优化" scheme="http://codebug.top/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>C# 中常见的易混淆概念</title>
+    <link href="http://codebug.top/post/csharp-some-confused/"/>
+    <id>http://codebug.top/post/csharp-some-confused/</id>
+    <published>2020-02-15T20:22:51.000Z</published>
+    <updated>2024-01-06T12:35:42.000Z</updated>
+    
+    
+    <summary type="html">虚方法和抽象方法的区别
+ * 抽象方法在抽象类中定义，并且没有方法体，要求派生的非抽象子类必须重写抽象方法。
+ * 虚方法在抽象类和非抽象类中都可以定义，有默认方法体，派生子类可以使用 override 关键字覆盖父类虚方法，但也可以不重写父类的虚方法。
+ * Difference between virtual and abstract methods [duplicate]
+
+抽象类和接口的区别
+主要区别
+ * 抽象类中可以包含抽象方法和其他方法，接口中只能包含抽象方法。
+ * 一个类只能继承一个抽象类，但是可以实现多个接口。
+ * 抽象类和接口都不能实例化。
+ * 抽象类可以有构造函数，</summary>
+    
+    
+    
+    <category term="技术笔记" scheme="http://codebug.top/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="C#" scheme="http://codebug.top/tags/c-sharp/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>uGUI 的优化</title>
+    <link href="http://codebug.top/post/unity-ugui-optimize/"/>
+    <id>http://codebug.top/post/unity-ugui-optimize/</id>
+    <published>2019-11-19T10:14:42.000Z</published>
+    <updated>2024-01-06T12:35:42.000Z</updated>
+    
+    
+    <summary type="html">一、界面制作
+ 1. 在UI界面中，用Canvas还是用RectTransform做根节点更好？哪种方法效率更高？
+    
+    Canvas划分是个很大的话题。简单来说，因为一个Canvas下的所有UI元素都是合在一个Mesh中的，过大的Mesh在更新时开销很大，所以一般建议每个较复杂的UI界面，都自成一个Canvas(可以是子Canvas)，在UI界面很复杂时，甚至要划分更多的子Canvas。同时还要注意动态元素和静态元素的分离，因为动态元素会导致Canvas的mesh的更新。最后，Canvas又不能细分的太多，因为会导致Draw Call的上升。
+    
+    
+ 2. Scro</summary>
+    
+    
+    
+    <category term="技术笔记" scheme="http://codebug.top/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="Unity3D" scheme="http://codebug.top/tags/Unity3D/"/>
+    
+    <category term="性能优化" scheme="http://codebug.top/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/"/>
+    
+    <category term="uGUI" scheme="http://codebug.top/tags/uGUI/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hexo 将类别和标签进行映射</title>
+    <link href="http://codebug.top/post/hexo-mapping-categories-tags/"/>
+    <id>http://codebug.top/post/hexo-mapping-categories-tags/</id>
+    <published>2019-06-03T19:31:08.000Z</published>
+    <updated>2024-01-14T06:01:28.000Z</updated>
+    
+    
+    <summary type="html">问题描述
+如果个人博客使用的是 Hexo 框架，分类和标签遇到特殊情况可能会链接不正确，比如说博客分类或者标签里面有 C# 的话，生成博客网站后，点击 C# 分类或者标签后，发现并没有正常显示 C# 相关的文章，而且 C++ 也有类似的问题。产生这个问题的原因是 Hexo 在生成博客后，每个标签会单独生成一个文件夹，而文件夹名称里面不能包含一些非法字符，同时网页地址里面也不能包含 # 等非法字符。
+
+解决方案
+在 Hexo 默认的 _config.yml 文件中，定义了两个空的映射属性：category_map 和 tag_map。只需要在这两个属性下面设置合法的映射就能解决问题。下面是我的映</summary>
+    
+    
+    
+    <category term="技术笔记" scheme="http://codebug.top/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="Blog" scheme="http://codebug.top/tags/Blog/"/>
+    
+    <category term="Hexo" scheme="http://codebug.top/tags/Hexo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Unity ECS 笔记</title>
+    <link href="http://codebug.top/post/unity-ecs-note/"/>
+    <id>http://codebug.top/post/unity-ecs-note/</id>
+    <published>2019-04-02T17:47:01.000Z</published>
+    <updated>2024-01-06T12:35:42.000Z</updated>
+    
+    
+    <summary type="html">Unity ECS 提供了一种更好的游戏设计方法，使开发者专注于正在解决的实际问题：组成游戏的数据和行为。它利用 C＃Job System 和 Burst Compiler 使应用程序能够充分利用当今的多核处理器。从面向对象的设计转向面向数据的设计使开发者可以更轻松地重用代码，并使其他人更容易理解和处理代码。
+
+ECS 优点
+ * 编写极高性能的代码 (Extremely performant code)
+ * 更易于阅读的代码 (Easier to read)
+ * 更易于代码重用 (Easier to reuse code)
+ * Burst 编译器 (Burst compiler)
+ *</summary>
+    
+    
+    
+    <category term="技术笔记" scheme="http://codebug.top/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="Unity" scheme="http://codebug.top/tags/Unity/"/>
+    
+    <category term="ECS" scheme="http://codebug.top/tags/ECS/"/>
+    
+    <category term="Burst" scheme="http://codebug.top/tags/Burst/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Unity Shader 学习笔记</title>
+    <link href="http://codebug.top/post/unity-shader-notes/"/>
+    <id>http://codebug.top/post/unity-shader-notes/</id>
+    <published>2019-03-18T17:28:12.000Z</published>
+    <updated>2024-01-20T14:16:18.000Z</updated>
+    
+    
+    <summary type="html">一些基础知识点介绍
+ 1. 数据类型
+    
+     * double（双精度类型），一般64bit
+     * float（浮点数类型），一般是32bit，如float2, float3, float4
+     * half（半精度类型），一般是16bit。用于几何位置或纹理坐标。
+     * fixed（定点数类型），一般是11bit。精度更低。一般用于颜色。
+     * vec（向量值类型）, 如vec2, vec3, vec4
+    
+    
+ 2. 常见方法
+    
+     * tex2D(sampler2D, TEXCOORD0)
+     * length(f</summary>
+    
+    
+    
+    <category term="技术笔记" scheme="http://codebug.top/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="Unity" scheme="http://codebug.top/tags/Unity/"/>
+    
+    <category term="Shader" scheme="http://codebug.top/tags/Shader/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>搭建免费稳定的个人博客图床</title>
+    <link href="http://codebug.top/post/blog-pic-bed/"/>
+    <id>http://codebug.top/post/blog-pic-bed/</id>
+    <published>2018-11-13T20:05:41.000Z</published>
+    <updated>2024-01-06T12:35:42.000Z</updated>
+    
+    
+    <summary type="html">免费的图床有很多，比如说 sm.ms、微博图床、七牛云，这几个图床在个人微博中用的是比较多的。虽然它们都是免费的，但是有很多限制，网上看到的资料说是后面两个托管的图片地址可能会变化，这对于个人博客来说就很要命了。有一次灵光一闪，既然 GitHub 上可以托管博客，那么博客图片能不能也托管到 GitHub 呢？百度一下，果然有人这么做。然后，我也尝试了一下使用 GitHub 作为个人博客的图床，以下是用 GitHub 搭建图床的过程以及遇到的问题。
+
+为什么要选择 GitHub 作为博客图床？
+ 1. 免费无限制。GitHub 的公共仓库是免费的，没有广告，没有流量限制也不产生流量费用，没有图片</summary>
+    
+    
+    
+    <category term="开发工具" scheme="http://codebug.top/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"/>
+    
+    
+    <category term="Blog" scheme="http://codebug.top/tags/Blog/"/>
+    
+    <category term="图床" scheme="http://codebug.top/tags/%E5%9B%BE%E5%BA%8A/"/>
+    
+    <category term="GitHub" scheme="http://codebug.top/tags/GitHub/"/>
+    
+    <category term="PicGo" scheme="http://codebug.top/tags/PicGo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>一步步学习 Unity Shader</title>
+    <link href="http://codebug.top/post/unity-shader-step-by-step/"/>
+    <id>http://codebug.top/post/unity-shader-step-by-step/</id>
+    <published>2018-10-06T11:06:21.000Z</published>
+    <updated>2024-01-20T14:16:18.000Z</updated>
+    
+    
+    <summary type="html">Shaderlab
+定义一个属性
+语法：
+
+1
+
+
+[var name]([Message], [Type]) = [Default value]
+
+
+举例：
+
+1
+2
+3
+4
+
+
+_FloatVal(&quot;Float Value&quot;, float) = 0.0 // 浮点数
+_MainTex(&quot;Texture&quot;, 2D) = &quot;white&quot;{} // 纹理图片
+_RangeVal(&quot;Range value&quot;, Range(0.0, 10.0)) = 1.0 // 范围
+_Color(&quot;Color&quot;, Color) = (1.0, 1.0, 1.0, 1.0) // 颜色
+
+
+子着色器（SubSha</summary>
+    
+    
+    
+    <category term="技术笔记" scheme="http://codebug.top/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="Unity" scheme="http://codebug.top/tags/Unity/"/>
+    
+    <category term="Shader" scheme="http://codebug.top/tags/Shader/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Linux 学习笔记</title>
+    <link href="http://codebug.top/post/linux-notes/"/>
+    <id>http://codebug.top/post/linux-notes/</id>
+    <published>2018-09-12T20:54:08.000Z</published>
+    <updated>2024-01-06T12:35:42.000Z</updated>
+    
+    
+    <summary type="html">最重要的命令
+ * man 查看帮助手册，例如 man ls 表示查看 ls 命令的帮助手册
+ * -h、--h、-help、--help 查看命令帮助
+
+常用命令
+ * mkdir 创建一个文件夹；
+ * touch 创建一个空文件，touch 的另一个作用是更新文件的时间戳,也就是最后编辑时间,内容保持不变；
+ * rm &lt;file&gt; 删除文件，rm -f &lt;file&gt; 强制删除文件；
+ * cp &lt;old&gt; &lt;new&gt; 复制文件；
+ * mv &lt;old&gt; &lt;new&gt; 移动或重命名文件；
+ * cat file 显示文件内容；
+ * ls foo 可以用于检查 foo 文件或目录是否存在；</summary>
+    
+    
+    
+    <category term="技术笔记" scheme="http://codebug.top/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="Linux" scheme="http://codebug.top/tags/Linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Jenkins 使用备忘</title>
+    <link href="http://codebug.top/post/jenkins-usage/"/>
+    <id>http://codebug.top/post/jenkins-usage/</id>
+    <published>2018-03-11T18:44:33.000Z</published>
+    <updated>2024-01-06T12:35:42.000Z</updated>
+    
+    
+    <summary type="html">安装 Jenkins
+使用 Homebrew 安装Jenkins。
+
+1
+
+
+brew install jenkins
+
+
+启动 Jenkins
+直接在终端输入如下命令启动
+
+1
+
+
+jenkins
+
+
+当终端输出的日志最后显示如下所示，表示启动成功。
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+
+
+信息:
+
+*************************************************************
+*************************************************************</summary>
+    
+    
+    
+    <category term="开发工具" scheme="http://codebug.top/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"/>
+    
+    
+    <category term="Jenkins" scheme="http://codebug.top/tags/Jenkins/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>WSL 使用记录</title>
+    <link href="http://codebug.top/post/wsl-usage/"/>
+    <id>http://codebug.top/post/wsl-usage/</id>
+    <published>2017-09-29T20:11:02.000Z</published>
+    <updated>2024-01-06T12:35:42.000Z</updated>
+    
+    
+    <summary type="html">简介
+WSL 是 Windows Subsystem for Linux 的缩写。它是 Win10 系统下面的一个 Linux 子系统。
+
+安装和卸载 WSL环境
+安装
+在 Win10 上的 Microsoft Store 中搜索 Linux，就可以看到 WSL 所支持的 Linux 版本，找到想要安装的版本直接安装就可以了。目前，WSL支持 Ubuntu，Kali Linux，GNU，OpenSUSE 等，后续可能会有更多Linux发行版支持WSL。本文主要记录 Ubuntu 的使用过程。
+
+安装报错
+1
+2
+3
+4
+5
+
+
+Installing, this may take a few m</summary>
+    
+    
+    
+    <category term="技术笔记" scheme="http://codebug.top/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="Linux" scheme="http://codebug.top/tags/Linux/"/>
+    
+    <category term="Shell" scheme="http://codebug.top/tags/Shell/"/>
+    
+    <category term="wsl" scheme="http://codebug.top/tags/wsl/"/>
+    
+    <category term="Ubuntu" scheme="http://codebug.top/tags/Ubuntu/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>「翻译」Unity中的AssetBundle详解（六）</title>
+    <link href="http://codebug.top/post/%E3%80%8C%E7%BF%BB%E8%AF%91%E3%80%8DUnity%E4%B8%AD%E7%9A%84AssetBundle%E8%AF%A6%E8%A7%A3%EF%BC%88%E5%85%AD%EF%BC%89/"/>
+    <id>http://codebug.top/post/%E3%80%8C%E7%BF%BB%E8%AF%91%E3%80%8DUnity%E4%B8%AD%E7%9A%84AssetBundle%E8%AF%A6%E8%A7%A3%EF%BC%88%E5%85%AD%EF%BC%89/</id>
+    <published>2017-09-24T21:35:06.000Z</published>
+    <updated>2024-01-06T12:35:42.000Z</updated>
+    
+    
+    <summary type="html">故障排除
+本节介绍通常在使用 AssetBundles 的项目中出现的几个问题。
+
+Asset 重复
+当对象被构建到 AssetBundle 中时，Unity 5 的 AssetBundle 系统会发现对象的所有依赖关系。这是使用资产数据库完成的。此依赖关系信息用于确定将包含在 AssetBundle 中的对象集。明确分配给 AssetBundle 的对象只会内置到该 AssetBundle 中。当对象的 AssetImporter 的 assetBundleName 属性设置为非空字符串时，对象将被“显式分配”。在 AssetBundle 中未明确分配的任何对象将包含在所有的 AssetBu</summary>
+    
+    
+    
+    <category term="技术翻译" scheme="http://codebug.top/categories/%E6%8A%80%E6%9C%AF%E7%BF%BB%E8%AF%91/"/>
+    
+    
+    <category term="Unity3D" scheme="http://codebug.top/tags/Unity3D/"/>
+    
+    <category term="AssetBundle" scheme="http://codebug.top/tags/AssetBundle/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>「翻译」Unity中的AssetBundle详解（五）</title>
+    <link href="http://codebug.top/post/%E3%80%8C%E7%BF%BB%E8%AF%91%E3%80%8DUnity%E4%B8%AD%E7%9A%84AssetBundle%E8%AF%A6%E8%A7%A3%EF%BC%88%E4%BA%94%EF%BC%89/"/>
+    <id>http://codebug.top/post/%E3%80%8C%E7%BF%BB%E8%AF%91%E3%80%8DUnity%E4%B8%AD%E7%9A%84AssetBundle%E8%AF%A6%E8%A7%A3%EF%BC%88%E4%BA%94%EF%BC%89/</id>
+    <published>2017-09-23T20:15:24.000Z</published>
+    <updated>2024-01-06T12:35:42.000Z</updated>
+    
+    
+    <summary type="html">AssetBundle 管理器
+AssetBundle Manager 可以在这里下载，是由 Unity 制作的一种工具，可以使 AssetBundles 更加精简。下载和导入 AssetBundle Manager 软件包不仅添加了一个新的API调用来加载和使用AssetBundles，而且还添加了一些编辑器功能来简化工作流。此功能可以在“资产”菜单选项下找到。此新部分将包含以下选项：
+
+模拟模式
+启用模拟模式允许 AssetBundle Manager 使用 AssetBundles，但不需要实际构建捆绑包。编辑器会看到 Assets 已分配给 AssetBundles，并直接使用 Ass</summary>
+    
+    
+    
+    <category term="技术翻译" scheme="http://codebug.top/categories/%E6%8A%80%E6%9C%AF%E7%BF%BB%E8%AF%91/"/>
+    
+    
+    <category term="Unity3D" scheme="http://codebug.top/tags/Unity3D/"/>
+    
+    <category term="AssetBundle" scheme="http://codebug.top/tags/AssetBundle/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>「翻译」Unity中的AssetBundle详解（四）</title>
+    <link href="http://codebug.top/post/%E3%80%8C%E7%BF%BB%E8%AF%91%E3%80%8DUnity%E4%B8%AD%E7%9A%84AssetBundle%E8%AF%A6%E8%A7%A3%EF%BC%88%E5%9B%9B%EF%BC%89/"/>
+    <id>http://codebug.top/post/%E3%80%8C%E7%BF%BB%E8%AF%91%E3%80%8DUnity%E4%B8%AD%E7%9A%84AssetBundle%E8%AF%A6%E8%A7%A3%EF%BC%88%E5%9B%9B%EF%BC%89/</id>
+    <published>2017-09-17T21:23:12.000Z</published>
+    <updated>2024-01-06T12:35:42.000Z</updated>
+    
+    
+    <summary type="html">AssetBundle依赖关系
+如果一个或多个UnityEngine.Objects包含位于另一个bundle中的UnityEngine.Object的引用，则AssetBundles可以依赖于其他AssetBundles。如果UnityEngine.Object包含一个在其他任何AssetBundle中都不包含的UnityEngine.Object的引用，则不会发生依赖关系。在这种情况下，在构建AssetBundles时，将bundle所依赖的对象的副本复制到捆绑包中。如果多个bundle中的多个对象包含对未分配给bundle的同一对象的引用，那么对该对象具有依赖关系的每个bundle将各自</summary>
+    
+    
+    
+    <category term="技术翻译" scheme="http://codebug.top/categories/%E6%8A%80%E6%9C%AF%E7%BF%BB%E8%AF%91/"/>
+    
+    
+    <category term="Unity3D" scheme="http://codebug.top/tags/Unity3D/"/>
+    
+    <category term="AssetBundle" scheme="http://codebug.top/tags/AssetBundle/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>在 Mac 上配置 C++ 环境</title>
+    <link href="http://codebug.top/post/mac-c-env/"/>
+    <id>http://codebug.top/post/mac-c-env/</id>
+    <published>2017-09-16T22:49:16.000Z</published>
+    <updated>2024-01-06T12:35:42.000Z</updated>
+    
+    
+    <summary type="html">使用 VSCode 编写 C++ 程序一步到位
+ 1. 安装C/C++插件，请认准微软官方出品
+ 2. 安装Code Runner插件
+ 3. 写代码，然后保存
+ 4. 使用快捷键Ctrl+Alt+N编译并运行代码
+
+使用 Xcode 强大的 IDE
+ 1. 打开 Xcode，点 Create a new Xcode project
+ 2. 选择 macOS -&gt; Command Line Tool
+ 3. 下一步后，填写项目的基本信息，然后，Language 这一项选择 C++
+ 4. 项目创建完后，点击三角形的按钮就开始编译了
+
+C++ 代码在命令行编译并运行的步骤
+ 1. 打开终端（⌘ </summary>
+    
+    
+    
+    <category term="技术笔记" scheme="http://codebug.top/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="C++" scheme="http://codebug.top/tags/c-plus-plus/"/>
+    
+    <category term="Mac" scheme="http://codebug.top/tags/Mac/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Windows 系统的包管理器</title>
+    <link href="http://codebug.top/post/windows-chocolatey-scoop/"/>
+    <id>http://codebug.top/post/windows-chocolatey-scoop/</id>
+    <published>2017-09-09T21:02:36.000Z</published>
+    <updated>2024-01-06T12:35:42.000Z</updated>
+    
+    
+    <summary type="html">自从在 Mac 下使用了 Homebrew + iTerm 2 + Fish shell 后，瞬间感觉世界清静了不少。然后就在想 Windows 下面有没有类似的软件呢？毕竟在工作中使用 Windows 还是比较多的，然后在网上还真搜到了。对应于 Mac 下的 Homebrew + iTerm 2 + Fish shell ， Windows 下是 Chocolatey( + Scoop) + ConEmu + PowerShell。
+
+Chocolatey
+官网号称 Chocolatey 是在 Windows 上管理软件的明智方式，轻松管理 Windows 软件的各个方面（安装，配置，升级和</summary>
+    
+    
+    
+    <category term="开发工具" scheme="http://codebug.top/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"/>
+    
+    
+    <category term="Windows" scheme="http://codebug.top/tags/Windows/"/>
+    
+    <category term="Chocolatey" scheme="http://codebug.top/tags/Chocolatey/"/>
+    
+    <category term="Scoop" scheme="http://codebug.top/tags/Scoop/"/>
+    
+  </entry>
+  
+</feed>
